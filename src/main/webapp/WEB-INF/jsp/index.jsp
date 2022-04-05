@@ -19,37 +19,7 @@
          <div id="wrapper">
 
             <!-- Header -->
-         <header id="header">
-
-            <!-- Logo -->
-                    <div class="logo">
-                       <a href="index.jsp"><sxtrong>멘토링</strong> <span class="extra">by SKHU</span></a>
-                    </div>
-
-                 <!-- Nav -->
-                    <nav id="nav">
-                       <ul>
-                          <li>
-                             <a href="#" class="icon solid fa-angle-down">매칭신청</a>
-                             <ul>
-                                <li><a href="#">멘토 등록</a></li>
-                                <li><a href="#">멘티 등록</a></li>
-                             </ul>
-                          </li>
-                          <li>
-                             <a href="#" class="icon solid fa-angle-down">멘토/멘티현황</a>
-                             <ul>
-                                <li><a href="#">멘토 목록</a></li>
-                                <li><a href="#">멘티 목록</a></li>
-                             </ul>
-                          </li>
-                          <li><a href="generic.html">공지사항</a></li>
-                          <li><a href="elements.html">마이페이지</a></li>
-                          <li><a href="login.html">로그인</a></li>
-                       </ul>
-                    </nav>
-
-          </header>
+             <%@include file ="header.jsp" %>
 
             <!-- Banner -->
                <section id="banner">
