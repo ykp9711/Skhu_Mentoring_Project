@@ -29,4 +29,8 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {return  "login";}
 
+    @GetMapping("/findPwId")
+    public String findPwId() {return  "findPwId";}
+
+
 }
