@@ -37,4 +37,10 @@ public class HomeController {
     @GetMapping("/test")
     public String test() {return  "menteeRegister";}
 
+    @GetMapping("/signUp")
+    public String signup() {return  "signup";}
+
+    @GetMapping("/ranking")
+    public String ranking() {return  "ranking";}
+
 }
