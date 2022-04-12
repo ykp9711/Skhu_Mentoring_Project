@@ -17,5 +17,30 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/menteeStatus")
+    public String menteeStatus() {return  "menteeStatus";}
+
+    @GetMapping("/mentorStatus")
+    public String mentorStatus() {return  "mentorStatus";}
+
+    @GetMapping("/myPage")
+    public String myPage() {return  "myPage";}
+
+    @GetMapping("/login")
+    public String login() {return  "login";}
+
+
+    @GetMapping("/findPwId")
+    public String findPwId() {return  "findPwId";}
+
+
+    @GetMapping("/test")
+    public String test() {return  "menteeRegister";}
+
+    @GetMapping("/signUp")
+    public String signup() {return  "signup";}
+
+    @GetMapping("/ranking")
+    public String ranking() {return  "ranking";}
 
 }
