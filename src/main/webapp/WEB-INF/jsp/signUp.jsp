@@ -17,6 +17,7 @@
 		<!-- Wrapper -->
 			<div id="wrapper">
 
+				<!-- Header -->
 				<%@include file ="header.jsp" %>
 
 				<!-- Section -->
@@ -29,7 +30,7 @@
 						<form method="post" action="#" >
 							<div class="row gtr-uniform">
 								<div class="col-12">
-									<input type="text" name="ID" id="iD" value="" placeholder="ID" />
+									<input type="text" name="id" id="id" value="" placeholder="ID" />
 								</div>
                                 <div class="col-12">
 									<input type="password" name="password" id="password" value="" placeholder="비밀번호" />
@@ -40,23 +41,26 @@
                                 <div class="col-12">
 									<input type="text" name="name" id="name" value="" placeholder="이름" />
 								</div>
+								<div class="col-12">
+									<select name="department">
+										<option value=" " selected>학부를 선택하세요.</option>
+										<option value="IT융합자율학부">IT융합자율학부</option>
+										<option value="사회융합자율학부">사회융합자율학부</option>
+										<option value="인문융합자율학부">인문융합자율학부</option>
+										<option value="미디어콘텐츠융합자율학부">미디어콘텐츠융합자율학부</option>
+									</select>
+								</div>
+								<div class="col-12">
+									<input type="text" name="phone" id="phone" value="" placeholder="휴대폰 번호" />
+								</div>
                                 <div class="col-12">
 									<input type="email" name="email" id="email" value="" placeholder="이메일" />
 								</div>
                                 <div class="col-8 col-12-small">
                                     <input type="text" name="num" id="num" value="" placeholder="이메일 인증번호">
                                 </div>
-                                <div class="col-4 col-12-small">
-                                    <input type="button" value="인증" class="button primary fit" >
-                                </div>
-                                <div class="col-12">
-									<select name="department">
-                                        <option value=" " selected>학부를 선택하세요.</option>
-                                        <option value="IT융합자율학부">IT융합자율학부</option>
-                                        <option value="사회융합자율학부">사회융합자율학부</option>
-                                        <option value="인문융합자율학부">인문융합자율학부</option>
-										<option value="미디어콘텐츠융합자율학부">미디어콘텐츠융합자율학부</option>
-                                    </select>
+								<div class="col-4 col-12-small">
+									<input type="button" value="인증" class="button primary fit" >
 								</div>
                                 <div class="col-12">
 									<input type="text" name="studentID" id="studentID" value="" placeholder="학번" />
