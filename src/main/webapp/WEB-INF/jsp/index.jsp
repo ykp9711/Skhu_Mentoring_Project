@@ -77,7 +77,7 @@
            <!-- Section -->
          <section id="one" class="main">
          <header class="accent1">
-            <h2>SKHU Mentoring Ranking</h2>
+            <a href="ranking.jsp"><h2>SKHU Mentoring Ranking</h2></a>
             <p>성공회대학교 멘토링을 빛내주신 멘토</p>
          </header>
          <ul class="tabs">
