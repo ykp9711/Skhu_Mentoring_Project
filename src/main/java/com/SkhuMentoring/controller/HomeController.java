@@ -29,10 +29,11 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {return  "login";}
 
+    @GetMapping("/myInfo")
+    public String myInfo() {return  "myInfo";}
 
     @GetMapping("/findPwId")
     public String findPwId() {return  "findPwId";}
-
 
     @GetMapping("/test")
     public String test() {return  "menteeRegister";}
