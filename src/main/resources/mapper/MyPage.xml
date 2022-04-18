@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.SkhuMentoring.mapper.MyPageMapper">
+    <!--멘토 DB뿌리기-->
+    <select id="getMentorStatus" resultType="com.SkhuMentoring.dto.Mentor">
+        select * from tbl_mentorBoard;
+    </select>
+    <!--멘티 DB뿌리기-->
+    <select id="getMenteeStatus" resultType="com.SkhuMentoring.dto.Mentee">
+        select * from tbl_menteeBoard;
+    </select>
+
+    <!--멘토링 종료-->
+    <delete id="endMentoring">
+        delete from tbl_mentorBoard where subjectName =#{subjectName}
+    </delete>
+
+    <delete id="requestAccept">
+        delete from tbl_menteeBoard where userStudentNum =#{userStudentNum}
+    </delete>
+
+    <delete id="requestRefusal">
+        delete from tbl_menteeBoard where userStudentNum =#{userStudentNum}
+    </delete>
+
+    <insert id="requestAcceptData" >
+        insert into tbl_mentoring(student1) values (#{student1})
+    </insert>
+
+    <select id="whoIsMentee" resultType="_int">
+        select * from tbl_menteeBoard where userStudentNum =#{userStudentNum}
+    </select>
+    
+    <!--페이징하면 사용-->
+    <!--<sql id="criteria">
+        <if test="type != null and keyword != null">
+            <trim prefix="(" suffix=") AND" prefixOverrides="OR">
+                &lt;!&ndash; 전달받은 객체(Criteria)에서 collection에 적당한 typeArr의 getter()를 mapping한다. &ndash;&gt;
+                &lt;!&ndash; 즉, Criteria 필드에 getTypeArr()을 사용하여 반복횟수와 값을 결정한다. &ndash;&gt;
+                <foreach item="type" collection="typeArr">
+                    <trim prefix="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                (ACADEMYTITLE LIKE '%' || #{keyword} || '%')
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                (ACADEMYKIND LIKE '%' || #{keyword} || '%')
+                            </when>
+                            <when test="type == 'W'.toString()">
+                                (ACADEMYAREA LIKE '%' || #{keyword} || '%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </if>
+    </sql>
+
+    <select id="getList" resultType="com.SkhuMentoring.dto.Mentor">
+        SELECT  mentorNum, mentoringSubject, mentoringMentees, mentoringStartDate, mentoringDetail, mentoringEnd
+        FROM
+        (SELECT  ROWNUM mentorNum, mentoringSubject, mentoringMentees, mentoringStartDate, mentoringDetail, mentoringEnd
+        FROM TBL_MENTOR WHERE
+        <include refid="criteria"></include>
+        <![CDATA[
+      ROWNUM <= #{amount} * #{pageNum})
+      WHERE RN >= (#{pageNum} * #{amount}) - 9
+      ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(*) FROM TBL_MENTOR WHERE
+        <include refid="criteria"></include>
+        <![CDATA[
+      ANO > 0
+      ]]>
+        &lt;!&ndash; 뒤에 AND가 오니깐 무조건 TRUE인 조건을 하나 붙혀서 오류를 해결한다. &ndash;&gt;
+    </select>-->
+</mapper>
