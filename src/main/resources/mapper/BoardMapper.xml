@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.SkhuMentoring.mapper.MentoringBoardMapper">
+    <select id="getDepartment" resultType="com.SkhuMentoring.dto.Department">
+        SELECT department FROM TBL_DEPARTMENT
+    </select>
+
+    <select id="getSubject" resultType="com.SkhuMentoring.dto.Subject">
+        SELECT * FROM TBL_SUBJECT
+    </select>
+
+    <insert id="insertMentorBoard" useGeneratedKeys="true" keyProperty="bno">
+        INSERT into tbl_mentorBoard(userId,UserStudentNum,department,subjectName,startDate,endDate,hopeDay,introduce) values(#{userId}, #{userStudentNum}, #{department}, #{subjectName}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce})
+    </insert>
+
+    <insert id="insertSubject" keyProperty="sno" useGeneratedKeys="true">
+        insert into tbl_subject(subjectName) values(#{subjectName})
+    </insert>
+
+    <select id="checkSubject" resultType="_int">
+        SELECT COUNT(*) FROM tbl_subject where subjectName=#{subject}
+    </select>
+
+    <insert id="insertMenteeBoard" useGeneratedKeys="true" keyProperty="bno">
+        INSERT into tbl_menteeBoard(userId,UserStudentNum,department,subjectName,startDate,endDate,hopeDay,introduce) values(#{userId}, #{userStudentNum}, #{department}, #{subjectName}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce})
+    </insert>
+
+</mapper>

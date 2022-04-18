@@ -66,7 +66,7 @@ public class HomeController {
             subject.setSubjectName(mentor.getSubjectName());
             mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
         }
-        mentoringBoardMapper.insertMentoBoard(mentor);
+        mentoringBoardMapper.insertMentorBoard(mentor);
         return null;
     }
 

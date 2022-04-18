@@ -18,7 +18,7 @@ public interface MentoringBoardMapper {
 
     void insertSubject(Subject subject);
 
-    void insertMentoBoard(Mentor mentor); // 멘토 게시글 등록
+    void insertMentorBoard(Mentor mentor); // 멘토 게시글 등록
     
     int checkSubject(String subject); // 과목 등록 시 이미 DB에 등록된 과목인지 체크
 
