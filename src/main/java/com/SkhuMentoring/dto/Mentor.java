@@ -13,6 +13,7 @@ public class Mentor {
     private String department;
     private String subjectName;
     private String subject;
+    private String menteeCount;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

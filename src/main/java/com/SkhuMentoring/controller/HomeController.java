@@ -5,12 +5,16 @@ import com.SkhuMentoring.dto.Mentee;
 import com.SkhuMentoring.dto.Mentor;
 import com.SkhuMentoring.dto.Subject;
 import com.SkhuMentoring.mapper.MentoringBoardMapper;
+import com.SkhuMentoring.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
 
     private final MentoringBoardMapper mentoringBoardMapper;
+    private final MyPageMapper myPageMapper;
 
     @GetMapping("/")
     public String main() {
@@ -32,8 +37,6 @@ public class HomeController {
     @GetMapping("/mentorStatus")
     public String mentorStatus() {return  "mentorStatus";}
 
-    @GetMapping("/myPage")
-    public String myPage() {return  "myPage";}
 
     @GetMapping("/login")
     public String login() {return  "login";}
@@ -100,6 +103,46 @@ public class HomeController {
         else { // result 값이 1이 아니라면 없는 아이디로 success 리턴
             return "success";  }
     }
-
-
+    //마이페이지로 이동
+    @GetMapping("/myPage")
+    public String myPageGo(@ModelAttribute Mentor mentor, Model model){
+        model.addAttribute("list",myPageMapper.getMentorStatus());
+        model.addAttribute("list2",myPageMapper.getMenteeStatus());
+        return "myPage";
+    }
+    //마이페이지 > 멘토 현황 > 멘토링 종료
+    @GetMapping("/endMentoring")
+    public String endMentoring(@RequestParam("subjectName") String subjectName,Model model, HttpServletRequest req, HttpServletResponse resp){
+        log.info(subjectName);
+        myPageMapper.endMentoring(subjectName);
+        String referer = req.getHeader("Referer");
+        return "redirect:"+ referer;
+    }
+    // 마이페이지 > 멘토 현황 > 상세보기
+    @GetMapping("/detailMentoring")
+    public String detailMentee(Model model){
+        model.addAttribute("list2",myPageMapper.getMenteeStatus());
+        return "detailMentoring";
+    }
+    // 마이페이지 > 멘티에게 받은 요청 > 거절하기
+    @GetMapping("/requestRefusal")
+    public String requestRefusal(@RequestParam("userStudentNum") String userStudentNum,Model model, HttpServletRequest req, HttpServletResponse resp){
+        log.info(userStudentNum);
+        myPageMapper.requestRefusal(userStudentNum);
+        String referer = req.getHeader("Referer");
+        return "redirect:"+ referer;
+    }
+    // 마이페이지 > 멘티에게 받은 요청 > 수락
+    @GetMapping("/requestAccept")
+    public String requestAccept(@RequestParam("userStudentNum") String userStudentNum, Model model, HttpServletRequest req, HttpServletResponse resp) {
+        log.info(userStudentNum);
+        if(myPageMapper.requestAccept(userStudentNum)){
+            myPageMapper.requestAcceptData(userStudentNum);
+            String referer = req.getHeader("Referer");
+            return "redirect:"+ referer;
+        }else return null;
+    }
+    // 마이페이지 > 멘티 상세보기
+    /*@GetMapping("/whoIsMentee")
+    public String whoIsMentee()*/
 }

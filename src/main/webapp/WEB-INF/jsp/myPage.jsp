@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
@@ -116,51 +117,23 @@ License: pixelarity.com/license
                             <tr class="tHead" >
                                 <th style="text-align: center; vertical-align : middle;" >No</th>
                                 <th  style="text-align: center; vertical-align : middle;">멘토링 과목</th>
-                                <th style="text-align: center; vertical-align : middle;" class="mentorNumber">멘티 인원 수</th>
-                                <th style="text-align: center; vertical-align : middle;" class="department">멘토링 시작 일</th>
-                                <th style="text-align: center; vertical-align : middle;" class="subject">상세보기</th>
-                                <th style="text-align: center; vertical-align : middle;" class="time">멘토링 종료</th>
+                                <th style="text-align: center; vertical-align : middle;" >멘티 인원 수</th>
+                                <th style="text-align: center; vertical-align : middle;" >멘토링 시작 일</th>
+                                <th style="text-align: center; vertical-align : middle;" >상세보기</th>
+                                <th style="text-align: center; vertical-align : middle;" >멘토링 종료</th>
 
                             </tr>
 
+                            <c:forEach var="list" items="${list}">
                             <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >3</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">종료</a></td>
+                                <td style="vertical-align : middle">${list.bno}</td>
+                                <td style="vertical-align : middle">${list.subjectName}</td>
+                                <td style="vertical-align: middle;" >${list.menteeCount}</td>
+                                <td style="vertical-align : middle" class="title">${list.startDate}</td>
+                                <td style="vertical-align : middle" class="area" ><a href="/detailMentoring" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                <td style="vertical-align : middle" class="area" ><a href="/endMentoring?subjectName=${list.subjectName}" class="button small">종료</a></td>
                             </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >3</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">종료</a></td>
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >3</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">종료</a></td>
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >3</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">종료</a></td>
-                            </tr>
-
-
-                            </tbody>
+                            </c:forEach>
                         </table>
                     </div>
 
@@ -180,40 +153,14 @@ License: pixelarity.com/license
 
 
                             </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >육정근</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">2</td>
-                                <td style="vertical-align : middle">C언어</td>
-                                <td style="vertical-align: middle;" >양경필</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >안대성</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >김윤진</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr>
-
-
-                            </tbody>
+                            <c:forEach var="list2" items="${list2}">
+                                <tr style="height: 70px;">
+                                    <td style="vertical-align : middle">${list2.bno}</td>
+                                    <td style="vertical-align : middle">${list2.subjectName}</td>
+                                    <td style="vertical-align: middle;" >${list2.mentorWho}</td>
+                                    <td style="vertical-align : middle" class="title">${list2.startDate}</td>
+                                </tr>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>
@@ -231,41 +178,15 @@ License: pixelarity.com/license
 
 
                             </tr>
+                            <c:forEach var="list" items="${list}">
+                                <tr style="height: 70px;">
+                                    <td style="vertical-align : middle">${list.bno}</td>
+                                    <td style="vertical-align : middle">${list.subjectName}</td>
+                                    <td style="vertical-align : middle" class="title">${list.startDate}</td>
+                                    <td style="vertical-align : middle" class="title">${list.endDate}</td>
+                                </tr>
+                            </c:forEach>
 
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >2022-03-03</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >2022-03-03</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >2022-03-03</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >2022-03-03</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr>
-
-
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -285,40 +206,15 @@ License: pixelarity.com/license
 
                             </tr>
 
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align : middle">육정근</td>
-                                <td style="vertical-align: middle;" >2022-03-03</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align : middle">육정근</td>
-                                <td style="vertical-align: middle;" >2022-03-03</td>
-                                <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                            </tr><tr style="height: 70px;">
-                            <td style="vertical-align : middle">1</td>
-                            <td style="vertical-align : middle">알고리즘</td>
-                            <td style="vertical-align : middle">육정근</td>
-                            <td style="vertical-align: middle;" >2022-03-03</td>
-                            <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                        </tr><tr style="height: 70px;">
-                            <td style="vertical-align : middle">1</td>
-                            <td style="vertical-align : middle">알고리즘</td>
-                            <td style="vertical-align : middle">육정근</td>
-                            <td style="vertical-align: middle;" >2022-03-03</td>
-                            <td style="vertical-align : middle" class="title">2022-04-07</td>
-
-                        </tr>
-
-
-                            </tbody>
+                            <c:forEach var="list2" items="${list2}">
+                                <tr style="height: 70px;">
+                                    <td style="vertical-align : middle">${list2.bno}</td>
+                                    <td style="vertical-align : middle">${list2.subjectName}</td>
+                                    <td style="vertical-align: middle;" >${list2.mentorWho}</td>
+                                    <td style="vertical-align : middle" class="title">${list2.startDate}</td>
+                                    <td style="vertical-align : middle" class="title">${list2.endDate}</td>
+                                </tr>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>
@@ -330,7 +226,6 @@ License: pixelarity.com/license
                         <table style="border: 1px;  text-align: center;  ">
                             <tr class="tHead" >
                                 <th style="text-align: center; vertical-align : middle;" >No</th>
-                                <th  style="text-align: center; vertical-align : middle;">이름</th>
                                 <th style="text-align: center; vertical-align : middle;" class="mentorNumber">학번</th>
                                 <th style="text-align: center; vertical-align : middle;" class="department">학부</th>
                                 <th style="text-align: center; vertical-align : middle;" class="subject">멘토링 과목</th>
@@ -338,45 +233,18 @@ License: pixelarity.com/license
                                 <th style="text-align: center; vertical-align : middle;" class="time">수락/거절</th>
 
                             </tr>
+                            <c:forEach var="list2" items="${list2}">
+                                <tr style="height: 70px;">
+                                    <td style="vertical-align : middle">${list2.bno}</td>
+                                    <td style="vertical-align : middle">${list2.userStudentNum}</td>
+                                    <td style="vertical-align : middle">${list2.department}</td>
+                                    <td style="vertical-align : middle">${list2.subjectName}</td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentee?userStudentNum=${list2.userStudentNum}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/requestAccept?userStudentNum=${list2.userStudentNum}" class="button small">수락</a>
+                                        <a href="/requestRefusal?userStudentNum=${list2.userStudentNum}" class="button small">거절</a></td>
+                                </tr>
+                            </c:forEach>
 
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">육정근</td>
-                                <td style="vertical-align: middle;" >201632015</td>
-                                <td style="vertical-align: middle;" >IT융합자율학부</td>
-                                <td style="vertical-align: middle;" >알고리즘</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">수락</a><a href="멘티등록링크" class="button primary small">거절</a></td>
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">육정근</td>
-                                <td style="vertical-align: middle;" >201632015</td>
-                                <td style="vertical-align: middle;" >IT융합자율학부</td>
-                                <td style="vertical-align: middle;" >알고리즘</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">수락</a><a href="멘티등록링크" class="button primary small">거절</a></td>
-                            </tr><tr style="height: 70px;">
-                            <td style="vertical-align : middle">1</td>
-                            <td style="vertical-align : middle">육정근</td>
-                            <td style="vertical-align: middle;" >201632015</td>
-                            <td style="vertical-align: middle;" >IT융합자율학부</td>
-                            <td style="vertical-align: middle;" >알고리즘</td>
-                            <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                            <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">수락</a><a href="멘티등록링크" class="button primary small">거절</a></td>
-                        </tr><tr style="height: 70px;">
-                            <td style="vertical-align : middle">1</td>
-                            <td style="vertical-align : middle">육정근</td>
-                            <td style="vertical-align: middle;" >201632015</td>
-                            <td style="vertical-align: middle;" >IT융합자율학부</td>
-                            <td style="vertical-align: middle;" >알고리즘</td>
-                            <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                            <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">수락</a><a href="멘티등록링크" class="button primary small">거절</a></td>
-                        </tr>
-
-
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -388,102 +256,30 @@ License: pixelarity.com/license
                         <table style="border: 1px;  text-align: center;  ">
                             <tr class="tHead" >
                                 <th style="text-align: center; vertical-align : middle;" >No</th>
-
                                 <th style="text-align: center; vertical-align : middle;" class="subject">멘토링 과목</th>
-                                <th style="text-align: center; vertical-align : middle;" class="subject">멘토</th>
                                 <th style="text-align: center; vertical-align : middle;" class="time">승인여부</th>
                                 <th style="text-align: center; vertical-align : middle;" class="time">신청취소</th>
                                 <th style="text-align: center; vertical-align : middle;" class="time">멘토정보</th>
 
                             </tr>
 
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >육정근</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">대기중</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">신청취소</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-
-                            </tr>
-
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >육정근</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">대기중</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">신청취소</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-
-                            </tr>
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >육정근</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">대기중</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">신청취소</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-
-                            </tr>
-                            <tr style="height: 70px;">
-                                <td style="vertical-align : middle">1</td>
-                                <td style="vertical-align : middle">알고리즘</td>
-                                <td style="vertical-align: middle;" >육정근</td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">대기중</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">신청취소</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-
-                            </tr>
+                            <c:forEach var="list" items="${list}">
+                                <tr style="height: 70px;">
+                                    <td style="vertical-align : middle">${list.bno}</td>
+                                    <td style="vertical-align : middle">${list.subjectName}</td>
+                                    <td style="vertical-align : middle">대기중</td>
+                                    <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">신청취소</a></td>
+                                    <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">상세보기</a></td>
+                                </tr>
+                            </c:forEach>
 
 
-                            </tbody>
                         </table>
                     </div>
     </section>
 
     <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <section>
-                <h3>Nullam sed gravida</h3>
-                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
-                <ul class="icons">
-                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Lorem aliquam</h4>
-                <ul class="links">
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Quis lectus donec</a></li>
-                    <li><a href="#">Magna ligula</a></li>
-                    <li><a href="#">Sed etiam tristique</a></li>
-                    <li><a href="#">Cursus magna</a></li>
-                    <li><a href="#">Gravida dolore</a></li>
-                </ul>
-            </section>
-            <section class="narrow">
-                <h4>Magna tempus</h4>
-                <ul class="links">
-                    <li><a href="#">Feugiat ligula</a></li>
-                    <li><a href="#">Vulputate tristique</a></li>
-                    <li><a href="#">Ultrices nulla</a></li>
-                    <li><a href="#">Cursus sed magna</a></li>
-                    <li><a href="#">Sed lectus donec</a></li>
-                </ul>
-            </section>
-            <section>
-                <h3>Morbi sed volutpat</h3>
-                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
-                <p><a href="#" class="major">(000) 000-0000</a></p>
-            </section>
-        </div>
-        <div class="copyright">
-            <p>&copy; Untitled. All rights reserved.</p>
-        </div>
-    </footer>
+    <%@include file ="footer.jsp" %>
 
 </div>
 

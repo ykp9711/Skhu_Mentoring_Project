@@ -14,7 +14,7 @@
 
     <!-- Logo -->
     <div class="logo">
-        <a href="index.jsp"><strong>멘토링</strong> <span class="extra">by SKHU</span></a>
+        <a href="/"><strong>멘토링</strong> <span class="extra">by SKHU</span></a>
     </div>
 
     <!-- Nav -->
@@ -36,7 +36,7 @@
                 </ul>
             </li>
             <li><a href="generic.html">공지사항</a></li>
-            <li><a href="myPage.jsp">마이페이지</a></li>
+            <li><a href="/myPage">마이페이지</a></li>
             <li><a href="login.html">로그인</a></li>
         </ul>
     </nav>
