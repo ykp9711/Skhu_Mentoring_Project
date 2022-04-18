@@ -2,9 +2,9 @@
 
 <!DOCTYPE HTML>
 <!--
-   Hypothesis by Pixelarity
-   pixelarity.com | hello@pixelarity.com
-   License: pixelarity.com/license
+Hypothesis by Pixelarity
+pixelarity.com | hello@pixelarity.com
+License: pixelarity.com/license
 -->
 <html>
 <style>
@@ -96,500 +96,500 @@
     .section input[id="slide11"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(11) > label {background:#999;}
     .section input[id="slide12"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(12) > label {background:#999;}
 </style>
-   <head>
-      <title>Untitled</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <link rel="stylesheet" href="assets/css/main.css" />
-   </head>
-   <body class="is-preload">
-
-      <!-- Wrapper -->
-         <div id="wrapper">
-
-            <!-- Header -->
-             <%@include file ="header.jsp" %>
-
-            <!-- Banner -->
-             <!-- Banner -->
-             <section id="banner">
-                 <div class="content primary" >
-
-                     <div style="width: 60%;  float: left;">
-                         <header>
-                             <h1>성공회대학교 멘토링 시스템<br />
-                             </h1>
-                             <p>멘토와 멘티를 찾아보세요</p>
-
-                         </header>
-                     </div>
-                     <div style="width: 30%; float: left;">
-
-                         <div class="col-6 col-12-small">
-
-                             <h2>멘토 순위</h2><br>
-                             <label>육정근</label>
-                             <label>육정근</label>
-                             <label>육정근</label>
-                             <label>육정근</label>
-
-
-
-
-                         </div>
-
-
-                     </div>
-                 </div><br><br><br><br><br><br><br><br>
-                 <!-- 슬라이드 1번 -->
-                 <div style="width: 25%; float:left" >
-                     <div class="content secondary" >
-                         <div class="inner">
-                             <div class="section">
-                                 <input type="radio" name="slide" id="slide01" checked>
-                                 <input type="radio" name="slide" id="slide02">
-                                 <input type="radio" name="slide" id="slide03">
-                                 <div class="slidewrap">
-
-                                     <ul class="slidelist">
-                                         <!-- 슬라이드 영역 -->
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h2>IT</h2>
-                                                 <h4>멘토 멘티 구합니다</h4>
-                                             </section>
-
-                                         </li>
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentee 구합니다<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-
-                                             </section>
-                                         </li>
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentor 구합니다<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-                                             </section>
-                                         </li class="slideitem">
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentee<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-                                             </section>
-                                         </li class="slideitem">
-
-                                         <!-- 좌,우 슬라이드 버튼 -->
-                                         <div class="slide-control">
-                                             <div>
-                                                 <label for="slide03" class="left"></label>
-                                                 <label for="slide02" class="right"></label>
-                                             </div>
-                                             <div>
-                                                 <label for="slide01" class="left"></label>
-                                                 <label for="slide03" class="right"></label>
-                                             </div>
-                                             <div>
-                                                 <label for="slide02" class="left"></label>
-                                                 <label for="slide01" class="right"></label>
-                                             </div>
-                                         </div>
-
-                                     </ul>
-
-                                     <!-- 페이징 -->
-                                     <ul class="slide-pagelist">
-                                         <li><label for="slide01"></label></li>
-                                         <li><label for="slide02"></label></li>
-                                         <li><label for="slide03"></label></li>
-                                     </ul>
-                                 </div>
-
-
-                             </div>
-
-
-                         </div>
-                     </div></div>
-                 <!-- 슬라이드 2번 -->
-                 <div style="width: 25%; float:left" >
-                     <div class="content secondary" >
-                         <div class="inner">
-                             <div class="section">
-                                 <input type="radio" name="slide" id="slide04" checked>
-                                 <input type="radio" name="slide" id="slide05">
-                                 <input type="radio" name="slide" id="slide06">
-                                 <div class="slidewrap">
-
-                                     <ul class="slidelist">
-                                         <!-- 슬라이드 영역 -->
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h2>언어</h2>
-                                                 <h4>멘토 멘티 구합니다</h4>
-                                             </section>
-
-                                         </li>
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentee 구합니다<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-
-                                             </section>
-                                         </li>
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentor 구합니다<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-                                             </section>
-                                         </li class="slideitem">
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentee<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-                                             </section>
-                                         </li class="slideitem">
-
-                                         <!-- 좌,우 슬라이드 버튼 -->
-                                         <div class="slide-control">
-                                             <div>
-                                                 <label for="slide06" class="left"></label>
-                                                 <label for="slide05" class="right"></label>
-                                             </div>
-                                             <div>
-                                                 <label for="slide04" class="left"></label>
-                                                 <label for="slide06" class="right"></label>
-                                             </div>
-                                             <div>
-                                                 <label for="slide05" class="left"></label>
-                                                 <label for="slide04" class="right"></label>
-                                             </div>
-                                         </div>
-
-                                     </ul>
-
-                                     <!-- 페이징 -->
-                                     <ul class="slide-pagelist">
-                                         <li><label for="slide04"></label></li>
-                                         <li><label for="slide05"></label></li>
-                                         <li><label for="slide06"></label></li>
-                                     </ul>
-                                 </div>
-
-
-                             </div>
-
-
-                         </div>
-                     </div></div>
-
-                 <!-- 슬라이드 3번 -->
-                 <div style="width: 25%; float:right">
-                     <div class="content secondary" >
-                         <div class="inner">
-                             <div class="section">
-                                 <input type="radio" name="slide" id="slide07" checked>
-                                 <input type="radio" name="slide" id="slide08">
-                                 <input type="radio" name="slide" id="slide09">
-                                 <div class="slidewrap">
-
-                                     <ul class="slidelist">
-                                         <!-- 슬라이드 영역 -->
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h2>엔터테이먼트</h2>
-                                                 <h4>멘토 멘티 구합니다</h4>
-                                             </section>
-
-                                         </li>
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentee 구합니다<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-
-                                             </section>
-                                         </li>
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentor 구합니다<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-                                             </section>
-                                         </li class="slideitem">
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentee<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-                                             </section>
-                                         </li class="slideitem">
-
-                                         <!-- 좌,우 슬라이드 버튼 -->
-                                         <div class="slide-control">
-                                             <div>
-                                                 <label for="slide09" class="left"></label>
-                                                 <label for="slide08" class="right"></label>
-                                             </div>
-                                             <div>
-                                                 <label for="slide07" class="left"></label>
-                                                 <label for="slide09" class="right"></label>
-                                             </div>
-                                             <div>
-                                                 <label for="slide08" class="left"></label>
-                                                 <label for="slide07" class="right"></label>
-                                             </div>
-                                         </div>
-
-                                     </ul>
-
-                                     <!-- 페이징 -->
-                                     <ul class="slide-pagelist">
-                                         <li><label for="slide07"></label></li>
-                                         <li><label for="slide08"></label></li>
-                                         <li><label for="slide09"></label></li>
-                                     </ul>
-                                 </div>
-
-
-                             </div>
-
-
-                         </div>
-                     </div></div>
-                 <!-- 슬라이드 4번 -->
-                 <div style="width: 25%; float:right">
-                     <div class="content secondary" >
-                         <div class="inner">
-                             <div class="section">
-                                 <input type="radio" name="slide" id="slide10" checked>
-                                 <input type="radio" name="slide" id="slide11">
-                                 <input type="radio" name="slide" id="slide12">
-                                 <div class="slidewrap">
-
-                                     <ul class="slidelist">
-                                         <!-- 슬라이드 영역 -->
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h2>자격증</h2>
-                                                 <h4>멘토 멘티 구합니다</h4>
-                                             </section>
-
-                                         </li>
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentee 구합니다<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-
-                                             </section>
-                                         </li>
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentor 구합니다<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-                                             </section>
-                                         </li class="slideitem">
-                                         <li class="slideitem">
-                                             <section>
-                                                 <h3>Mentee<br></h3>
-                                                 <h4>IT융합자율학부 양경필</h4>
-                                                 <h5>자바 멘토해주실분 구해요~</h5>
-                                             </section>
-                                         </li class="slideitem">
-
-                                         <!-- 좌,우 슬라이드 버튼 -->
-                                         <div class="slide-control">
-                                             <div>
-                                                 <label for="slide12" class="left"></label>
-                                                 <label for="slide11" class="right"></label>
-                                             </div>
-                                             <div>
-                                                 <label for="slide10" class="left"></label>
-                                                 <label for="slide12" class="right"></label>
-                                             </div>
-                                             <div>
-                                                 <label for="slide11" class="left"></label>
-                                                 <label for="slide10" class="right"></label>
-                                             </div>
-                                         </div>
-
-                                     </ul>
-
-                                     <!-- 페이징 -->
-                                     <ul class="slide-pagelist">
-                                         <li><label for="slide10"></label></li>
-                                         <li><label for="slide11"></label></li>
-                                         <li><label for="slide12"></label></li>
-                                     </ul>
-                                 </div>
-
-
-                             </div>
-
-
-                         </div>
-                     </div></div>
-
-
-
-             </section><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-             <!-- Section -->
-             <!-- Section -->
-             <section id="one" class="main">
-                 <header class="accent1">
-                     <h2>SKHU Mentoring Ranking</h2>
-                     <p>성공회대학교 멘토링을 빛내주신 멘토</p>
-                 </header>
-                 <ul class="tabs">
-                     <li>
-                         <h3><span class="extra">1위</span></h3>
-                         <div class="spotlight">
-                             <ul>
-                                 <li>
-                                     <h4>경력</h4>
-                                     <p>자바멘토링 N회 토익멘토링 N회</p>
-                                 </li>
-                                 <li>
-                                     <h4>소개</h4>
-                                     <p>A+밖에 모르는 사나이 양경필</p>
-                                 </li>
-                             </ul>
-                             <span class="image"><img src="images/pic01.jpg" alt="" /></span>
-                             <ul>
-                                 <li>
-                                     <h4>멘토의 한마디</h4>
-                                     <p>공부를 잘 하고 싶으면 나에게 오라</p>
-                                 </li>
-                                 <li>
-                                     <h4>멘토와 연락 할 수 있는 방법</h4>
-                                     <p>카카오톡 ID : qwe123 <br> 인스타그램 ID : qwe_11</p>
-                                 </li>
-                             </ul>
-                         </div>
-                     </li>
-                     <li>
-                         <h3><span class="extra">2위</span></h3>
-                         <div class="spotlight">
-                             <ul>
-                                 <li>
-                                     <h4>Erat aliquam</h4>
-                                     <p>Praesent dapibus, neque id cursus fauci quam erat volutpat nam dui mitin.</p>
-                                 </li>
-                                 <li>
-                                     <h4>Neque veroeros</h4>
-                                     <p>Sed adipiscing ornare risus. Morbi lorem lentesque egestas sem consequat.</p>
-                                 </li>
-                             </ul>
-                             <span class="image"><img src="images/pic02.jpg" alt="" /></span>
-                             <ul>
-                                 <li>
-                                     <h4>Quis portitor</h4>
-                                     <p>Donec nec justo eget felis facilisis ferme Aenean dignissim pellen.</p>
-                                 </li>
-                                 <li>
-                                     <h4>Magna accumsan</h4>
-                                     <p>Lorem in sem quis dui placerat ornare tra sed etiam veroeros consequat.</p>
-                                 </li>
-                             </ul>
-                         </div>
-                     </li>
-                     <li>
-                         <h3><span class="extra">3위</span></h3>
-                         <div class="spotlight">
-                             <ul>
-                                 <li>
-                                     <h4>Neque veroeros</h4>
-                                     <p>Sed adipiscing ornare risus. Morbi lorem lentesque egestas sem consequat.</p>
-                                 </li>
-                                 <li>
-                                     <h4>Quis portitor</h4>
-                                     <p>Donec nec justo eget felis facilisis ferme Aenean dignissim pellen.</p>
-                                 </li>
-                             </ul>
-                             <span class="image"><img src="images/pic03.jpg" alt="" /></span>
-                             <ul>
-                                 <li>
-                                     <h4>Magna accumsan</h4>
-                                     <p>Lorem in sem quis dui placerat ornare tra sed etiam veroeros consequat.</p>
-                                 </li>
-                                 <li>
-                                     <h4>Erat aliquam</h4>
-                                     <p>Praesent dapibus, neque id cursus fauci quam erat volutpat nam dui mitin.</p>
-                                 </li>
-                             </ul>
-                         </div>
-                     </li>
-                 </ul>
-             </section>
-
-
-
-            <!-- Footer -->
-               <footer id="footer">
-                  <div class="inner">
-                     <section>
-                        <h3>Nullam sed gravida</h3>
-                        <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
-                        <ul class="icons">
-                           <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                           <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                           <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                        </ul>
-                     </section>
-                     <section class="narrow">
-                        <h4>Lorem aliquam</h4>
-                        <ul class="links">
-                           <li><a href="#">Ultrices nulla</a></li>
-                           <li><a href="#">Quis lectus donec</a></li>
-                           <li><a href="#">Magna ligula</a></li>
-                           <li><a href="#">Sed etiam tristique</a></li>
-                           <li><a href="#">Cursus magna</a></li>
-                           <li><a href="#">Gravida dolore</a></li>
-                        </ul>
-                     </section>
-                     <section class="narrow">
-                        <h4>Magna tempus</h4>
-                        <ul class="links">
-                           <li><a href="#">Feugiat ligula</a></li>
-                           <li><a href="#">Vulputate tristique</a></li>
-                           <li><a href="#">Ultrices nulla</a></li>
-                           <li><a href="#">Cursus sed magna</a></li>
-                           <li><a href="#">Sed lectus donec</a></li>
-                        </ul>
-                     </section>
-                     <section>
-                        <h3>Morbi sed volutpat</h3>
-                        <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
-                        <p><a href="#" class="major">(000) 000-0000</a></p>
-                     </section>
-                  </div>
-                  <div class="copyright">
-                     <p>&copy; Untitled. All rights reserved.</p>
-                  </div>
-               </footer>
-
-         </div>
-
-      <!-- Scripts -->
-         <script src="assets/js/jquery.min.js"></script>
-         <script src="assets/js/jquery.dropotron.min.js"></script>
-         <script src="assets/js/jquery.selectorr.min.js"></script>
-         <script src="assets/js/jquery.scrollex.min.js"></script>
-         <script src="assets/js/jquery.scrolly.min.js"></script>
-         <script src="assets/js/browser.min.js"></script>
-         <script src="assets/js/breakpoints.min.js"></script>
-         <script src="assets/js/util.js"></script>
-         <script src="assets/js/main.js"></script>
-
-   </body>
+<head>
+    <title>Untitled</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <%@include file ="header.jsp" %>
+
+    <!-- Banner -->
+    <!-- Banner -->
+    <section id="banner">
+        <div class="content primary" >
+
+            <div style="width: 60%;  float: left;">
+                <header>
+                    <h1>성공회대학교 멘토링 시스템<br />
+                    </h1>
+                    <p>멘토와 멘티를 찾아보세요</p>
+
+                </header>
+            </div>
+            <div style="width: 30%; float: left;">
+
+                <div class="col-6 col-12-small">
+
+                    <h2>멘토 순위</h2><br>
+                    <label>육정근</label>
+                    <label>육정근</label>
+                    <label>육정근</label>
+                    <label>육정근</label>
+
+
+
+
+                </div>
+
+
+            </div>
+        </div><br><br><br><br><br><br><br><br>
+        <!-- 슬라이드 1번 -->
+        <div style="width: 25%; float:left" >
+            <div class="content secondary" >
+                <div class="inner">
+                    <div class="section">
+                        <input type="radio" name="slide" id="slide01" checked>
+                        <input type="radio" name="slide" id="slide02">
+                        <input type="radio" name="slide" id="slide03">
+                        <div class="slidewrap">
+
+                            <ul class="slidelist">
+                                <!-- 슬라이드 영역 -->
+                                <li class="slideitem">
+                                    <section>
+                                        <h2>IT</h2>
+                                        <h4>멘토 멘티 구합니다</h4>
+                                    </section>
+
+                                </li>
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentee 구합니다<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+
+                                    </section>
+                                </li>
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentor 구합니다<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+                                    </section>
+                                </li class="slideitem">
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentee<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+                                    </section>
+                                </li class="slideitem">
+
+                                <!-- 좌,우 슬라이드 버튼 -->
+                                <div class="slide-control">
+                                    <div>
+                                        <label for="slide03" class="left"></label>
+                                        <label for="slide02" class="right"></label>
+                                    </div>
+                                    <div>
+                                        <label for="slide01" class="left"></label>
+                                        <label for="slide03" class="right"></label>
+                                    </div>
+                                    <div>
+                                        <label for="slide02" class="left"></label>
+                                        <label for="slide01" class="right"></label>
+                                    </div>
+                                </div>
+
+                            </ul>
+
+                            <!-- 페이징 -->
+                            <ul class="slide-pagelist">
+                                <li><label for="slide01"></label></li>
+                                <li><label for="slide02"></label></li>
+                                <li><label for="slide03"></label></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div></div>
+        <!-- 슬라이드 2번 -->
+        <div style="width: 25%; float:left" >
+            <div class="content secondary" >
+                <div class="inner">
+                    <div class="section">
+                        <input type="radio" name="slide" id="slide04" checked>
+                        <input type="radio" name="slide" id="slide05">
+                        <input type="radio" name="slide" id="slide06">
+                        <div class="slidewrap">
+
+                            <ul class="slidelist">
+                                <!-- 슬라이드 영역 -->
+                                <li class="slideitem">
+                                    <section>
+                                        <h2>언어</h2>
+                                        <h4>멘토 멘티 구합니다</h4>
+                                    </section>
+
+                                </li>
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentee 구합니다<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+
+                                    </section>
+                                </li>
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentor 구합니다<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+                                    </section>
+                                </li class="slideitem">
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentee<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+                                    </section>
+                                </li class="slideitem">
+
+                                <!-- 좌,우 슬라이드 버튼 -->
+                                <div class="slide-control">
+                                    <div>
+                                        <label for="slide06" class="left"></label>
+                                        <label for="slide05" class="right"></label>
+                                    </div>
+                                    <div>
+                                        <label for="slide04" class="left"></label>
+                                        <label for="slide06" class="right"></label>
+                                    </div>
+                                    <div>
+                                        <label for="slide05" class="left"></label>
+                                        <label for="slide04" class="right"></label>
+                                    </div>
+                                </div>
+
+                            </ul>
+
+                            <!-- 페이징 -->
+                            <ul class="slide-pagelist">
+                                <li><label for="slide04"></label></li>
+                                <li><label for="slide05"></label></li>
+                                <li><label for="slide06"></label></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div></div>
+
+        <!-- 슬라이드 3번 -->
+        <div style="width: 25%; float:right">
+            <div class="content secondary" >
+                <div class="inner">
+                    <div class="section">
+                        <input type="radio" name="slide" id="slide07" checked>
+                        <input type="radio" name="slide" id="slide08">
+                        <input type="radio" name="slide" id="slide09">git
+                        <div class="slidewrap">
+
+                            <ul class="slidelist">
+                                <!-- 슬라이드 영역 -->
+                                <li class="slideitem">
+                                    <section>
+                                        <h2>엔터테이먼트</h2>
+                                        <h4>멘토 멘티 구합니다</h4>
+                                    </section>
+
+                                </li>
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentee 구합니다<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+
+                                    </section>
+                                </li>
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentor 구합니다<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+                                    </section>
+                                </li class="slideitem">
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentee<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+                                    </section>
+                                </li class="slideitem">
+
+                                <!-- 좌,우 슬라이드 버튼 -->
+                                <div class="slide-control">
+                                    <div>
+                                        <label for="slide09" class="left"></label>
+                                        <label for="slide08" class="right"></label>
+                                    </div>
+                                    <div>
+                                        <label for="slide07" class="left"></label>
+                                        <label for="slide09" class="right"></label>
+                                    </div>
+                                    <div>
+                                        <label for="slide08" class="left"></label>
+                                        <label for="slide07" class="right"></label>
+                                    </div>
+                                </div>
+
+                            </ul>
+
+                            <!-- 페이징 -->
+                            <ul class="slide-pagelist">
+                                <li><label for="slide07"></label></li>
+                                <li><label for="slide08"></label></li>
+                                <li><label for="slide09"></label></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div></div>
+        <!-- 슬라이드 4번 -->
+        <div style="width: 25%; float:right">
+            <div class="content secondary" >
+                <div class="inner">
+                    <div class="section">
+                        <input type="radio" name="slide" id="slide10" checked>
+                        <input type="radio" name="slide" id="slide11">
+                        <input type="radio" name="slide" id="slide12">
+                        <div class="slidewrap">
+
+                            <ul class="slidelist">
+                                <!-- 슬라이드 영역 -->
+                                <li class="slideitem">
+                                    <section>
+                                        <h2>자격증</h2>
+                                        <h4>멘토 멘티 구합니다</h4>
+                                    </section>
+
+                                </li>
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentee 구합니다<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+
+                                    </section>
+                                </li>
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentor 구합니다<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+                                    </section>
+                                </li class="slideitem">
+                                <li class="slideitem">
+                                    <section>
+                                        <h3>Mentee<br></h3>
+                                        <h4>IT융합자율학부 양경필</h4>
+                                        <h5>자바 멘토해주실분 구해요~</h5>
+                                    </section>
+                                </li class="slideitem">
+
+                                <!-- 좌,우 슬라이드 버튼 -->
+                                <div class="slide-control">
+                                    <div>
+                                        <label for="slide12" class="left"></label>
+                                        <label for="slide11" class="right"></label>
+                                    </div>
+                                    <div>
+                                        <label for="slide10" class="left"></label>
+                                        <label for="slide12" class="right"></label>
+                                    </div>
+                                    <div>
+                                        <label for="slide11" class="left"></label>
+                                        <label for="slide10" class="right"></label>
+                                    </div>
+                                </div>
+
+                            </ul>
+
+                            <!-- 페이징 -->
+                            <ul class="slide-pagelist">
+                                <li><label for="slide10"></label></li>
+                                <li><label for="slide11"></label></li>
+                                <li><label for="slide12"></label></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div></div>
+
+
+
+    </section><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <!-- Section -->
+    <!-- Section -->
+    <section id="one" class="main">
+        <header class="accent1">
+            <h2>SKHU Mentoring Ranking</h2>
+            <p>성공회대학교 멘토링을 빛내주신 멘토</p>
+        </header>
+        <ul class="tabs">
+            <li>
+                <h3><span class="extra">1위</span></h3>
+                <div class="spotlight">
+                    <ul>
+                        <li>
+                            <h4>경력</h4>
+                            <p>자바멘토링 N회 토익멘토링 N회</p>
+                        </li>
+                        <li>
+                            <h4>소개</h4>
+                            <p>A+밖에 모르는 사나이 양경필</p>
+                        </li>
+                    </ul>
+                    <span class="image"><img src="images/pic01.jpg" alt="" /></span>
+                    <ul>
+                        <li>
+                            <h4>멘토의 한마디</h4>
+                            <p>공부를 잘 하고 싶으면 나에게 오라</p>
+                        </li>
+                        <li>
+                            <h4>멘토와 연락 할 수 있는 방법</h4>
+                            <p>카카오톡 ID : qwe123 <br> 인스타그램 ID : qwe_11</p>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3><span class="extra">2위</span></h3>
+                <div class="spotlight">
+                    <ul>
+                        <li>
+                            <h4>Erat aliquam</h4>
+                            <p>Praesent dapibus, neque id cursus fauci quam erat volutpat nam dui mitin.</p>
+                        </li>
+                        <li>
+                            <h4>Neque veroeros</h4>
+                            <p>Sed adipiscing ornare risus. Morbi lorem lentesque egestas sem consequat.</p>
+                        </li>
+                    </ul>
+                    <span class="image"><img src="images/pic02.jpg" alt="" /></span>
+                    <ul>
+                        <li>
+                            <h4>Quis portitor</h4>
+                            <p>Donec nec justo eget felis facilisis ferme Aenean dignissim pellen.</p>
+                        </li>
+                        <li>
+                            <h4>Magna accumsan</h4>
+                            <p>Lorem in sem quis dui placerat ornare tra sed etiam veroeros consequat.</p>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3><span class="extra">3위</span></h3>
+                <div class="spotlight">
+                    <ul>
+                        <li>
+                            <h4>Neque veroeros</h4>
+                            <p>Sed adipiscing ornare risus. Morbi lorem lentesque egestas sem consequat.</p>
+                        </li>
+                        <li>
+                            <h4>Quis portitor</h4>
+                            <p>Donec nec justo eget felis facilisis ferme Aenean dignissim pellen.</p>
+                        </li>
+                    </ul>
+                    <span class="image"><img src="images/pic03.jpg" alt="" /></span>
+                    <ul>
+                        <li>
+                            <h4>Magna accumsan</h4>
+                            <p>Lorem in sem quis dui placerat ornare tra sed etiam veroeros consequat.</p>
+                        </li>
+                        <li>
+                            <h4>Erat aliquam</h4>
+                            <p>Praesent dapibus, neque id cursus fauci quam erat volutpat nam dui mitin.</p>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <section>
+                <h3>Nullam sed gravida</h3>
+                <p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                </ul>
+            </section>
+            <section class="narrow">
+                <h4>Lorem aliquam</h4>
+                <ul class="links">
+                    <li><a href="#">Ultrices nulla</a></li>
+                    <li><a href="#">Quis lectus donec</a></li>
+                    <li><a href="#">Magna ligula</a></li>
+                    <li><a href="#">Sed etiam tristique</a></li>
+                    <li><a href="#">Cursus magna</a></li>
+                    <li><a href="#">Gravida dolore</a></li>
+                </ul>
+            </section>
+            <section class="narrow">
+                <h4>Magna tempus</h4>
+                <ul class="links">
+                    <li><a href="#">Feugiat ligula</a></li>
+                    <li><a href="#">Vulputate tristique</a></li>
+                    <li><a href="#">Ultrices nulla</a></li>
+                    <li><a href="#">Cursus sed magna</a></li>
+                    <li><a href="#">Sed lectus donec</a></li>
+                </ul>
+            </section>
+            <section>
+                <h3>Morbi sed volutpat</h3>
+                <p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
+                <p><a href="#" class="major">(000) 000-0000</a></p>
+            </section>
+        </div>
+        <div class="copyright">
+            <p>&copy; Untitled. All rights reserved.</p>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.selectorr.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
 </html>

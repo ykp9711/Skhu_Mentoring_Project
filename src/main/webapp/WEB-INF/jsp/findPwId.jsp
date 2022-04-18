@@ -26,7 +26,7 @@
         </header>
         <div class="inner3"><br><br>
             <section id="one" class="main alt">
-                <header>
+                <header style="text-align: center">
                     <button class="button" onclick="show_id()">아이디 찾기 </button>
                     <button class="button" onclick="show_password()">비밀번호 찾기</button>
                 </header>
@@ -36,10 +36,9 @@
                         <hr />
                         <h3 style="text-align: center">아이디 찾기</h3>
                         <div style="margin:0 auto;">
-                            <div class="box">
-                                <label>가입시 사용한 이메일을 입력해주세요.
-                                    <input type="email" placeholder="EMAIL"  style="margin: 0 auto; width:80%;">
-                                </label>
+                            <div class="field">
+                                <label style="margin-left: 20%;">가입시 사용한 이메일을 입력해주세요.</label>
+                                <input type="email" placeholder="EMAIL" style="margin: 0 auto; width:500px;">
                                 <br>
                                 <div style="position: relative; bottom: 20px"></div>
                                 <ul class="actions special">
@@ -58,20 +57,20 @@
 
 
                             <div class="field" style="margin-bottom: 2%">
-                                <label>아이디를 입력해주세요.
-                                    <input type="text" placeholder="ID">
+                                <label style="margin-left: 20%;">아이디를 입력해주세요.
+                                    <input type="text" placeholder="ID" style="width:500px;">
                                 </label>
                                 <div style="margin-left: -20%; margin-top: -2%; margin-bottom: -2%;"></div>
                             </div>
 
                             <div class="field" style="height: 2.5em; margin-top: 5%">
-                                <input type="email" placeholder="EMAIL" style="display: inline-block; width: 60%; float: left;">
+                                <input type="email" placeholder="EMAIL" style="display: inline-block; width:500px; float: left; margin-left: 20%;">
                                 <div style="display: inline-block; margin: 2%; font-size: 90%; margin-top: 1%;"><button type="button" style="cursor: pointer" >인증메일 발송</button></div>
                             </div>
                             <div style="margin-right: 45%; margin-top: 2%; margin-bottom: -2%; max-height: 25px; display: inline-block; overflow:hidden; white-space:nowrap;" ></div>
 
                             <div class="field" >
-                                <input type="text" placeholder="AUTORNUM" style="display: inline-block; width: 60%; float: left;">
+                                <input type="text" placeholder="AUTORNUM" style="display: inline-block; width:500px; float: left; margin-left: 20%;">
                                 <div style="display: inline-block; margin: 2%; font-size: 90%; margin-top: 1%;"><button type="button" style="cursor:pointer">인증</button></div>
                             </div>
                             <div style="margin-left: -52%; margin-top: -1%; margin-bottom: -5%; max-height: 25px; display: inline-block; display: none; overflow:hiddlen; white-space:nowrap;">확인되었습니다.</div>
