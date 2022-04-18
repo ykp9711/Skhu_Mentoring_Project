@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE HTML>
 <!--
 	Hypothesis by Pixelarity
@@ -27,37 +30,39 @@
 							<h1>멘토 등록</h1>
 						</header>
 						<div class="inner2"><br><br>
-							
-						<form method="post" action="#">
+
+
+							<%--@elvariable id="mentor" type="com.SkhuMentoring.dto.Mentor"--%>
+							<form:form modelAttribute="mentor" method="post" action="/mentoRegister">
 							<div class="row gtr-uniform">
-								
-								
-								<form method="post" action="#">
 									<div class="row gtr-uniform">
 										<div class="col-12">
-											<input type="text" name="name" id="name" value="" placeholder="이름">
+											<form:input path="userId" placeholder="이름"/>
 										</div>
 										<div class="col-12">
-											<input type="text" name="studentId" id="studentId" value="" placeholder="학번">
+											<form:input path="userStudentNum" placeholder="학번"/>
 										</div>
 										<div class="col-12">
-											<select name="department" id="department">
-												<option value="">학부</option>
-												<option value="1">IT융합자율학부</option>
-												<option value="1">인문융합자율학부</option>
-												<option value="1">사회융합자율학부</option>
-												<option value="1">미디어콘텐츠융합자율학부</option>
-											</select>
+											<form:select path="department" name="department">
+												<form:option value="0" label="학과를 선택하세요" />
+												<form:options  itemLabel="department" itemValue="department" items="${ departments }" />
+											</form:select>
+
 										</div>
 										<div class="col-12">
-											<input type="text" list="subject" placeholder="희망 강의 과목"/>
+
+											<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목"/>
 											<datalist name="subject" id="subject">
-												<option value="">희망수강과목</option>
-												<option value="java">자바</option>
-												<option value="python">파이썬</option>
-												<option value="algorithm">알고리즘</option>
-												<option value="1">기타</option>
+												<form:select path="subject" >
+													<form:option value="기타" label="0" />
+												<form:options  itemValue="subjectName" itemLabel="sno" items="${ subject }"  />
 											</datalist>
+												</form:select>
+										</div>
+
+										<div class="col-12">
+											<form:input path="addSubject" id="addSubject" placeholder="강의를 입력해주세요."/>
+											<p id="Check_Subject" style="height: 1px; display: none;"></p>
 										</div>
 										<div class="col-12" style="text-align: center;">
 											<label>예정 시작 날짜 &nbsp;
@@ -69,11 +74,11 @@
 											<input type="date" name="endDate" id="endDate">
 										</label>
 										<div class="col-12">
-											<input type="text" name="day" id="day" value="" placeholder="진행가능한 요일을 적어주세요 ex)월, 화">
+											<form:input path="hopeDay" placeholder="진행가능한 요일을 적어주세요 ex)월, 화"/>
 										</div>
 										</div>
 										<div class="col-12">
-											<textarea name="demo-message" id="demo-message" placeholder="간단한 자기소개 및 수업 진행 세부계획을 작성해주세요." rows="6"></textarea>
+											<form:textarea path="introduce" placeholder="간단한 자기소개 및 수업 진행 세부계획을 작성해주세요." rows="6"/>
 										</div>
 										<!-- Break -->
 										<div class="col-12" style="text-align: center;">
@@ -84,9 +89,9 @@
 											</ul>
 										</div>
 									</div>
-								</form>
+								</form:form>
 
-								</div>
+							</div>
 								<!-- Break -->
 								
 							</div>
@@ -151,6 +156,35 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+
+		<script>
+			$('#subjectInput').on('input', function(){
+				if ($("#subjectInput").val() == '기타') {
+					$("#addSubject").css("display", "block")
+				}else {
+					$("#addSubject").css("display", "none")
+				}
+			});
+		</script>
+
+		<script>
+			$('#addSubject').on("propertychange change keyup paste input", function(){
+				var subject = $('#addSubject').val(); // .id_input에 입력되는 값
+				var data = {subject : subject} // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+				$.ajax({ type : "get",
+					url : "/checkSubject",
+					data : data,
+					success : function(result){
+						$('#Check_Subject').css('display', 'block');
+						if(result == 'fail'){
+							$("#Check_Subject").css("color","red");
+							$("#Check_Subject").text(subject + "는 이미 등록되어있는 과목입니다.");
+							$('#addSubject').val("");
+						}
+						}
+					});// success 종료
+				}); // ajax 종료
+		</script>
 
 	</body>
 </html>
