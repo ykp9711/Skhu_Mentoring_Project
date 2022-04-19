@@ -1,11 +1,9 @@
 package com.SkhuMentoring.controller;
 
-import com.SkhuMentoring.dto.Department;
-import com.SkhuMentoring.dto.Mentee;
-import com.SkhuMentoring.dto.Mentor;
-import com.SkhuMentoring.dto.Subject;
+import com.SkhuMentoring.dto.*;
 import com.SkhuMentoring.mapper.MentoringBoardMapper;
 import com.SkhuMentoring.mapper.MyPageMapper;
+import com.SkhuMentoring.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -25,12 +23,20 @@ public class HomeController {
 
     private final MentoringBoardMapper mentoringBoardMapper;
     private final MyPageMapper myPageMapper;
-
+    private final UserMapper userMapper;
     @GetMapping("/")
     public String main() {
         return "index";
     }
 
+    @PostMapping("/login")
+    public String login2(User user) {
+        log.info(user);
+        if(userMapper.login(user)==1)
+        {log.info("들어옴");
+            return "index";}
+        else return "login";
+    }
     @GetMapping("/menteeStatus")
     public String menteeStatus() {return  "menteeStatus";}
 
@@ -53,7 +59,7 @@ public class HomeController {
     @GetMapping("/ranking")
     public String ranking() {return  "ranking";}
 
-    @GetMapping("/mentoRegister") // 멘토 게시글 등록페이지로 이동
+    @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
     public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor) {
         model.addAttribute("departments" , mentoringBoardMapper.getDepartment());
         model.addAttribute("subject", mentoringBoardMapper.getSubject());
@@ -61,7 +67,7 @@ public class HomeController {
     }
 
     @Transactional // 멘토 게시글 등록
-    @PostMapping("/mentoRegister")
+    @PostMapping("/mentorRegister")
     public String MentoRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department){
         if(mentor.getSubjectName()=="기타" || mentor.getSubjectName().equals("기타")){
             mentor.setSubjectName(mentor.getAddSubject());

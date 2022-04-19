@@ -9,7 +9,7 @@ License: pixelarity.com/license
 -->
 <html>
 <head>
-    <title>Untitled</title>
+    <title>Login</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -29,23 +29,17 @@ License: pixelarity.com/license
         </header>
         <div class="inner2"><br><br>
 
-            <form method="post" action="#">
+            <form method="post" action="">
                 <div class="row gtr-uniform">
-
-
                     <div class="col-12">
-                        <input type="text" name="demo-name" id="demo-name" value="" placeholder="ID" />
+                        <input type="text" name="userId" id="userId" value="" placeholder="ID" />
                     </div>
                     <div class="col-12">
-                        <input type="password" name="demo-email" id="demo-email" value="" placeholder="password" />
+                        <input type="password" name="userPw" id="userPw" value="" placeholder="PASSWORD" />
                     </div>
                     <div class="col-12" style="text-align: center;">
-
-                        <a href="index.html" class="button primary">로그인</a>
-
+                        <button type="submit">로그인</button>
                     </div>
-                    <!-- Break -->
-
                 </div>
             </form>
             <br><br>

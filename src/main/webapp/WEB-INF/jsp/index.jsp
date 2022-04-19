@@ -297,7 +297,7 @@ License: pixelarity.com/license
                     <div class="section">
                         <input type="radio" name="slide" id="slide07" checked>
                         <input type="radio" name="slide" id="slide08">
-                        <input type="radio" name="slide" id="slide09">git
+                        <input type="radio" name="slide" id="slide09">
                         <div class="slidewrap">
 
                             <ul class="slidelist">
