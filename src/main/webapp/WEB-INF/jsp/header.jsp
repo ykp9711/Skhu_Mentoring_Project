@@ -23,21 +23,22 @@
             <li>
                 <a href="#" class="icon solid fa-angle-down">매칭신청</a>
                 <ul>
-                    <li><a href="#">멘토 등록</a></li>
-                    <li><a href="#">멘티 등록</a></li>
+                    <li><a href="mentorRegister">멘토 등록</a></li>
+                    <li><a href="menteeRegister">멘티 등록</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#" class="icon solid fa-angle-down">멘토/멘티현황</a>
                 <ul>
 
-                    <li><a href="mentorStatus.jsp">멘토 목록</a></li>
-                    <li><a href="menteeStatus.jsp">멘티 목록</a></li>
+                    <li><a href="/mentorStatus">멘토 목록</a></li>
+                    <li><a href="/menteeStatus">멘티 목록</a></li>
                 </ul>
             </li>
-            <li><a href="generic.html">공지사항</a></li>
+            <%--<li><a href="generic.html">공지사항</a></li>--%>
             <li><a href="/myPage">마이페이지</a></li>
-            <li><a href="login.html">로그인</a></li>
+            <li><a href="/ranking">랭킹</a></li>
+            <li><a href="/login">로그인</a></li>
         </ul>
     </nav>
 
