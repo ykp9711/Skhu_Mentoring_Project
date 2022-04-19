@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <!--
 	Hypothesis by Pixelarity
@@ -14,6 +15,12 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload">
+	<c:if test="${empty sessionId}">
+		<script>
+			alert("잘못된 접근경로 입니다.로그인해주세요");
+			location.href="/login";
+		</script>
+	</c:if>
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -29,8 +36,7 @@
 							<h1>멘티 등록</h1>
 						</header>
 						<div class="inner2"><br><br>
-							
-						<form method="post" >
+
 							<div class="row gtr-uniform">
 								
 								
@@ -38,7 +44,7 @@
 								<form:form modelAttribute="mentee" method="post" action="#">
 									<div class="row gtr-uniform">
 										<div class="col-12">
-											<form:input path="userId" value="" placeholder="이름"/>
+											<form:input path="userId" value="${sessionId}" placeholder="이름" disabled="true"/>
 										</div>
 										<div class="col-12">
 											<form:input path="userStudentNum" placeholder="학번"/>
@@ -89,13 +95,14 @@
 											</ul>
 										</div>
 									</div>
-								</form:form>
+
 
 								</div>
 								<!-- Break -->
-								
+
 							</div>
 						</section>
+				</form:form>
 						<br><br>
 					</div>
 

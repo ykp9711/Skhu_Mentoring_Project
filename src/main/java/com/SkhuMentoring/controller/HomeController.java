@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -30,18 +31,31 @@ public class HomeController {
     }
 
     @PostMapping("/login")
-    public String login2(User user) {
+    public String login2(User user, HttpSession session, Model model) {
         log.info(user);
-        if(userMapper.login(user)==1)
-        {log.info("들어옴");
-            return "index";}
+        if(userMapper.login(user)==1){
+            session.setAttribute("sessionId",userMapper.getId(user.getUserId()));
+            model.addAttribute("sessionId", session.getAttribute("sessionId"));
+            return "index";
+        }
         else return "login";
     }
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
     @GetMapping("/menteeStatus")
-    public String menteeStatus() {return  "menteeStatus";}
+    public String menteeStatus(Model model) {
+        model.addAttribute("list",myPageMapper.getMenteeStatus());
+        return  "menteeStatus";
+    }
 
     @GetMapping("/mentorStatus")
-    public String mentorStatus() {return  "mentorStatus";}
+    public String mentorStatus(Model model) {
+        model.addAttribute("list" ,myPageMapper.getMentorStatus());
+        return  "mentorStatus";
+    }
 
 
     @GetMapping("/login")
@@ -54,7 +68,7 @@ public class HomeController {
     public String findPwId() {return  "findPwId";}
 
     @GetMapping("/signUp")
-    public String signup() {return  "signup";}
+    public String signup() {return  "signUp";}
 
     @GetMapping("/ranking")
     public String ranking() {return  "ranking";}
@@ -63,7 +77,7 @@ public class HomeController {
     public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor) {
         model.addAttribute("departments" , mentoringBoardMapper.getDepartment());
         model.addAttribute("subject", mentoringBoardMapper.getSubject());
-        return  "mentoRegister";
+        return  "mentorRegister";
     }
 
     @Transactional // 멘토 게시글 등록
@@ -76,7 +90,7 @@ public class HomeController {
             mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
         }
         mentoringBoardMapper.insertMentorBoard(mentor);
-        return null;
+        return "redirect:/mentorStatus";
     }
 
     @GetMapping("/menteeRegister")
@@ -85,17 +99,18 @@ public class HomeController {
         model.addAttribute("subject" , mentoringBoardMapper.getSubject());
         return "menteeRegister";
     }
-
+    @Transactional
     @PostMapping("/menteeRegister") // 멘티 게시글 등록
-    public String MenteeRegister(@ModelAttribute Mentee mentee ){
+    public String MenteeRegister(@ModelAttribute Mentee mentee, HttpSession session ){
         if(mentee.getSubjectName()=="기타" || mentee.getSubjectName().equals("기타")){
             mentee.setSubjectName(mentee.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentee.getSubjectName());
             mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록된다
         }
+        mentee.setUserId((String) session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMenteeBoard(mentee);
-        return "menteeRegister";
+        return "redirect:/menteeStatus";
     }
 
     @GetMapping(value = "/checkSubject") // 멘토 , 멘티 게시글 등록 시 기타 항목 과목 기입 후 중복확인 

@@ -16,6 +16,12 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload">
+	<c:if test="${empty sessionId}">
+		<script>
+			alert("잘못된 접근경로 입니다.로그인해주세요");
+			location.href="/login";
+		</script>
+	</c:if>
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -33,11 +39,11 @@
 
 
 							<%--@elvariable id="mentor" type="com.SkhuMentoring.dto.Mentor"--%>
-							<form:form modelAttribute="mentor" method="post" action="/mentoRegister">
+							<form:form modelAttribute="mentor" method="post">
 							<div class="row gtr-uniform">
 									<div class="row gtr-uniform">
 										<div class="col-12">
-											<form:input path="userId" placeholder="이름"/>
+											<form:input path="userId" value="${sessionId}" placeholder="이름" disabled="true"/>
 										</div>
 										<div class="col-12">
 											<form:input path="userStudentNum" placeholder="학번"/>

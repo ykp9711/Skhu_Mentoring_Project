@@ -1,6 +1,6 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +23,8 @@
             <li>
                 <a href="#" class="icon solid fa-angle-down">매칭신청</a>
                 <ul>
-                    <li><a href="mentorRegister">멘토 등록</a></li>
-                    <li><a href="menteeRegister">멘티 등록</a></li>
+                    <li><a href="/mentorRegister">멘토 등록</a></li>
+                    <li><a href="/menteeRegister">멘티 등록</a></li>
                 </ul>
             </li>
             <li>
@@ -38,7 +38,12 @@
             <%--<li><a href="generic.html">공지사항</a></li>--%>
             <li><a href="/myPage">마이페이지</a></li>
             <li><a href="/ranking">랭킹</a></li>
+            <c:if test="${empty sessionId }">
             <li><a href="/login">로그인</a></li>
+            </c:if>
+            <c:if test="${not empty sessionId}">
+                <li><a href="/logout">로그아웃</a></li>
+            </c:if>
         </ul>
     </nav>
 

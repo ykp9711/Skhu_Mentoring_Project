@@ -38,8 +38,10 @@ License: pixelarity.com/license
                         <input type="password" name="userPw" id="userPw" value="" placeholder="PASSWORD" />
                     </div>
                     <div class="col-12" style="text-align: center;">
-                        <button type="submit">로그인</button>
+                        <button type="submit">로그인</button>&nbsp;
+                        <a href="singUp" class="button">회원가입</a>
                     </div>
+
                 </div>
             </form>
             <br><br>

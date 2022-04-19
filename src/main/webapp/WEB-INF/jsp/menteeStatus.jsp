@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <!--
 Hypothesis by Pixelarity
@@ -33,59 +35,32 @@ License: pixelarity.com/license
             <div class="table-wrapper">
                 <table style="border: 1px;  text-align: center;  ">
                     <tr class="tHead" >
-                        <th style="text-align: center; vertical-align : middle;" >글 번호</th>
-                        <th  style="text-align: center; vertical-align : middle;">멘티 이름</th>
+                        <th  style="text-align: center; vertical-align : middle;">아이디</th>
                         <th style="text-align: center; vertical-align : middle;" class="mentorNumber">학번</th>
                         <th style="text-align: center; vertical-align : middle;" class="department">학부/학과</th>
                         <th style="text-align: center; vertical-align : middle;" class="subject">희망 과목</th>
                         <th style="text-align: center; vertical-align : middle;" class="time">희망 시간</th>
-                        <th style="text-align: center; vertical-align : middle;" class="time"></th>
+                        <th style="text-align: center; vertical-align : middle;" class="time">등록날짜</th>
+                        <th style="text-align: center; vertical-align : middle;" class="time">상세보기</th>
+                        <th style="text-align: center; vertical-align : middle;" class="time">수락</th>
 
                     </tr>
-
+                    <c:forEach var="list" items="${list}">
                     <tr style="height: 70px;">
-                        <td style="vertical-align : middle">1</td>
-                        <td style="vertical-align : middle">양경필</td>
-                        <td style="vertical-align: middle;" >201632013</td>
-                        <td style="vertical-align : middle" class="title">IT융합자율학부</td>
-                        <td style="vertical-align : middle" class="kind">토익</td>
-                        <td style="vertical-align : middle" class="area" >목,금</td>
+                        <td style="vertical-align : middle">${list.userId}</td>
+                        <td style="vertical-align: middle;" >${list.userStudentNum}</td>
+                        <td style="vertical-align : middle" class="title">${list.department}</td>
+                        <td style="vertical-align : middle" class="kind">${list.subjectName}</td>
+                        <td style="vertical-align : middle" class="area" >${list.hopeDay}</td>
+                        <td style="vertical-align : middle" class="title">
+                            <fmt:formatDate var="regDate" value="${list.regDate}" pattern="yyyy-MM-dd"/>
+                                ${regDate}</td>
                         <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
+                        <td style="vertical-align : middle" class="area" ><a href="" class="button small">신청</a></td>
                     </tr>
-
-                    <tr style="height: 70px;">
-                        <td style="vertical-align : middle">2</td>
-                        <td style="vertical-align : middle">안대성</td>
-                        <td style="vertical-align: middle;" >201911031</td>
-                        <td style="vertical-align : middle" class="title">IT융합자율학부</td>
-                        <td style="vertical-align : middle" class="kind">자바</td>
-                        <td style="vertical-align : middle" class="area" >주 2회</td>
-                        <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                    </tr>
-
-                    <tr style="height: 70px;">
-                        <td style="vertical-align : middle">3</td>
-                        <td style="vertical-align : middle">육정근</td>
-                        <td style="vertical-align: middle;" >201632015</td>
-                        <td style="vertical-align : middle" class="title">IT융합자율학부</td>
-                        <td style="vertical-align : middle" class="kind">알고리즘</td>
-                        <td style="vertical-align : middle" class="area" >주 1회</td>
-                        <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                    </tr>
-
-                    <tr style="height: 70px;">
-                        <td style="vertical-align : middle">4</td>
-                        <td style="vertical-align : middle">김윤진</td>
-                        <td style="vertical-align: middle;" >201914030</td>
-                        <td style="vertical-align : middle" class="title">IT융합자율학부</td>
-                        <td style="vertical-align : middle" class="kind">파이썬</td>
-                        <td style="vertical-align : middle" class="area" >주 4시간</td>
-                        <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                    </tr>
-
-
-
                     </c:forEach>
+
+
 
                     </tbody>
                 </table>
@@ -108,7 +83,7 @@ License: pixelarity.com/license
                         <option>멘티 이름</option>
                         <option>태그</option>
                     </select><a class="button primary" style="width: 15%; float: right;">검색</a>
-                    <input type="text" id="keyword" name="keyword" placeholder="검색 종류를 선택 후 검색해주세요" style="width: 66%; float: center;" />
+                    <input type="text" id="keyword" name="keyword" placeholder="검색 종류를 선택 후 검색해주세요" style="width: 66%; float:center;" />
 
 
                 </div>

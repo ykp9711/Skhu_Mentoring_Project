@@ -6,5 +6,9 @@
         select count(*) from tbl_User where userId = #{userId} AND userPw = #{userPw}
     </select>
 
+    <select id="getId" resultType="string">
+        Select userId from tbl_user where userId= #{userId}
+    </select>
+
 
 </mapper>
