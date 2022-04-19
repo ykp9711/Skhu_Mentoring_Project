@@ -25,6 +25,10 @@
         INSERT into tbl_menteeBoard(userId,UserStudentNum,department,subjectName,startDate,endDate,hopeDay,introduce) values(#{userId}, #{userStudentNum}, #{department}, #{subjectName}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce})
     </insert>
 
+    <delete id="setUpMentoring">
+        delete from tbl_menteeBoard where userStudentNum =#{userStudentNum}
+    </delete>
+
     <delete id="deleteMentorBoard">
         DELETE FROM tbl_mentorBoard where bno=#{bno}
     </delete>

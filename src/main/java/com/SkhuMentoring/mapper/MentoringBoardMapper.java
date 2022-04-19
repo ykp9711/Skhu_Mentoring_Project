@@ -28,4 +28,6 @@ public interface MentoringBoardMapper {
 
     void deleteMenteeBoard(Long bno); // 멘티 게시판 글 삭제
 
+    public void setUpMentoring(String menteeStudentNum);
+
 }
