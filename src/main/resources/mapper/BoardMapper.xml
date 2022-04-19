@@ -25,4 +25,11 @@
         INSERT into tbl_menteeBoard(userId,UserStudentNum,department,subjectName,startDate,endDate,hopeDay,introduce) values(#{userId}, #{userStudentNum}, #{department}, #{subjectName}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce})
     </insert>
 
+    <delete id="deleteMentorBoard">
+        DELETE FROM tbl_mentorBoard where bno=#{bno}
+    </delete>
+
+    <delete id="deleteMenteeBoard">
+        DELETE FROM tbl_menteeBoard where bno =#{bno}
+    </delete>
 </mapper>

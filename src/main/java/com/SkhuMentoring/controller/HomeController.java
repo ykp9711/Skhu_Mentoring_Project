@@ -82,13 +82,14 @@ public class HomeController {
 
     @Transactional // 멘토 게시글 등록
     @PostMapping("/mentorRegister")
-    public String MentoRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department){
+    public String MentoRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department,HttpSession session){
         if(mentor.getSubjectName()=="기타" || mentor.getSubjectName().equals("기타")){
             mentor.setSubjectName(mentor.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentor.getSubjectName());
             mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
         }
+        mentor.setUserId((String)session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMentorBoard(mentor);
         return "redirect:/mentorStatus";
     }
@@ -166,4 +167,16 @@ public class HomeController {
     // 마이페이지 > 멘티 상세보기
     /*@GetMapping("/whoIsMentee")
     public String whoIsMentee()*/
+
+    @GetMapping("/deleteMentorBoard") // 멘토 게시글 삭제
+    public String deleteMentorBoard(Long bno){
+        mentoringBoardMapper.deleteMentorBoard(bno);
+        return "redirect:/mentorStatus";
+    }
+
+    @GetMapping("/deleteMenteeBoard") // 멘티 게시글 삭제
+    public String deleteMenteeBoard(Long bno){
+        mentoringBoardMapper.deleteMenteeBoard(bno);
+        return "redirect:/menteeStatus";
+    }
 }

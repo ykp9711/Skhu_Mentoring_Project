@@ -43,6 +43,7 @@ License: pixelarity.com/license
                         <th style="text-align: center; vertical-align : middle;" >등록날짜</th>
                         <th style="text-align: center; vertical-align : middle;" >상세보기</th>
                         <th style="text-align: center; vertical-align : middle;" >신청</th>
+                        <th style="text-align: center; vertical-align : middle;" >게시글 삭제</th>
 
                     </tr>
 
@@ -58,6 +59,10 @@ License: pixelarity.com/license
                                     ${regDate}</td>
                             <td style="vertical-align : middle" class="area" ><a href="/detailMentoring" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                             <td style="vertical-align : middle" class="area" ><a href="" class="button small">신청</a></td>
+                            <c:if test="${sessionId eq list.userId}">
+                            <td style="vertical-align : middle" class="area" ><a href="/deleteMentorBoard?bno=${list.bno}" class="button small">삭제</a></td>
+                            </c:if>
+
                         </tr>
                     </c:forEach>
                     </tbody>
