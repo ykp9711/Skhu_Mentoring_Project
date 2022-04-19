@@ -42,7 +42,7 @@ License: pixelarity.com/license
                         <th style="text-align: center; vertical-align : middle;" class="time">희망 시간</th>
                         <th style="text-align: center; vertical-align : middle;" class="time">등록날짜</th>
                         <th style="text-align: center; vertical-align : middle;" class="time">상세보기</th>
-                        <th style="text-align: center; vertical-align : middle;" class="time">수락</th>
+                        <th style="text-align: center; vertical-align : middle;" class="time">멘토링 개설</th>
                         <th style="text-align: center; vertical-align : middle;" class="time">게시글 삭제</th>
 
                     </tr>
@@ -57,7 +57,8 @@ License: pixelarity.com/license
                             <fmt:formatDate var="regDate" value="${list.regDate}" pattern="yyyy-MM-dd"/>
                                 ${regDate}</td>
                         <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                        <td style="vertical-align : middle" class="area" ><a href="" class="button small">신청</a></td>
+                        <td style="vertical-align : middle" class="area" ><a href="/mentorRegister?menteeStudentNum=${list.userStudentNum}" class="button small">개설</a></td>
+                        <%--개설 누르면 delete로 없애면서 reqParameter로 학생 학번넘긴다음 maxMenteeCount 만들어서 +1해준다?--%>
                         <c:if test="${sessionId eq list.userId}">
                             <td style="vertical-align : middle" class="area" ><a href="/deleteMenteeBoard?bno=${list.bno}" class="button small">삭제</a></td>
                         </c:if>

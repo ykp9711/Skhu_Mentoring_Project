@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Mentor {
@@ -22,4 +23,5 @@ public class Mentor {
     private String hopeDay;
     private String introduce;
     private String addSubject; // 과목 선택 시 항목에 없어 기타로 입력한 값
+    private List<Long> menteeStudentNum;
 }

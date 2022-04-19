@@ -86,6 +86,12 @@
 										<div class="col-12">
 											<form:textarea path="introduce" placeholder="간단한 자기소개 및 수업 진행 세부계획을 작성해주세요." rows="6"/>
 										</div>
+										<c:if test="${not empty menteeStudentNum}">
+										<div class="col-12">
+											<p>신청한 멘티</p>
+											<form:input path="menteeStudentNum" value="${menteeStudentNum}"/>
+										</div>
+										</c:if>
 										<!-- Break -->
 										<div class="col-12" style="text-align: center;">
 											<ul class="actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -95,7 +101,7 @@
 											</ul>
 										</div>
 									</div>
-								</form:form>
+								</form:form><br>
 
 							</div>
 								<!-- Break -->

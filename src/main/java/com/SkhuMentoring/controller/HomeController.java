@@ -73,10 +73,14 @@ public class HomeController {
     @GetMapping("/ranking")
     public String ranking() {return  "ranking";}
 
+
+
     @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
-    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor) {
+    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor)  {
         model.addAttribute("departments" , mentoringBoardMapper.getDepartment());
         model.addAttribute("subject", mentoringBoardMapper.getSubject());
+        model.addAttribute("menteeStudentNum",mentor.getMenteeStudentNum());
+        /*mentoringBoardMapper.setUpMentoring(menteeStudentNum);*/
         return  "mentorRegister";
     }
 
