@@ -1,9 +1,10 @@
 package com.SkhuMentoring.controller;
 
-import com.SkhuMentoring.dto.Department;
-import com.SkhuMentoring.dto.Mentee;
-import com.SkhuMentoring.dto.Mentor;
-import com.SkhuMentoring.dto.Subject;
+import java.util.Map;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.SkhuMentoring.service.UserService;
+import com.SkhuMentoring.dto.*;
 import com.SkhuMentoring.mapper.MentoringBoardMapper;
 import com.SkhuMentoring.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
@@ -37,9 +38,34 @@ public class HomeController {
     @GetMapping("/mentorStatus")
     public String mentorStatus() {return  "mentorStatus";}
 
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/login")
     public String login() {return  "login";}
+
+    @PostMapping("/login")
+    public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+        try {
+            if (map.get("userId") == null || map.get("password") == null) {
+                model.addAttribute("msg", "아이디 또는 비밀번호를 입력해주세요");
+                return "login";
+            }
+            User user = userService.login(map);
+            if (user != null) {
+                session.setAttribute("user", user);
+            } else {
+                model.addAttribute("msg", "아이디 또는 비밀번호가 올바르지 않습니다.");
+                return "login";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
+            return "login";
+        }
+        return "index";
+    } // end of PostMapping("login")
+
 
     @GetMapping("/myInfo")
     public String myInfo() {return  "myInfo";}

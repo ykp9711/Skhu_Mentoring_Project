@@ -13,6 +13,32 @@ License: pixelarity.com/license
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+
+    <script type="text/javascript">
+
+        function checkValue()
+        {
+            inputForm = eval("document.loginInfo");
+            if(!inputForm.userId.value)
+            {
+                alert("아이디를 입력하세요");
+                inputForm.userId.focus();
+                return false;
+            }
+            if(!inputForm.password.value)
+            {
+                alert("비밀번호를 입력하세요");
+                inputForm.password.focus();
+                return false;
+            }
+        }
+
+        // 회원가입 버튼 클릭시 회원가입 화면으로 이동
+        function goJoinForm() {
+            location.href="signUp.jsp";
+        }
+    </script>
+
 </head>
 <body class="is-preload">
 
@@ -25,25 +51,28 @@ License: pixelarity.com/license
     <!-- Section -->
     <section id="one" class="main alt">
         <header class="accent1">
-            <h1>SKHU Mentoring</h1>
+            <h1>Login</h1>
         </header>
         <div class="inner2"><br><br>
 
-            <form method="post" action="#">
+            <form name="loginInfo" method="post" onsubmit="return checkValue()" >
+
                 <div class="row gtr-uniform">
 
 
                     <div class="col-12">
-                        <input type="text" name="demo-name" id="demo-name" value="" placeholder="ID" />
+                        <input type="text" name="userId" id="userId" value="" placeholder="ID" />
                     </div>
                     <div class="col-12">
-                        <input type="password" name="demo-email" id="demo-email" value="" placeholder="password" />
+                        <input type="password" name="password" id="password" value="" placeholder="password" />
                     </div>
                     <div class="col-12" style="text-align: center;">
 
-                        <a href="index.html" class="button primary">로그인</a>
+                        <input type="submit" class="button primary" value="로그인">
+
 
                     </div>
+                    <div class="col-12">${msg}</div>
                     <!-- Break -->
 
                 </div>

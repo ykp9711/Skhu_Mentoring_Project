@@ -1,13 +1,11 @@
 package com.SkhuMentoring.mapper;
 
-import com.SkhuMentoring.dto.Department;
-import com.SkhuMentoring.dto.Mentee;
-import com.SkhuMentoring.dto.Mentor;
-import com.SkhuMentoring.dto.Subject;
+import com.SkhuMentoring.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -24,4 +22,5 @@ public interface MentoringBoardMapper {
 
     void insertMenteeBoard(Mentee mentee); // 멘티 게시글 등록
 
+    public User login(Map<String, String> map);
 }
