@@ -26,10 +26,10 @@ License: pixelarity.com/license
                 inputForm.userId.focus();
                 return false;
             }
-            if(!inputForm.password.value)
+            if(!inputForm.userPw.value)
             {
                 alert("비밀번호를 입력하세요");
-                inputForm.password.focus();
+                inputForm.userPw.focus();
                 return false;
             }
         }
