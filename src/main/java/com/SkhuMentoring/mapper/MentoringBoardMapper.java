@@ -21,6 +21,12 @@ public interface MentoringBoardMapper {
     int checkSubject(String subject); // 과목 등록 시 이미 DB에 등록된 과목인지 체크
 
     void insertMenteeBoard(Mentee mentee); // 멘티 게시글 등록
+    
+    void deleteMentorBoard(Long bno); // 멘토 게시판 글 삭제
+
+    void deleteMenteeBoard(Long bno); // 멘티 게시판 글 삭제
+
+    public void setUpMentoring(String menteeStudentNum);
 
     public User login(Map<String, String> map);
 }

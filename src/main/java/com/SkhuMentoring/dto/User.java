@@ -4,12 +4,10 @@ import lombok.Data;
 
 @Data
 public class User {
+    private Long bno;
     private String userId;
-    private String password;
-    private String name;
-    private String department;
-    private String phone;
-    private String email;
-    private String studentNum;
-
+    private String userPw;
+    private Long userStudentNum;
+    private String userEmail;
+    private String userPhoneNum;
 }
