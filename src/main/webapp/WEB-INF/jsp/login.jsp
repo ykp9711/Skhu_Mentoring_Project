@@ -14,6 +14,32 @@ License: pixelarity.com/license
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+
+    <script type="text/javascript">
+
+        function checkValue()
+        {
+            inputForm = eval("document.loginInfo");
+            if(!inputForm.userId.value)
+            {
+                alert("아이디를 입력하세요");
+                inputForm.userId.focus();
+                return false;
+            }
+            if(!inputForm.password.value)
+            {
+                alert("비밀번호를 입력하세요");
+                inputForm.password.focus();
+                return false;
+            }
+        }
+
+        // 회원가입 버튼 클릭시 회원가입 화면으로 이동
+        function goJoinForm() {
+            location.href="signUp.jsp";
+        }
+    </script>
+
 </head>
 <body class="is-preload">
 <c:if test="${not empty sessionId}">
@@ -32,9 +58,11 @@ License: pixelarity.com/license
     <!-- Section -->
     <section id="one" class="main alt">
         <header class="accent1">
-            <h1>SKHU Mentoring</h1>
+            <h1>Login</h1>
         </header>
         <div class="inner2"><br><br>
+
+            <form name="loginInfo" method="post" onsubmit="return checkValue()" >
 
             <form method="post" action="">
                 <div class="row gtr-uniform">
@@ -48,18 +76,16 @@ License: pixelarity.com/license
                         <button type="submit">로그인</button>&nbsp;
                         <a href="singUp" class="button">회원가입</a>
                     </div>
+                    <div class="col-12">${msg}</div>
 
                 </div>
             </form>
-            <br><br>
+                <br><br>
         </div>
     </section>
-
     <!-- Footer -->
     <%@include file ="footer.jsp" %>
-
 </div>
-
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.dropotron.min.js"></script>
@@ -70,6 +96,5 @@ License: pixelarity.com/license
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-
 </body>
 </html>

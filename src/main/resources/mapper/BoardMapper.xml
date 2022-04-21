@@ -25,6 +25,12 @@
         INSERT into tbl_menteeBoard(userId,UserStudentNum,department,subjectName,startDate,endDate,hopeDay,introduce) values(#{userId}, #{userStudentNum}, #{department}, #{subjectName}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce})
     </insert>
 
+    <select id="login" parameterType="map" resultType="com.SkhuMentoring.dto.User">
+        select userId, userPw, userEmail
+        from tbl_user
+        where userId = #{userId} and userPw = #{userPw}
+    </select>
+
     <delete id="setUpMentoring">
         delete from tbl_menteeBoard where userStudentNum =#{userStudentNum}
     </delete>
