@@ -43,9 +43,10 @@
 
 								<div class="col-12">
 									<input type="password" name="conPw" id="conPw" value="" placeholder="비밀번호 확인"/>
+									<p id="Check_pw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
 								</div>
 							</div>
-							<p id="Check_pw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
+							<p id="Check_conPw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
 							<div class="row gtr-uniform">
                                 <div class="col-12">
 									<form:input type="text" path="userName" id="name" value="" placeholder="이름" />
@@ -92,48 +93,7 @@
 					</section>
 
 				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<section>
-								<h3>Nullam sed gravida</h3>
-								<p>Phasellus ultrices sed nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus sed magna gravida non.</p>
-								<ul class="icons">
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-								</ul>
-							</section>
-							<section class="narrow">
-								<h4>Lorem aliquam</h4>
-								<ul class="links">
-									<li><a href="#">Ultrices nulla</a></li>
-									<li><a href="#">Quis lectus donec</a></li>
-									<li><a href="#">Magna ligula</a></li>
-									<li><a href="#">Sed etiam tristique</a></li>
-									<li><a href="#">Cursus magna</a></li>
-									<li><a href="#">Gravida dolore</a></li>
-								</ul>
-							</section>
-							<section class="narrow">
-								<h4>Magna tempus</h4>
-								<ul class="links">
-									<li><a href="#">Feugiat ligula</a></li>
-									<li><a href="#">Vulputate tristique</a></li>
-									<li><a href="#">Ultrices nulla</a></li>
-									<li><a href="#">Cursus sed magna</a></li>
-									<li><a href="#">Sed lectus donec</a></li>
-								</ul>
-							</section>
-							<section>
-								<h3>Morbi sed volutpat</h3>
-								<p>Sed vulputate sem tristique cursus sed magna gravida non lorem ipsum dolor sit amet.<p>
-								<p><a href="#" class="major">(000) 000-0000</a></p>
-							</section>
-						</div>
-						<div class="copyright">
-							<p>&copy; Untitled. All rights reserved.</p>
-						</div>
-					</footer>
+				<%@include file ="footer.jsp" %>
 
 			</div>
 
@@ -172,25 +132,48 @@
 			}); // ajax 종료
 
 
-			//비밀번호
+			//비밀번호와 비밀번호 확인 일치 여부
 			$('#conPw').on("property-change change keyup paste input", function(){
 				var userPw = $("#userPw").val();
 				var conPw = $("#conPw").val();
 
 					if(userPw != conPw){
-						$("#Check_pw").text("비밀번호가 다릅니다.");
+						$("#Check_conPw").text("비밀번호가 다릅니다.");
 						$("#signUp_btn").attr('disabled', true);
 					}
 					else if(userPw != " " || conPw != " "){
 						$("#signUp_btn").attr('disabled', false);
-						$("#Check_pw").text(" ");
+						$("#Check_conPw").text(" ");
 						}
 						else {
 						$("#signUp_btn").attr('disabled', false);
-						$("#Check_pw").text(" ");
+						$("#Check_conPw").text(" ");
 
 				}
 			})
+
+			//비밀번호 양식
+			$("#userPw").on("property-change change keyup paste input", function(){
+				var userPw = $("#userPw").val();
+
+				function isPassword(asValue) {
+					var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+
+					return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+				}
+
+				if(!isPassword(userPw) ||userPw.length < 8 || userPw.length > 16 ){
+					$("#Check_pw").text("*특수문자/영문/숫자를 포함하여 8~16자");
+					$("#signUp_btn").attr('disabled', true);
+				} else{
+					$("#Check_pw").text("비밀번호가 적합합니다.");
+					$("#signUp_btn").attr('disabled', false);
+				}
+
+			})
+
+
+
 
 			// 빈 칸이 있는지 확인
 			$(document).ready(function (e) {

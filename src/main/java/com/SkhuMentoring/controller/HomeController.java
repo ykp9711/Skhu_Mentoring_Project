@@ -1,10 +1,19 @@
 package com.SkhuMentoring.controller;
 
+
+import java.util.Map;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.SkhuMentoring.service.UserService;
+
 import com.SkhuMentoring.dto.*;
 import com.SkhuMentoring.mapper.MentoringBoardMapper;
 import com.SkhuMentoring.mapper.MyPageMapper;
 import com.SkhuMentoring.mapper.UserMapper;
+
 import com.SkhuMentoring.serivce.MailService;
+
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -14,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -26,22 +36,70 @@ public class HomeController {
     private final MyPageMapper myPageMapper;
     private final UserMapper userMapper;
 
+
     private  final MailService mailService;
+
 
     @GetMapping("/")
     public String main() {
         return "index";
     }
 
+    /*@PostMapping("/login")
+    public String login2(User user, HttpSession session, Model model) {
+        log.info(user);
+        if(userMapper.login(user)==1){
+            session.setAttribute("sessionId",userMapper.getId(user.getUserId()));
+            model.addAttribute("sessionId", session.getAttribute("sessionId"));
+            return "index";
+        }
+        else return "login";
+    }*/
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
     @GetMapping("/menteeStatus")
-    public String menteeStatus() {return  "menteeStatus";}
+    public String menteeStatus(Model model) {
+        model.addAttribute("list",myPageMapper.getMenteeStatus());
+        return  "menteeStatus";
+    }
 
     @GetMapping("/mentorStatus")
-    public String mentorStatus() {return  "mentorStatus";}
+    public String mentorStatus(Model model) {
+        model.addAttribute("list" ,myPageMapper.getMentorStatus());
+        return  "mentorStatus";
+    }
 
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/login")
     public String login() {return  "login";}
+
+    @PostMapping("/login")
+    public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+        try {
+            if (map.get("userId") == null || map.get("userPw") == null) {
+                model.addAttribute("msg", "아이디 또는 비밀번호를 입력해주세요");
+                return "login";
+            }
+            User user = userService.login(map);
+            if (user != null) {
+                session.setAttribute("user", user);
+            } else {
+                model.addAttribute("msg", "아이디 또는 비밀번호가 올바르지 않습니다.");
+                return "login";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
+            return "login";
+        }
+        return "index";
+    } // end of PostMapping("login")
+
 
     @GetMapping("/myInfo")
     public String myInfo() {return  "myInfo";}
@@ -50,27 +108,33 @@ public class HomeController {
     public String findPwId() {return  "findPwId";}
 
 
+
     @GetMapping("/ranking")
     public String ranking() {return  "ranking";}
 
-    @GetMapping("/mentoRegister") // 멘토 게시글 등록페이지로 이동
-    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor) {
+
+
+    @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
+    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor)  {
         model.addAttribute("departments" , mentoringBoardMapper.getDepartment());
         model.addAttribute("subject", mentoringBoardMapper.getSubject());
-        return  "mentoRegister";
+        model.addAttribute("menteeStudentNum",mentor.getMenteeStudentNum());
+        /*mentoringBoardMapper.setUpMentoring(menteeStudentNum);*/
+        return  "mentorRegister";
     }
 
     @Transactional // 멘토 게시글 등록
-    @PostMapping("/mentoRegister")
-    public String MentoRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department){
+    @PostMapping("/mentorRegister")
+    public String MentoRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department,HttpSession session){
         if(mentor.getSubjectName()=="기타" || mentor.getSubjectName().equals("기타")){
             mentor.setSubjectName(mentor.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentor.getSubjectName());
             mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
         }
+        mentor.setUserId((String)session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMentorBoard(mentor);
-        return null;
+        return "redirect:/mentorStatus";
     }
 
     @GetMapping("/menteeRegister")
@@ -79,17 +143,18 @@ public class HomeController {
         model.addAttribute("subject" , mentoringBoardMapper.getSubject());
         return "menteeRegister";
     }
-
+    @Transactional
     @PostMapping("/menteeRegister") // 멘티 게시글 등록
-    public String MenteeRegister(@ModelAttribute Mentee mentee ){
+    public String MenteeRegister(@ModelAttribute Mentee mentee, HttpSession session ){
         if(mentee.getSubjectName()=="기타" || mentee.getSubjectName().equals("기타")){
             mentee.setSubjectName(mentee.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentee.getSubjectName());
             mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록된다
         }
+        mentee.setUserId((String) session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMenteeBoard(mentee);
-        return "menteeRegister";
+        return "redirect:/menteeStatus";
     }
 
     @GetMapping(value = "/checkSubject") // 멘토 , 멘티 게시글 등록 시 기타 항목 과목 기입 후 중복확인 
@@ -147,6 +212,7 @@ public class HomeController {
     public String whoIsMentee()*/
 
 
+
     //회원가입 페이지로 이동
     @GetMapping("/signUp")
     public String signUp(Model model, @ModelAttribute User user, @ModelAttribute Department department) {
@@ -158,7 +224,7 @@ public class HomeController {
     //회원가입 정보 등록
     @PostMapping("/signUp")
     public String singUp(Model model, @ModelAttribute User user){
-        userMapper.signUp(user);
+        userMapper.addUser(user);
         return "login";
     }
 
@@ -184,6 +250,19 @@ public class HomeController {
         String auth = mailService.sendMail(email);
 
         return auth;
+    }
+
+
+    @GetMapping("/deleteMentorBoard") // 멘토 게시글 삭제
+    public String deleteMentorBoard(Long bno){
+        mentoringBoardMapper.deleteMentorBoard(bno);
+        return "redirect:/mentorStatus";
+    }
+
+    @GetMapping("/deleteMenteeBoard") // 멘티 게시글 삭제
+    public String deleteMenteeBoard(Long bno){
+        mentoringBoardMapper.deleteMenteeBoard(bno);
+        return "redirect:/menteeStatus";
     }
 
 }
