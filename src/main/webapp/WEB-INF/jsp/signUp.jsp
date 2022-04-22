@@ -39,11 +39,11 @@
 							<div class="row gtr-uniform">
                                 <div class="col-12">
 									<form:input type="password" path="userPw" id="userPw" value="" placeholder="비밀번호" />
+									<p id="Check_pw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
 								</div>
 
 								<div class="col-12">
 									<input type="password" name="conPw" id="conPw" value="" placeholder="비밀번호 확인"/>
-									<p id="Check_pw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
 								</div>
 							</div>
 							<p id="Check_conPw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
