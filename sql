@@ -133,3 +133,7 @@ drop  table tbl_menteeBoard;
 insert into tbl_menteeBoard(bno,subjectName,mentorWho,startDate,endDate) values (2, '알고리즘', '육정근',sysdate(),'2022-05-05');
 
 ALTER TABLE tbl_mentorBoard ADD CONSTRAINT FK_userIdMentor FOREIGN KEY (userId) REFERENCES tbl_user(userId)
+
+
+ALTER TABLE tbl_user ADD userName varchar(200)
+ALTER TABLE tbl_user ADD department varchar(200)

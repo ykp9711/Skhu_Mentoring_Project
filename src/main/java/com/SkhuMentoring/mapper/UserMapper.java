@@ -11,4 +11,10 @@ public interface UserMapper {
     public int login(User user); // 로그인
 
     public String getId(String userId); // 로그인 Id 값 가져오기
+
+    int checkId(String userId); //아이디 중복 체크
+
+    void addUser(User user);
+
 }
+

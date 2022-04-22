@@ -1,13 +1,19 @@
 package com.SkhuMentoring.controller;
 
+
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.SkhuMentoring.service.UserService;
+
 import com.SkhuMentoring.dto.*;
 import com.SkhuMentoring.mapper.MentoringBoardMapper;
 import com.SkhuMentoring.mapper.MyPageMapper;
 import com.SkhuMentoring.mapper.UserMapper;
+
+import com.SkhuMentoring.serivce.MailService;
+
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -29,6 +35,11 @@ public class HomeController {
     private final MentoringBoardMapper mentoringBoardMapper;
     private final MyPageMapper myPageMapper;
     private final UserMapper userMapper;
+
+
+    private  final MailService mailService;
+
+
     @GetMapping("/")
     public String main() {
         return "index";
@@ -96,8 +107,7 @@ public class HomeController {
     @GetMapping("/findPwId")
     public String findPwId() {return  "findPwId";}
 
-    @GetMapping("/signUp")
-    public String signup() {return  "signUp";}
+
 
     @GetMapping("/ranking")
     public String ranking() {return  "ranking";}
@@ -201,6 +211,48 @@ public class HomeController {
     /*@GetMapping("/whoIsMentee")
     public String whoIsMentee()*/
 
+
+
+    //회원가입 페이지로 이동
+    @GetMapping("/signUp")
+    public String signUp(Model model, @ModelAttribute User user, @ModelAttribute Department department) {
+        model.addAttribute("user", new User());
+        model.addAttribute("departments" , mentoringBoardMapper.getDepartment());
+        return  "signUp";
+    }
+
+    //회원가입 정보 등록
+    @PostMapping("/signUp")
+    public String singUp(Model model, @ModelAttribute User user){
+        userMapper.addUser(user);
+        return "login";
+    }
+
+    // 회원가입 id 중복확인
+    @GetMapping("/checkId")
+    @ResponseBody
+    public String checkId(@RequestParam String id){
+        log.info("들어옴");
+        int result = userMapper.checkId(id);
+        if (result == 0) {
+            return "success";
+        }
+        else {
+            return "fail";
+        }
+    }
+
+    //회원가입 이메일 인증
+    @GetMapping("/sendMail")
+    @ResponseBody
+    public String checkAuth(@RequestParam String email){
+        log.info("메일 전송");
+        String auth = mailService.sendMail(email);
+
+        return auth;
+    }
+
+
     @GetMapping("/deleteMentorBoard") // 멘토 게시글 삭제
     public String deleteMentorBoard(Long bno){
         mentoringBoardMapper.deleteMentorBoard(bno);
@@ -212,4 +264,5 @@ public class HomeController {
         mentoringBoardMapper.deleteMenteeBoard(bno);
         return "redirect:/menteeStatus";
     }
+
 }
