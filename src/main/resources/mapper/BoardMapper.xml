@@ -42,4 +42,9 @@
     <delete id="deleteMenteeBoard">
         DELETE FROM tbl_menteeBoard where bno =#{bno}
     </delete>
+    
+    <!--멘토 목록에서 멘토 상세보기-->
+    <select id="getDetailMentor" resultType="com.SkhuMentoring.dto.Mentor">
+        SELECT * FROM tbl_mentorBoard where bno =#{bno}
+    </select>
 </mapper>

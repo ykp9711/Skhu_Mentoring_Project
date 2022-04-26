@@ -74,7 +74,7 @@ License: pixelarity.com/license
                     </div>
                     <div class="col-12" style="text-align: center;">
                         <button type="submit">로그인</button>&nbsp;
-                        <a href="singUp" class="button">회원가입</a>
+                        <a href="signUp" class="button">회원가입</a>
                     </div>
                     <div class="col-12">${msg}</div>
 

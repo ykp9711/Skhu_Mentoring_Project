@@ -25,5 +25,10 @@
         Select userId from tbl_user where userId= #{userId}
     </select>
 
+    <!--userId로 해당 유저 정보 모두 가져오기-->
+    <select id="getUser" resultType="com.SkhuMentoring.dto.User">
+        select * from tbl_user where userId = #{userId}
+    </select>
+
 
 </mapper>
