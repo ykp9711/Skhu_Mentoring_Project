@@ -10,6 +10,16 @@
         select * from tbl_menteeBoard;
     </select>
 
+    <select id="getMenteeMyStatus" resultType="com.SkhuMentoring.dto.Mentee">
+        select * from tbl_menteeBoard where userId = #{userId};
+    </select>
+
+    <select id="getMentorMyStatus" resultType="com.SkhuMentoring.dto.Mentor">
+        select * from tbl_mentorBoard where userId = #{userId};
+    </select>
+
+
+
     <!--멘토링 종료-->
     <delete id="endMentoring">
         delete from tbl_mentorBoard where subjectName =#{subjectName}
