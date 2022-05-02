@@ -10,7 +10,7 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>MentorRegister</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -57,7 +57,7 @@
 										</div>
 										<div class="col-12">
 
-											<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목"/>
+											<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목" value="${list.subjectName}"/>
 											<datalist name="subject" id="subject">
 												<form:select path="subject" >
 													<form:option value="기타" label="0" />
@@ -66,10 +66,12 @@
 												</form:select>
 										</div>
 
+										<c:if test="${empty list}">
 										<div class="col-12">
 											<form:input path="addSubject" id="addSubject" placeholder="강의를 입력해주세요."/>
 											<p id="Check_Subject" style="height: 1px; display: none;"></p>
 										</div>
+										</c:if>
 										<div class="col-12">
 											<select name="MaxPersonnel">
 												<option value="0" label="정원을 선택해주세요" />
