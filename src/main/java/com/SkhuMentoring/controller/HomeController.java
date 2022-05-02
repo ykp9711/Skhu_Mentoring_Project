@@ -46,6 +46,7 @@ public class HomeController {
     }
 
 
+
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
@@ -91,6 +92,7 @@ public class HomeController {
         session.setAttribute("sessionId",userMapper.getId(map.get("userId"))); // 세션값 등록
         model.addAttribute("sessionId", session.getAttribute("sessionId"));
         return "index";
+    } // end of PostMapping("login")
     } // end of PostMapping("login")
 
 
@@ -170,20 +172,19 @@ public class HomeController {
         model.addAttribute("list2",myPageMapper.getMenteeStatus());
         return "myPage";
     }
-    //마이페이지 > 멘토 현황 > 멘토링 종료
-    @GetMapping("/endMentoring")
-    public String endMentoring(@RequestParam("subjectName") String subjectName,Model model, HttpServletRequest req, HttpServletResponse resp){
-        log.info(subjectName);
-        myPageMapper.endMentoring(subjectName);
-        String referer = req.getHeader("Referer");
-        return "redirect:"+ referer;
-    }
+
     // 마이페이지 > 멘토 현황 > 상세보기
-    @GetMapping("/detailMentoring")
+    @GetMapping("/detailMentor")
     public String detailMentee(Model model, Long bno){
         
         model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
         model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
+        return "detailMentoring";
+    }
+
+    @GetMapping("/detailMentoring")
+    public String detailMentoring(Model model){
+        model.addAttribute("list2",myPageMapper.getMenteeStatus());
         return "detailMentoring";
     }
     // 마이페이지 > 멘티에게 받은 요청 > 거절하기
