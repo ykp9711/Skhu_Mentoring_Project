@@ -37,8 +37,8 @@
                         <h3 style="text-align: center">아이디 찾기</h3>
                         <div style="margin:0 auto;">
                             <div class="field">
-                                <label style="margin-left: 20%;">가입시 사용한 이메일을 입력해주세요.</label>
-                                <input type="email" placeholder="EMAIL" style="margin: 0 auto; width:500px;">
+
+                                <input type="email" placeholder="가입 시 사용한 이메일을 입력해주세요." style="margin: 0 auto; width:500px;">
                                 <br>
                                 <div style="position: relative; bottom: 20px"></div>
                                 <ul class="actions special">
@@ -57,7 +57,7 @@
 
 
                             <div class="field" style="margin-bottom: 2%">
-                                <label style="margin-left: 20%;">아이디를 입력해주세요.
+                                <label style="margin-left: 20%;">
                                     <input type="text" placeholder="ID" style="width:500px;">
                                 </label>
                                 <div style="margin-left: -20%; margin-top: -2%; margin-bottom: -2%;"></div>
@@ -79,8 +79,9 @@
                             <ul class="actions special" style="margin-top: 1%;">
                                 <li><button type="button">찾기</button></li>
                             </ul>
-                        </div>
+                        </div><br>
                     </div>
+                    <br>
 
 
                 </form>

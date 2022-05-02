@@ -17,6 +17,7 @@ public class Mentee {
     private Date startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date regDate;
     private String hopeDay;
     private String introduce;

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <!--
 Hypothesis by Pixelarity
@@ -129,7 +130,9 @@ License: pixelarity.com/license
                                 <td style="vertical-align : middle">${list.bno}</td>
                                 <td style="vertical-align : middle">${list.subjectName}</td>
                                 <td style="vertical-align: middle;" >${list.menteeCount}</td>
-                                <td style="vertical-align : middle" class="title">${list.startDate}</td>
+                                <td style="vertical-align : middle" class="title">
+                                    <fmt:formatDate var="regDate" value="${list.startDate}" pattern="yyyy-MM-dd"/>
+                                        ${regDate}</td>
                                 <td style="vertical-align : middle" class="area" ><a href="/detailMentoring" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 <td style="vertical-align : middle" class="area" ><a href="/endMentoring?subjectName=${list.subjectName}" class="button small">종료</a></td>
                             </tr>
@@ -158,7 +161,9 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${list2.bno}</td>
                                     <td style="vertical-align : middle">${list2.subjectName}</td>
                                     <td style="vertical-align: middle;" >${list2.mentorWho}</td>
-                                    <td style="vertical-align : middle" class="title">${list2.startDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list2.startDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
                                 </tr>
                             </c:forEach>
                         </table>
@@ -182,8 +187,12 @@ License: pixelarity.com/license
                                 <tr style="height: 70px;">
                                     <td style="vertical-align : middle">${list.bno}</td>
                                     <td style="vertical-align : middle">${list.subjectName}</td>
-                                    <td style="vertical-align : middle" class="title">${list.startDate}</td>
-                                    <td style="vertical-align : middle" class="title">${list.endDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list.startDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list.endDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
                                 </tr>
                             </c:forEach>
 
@@ -211,8 +220,12 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${list2.bno}</td>
                                     <td style="vertical-align : middle">${list2.subjectName}</td>
                                     <td style="vertical-align: middle;" >${list2.mentorWho}</td>
-                                    <td style="vertical-align : middle" class="title">${list2.startDate}</td>
-                                    <td style="vertical-align : middle" class="title">${list2.endDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list2.startDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list2.endDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
                                 </tr>
                             </c:forEach>
                         </table>
