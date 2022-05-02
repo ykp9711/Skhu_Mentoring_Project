@@ -2,6 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+    Date nowTime = new Date();
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+%>
 <!DOCTYPE HTML>
 <!--
 Hypothesis by Pixelarity
@@ -183,7 +189,9 @@ License: pixelarity.com/license
 
 
                             </tr>
+
                             <c:forEach var="list" items="${list}">
+
                                 <tr style="height: 70px;">
                                     <td style="vertical-align : middle">${list.bno}</td>
                                     <td style="vertical-align : middle">${list.subjectName}</td>
@@ -194,6 +202,7 @@ License: pixelarity.com/license
                                         <fmt:formatDate var="regDate" value="${list.endDate}" pattern="yyyy-MM-dd"/>
                                             ${regDate}</td>
                                 </tr>
+
                             </c:forEach>
 
                         </table>
@@ -252,7 +261,7 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${list2.userStudentNum}</td>
                                     <td style="vertical-align : middle">${list2.department}</td>
                                     <td style="vertical-align : middle">${list2.subjectName}</td>
-                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentee?userStudentNum=${list2.userStudentNum}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentee?bno=${list2.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                     <td style="vertical-align : middle" class="area" ><a href="/requestAccept?userStudentNum=${list2.userStudentNum}" class="button small">수락</a>
                                         <a href="/requestRefusal?userStudentNum=${list2.userStudentNum}" class="button small">거절</a></td>
                                 </tr>
@@ -282,7 +291,7 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${list.subjectName}</td>
                                     <td style="vertical-align : middle">대기중</td>
                                     <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">신청취소</a></td>
-                                    <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentor?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 </tr>
                             </c:forEach>
 
