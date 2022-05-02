@@ -113,13 +113,25 @@ public class HomeController {
 
 
     @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
-    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, HttpSession session)  {
+    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, HttpSession session, Long bno)  {
+        model.addAttribute("list",mentoringBoardMapper.getDetailMentee(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
+        log.info(mentoringBoardMapper.getDetailMentee(bno));
         model.addAttribute("departments" , mentoringBoardMapper.getDepartment()); //학부 리스트
         model.addAttribute("subject", mentoringBoardMapper.getSubject()); // 과목 리스트
         model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         model.addAttribute("menteeStudentNum",mentor.getMenteeStudentNum());
         /*mentoringBoardMapper.setUpMentoring(menteeStudentNum);*/
         return  "mentorRegister";
+    }
+
+    @GetMapping("/menteeRegister")
+    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session,Long bno){
+        model.addAttribute("list",mentoringBoardMapper.getDetailMentor(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
+        log.info(mentoringBoardMapper.getDetailMentor(bno));
+        model.addAttribute("departments", mentoringBoardMapper.getDepartment());
+        model.addAttribute("subject" , mentoringBoardMapper.getSubject());
+        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
+        return "menteeRegister";
     }
 
     @Transactional // 멘토 게시글 등록
@@ -136,15 +148,7 @@ public class HomeController {
         return "redirect:/mentorStatus";
     }
 
-    @GetMapping("/menteeRegister")
-    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session,Long bno){
-        model.addAttribute("list",mentoringBoardMapper.getDetailMentor(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
-        log.info(mentoringBoardMapper.getDetailMentor(bno));
-        model.addAttribute("departments", mentoringBoardMapper.getDepartment());
-        model.addAttribute("subject" , mentoringBoardMapper.getSubject());
-        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
-        return "menteeRegister";
-    }
+
     @Transactional
     @PostMapping("/menteeRegister") // 멘티 게시글 등록
     public String MenteeRegister(@ModelAttribute Mentee mentee, HttpSession session){
@@ -176,9 +180,11 @@ public class HomeController {
         model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         log.info(session.getAttribute("sessionId"));
         String userId = (String) session.getAttribute("sessionId");
-        model.addAttribute("list",myPageMapper.getMentorMyStatus(userMapper.getId(userId)));
-        model.addAttribute("list2",myPageMapper.getMenteeMyStatus(userMapper.getId(userId)));
-        model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘티정보
+        model.addAttribute("list",myPageMapper.getMentorMyStatus(userMapper.getId(userId))); // 멘토정보 불러오기
+        model.addAttribute("list2",myPageMapper.getMenteeMyStatus(userMapper.getId(userId))); //멘티정보 불러오기
+        model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
+        model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
+
         return "myPage";
     }
 
@@ -290,6 +296,6 @@ public class HomeController {
     public String applicationMentor(Mentee mentee ,HttpSession session){
         mentee.setMenteeId((String)session.getAttribute("sessionId"));
         mentoringBoardMapper.applicationMentor(mentee);
-        return "/";
+        return "/MentorStatus";
     }
 }
