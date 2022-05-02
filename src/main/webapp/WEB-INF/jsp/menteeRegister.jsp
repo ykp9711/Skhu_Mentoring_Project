@@ -102,16 +102,8 @@
 											<ul class="actions">
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												<c:choose>
-													<c:when test="${empty list}">
 												<li><input type="submit" value="등록" class="primary"></li>
 												<li><input type="reset" value="초기화"></li>
-													</c:when>
-													<c:otherwise>
-														<li><a href="javascript:void(0)" onClick="javascript:goPost()" class="button primary">신청</a></li>
-														<li><input type="reset" value="초기화"></li>
-													</c:otherwise>
-												</c:choose>
 
 
 											</ul>
@@ -131,9 +123,10 @@
 	</c:when>
 	<c:otherwise><%--멘토링 신청 시 보여주는 form--%>
 		<%--@elvariable id="mentee" type="com.SkhuMentoring.dto.Mentee"--%>
-		<form:form modelAttribute="mentee" method="post" action="#">
+		<form:form modelAttribute="mentee" method="post" action="/appilcation">
 
 			<div class="row gtr-uniform">
+				<input type="hidden"  value="${list.bno}" name="bno"/>
 				<div class="col-12">
 					<form:input path="userName" value="${user.userName}" placeholder="이름" readonly="true"/>
 				</div>
@@ -184,16 +177,9 @@
 					<ul class="actions">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<c:choose>
-							<c:when test="${empty list}">
-								<li><input type="submit" value="등록" class="primary"></li>
+								<li><input type="submit" value="신청" class="primary"></li>
 								<li><input type="reset" value="초기화"></li>
-							</c:when>
-							<c:otherwise>
-								<li><a href="javascript:void(0)" onClick="javascript:goPost()" class="button primary">신청</a></li>
-								<li><input type="reset" value="초기화"></li>
-							</c:otherwise>
-						</c:choose>
+
 
 
 					</ul>

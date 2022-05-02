@@ -33,4 +33,8 @@ public interface MentoringBoardMapper {
     Mentor getDetailMentor(Long bno); // 멘토목록 상세보기 값 가져오기
     
     Mentee getDetailMentee(Long bno); // 멘티목록 상세보기 값 가져오기
+    
+    void applicationMentor(Mentee mentee); //멘토 게시글에서 신청
+    
+    List<Mentor> getMentoring(Long bno); // bno번호로 멘토게시글 정보 가져오기
 }

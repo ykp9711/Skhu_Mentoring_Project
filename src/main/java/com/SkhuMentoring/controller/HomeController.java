@@ -172,12 +172,13 @@ public class HomeController {
     }
     //마이페이지로 이동
     @GetMapping("/myPage")
-    public String myPageGo(@ModelAttribute Mentor mentor, Model model,HttpSession session){
+    public String myPageGo(@ModelAttribute Mentor mentor, Model model,HttpSession session, Mentee mentee){
         model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         log.info(session.getAttribute("sessionId"));
         String userId = (String) session.getAttribute("sessionId");
         model.addAttribute("list",myPageMapper.getMentorMyStatus(userMapper.getId(userId)));
         model.addAttribute("list2",myPageMapper.getMenteeMyStatus(userMapper.getId(userId)));
+        model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘티정보
         return "myPage";
     }
 
@@ -283,5 +284,12 @@ public class HomeController {
         model.addAttribute("detailMentee", mentoringBoardMapper.getDetailMentee(bno));
         model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentee(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
         return "detailMentee";
+    }
+
+    @PostMapping("/appilcation") // 멘토 게시글 목록에서 신청
+    public String applicationMentor(Mentee mentee ,HttpSession session){
+        mentee.setMenteeId((String)session.getAttribute("sessionId"));
+        mentoringBoardMapper.applicationMentor(mentee);
+        return "/";
     }
 }

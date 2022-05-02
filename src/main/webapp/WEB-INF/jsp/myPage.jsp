@@ -277,7 +277,7 @@ License: pixelarity.com/license
                     <div class="table-wrapper">
                         <table style="border: 1px;  text-align: center;  ">
                             <tr class="tHead" >
-                                <th style="text-align: center; vertical-align : middle;" >No</th>
+
                                 <th style="text-align: center; vertical-align : middle;" class="subject">멘토링 과목</th>
                                 <th style="text-align: center; vertical-align : middle;" class="time">승인여부</th>
                                 <th style="text-align: center; vertical-align : middle;" class="time">신청취소</th>
@@ -285,13 +285,12 @@ License: pixelarity.com/license
 
                             </tr>
 
-                            <c:forEach var="list" items="${list}">
+                            <c:forEach var="applicationMentor" items="${applicationMentor}">
                                 <tr style="height: 70px;">
-                                    <td style="vertical-align : middle">${list.bno}</td>
-                                    <td style="vertical-align : middle">${list.subjectName}</td>
-                                    <td style="vertical-align : middle">대기중</td>
+                                    <td style="vertical-align : middle">${applicationMentor.subjectName}</td>
+                                    <td style="vertical-align : middle">${applicationMentor.accept}</td>
                                     <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">신청취소</a></td>
-                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentor?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentor?bno=${applicationMentor.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 </tr>
                             </c:forEach>
 

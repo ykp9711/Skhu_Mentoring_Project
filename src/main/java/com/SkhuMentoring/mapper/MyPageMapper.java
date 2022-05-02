@@ -37,4 +37,7 @@ public interface MyPageMapper {
     /*public List<Mentor> getList(Criteria cri);
     public int getTotal(Criteria cri);*/
 
+    //마이페이지 멘토에게 보낸 신청
+    List<Mentee> getApplicationMentor(String menteeId);
+
 }

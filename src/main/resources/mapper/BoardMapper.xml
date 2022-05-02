@@ -52,4 +52,12 @@
     <select id="getDetailMentee" resultType="com.SkhuMentoring.dto.Mentee">
         SELECT * FROM tbl_menteeBoard where bno =#{bno}
     </select>
+
+    <insert id="applicationMentor">
+        INSERT INTO tbl_AppilcationMentor(bno,menteeId,introduce,subjectName, accept) values(#{bno}, #{menteeId},#{introduce},#{subjectName},0)
+    </insert>
+
+    <select id="getMentoring" resultType="com.SkhuMentoring.dto.Mentor">
+        SELECT * FROM tbl_mentorBoard where bno=#{bno}
+    </select>
 </mapper>
