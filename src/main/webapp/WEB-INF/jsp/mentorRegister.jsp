@@ -70,6 +70,22 @@
 											<form:input path="addSubject" id="addSubject" placeholder="강의를 입력해주세요."/>
 											<p id="Check_Subject" style="height: 1px; display: none;"></p>
 										</div>
+										<div class="col-12">
+											<select name="MaxPersonnel">
+												<option value="0" label="정원을 선택해주세요" />
+												<option value="1" label="1명" />
+												<option value="2" label="2명" />
+												<option value="4" label="4명" />
+												<option value="5" label="5명" />
+												<option value="3" label="3명" />
+												<option value="6" label="6명" />
+												<option value="7" label="7명" />
+												<option value="8" label="8명" />
+												<option value="9" label="9명" />
+												<option value="10" label="10명" />
+											</select>
+
+										</div>
 										<div class="col-12" style="text-align: center;">
 											<label>예정 시작 날짜 &nbsp;
 											<input type="date" name="startDate" id="startDate"  placeholder="예정시작일">

@@ -170,7 +170,7 @@ License: pixelarity.com/license
                     </div>
                 </div>
             </li>
-            <li>
+            <%--<li>
                 <h3><span style="font-size: 0.8em;">종료된 멘토</span></h3>
                 <div class="spotlight">
                     <div class="table-wrapper">
@@ -231,7 +231,7 @@ License: pixelarity.com/license
                         </table>
                     </div>
                 </div>
-            </li>
+            </li>--%>
             <li>
                 <h3><span style="font-size: 0.8em;" >멘티에게 받은 요청</span></h3>
                 <div class="spotlight">

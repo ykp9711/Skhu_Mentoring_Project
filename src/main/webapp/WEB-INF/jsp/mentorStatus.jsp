@@ -40,6 +40,7 @@ License: pixelarity.com/license
                         <th style="text-align: center; vertical-align : middle;" >학부/학과</th>
                         <th style="text-align: center; vertical-align : middle;" >멘토링 과목</th>
                         <th style="text-align: center; vertical-align : middle;" >멘토링 시간</th>
+                        <th style="text-align: center; vertical-align : middle;" >정원</th>
                         <th style="text-align: center; vertical-align : middle;" >등록날짜</th>
                         <th style="text-align: center; vertical-align : middle;" >상세보기</th>
                         <th style="text-align: center; vertical-align : middle;" >신청</th>
@@ -54,6 +55,7 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="title">${list.department}</td>
                             <td style="vertical-align : middle" class="title">${list.subjectName}</td>
                             <td style="vertical-align : middle" class="title">${list.hopeDay}</td>
+                            <td style="vertical-align : middle" class="title">3/<span style="color: #23b1ec">${list.maxPersonnel}</span></td>
                             <td style="vertical-align : middle" class="title">
                                 <fmt:formatDate var="regDate" value="${list.regDate}" pattern="yyyy-MM-dd"/>
                                     ${regDate}</td>

@@ -10,7 +10,7 @@
     </select>
 
     <insert id="insertMentorBoard" useGeneratedKeys="true" keyProperty="bno">
-        INSERT into tbl_mentorBoard(userId,userName,UserStudentNum,department,subjectName,startDate,endDate,hopeDay,introduce) values(#{userId},#{userName}, #{userStudentNum}, #{department}, #{subjectName}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce})
+        INSERT into tbl_mentorBoard(userId,userName,UserStudentNum,department,subjectName,maxPersonnel, startDate,endDate,hopeDay,introduce) values(#{userId},#{userName}, #{userStudentNum}, #{department}, #{subjectName},#{maxPersonnel}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce})
     </insert>
 
     <insert id="insertSubject" keyProperty="sno" useGeneratedKeys="true">
