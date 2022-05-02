@@ -170,9 +170,12 @@ public class HomeController {
     }
     //마이페이지로 이동
     @GetMapping("/myPage")
-    public String myPageGo(@ModelAttribute Mentor mentor, Model model){
-        model.addAttribute("list",myPageMapper.getMentorStatus());
-        model.addAttribute("list2",myPageMapper.getMenteeStatus());
+    public String myPageGo(@ModelAttribute Mentor mentor, Model model,HttpSession session){
+        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
+        log.info(session.getAttribute("sessionId"));
+        String userId = (String) session.getAttribute("sessionId");
+        model.addAttribute("list",myPageMapper.getMentorMyStatus(userMapper.getId(userId)));
+        model.addAttribute("list2",myPageMapper.getMenteeMyStatus(userMapper.getId(userId)));
         return "myPage";
     }
 
