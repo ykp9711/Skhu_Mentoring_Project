@@ -33,15 +33,24 @@
 				<!-- Section -->
 					<section id="one" class="main alt">
 						<header class="accent1">
-							<h1>멘티 등록</h1>
+							<c:choose>
+<c:when test="${empty list}">
+	<h1>멘티 등록</h1>
+</c:when>
+							<c:otherwise>
+								<h1>멘토링 신청</h1>
+							</c:otherwise>
+							</c:choose>
 						</header>
 						<div class="inner2"><br><br>
 
 							<div class="row gtr-uniform">
-								
-								
+
+<c:choose>
+	<c:when test="${empty list}">
 								<%--@elvariable id="mentee" type="com.SkhuMentoring.dto.Mentee"--%>
 								<form:form modelAttribute="mentee" method="post" action="#">
+
 									<div class="row gtr-uniform">
 										<div class="col-12">
 											<form:input path="userName" value="${user.userName}" placeholder="이름" readonly="true"/>
@@ -56,8 +65,7 @@
 							</form:select>
 										</div>
 										<div class="col-12">
-
-											<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목"/>
+											<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목" value="${list.subjectName}"/>
 											<datalist name="subject" id="subject">
 												<form:select path="subject" >
 												<form:option value="기타" label="0" />
@@ -65,10 +73,13 @@
 											</datalist>
 											</form:select>
 										</div>
+										<c:if test="${empty list}">
 										<div class="col-12">
 											<form:input path="addSubject" id="addSubject" placeholder="강의를 입력해주세요."/>
 											<p id="Check_Subject" style="height: 1px; display: none;"></p>
 										</div>
+										</c:if>
+										<c:if test="${empty list}">
 										<div class="col-12" style="text-align: center;">
 											<label>희망 시작 날짜 &nbsp;
 											<input type="date" name="startDate" id="startDate"  placeholder="예정시작일">
@@ -82,16 +93,27 @@
 										<div class="col-12">
 											<form:input path="hopeDay" placeholder="진행가능한 요일을 적어주세요 ex)월, 화"/>
 										</div>
+										</c:if>
 										<div class="col-12">
 											<form:textarea path="introduce" placeholder="간단한 자기소개를 작성해주세요." rows="6"></form:textarea>
 										</div>
 										<!-- Break -->
-										<div class="col-12">
+										<div class="col-12" style="text-align: center;">
 											<ul class="actions">
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<c:choose>
+													<c:when test="${empty list}">
 												<li><input type="submit" value="등록" class="primary"></li>
 												<li><input type="reset" value="초기화"></li>
+													</c:when>
+													<c:otherwise>
+														<li><a href="javascript:void(0)" onClick="javascript:goPost()" class="button primary">신청</a></li>
+														<li><input type="reset" value="초기화"></li>
+													</c:otherwise>
+												</c:choose>
+
+
 											</ul>
 										</div>
 									</div>
@@ -107,6 +129,91 @@
 					</div>
 
 					</section>
+	</c:when>
+	<c:otherwise><%--멘토링 신청 시 보여주는 form--%>
+		<%--@elvariable id="mentee" type="com.SkhuMentoring.dto.Mentee"--%>
+		<form:form modelAttribute="mentee" method="post" action="#">
+
+			<div class="row gtr-uniform">
+				<div class="col-12">
+					<form:input path="userName" value="${user.userName}" placeholder="이름" readonly="true"/>
+				</div>
+				<div class="col-12">
+					<form:input path="userStudentNum" value="${user.userStudentNum}" readonly="true" />
+				</div>
+				<div class="col-12">
+					<form:select path="department">
+						<form:option value="0" label="학과를 선택하세요" />
+						<form:options  itemLabel="department" itemValue="department" items="${ departments }" />
+					</form:select>
+				</div>
+				<div class="col-12">
+					<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목" value="${list.subjectName}"/>
+					<datalist name="subject" id="subject">
+						<form:select path="subject" >
+						<form:option value="기타" label="0" />
+						<form:options  itemValue="subjectName" itemLabel="sno" items="${ subject }"  />
+					</datalist>
+					</form:select>
+				</div>
+				<c:if test="${empty list}">
+					<div class="col-12">
+						<form:input path="addSubject" id="addSubject" placeholder="강의를 입력해주세요."/>
+						<p id="Check_Subject" style="height: 1px; display: none;"></p>
+					</div>
+				</c:if>
+				<c:if test="${empty list}">
+					<div class="col-12" style="text-align: center;">
+						<label>희망 시작 날짜 &nbsp;
+							<input type="date" name="startDate" id="startDate"  placeholder="예정시작일">
+						</label>
+					</div>
+					<div class="col-12" style="text-align: center;">
+						<label>희망 종료 날짜 &nbsp;
+							<input type="date" name="endDate" id="endDate">
+						</label>
+					</div>
+					<div class="col-12">
+						<form:input path="hopeDay" placeholder="진행가능한 요일을 적어주세요 ex)월, 화"/>
+					</div>
+				</c:if>
+				<div class="col-12">
+					<form:textarea path="introduce" placeholder="간단한 자기소개를 작성해주세요." rows="6"></form:textarea>
+				</div>
+				<!-- Break -->
+				<div class="col-12" style="text-align: center;">
+					<ul class="actions">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<c:choose>
+							<c:when test="${empty list}">
+								<li><input type="submit" value="등록" class="primary"></li>
+								<li><input type="reset" value="초기화"></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="javascript:void(0)" onClick="javascript:goPost()" class="button primary">신청</a></li>
+								<li><input type="reset" value="초기화"></li>
+							</c:otherwise>
+						</c:choose>
+
+
+					</ul>
+				</div>
+			</div>
+
+
+			</div>
+			<!-- Break -->
+
+			</div>
+			</section>
+		</form:form>
+		<br><br>
+		</div>
+
+		</section>
+	</c:otherwise>
+	</c:choose>
 
 				<!-- Footer -->
 		<%@include file ="footer.jsp" %>
@@ -151,5 +258,7 @@
 		});// success 종료
 	}); // ajax 종료
 </script>
+
+
 	</body>
 </html>

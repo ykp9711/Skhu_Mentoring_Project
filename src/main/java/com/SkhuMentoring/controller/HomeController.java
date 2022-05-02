@@ -137,7 +137,9 @@ public class HomeController {
     }
 
     @GetMapping("/menteeRegister")
-    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session){
+    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session,Long bno){
+        model.addAttribute("list",mentoringBoardMapper.getDetailMentor(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
+        log.info(mentoringBoardMapper.getDetailMentor(bno));
         model.addAttribute("departments", mentoringBoardMapper.getDepartment());
         model.addAttribute("subject" , mentoringBoardMapper.getSubject());
         model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
@@ -145,7 +147,7 @@ public class HomeController {
     }
     @Transactional
     @PostMapping("/menteeRegister") // 멘티 게시글 등록
-    public String MenteeRegister(@ModelAttribute Mentee mentee, HttpSession session ){
+    public String MenteeRegister(@ModelAttribute Mentee mentee, HttpSession session){
         if(mentee.getSubjectName()=="기타" || mentee.getSubjectName().equals("기타")){
             mentee.setSubjectName(mentee.getAddSubject());
             Subject subject = new Subject();
