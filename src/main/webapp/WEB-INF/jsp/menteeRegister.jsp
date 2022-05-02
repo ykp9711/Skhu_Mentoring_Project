@@ -127,7 +127,6 @@
 				</form:form>
 						<br><br>
 					</div>
-
 					</section>
 	</c:when>
 	<c:otherwise><%--멘토링 신청 시 보여주는 form--%>
