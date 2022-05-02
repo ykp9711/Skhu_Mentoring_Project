@@ -274,4 +274,12 @@ public class HomeController {
         model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
         return "detailMentor";
     }
+
+    @GetMapping("/detailMentee") // 멘티 게시글 목록 상세보기
+    public String detailMentee(Model model, Long bno){
+
+        model.addAttribute("detailMentee", mentoringBoardMapper.getDetailMentee(bno));
+        model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentee(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
+        return "detailMentee";
+    }
 }

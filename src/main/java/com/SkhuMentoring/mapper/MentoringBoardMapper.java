@@ -31,4 +31,6 @@ public interface MentoringBoardMapper {
     public User login(Map<String, String> map);
 
     Mentor getDetailMentor(Long bno); // 멘토목록 상세보기 값 가져오기
+    
+    Mentee getDetailMentee(Long bno); // 멘티목록 상세보기 값 가져오기
 }

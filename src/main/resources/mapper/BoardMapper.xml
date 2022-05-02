@@ -47,4 +47,9 @@
     <select id="getDetailMentor" resultType="com.SkhuMentoring.dto.Mentor">
         SELECT * FROM tbl_mentorBoard where bno =#{bno}
     </select>
+
+    <!--멘티 목록에서 멘토 상세보기-->
+    <select id="getDetailMentee" resultType="com.SkhuMentoring.dto.Mentee">
+        SELECT * FROM tbl_menteeBoard where bno =#{bno}
+    </select>
 </mapper>
