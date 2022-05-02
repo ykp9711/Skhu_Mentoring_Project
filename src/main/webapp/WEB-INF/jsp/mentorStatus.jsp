@@ -49,7 +49,7 @@ License: pixelarity.com/license
 
                     <c:forEach var="list" items="${list}">
                         <tr style="height: 70px;">
-                            <td style="vertical-align : middle">${list.userId}</td>
+                            <td style="vertical-align : middle">${list.userName}</td>
                             <td style="vertical-align: middle;" >${list.userStudentNum}</td>
                             <td style="vertical-align : middle" class="title">${list.department}</td>
                             <td style="vertical-align : middle" class="title">${list.subjectName}</td>

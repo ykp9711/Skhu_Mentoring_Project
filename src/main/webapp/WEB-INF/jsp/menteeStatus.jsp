@@ -35,7 +35,7 @@ License: pixelarity.com/license
             <div class="table-wrapper">
                 <table style="border: 1px;  text-align: center;  ">
                     <tr class="tHead" >
-                        <th  style="text-align: center; vertical-align : middle;">아이디</th>
+                        <th  style="text-align: center; vertical-align : middle;">멘티 이름</th>
                         <th style="text-align: center; vertical-align : middle;" class="mentorNumber">학번</th>
                         <th style="text-align: center; vertical-align : middle;" class="department">학부/학과</th>
                         <th style="text-align: center; vertical-align : middle;" class="subject">희망 과목</th>
@@ -48,7 +48,7 @@ License: pixelarity.com/license
                     </tr>
                     <c:forEach var="list" items="${list}">
                     <tr style="height: 70px;">
-                        <td style="vertical-align : middle">${list.userId}</td>
+                        <td style="vertical-align : middle">${list.userName}</td>
                         <td style="vertical-align: middle;" >${list.userStudentNum}</td>
                         <td style="vertical-align : middle" class="title">${list.department}</td>
                         <td style="vertical-align : middle" class="kind">${list.subjectName}</td>

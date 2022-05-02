@@ -9,6 +9,7 @@ import java.util.Date;
 public class Mentee {
     private Long bno;
     private String userId;
+    private String userName;
     private Long userStudentNum;
     private String mentorWho;
     private String department;

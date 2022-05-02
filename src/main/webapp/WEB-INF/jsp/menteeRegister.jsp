@@ -44,10 +44,10 @@
 								<form:form modelAttribute="mentee" method="post" action="#">
 									<div class="row gtr-uniform">
 										<div class="col-12">
-											<form:input path="userId" value="${sessionId}" placeholder="이름" disabled="true"/>
+											<form:input path="userName" value="${user.userName}" placeholder="이름" readonly="true"/>
 										</div>
 										<div class="col-12">
-											<form:input path="userStudentNum" value="${user.userStudentNum}" disabled="true" />
+											<form:input path="userStudentNum" value="${user.userStudentNum}" readonly="true" />
 										</div>
 										<div class="col-12">
 							<form:select path="department">

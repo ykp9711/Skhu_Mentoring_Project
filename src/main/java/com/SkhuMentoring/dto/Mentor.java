@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class Mentor {
     private Long bno;
+    private String userName;
     private String userId;
     private Long userStudentNum;
     private String department;

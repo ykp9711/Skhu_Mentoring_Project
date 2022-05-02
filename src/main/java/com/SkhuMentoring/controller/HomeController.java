@@ -37,7 +37,7 @@ public class HomeController {
     private final UserMapper userMapper;
 
 
-    private  final MailService mailService;
+    private final MailService mailService;
 
 
     @GetMapping("/")
@@ -46,29 +46,31 @@ public class HomeController {
     }
 
 
-
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
+
     @GetMapping("/menteeStatus")
     public String menteeStatus(Model model) {
-        model.addAttribute("list",myPageMapper.getMenteeStatus());
-        return  "menteeStatus";
+        model.addAttribute("list", myPageMapper.getMenteeStatus());
+        return "menteeStatus";
     }
 
     @GetMapping("/mentorStatus")
     public String mentorStatus(Model model) {
-        model.addAttribute("list" ,myPageMapper.getMentorStatus());
-        return  "mentorStatus";
+        model.addAttribute("list", myPageMapper.getMentorStatus());
+        return "mentorStatus";
     }
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/login")
-    public String login() {return  "login";}
+    public String login() {
+        return "login";
+    }
 
     @PostMapping("/login")
     public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
@@ -89,11 +91,12 @@ public class HomeController {
             model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
             return "login";
         }
-        session.setAttribute("sessionId",userMapper.getId(map.get("userId"))); // 세션값 등록
+        session.setAttribute("sessionId", userMapper.getId(map.get("userId"))); // 세션값 등록
         model.addAttribute("sessionId", session.getAttribute("sessionId"));
         return "index";
     } // end of PostMapping("login")
-    } // end of PostMapping("login")
+
+
 
 
     @GetMapping("/myInfo")
@@ -174,13 +177,6 @@ public class HomeController {
     }
 
     // 마이페이지 > 멘토 현황 > 상세보기
-    @GetMapping("/detailMentor")
-    public String detailMentee(Model model, Long bno){
-        
-        model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
-        model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
-        return "detailMentoring";
-    }
 
     @GetMapping("/detailMentoring")
     public String detailMentoring(Model model){
