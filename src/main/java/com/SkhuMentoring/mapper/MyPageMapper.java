@@ -27,7 +27,7 @@ public interface MyPageMapper {
     //멘토링수락-데이터넣기
     public void requestAcceptData(String userStudentNum);
 
-    public int whoIsMentee(Mentee mentee);
+    public int whoIsMentee(Long bno);
 
     void modifyUserInfo(User user);
 
@@ -38,6 +38,6 @@ public interface MyPageMapper {
     //마이페이지 멘토에게 보낸 신청
     List<Mentee> getApplicationMentor(String menteeId);
     //마이페이지 멘티에게 받은 요청
-    List<Mentee> getRequestMentee(String menteeId);
+    List<Mentee> getRequestMentee(String mentorId);
 
 }

@@ -11,6 +11,7 @@ public class Mentee {
     private String userId;
     private String userName;
     private Long userStudentNum;
+    private Long menteeStudentNum;
     private String mentorWho;
     private String department;
     private String subjectName;

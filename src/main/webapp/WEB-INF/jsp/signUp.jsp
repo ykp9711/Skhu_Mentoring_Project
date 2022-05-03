@@ -63,8 +63,11 @@
 								<div class="col-12">
 									<form:input type="text" path="userPhoneNum" id="phone" value="" placeholder="휴대폰 번호" />
 								</div>
-								<div class="col-12">
+								<div class="col-6">
 									<form:input type="email" path="userEmail" id="userEmail" value="" placeholder="이메일" />
+								</div>
+								<div class="col-6">
+									<input type="email" id="userEmail" value="@naver.com" readonly />
 								</div>
 								<div class="col-12">
 									<input type="button" value="이메일 인증" class="button primary fit" id="auth_btn">
