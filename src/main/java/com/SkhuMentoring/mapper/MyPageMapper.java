@@ -40,6 +40,6 @@ public interface MyPageMapper {
     //마이페이지 멘토에게 보낸 신청
     List<Mentee> getApplicationMentor(String menteeId);
     //마이페이지 멘티에게 받은 요청
-    List<Mentee> getRequestMentee(String menteeId);
+    List<Mentee> getRequestMentee(String mentorId);
 
 }

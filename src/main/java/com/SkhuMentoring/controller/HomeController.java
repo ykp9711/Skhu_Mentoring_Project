@@ -164,7 +164,7 @@ public class HomeController {
         return "redirect:/menteeStatus";
     }
 
-    @GetMapping(value = "/checkSubject") // 멘토 , 멘티 게시글 등록 시 기타 항목 과목 기입 후 중복확인 
+    @GetMapping(value = "/checkSubject") // 멘토 , 멘티 게시글 등록 시 기타 항목 과목 기입 후 중복확인
     @ResponseBody
     public String userIdCheck(String subject) throws Exception {
 
@@ -185,7 +185,6 @@ public class HomeController {
         model.addAttribute("list2",myPageMapper.getMenteeMyStatus(userMapper.getId(userId))); //멘티정보 불러오기
         model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
         model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
-        log.info(myPageMapper.getRequestMentee(userId));
         return "myPage";
     }
 
