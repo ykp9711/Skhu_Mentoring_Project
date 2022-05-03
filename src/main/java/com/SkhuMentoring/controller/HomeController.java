@@ -1,6 +1,7 @@
 package com.SkhuMentoring.controller;
 
 
+import java.io.PrintWriter;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -184,7 +185,7 @@ public class HomeController {
         model.addAttribute("list2",myPageMapper.getMenteeMyStatus(userMapper.getId(userId))); //멘티정보 불러오기
         model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
         model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
-
+        log.info(myPageMapper.getRequestMentee(userId));
         return "myPage";
     }
 
@@ -252,8 +253,8 @@ public class HomeController {
     @GetMapping("/sendMail")
     @ResponseBody
     public String checkAuth(@RequestParam String email){
-        log.info("메일 전송");
-        String auth = mailService.sendMail(email);
+
+        String auth = mailService.sendMail(email+"@naver.com"); //
 
         return auth;
     }
@@ -293,9 +294,19 @@ public class HomeController {
     }
 
     @PostMapping("/appilcation") // 멘토 게시글 목록에서 신청
-    public String applicationMentor(Mentee mentee ,HttpSession session){
+    public String applicationMentor(Mentee mentee ,HttpSession session,HttpServletRequest req, HttpServletResponse resp) throws Exception{
         mentee.setMenteeId((String)session.getAttribute("sessionId"));
         mentoringBoardMapper.applicationMentor(mentee);
-        return "/MentorStatus";
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("text/html;charset=utf-8");
+        out.println("<script>");
+        out.println("alert('신청이 완료되었습니다.')");
+        out.println("</script>");
+        out.close();
+        return "/";
     }
 }
+
+//한 명의 멘토에게 신청을 하면 중복 신청이 안 되도록 막아준다.
+//이메일 인증 할 떄 학생인증을 하기 위해서 office.skhu.ac.kr 고정으로 박아준다
+// 상세보기

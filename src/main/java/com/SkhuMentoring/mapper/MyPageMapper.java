@@ -30,7 +30,7 @@ public interface MyPageMapper {
     //멘토링수락-데이터넣기
     public void requestAcceptData(String userStudentNum);
 
-    public int whoIsMentee(Mentee mentee);
+    public int whoIsMentee(Long bno);
 
 
     //페이징 하면 사용

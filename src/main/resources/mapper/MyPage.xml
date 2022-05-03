@@ -47,9 +47,14 @@
         select * from tbl_AppilcationMentor where menteeId = #{menteeId}
     </select>
 
+    <select id="getApplicationMentee" resultType="com.SkhuMentoring.dto.Mentee">
+        select * from tbl_AppilcationMentee where mentorId = #{mentorId}
+    </select>
+
     <!--마이페이지 멘티에게 받은요청-->
     <select id="getRequestMentee" resultType="com.SkhuMentoring.dto.Mentee">
-        select * from tbl_RequestMentee where menteeId = #{menteeId}
+        select a.*, m.userId
+        from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
     </select>
     
     <!--페이징하면 사용-->
