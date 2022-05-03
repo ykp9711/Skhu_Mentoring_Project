@@ -9,6 +9,7 @@ import java.util.Date;
 public class Mentee {
     private Long bno;
     private String userId;
+    private String userName;
     private Long userStudentNum;
     private String mentorWho;
     private String department;
@@ -17,9 +18,12 @@ public class Mentee {
     private Date startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date regDate;
     private String hopeDay;
     private String introduce;
     private String addSubject; // 과목 선택 시 항목에 없어 기타로 입력한 값
     private String subject;
+    private String menteeId;
+    private Long accept;
 }

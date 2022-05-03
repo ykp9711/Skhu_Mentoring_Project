@@ -33,10 +33,10 @@ License: pixelarity.com/license
                 <form method="post" action="">
                     <div class="row gtr-uniform">
                         <div class="col-12">
-                            <input type="text" name="userId" id="userPw" value="" placeholder="비밀번호" />
+                            <input type="text" name="userPw" id="userPw" value="" placeholder="비밀번호" />
                         </div>
                         <div class="col-12">
-                            <input type="password" name="userPw" id="conPw" value="" placeholder="비밀번호 확인" />
+                            <input type="password" id="conPw" value="" placeholder="비밀번호 확인" />
                         </div>
                         <div class="col-12" style="text-align: center;">
                             <ul class="actions fit">

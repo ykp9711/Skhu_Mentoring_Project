@@ -22,5 +22,6 @@ public interface UserMapper {
 
     void modifyPw(@Param("userPw") String userPw, @Param("userEmail") String Email);
 
+
 }
 

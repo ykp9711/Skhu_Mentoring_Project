@@ -10,7 +10,7 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>MentorRegister</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -43,10 +43,10 @@
 							<div class="row gtr-uniform">
 									<div class="row gtr-uniform">
 										<div class="col-12">
-											<form:input path="userId" value="${sessionId}" placeholder="이름" disabled="true"/>
+											<form:input path="userName" value="${user.userName}" placeholder="이름" readonly="true" />
 										</div>
 										<div class="col-12">
-											<form:input path="userStudentNum" value="${user.userStudentNum}"  disabled="true"/>
+											<form:input path="userStudentNum" value="${user.userStudentNum}"  readonly="true"/>
 										</div>
 										<div class="col-12">
 											<form:select path="department" name="department">
@@ -57,7 +57,7 @@
 										</div>
 										<div class="col-12">
 
-											<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목"/>
+											<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목" value="${list.subjectName}"/>
 											<datalist name="subject" id="subject">
 												<form:select path="subject" >
 													<form:option value="기타" label="0" />
@@ -66,9 +66,27 @@
 												</form:select>
 										</div>
 
+										<c:if test="${empty list}">
 										<div class="col-12">
 											<form:input path="addSubject" id="addSubject" placeholder="강의를 입력해주세요."/>
 											<p id="Check_Subject" style="height: 1px; display: none;"></p>
+										</div>
+										</c:if>
+										<div class="col-12">
+											<select name="MaxPersonnel">
+												<option value="0" label="정원을 선택해주세요" />
+												<option value="1" label="1명" />
+												<option value="2" label="2명" />
+												<option value="4" label="4명" />
+												<option value="5" label="5명" />
+												<option value="3" label="3명" />
+												<option value="6" label="6명" />
+												<option value="7" label="7명" />
+												<option value="8" label="8명" />
+												<option value="9" label="9명" />
+												<option value="10" label="10명" />
+											</select>
+
 										</div>
 										<div class="col-12" style="text-align: center;">
 											<label>예정 시작 날짜 &nbsp;

@@ -1,6 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+    Date nowTime = new Date();
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+%>
 <!DOCTYPE HTML>
 <!--
 Hypothesis by Pixelarity
@@ -148,7 +155,9 @@ License: pixelarity.com/license
                                 <td style="vertical-align : middle">${list.bno}</td>
                                 <td style="vertical-align : middle">${list.subjectName}</td>
                                 <td style="vertical-align: middle;" >${list.menteeCount}</td>
-                                <td style="vertical-align : middle" class="title">${list.startDate}</td>
+                                <td style="vertical-align : middle" class="title">
+                                    <fmt:formatDate var="regDate" value="${list.startDate}" pattern="yyyy-MM-dd"/>
+                                        ${regDate}</td>
                                 <td style="vertical-align : middle" class="area" ><a href="/detailMentoring" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 <td style="vertical-align : middle" class="area" ><a href="/endMentoring?subjectName=${list.subjectName}" class="button small">종료</a></td>
                             </tr>
@@ -177,14 +186,16 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${list2.bno}</td>
                                     <td style="vertical-align : middle">${list2.subjectName}</td>
                                     <td style="vertical-align: middle;" >${list2.mentorWho}</td>
-                                    <td style="vertical-align : middle" class="title">${list2.startDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list2.startDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
                                 </tr>
                             </c:forEach>
                         </table>
                     </div>
                 </div>
             </li>
-            <li>
+            <%--<li>
                 <h3><span style="font-size: 0.8em;">종료된 멘토</span></h3>
                 <div class="spotlight">
                     <div class="table-wrapper">
@@ -197,13 +208,20 @@ License: pixelarity.com/license
 
 
                             </tr>
+
                             <c:forEach var="list" items="${list}">
+
                                 <tr style="height: 70px;">
                                     <td style="vertical-align : middle">${list.bno}</td>
                                     <td style="vertical-align : middle">${list.subjectName}</td>
-                                    <td style="vertical-align : middle" class="title">${list.startDate}</td>
-                                    <td style="vertical-align : middle" class="title">${list.endDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list.startDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list.endDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
                                 </tr>
+
                             </c:forEach>
 
                         </table>
@@ -230,21 +248,24 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${list2.bno}</td>
                                     <td style="vertical-align : middle">${list2.subjectName}</td>
                                     <td style="vertical-align: middle;" >${list2.mentorWho}</td>
-                                    <td style="vertical-align : middle" class="title">${list2.startDate}</td>
-                                    <td style="vertical-align : middle" class="title">${list2.endDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list2.startDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="regDate" value="${list2.endDate}" pattern="yyyy-MM-dd"/>
+                                            ${regDate}</td>
                                 </tr>
                             </c:forEach>
                         </table>
                     </div>
                 </div>
-            </li>
+            </li>--%>
             <li>
                 <h3><span style="font-size: 0.8em;" >멘티에게 받은 요청</span></h3>
                 <div class="spotlight">
                     <div class="table-wrapper">
                         <table style="border: 1px;  text-align: center;  ">
                             <tr class="tHead" >
-                                <th style="text-align: center; vertical-align : middle;" >No</th>
                                 <th style="text-align: center; vertical-align : middle;" class="mentorNumber">학번</th>
                                 <th style="text-align: center; vertical-align : middle;" class="department">학부</th>
                                 <th style="text-align: center; vertical-align : middle;" class="subject">멘토링 과목</th>
@@ -252,15 +273,26 @@ License: pixelarity.com/license
                                 <th style="text-align: center; vertical-align : middle;" class="time">수락/거절</th>
 
                             </tr>
-                            <c:forEach var="list2" items="${list2}">
+                           <%-- <c:forEach var="list2" items="${list2}">
                                 <tr style="height: 70px;">
                                     <td style="vertical-align : middle">${list2.bno}</td>
                                     <td style="vertical-align : middle">${list2.userStudentNum}</td>
                                     <td style="vertical-align : middle">${list2.department}</td>
                                     <td style="vertical-align : middle">${list2.subjectName}</td>
-                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentee?userStudentNum=${list2.userStudentNum}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentee?bno=${list2.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                     <td style="vertical-align : middle" class="area" ><a href="/requestAccept?userStudentNum=${list2.userStudentNum}" class="button small">수락</a>
                                         <a href="/requestRefusal?userStudentNum=${list2.userStudentNum}" class="button small">거절</a></td>
+                                </tr>
+                            </c:forEach>--%>
+
+                            <c:forEach var="requestMentee" items="${requestMentee}">
+                                <tr style="height: 70px;">
+                                    <td style="vertical-align : middle">${requestMentee.userStudentNum}</td>
+                                    <td style="vertical-align : middle">${requestMentee.department}</td>
+                                    <td style="vertical-align : middle">${requestMentee.subjectName}</td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentor?bno=${requestMentee.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/requestAccept?userStudentNum=${requestMentee.userStudentNum}" class="button small">수락</a>
+                                        <a href="/requestRefusal?userStudentNum=${requestMentee.userStudentNum}" class="button small">거절</a></td>
                                 </tr>
                             </c:forEach>
 
@@ -274,7 +306,7 @@ License: pixelarity.com/license
                     <div class="table-wrapper">
                         <table style="border: 1px;  text-align: center;  ">
                             <tr class="tHead" >
-                                <th style="text-align: center; vertical-align : middle;" >No</th>
+
                                 <th style="text-align: center; vertical-align : middle;" class="subject">멘토링 과목</th>
                                 <th style="text-align: center; vertical-align : middle;" class="time">승인여부</th>
                                 <th style="text-align: center; vertical-align : middle;" class="time">신청취소</th>
@@ -282,13 +314,12 @@ License: pixelarity.com/license
 
                             </tr>
 
-                            <c:forEach var="list" items="${list}">
+                            <c:forEach var="applicationMentor" items="${applicationMentor}">
                                 <tr style="height: 70px;">
-                                    <td style="vertical-align : middle">${list.bno}</td>
-                                    <td style="vertical-align : middle">${list.subjectName}</td>
-                                    <td style="vertical-align : middle">대기중</td>
+                                    <td style="vertical-align : middle">${applicationMentor.subjectName}</td>
+                                    <td style="vertical-align : middle">${applicationMentor.accept}</td>
                                     <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">신청취소</a></td>
-                                    <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentor?bno=${applicationMentor.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 </tr>
                             </c:forEach>
 

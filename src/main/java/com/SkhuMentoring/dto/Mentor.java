@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class Mentor {
     private Long bno;
+    private String userName;
     private String userId;
     private Long userStudentNum;
     private String department;
@@ -24,4 +25,6 @@ public class Mentor {
     private String introduce;
     private String addSubject; // 과목 선택 시 항목에 없어 기타로 입력한 값
     private List<Long> menteeStudentNum;
+    private Long maxPersonnel; //멘토링 최대 정원
+    private Long personnel; // 멘토링 신청 인원
 }

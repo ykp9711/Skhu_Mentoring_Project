@@ -40,6 +40,7 @@ License: pixelarity.com/license
                         <th style="text-align: center; vertical-align : middle;" >학부/학과</th>
                         <th style="text-align: center; vertical-align : middle;" >멘토링 과목</th>
                         <th style="text-align: center; vertical-align : middle;" >멘토링 시간</th>
+                        <th style="text-align: center; vertical-align : middle;" >정원</th>
                         <th style="text-align: center; vertical-align : middle;" >등록날짜</th>
                         <th style="text-align: center; vertical-align : middle;" >상세보기</th>
                         <th style="text-align: center; vertical-align : middle;" >신청</th>
@@ -49,19 +50,42 @@ License: pixelarity.com/license
 
                     <c:forEach var="list" items="${list}">
                         <tr style="height: 70px;">
-                            <td style="vertical-align : middle">${list.userId}</td>
+                            <td style="vertical-align : middle">${list.userName}</td>
                             <td style="vertical-align: middle;" >${list.userStudentNum}</td>
                             <td style="vertical-align : middle" class="title">${list.department}</td>
                             <td style="vertical-align : middle" class="title">${list.subjectName}</td>
                             <td style="vertical-align : middle" class="title">${list.hopeDay}</td>
+                            <td style="vertical-align : middle" class="title">3/<span style="color: #23b1ec">${list.maxPersonnel}</span></td>
                             <td style="vertical-align : middle" class="title">
                                 <fmt:formatDate var="regDate" value="${list.regDate}" pattern="yyyy-MM-dd"/>
                                     ${regDate}</td>
                             <td style="vertical-align : middle" class="area" ><a href="/detailMentor?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
-                            <td style="vertical-align : middle" class="area" ><a href="" class="button small">신청</a></td>
-                            <c:if test="${sessionId eq list.userId}">
-                            <td style="vertical-align : middle" class="area" ><a href="/deleteMentorBoard?bno=${list.bno}" class="button small">삭제</a></td>
-                            </c:if>
+
+                            <td style="vertical-align : middle" class="area" >
+                                <c:choose>
+                                    <c:when test="${sessionId eq list.userId}">
+                                        <a href="/menteeRegister?bno=${list.bno}" class="button small disabled ">신청</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/menteeRegister?bno=${list.bno}" class="button small ">신청</a>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </td>
+
+
+                            <td style="vertical-align : middle" class="area" >
+                                <c:choose>
+                                    <c:when test="${sessionId eq list.userId}">
+                                        <a href="/menteeRegister?bno=${list.bno}" class="button small ">삭제</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">삭제</a>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </td>
+
 
                         </tr>
                     </c:forEach>

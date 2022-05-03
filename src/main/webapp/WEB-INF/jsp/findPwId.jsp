@@ -37,8 +37,8 @@
                         <h3 style="text-align: center">아이디 찾기</h3>
                         <div style="margin:0 auto;">
                             <div class="field">
-                                <label style="margin-left: 20%;">가입시 사용한 이메일을 입력해주세요.</label>
-                                <input type="email" placeholder="EMAIL" style="margin: 0 auto; width:500px;">
+
+                                <input type="email" placeholder="가입 시 사용한 이메일을 입력해주세요." style="margin: 0 auto; width:500px;">
                                 <br>
                                 <div style="position: relative; bottom: 20px"></div>
                                 <ul class="actions special">
@@ -79,11 +79,11 @@
                             <ul class="actions special" style="margin-top: 1%;">
                                 <li class="area"><a href="/modifyPw" id="modify_btn" onclick="window.open(this.href,'Detail','width=800px, height=600px, top=600, left=970, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button">확인</a></li>
                             </ul>
-                            <br>
-                        </div>
+
                     </div>
+                    <br>
 
-
+                    </div>
                 </form>
             </section>
 
@@ -178,34 +178,34 @@
         var id = $('#userId').val();
         var email = $('#userEmail').val();
         var auth = $('#auth_input').val();
-        var btn = document.getElementById("modify_btn");
 
-        $('#userId').on("property-change change keyup paste input", function(){
-            console.log("들어옴")
 
-            var data = {id : id}
-
-            $.ajax({ type : "get",
-                url : "/checkId",
-                data : data,
-                success : function(result){
-                    $("#msg").text(" ");
-                    $("#modify_btn").css({ 'pointer-events': 'auto' });
-                    if(result == 'fail'){
-                        $("#msg").text("존재하지 않은 ID입니다" );
-                        $("#modify_btn").css({ 'pointer-events': 'none' });
-                    }
-                }
-            });// success 종료
-        }); // ajax 종료
-
-        if(!id){
+        if(!id || !email || !auth){
             $("#modify_btn").css({ 'pointer-events': 'none' });
-        } else{
+        }
+        else{
             $("#modify_btn").css({ 'pointer-events': 'auto' });
         }
 
     })
+    $('#userId').on("property-change change keyup paste input", function(){
+        console.log("들어옴")
+        var id = $('#userId').val();
+        var data = {id : id}
+
+        $.ajax({ type : "get",
+            url : "/checkId",
+            data : data,
+            success : function(result){
+                $("#msg").text("존재하지 않은 ID입니다" );
+                $("#modify_btn").css({ 'pointer-events': 'none' });
+
+                if(result == 'fail'){
+                    $("#msg").text(" ");
+                }
+            }
+        });// success 종료
+    }); // ajax 종료
 
 
 

@@ -26,29 +26,34 @@ License: pixelarity.com/license
         </header>
         <div class="inner3"><br><br>
 
-                <div class="table-wrapper">
-                    <table style="border: 1px;  text-align: center;  ">
-                        <tr class="tHead" >
+            <div class="table-wrapper">
+                <table style="border: 1px; margin:0; text-align: center;  ">
+                    <tr style="background: transparent">
 
-                            <th style="text-align: center; vertical-align : middle;" >멘티 학번</th>
-                            <th style="text-align: center; vertical-align : middle;" >멘티 희망날짜</th>
-                        </tr>
-                            <tr style="height: 70px;">
-                                <td style="vertical-align: middle;" >${list2.userStudentNum}</td>
-                                <td style="vertical-align: middle;" >${list2.hopeDay}</td>
-                            </tr>
-                        <div style="align:center">
-                            <h3>멘티 자기소개</h3><br>
-                        <input type="textarea" value="${list2.introduce}">
-                        </div>
+                        <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 이름</td>
+                        <td style="text-align: center; vertical-align : middle;" >${user.userName}</td>
 
-                    </table>
-                    <div class="col-12" style="text-align: center;">
 
-                        <a href='javascript:self.close();' class="button primary">닫기</a>
-
-                    </div>
+                    </tr>
+                    <tr style="height: 70px;">
+                        <td style="vertical-align: middle; background: #eeeeee;" >멘티 학번</td>
+                        <td style="vertical-align: middle;" >${user.userStudentNum}</td>
+                    </tr>
+                    <tr style="height: 70px;">
+                        <td style="vertical-align: middle; background: #eeeeee;" >멘티 평점</td>
+                        <td style="vertical-align: middle;" >4.7/5</td>
+                    </tr>
+                </table>
+                <div class="col-12">
+                    <textarea name="demo-message" id="demo-message" disabled style="background: white" rows="6">${detailMentee.introduce}</textarea>
                 </div>
+                <br>
+                <div class="col-12" style="text-align: center;">
+
+                    <a href='javascript:self.close();' class="button primary">닫기</a>
+
+                </div>
+            </div>
 
             <br><br>
         </div>

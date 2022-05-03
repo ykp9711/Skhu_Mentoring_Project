@@ -9,6 +9,17 @@
     <select id="getMenteeStatus" resultType="com.SkhuMentoring.dto.Mentee">
         select * from tbl_menteeBoard;
     </select>
+    <!-- 마이페이지 멘토현황 뿌리기 -->
+    <select id="getMenteeMyStatus" resultType="com.SkhuMentoring.dto.Mentee">
+        select * from tbl_menteeBoard where userId = #{userId};
+    </select>
+    <!-- 마이페이지 멘티현황 뿌리기 -->
+    <select id="getMentorMyStatus" resultType="com.SkhuMentoring.dto.Mentor">
+        select * from tbl_mentorBoard where userId = #{userId};
+    </select>
+
+
+
 
     <!--멘토링 종료-->
     <delete id="endMentoring">
@@ -31,10 +42,22 @@
         select * from tbl_menteeBoard where userStudentNum =#{userStudentNum}
     </select>
 
+    <!--마이페이지 내 정보 수정-->
     <update id="modifyUserInfo">
         UPDATE tbl_user SET userPw = #{userPw}, userName =  #{userName}, department = #{department}, userStudentNum = #{userStudentNum},  userEmail = #{userEmail}, userPhoneNum = #{userPhoneNum} WHERE userId = #{userId};
     </update>
 
+
+    <!--마이페이지 멘토에게 보낸요청-->
+    <select id="getApplicationMentor" resultType="com.SkhuMentoring.dto.Mentee">
+        select * from tbl_AppilcationMentor where menteeId = #{menteeId}
+    </select>
+
+    <!--마이페이지 멘티에게 받은요청-->
+    <select id="getRequestMentee" resultType="com.SkhuMentoring.dto.Mentee">
+        select * from tbl_RequestMentee where menteeId = #{menteeId}
+    </select>
+    
 
     <!--페이징하면 사용-->
     <!--<sql id="criteria">

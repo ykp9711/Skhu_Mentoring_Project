@@ -35,7 +35,7 @@ License: pixelarity.com/license
             <div class="table-wrapper">
                 <table style="border: 1px;  text-align: center;  ">
                     <tr class="tHead" >
-                        <th  style="text-align: center; vertical-align : middle;">아이디</th>
+                        <th  style="text-align: center; vertical-align : middle;">멘티 이름</th>
                         <th style="text-align: center; vertical-align : middle;" class="mentorNumber">학번</th>
                         <th style="text-align: center; vertical-align : middle;" class="department">학부/학과</th>
                         <th style="text-align: center; vertical-align : middle;" class="subject">희망 과목</th>
@@ -48,7 +48,7 @@ License: pixelarity.com/license
                     </tr>
                     <c:forEach var="list" items="${list}">
                     <tr style="height: 70px;">
-                        <td style="vertical-align : middle">${list.userId}</td>
+                        <td style="vertical-align : middle">${list.userName}</td>
                         <td style="vertical-align: middle;" >${list.userStudentNum}</td>
                         <td style="vertical-align : middle" class="title">${list.department}</td>
                         <td style="vertical-align : middle" class="kind">${list.subjectName}</td>
@@ -56,8 +56,8 @@ License: pixelarity.com/license
                         <td style="vertical-align : middle" class="title">
                             <fmt:formatDate var="regDate" value="${list.regDate}" pattern="yyyy-MM-dd"/>
                                 ${regDate}</td>
-                        <td style="vertical-align : middle" class="area" ><a href="멘티등록링크" class="button small">상세보기</a></td>
-                        <td style="vertical-align : middle" class="area" ><a href="/mentorRegister?menteeStudentNum=${list.userStudentNum}" class="button small">개설</a></td>
+                        <td style="vertical-align : middle" class="area" ><a href="/detailMentee?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                        <td style="vertical-align : middle" class="area" ><a href="/mentorRegister?bno=${list.bno}" class="button small">개설</a></td>
                         <%--개설 누르면 delete로 없애면서 reqParameter로 학생 학번넘긴다음 maxMenteeCount 만들어서 +1해준다?--%>
                         <c:if test="${sessionId eq list.userId}">
                             <td style="vertical-align : middle" class="area" ><a href="/deleteMenteeBoard?bno=${list.bno}" class="button small">삭제</a></td>
