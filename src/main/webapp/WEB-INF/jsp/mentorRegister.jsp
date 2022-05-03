@@ -49,11 +49,7 @@
 											<form:input path="userStudentNum" value="${user.userStudentNum}"  readonly="true"/>
 										</div>
 										<div class="col-12">
-											<form:select path="department" name="department">
-												<form:option value="0" label="학과를 선택하세요" />
-												<form:options  itemLabel="department" itemValue="department" items="${ departments }" />
-											</form:select>
-
+											<input type="text" name ="department" readonly value="${user.department}">
 										</div>
 										<div class="col-12">
 
@@ -61,7 +57,7 @@
 											<datalist name="subject" id="subject">
 												<form:select path="subject" >
 													<form:option value="기타" label="0" />
-												<form:options  itemValue="subjectName" itemLabel="sno" items="${ subject }"  />
+												<form:options  itemValue="subjectName" itemLabel="sno"  items="${ subject }"  />
 											</datalist>
 												</form:select>
 										</div>
@@ -167,7 +163,7 @@
 						$('#Check_Subject').css('display', 'block');
 						if(result == 'fail'){
 							$("#Check_Subject").css("color","red");
-							$("#Check_Subject").text(subject + "는 이미 등록되어있는 과목입니다.");
+							$("#Check_Subject").text(subject + " 과목은 이미 등록되어있는 과목입니다.");
 							$('#addSubject').val("");
 						}
 						}
