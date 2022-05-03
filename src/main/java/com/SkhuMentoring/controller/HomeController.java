@@ -253,7 +253,7 @@ public class HomeController {
     @ResponseBody
     public String checkAuth(@RequestParam String email){
 
-        String auth = mailService.sendMail(email+"@naver.com"); //
+        String auth = mailService.sendMail(email+"@naver.com"); // office.skhu.ac.kr로 바꿔서 학생인증메일로만 회원가입 가능하게 만든다.
 
         return auth;
     }
