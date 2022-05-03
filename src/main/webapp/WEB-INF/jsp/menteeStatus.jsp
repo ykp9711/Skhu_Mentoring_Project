@@ -57,11 +57,27 @@ License: pixelarity.com/license
                             <fmt:formatDate var="regDate" value="${list.regDate}" pattern="yyyy-MM-dd"/>
                                 ${regDate}</td>
                         <td style="vertical-align : middle" class="area" ><a href="/detailMentee?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
-                        <td style="vertical-align : middle" class="area" ><a href="/mentorRegister?bno=${list.bno}" class="button small">개설</a></td>
+                        <td style="vertical-align : middle" class="area" >
+                            <c:choose>
+                                <c:when test="${sessionId eq list.userId}">
+                                    <a href="/mentorRegister?bno=${list.bno}" class="button small disabled">개설</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="/menteeRegister?bno=${list.bno}" class="button small ">개설</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
                         <%--개설 누르면 delete로 없애면서 reqParameter로 학생 학번넘긴다음 maxMenteeCount 만들어서 +1해준다?--%>
-                        <c:if test="${sessionId eq list.userId}">
-                            <td style="vertical-align : middle" class="area" ><a href="/deleteMenteeBoard?bno=${list.bno}" class="button small">삭제</a></td>
-                        </c:if>
+                            <td style="vertical-align : middle" class="area" >
+                                <c:choose>
+                                    <c:when test="${sessionId eq list.userId}">
+                                        <a href="/deleteMenteeBoard?bno=${list.bno}" class="button small">삭제</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/deleteMenteeBoard?bno=${list.bno}" class="button small disabled">삭제</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                     </tr>
                     </c:forEach>
 
