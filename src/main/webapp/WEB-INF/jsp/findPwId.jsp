@@ -53,38 +53,6 @@
                     <div class="fields" id="pw_box" style="display:none;">
                         <hr />
                         <h3 style="text-align: center">비밀번호 찾기</h3>
-
-
-<%--                            <div class="field" style="margin-bottom: 2%">--%>
-<%--                                <label style="margin-left: 20%;">아이디를 입력해주세요.--%>
-<%--                                    <input type="text" placeholder="ID" id="userId" style="width:500px;">--%>
-<%--                                </label>--%>
-<%--                                <div style="margin-left: -20%; margin-top: -2%; margin-bottom: -2%;"></div>--%>
-<%--                            </div>--%>
-
-<%--                            <div class="field" style="height: 2.5em; margin-top: 5%">--%>
-<%--                                <input type="email" placeholder="EMAIL" id="userEmail" style="display: inline-block; width:500px; float: left; margin-left: 20%;">--%>
-<%--                            </div>--%>
-
-<%--                            <div style="display: inline-block; margin: 2%; font-size: 90%; margin-top: 1%;"><button type="button" id="sendMail" style="cursor: pointer" >인증메일 발송</button></div>--%>
-
-
-<%--                            <div class="field" >--%>
-<%--                                <input type="text" placeholder="AUTORNUM" id="auth_input" style="display: inline-block; width:500px; float: left; margin-left: 20%;">--%>
-<%--                                <div style="display: inline-block; margin: 2%; font-size: 90%; margin-top: 1%;"><button type="button" id="auth_btn" style="cursor:pointer">인증</button></div>--%>
-<%--                            </div>--%>
-<%--                            <div style="margin-left: -52%; margin-top: -1%; margin-bottom: -5%; max-height: 25px; display: inline-block; display: none; overflow:hiddlen; white-space:nowrap;">확인되었습니다.</div>--%>
-
-<%--                            <p id="msg" style="height: 1px; color: #13a2dd; text-align: center;" ></p>--%>
-<%--                            <ul class="actions special" style="margin-top: 1%;">--%>
-<%--                                <li class="area"><a href="/modifyPw" id="modify_btn" onclick="window.open(this.href,'Detail','width=800px, height=600px, top=600, left=970, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button">확인</a></li>--%>
-<%--                            </ul>--%>
-
-<%--                    </div>--%>
-<%--                    <br>--%>
-<%--                        --%>
-
-
                         <div class="inner2">
                             <div class="row gtr-uniform" style="text-align: center;">
                                 <div class="col-12">
@@ -104,8 +72,6 @@
 
                                     <input type="button" id="auth_btn" value="인증" class="button fit" style="width: 34%; float: right;">
                                 </div>
-<%--                                <div class="col-4">--%>
-<%--                                </div>--%>
                                 <div class="col-12" style="text-align: center;">
                                     <p id="msg" style="height: 1px; color: #13a2dd; text-align: center;" ></p>
                                     <a href="/modifyPw" id="modify_btn" onclick="window.open(this.href,'Detail','width=800px, height=600px, top=600, left=970, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button primary">확인</a>
