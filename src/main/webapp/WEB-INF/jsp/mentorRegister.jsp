@@ -46,7 +46,7 @@
 											<form:input path="userId" value="${sessionId}" placeholder="이름" disabled="true"/>
 										</div>
 										<div class="col-12">
-											<form:input path="userStudentNum" placeholder="학번"/>
+											<form:input path="userStudentNum" value="${user.userStudentNum}"  disabled="true"/>
 										</div>
 										<div class="col-12">
 											<form:select path="department" name="department">

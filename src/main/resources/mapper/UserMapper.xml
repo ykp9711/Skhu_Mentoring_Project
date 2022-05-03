@@ -15,6 +15,11 @@
         SELECT department FROM TBL_DEPARTMENT
     </select>
 
+    <!--비밀번호 변경-->
+    <update id="modifyPw">
+       UPDATE tbl_user SET userPw = #{userPw} WHERE userEmail = #{userEmail};
+    </update>
+
 
     <!--LOGIN-->
     <select id="login" resultType="_int">
@@ -23,6 +28,11 @@
 
     <select id="getId" resultType="string">
         Select userId from tbl_user where userId= #{userId}
+    </select>
+
+    <!--userId로 해당 유저 정보 모두 가져오기-->
+    <select id="getUser" resultType="com.SkhuMentoring.dto.User">
+        select * from tbl_user where userId = #{userId}
     </select>
 
 

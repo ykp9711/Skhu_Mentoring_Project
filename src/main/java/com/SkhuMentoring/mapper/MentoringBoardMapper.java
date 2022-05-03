@@ -29,4 +29,6 @@ public interface MentoringBoardMapper {
     public void setUpMentoring(String menteeStudentNum);
 
     public User login(Map<String, String> map);
+
+    Mentor getDetailMentor(Long bno); // 멘토목록 상세보기 값 가져오기
 }

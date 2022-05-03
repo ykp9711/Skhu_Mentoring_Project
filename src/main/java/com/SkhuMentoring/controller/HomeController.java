@@ -45,16 +45,7 @@ public class HomeController {
         return "index";
     }
 
-    /*@PostMapping("/login")
-    public String login2(User user, HttpSession session, Model model) {
-        log.info(user);
-        if(userMapper.login(user)==1){
-            session.setAttribute("sessionId",userMapper.getId(user.getUserId()));
-            model.addAttribute("sessionId", session.getAttribute("sessionId"));
-            return "index";
-        }
-        else return "login";
-    }*/
+
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
@@ -97,6 +88,8 @@ public class HomeController {
             model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
             return "login";
         }
+        session.setAttribute("sessionId",userMapper.getId(map.get("userId"))); // 세션값 등록
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
         return "index";
     } // end of PostMapping("login")
 
@@ -107,6 +100,36 @@ public class HomeController {
     @GetMapping("/findPwId")
     public String findPwId() {return  "findPwId";}
 
+    //비밀번호 변경을 위한 이메일 세션
+    @PostMapping("/emailsession")
+    public String emailsession(HttpServletRequest request, @RequestParam String email){
+        HttpSession session = request.getSession();
+        session.setAttribute("userEmail", email);
+
+        log.info(email);
+
+        return "findPwId";
+    }
+
+    @GetMapping("/modifyPw")
+    public  String modifyPw( ){
+        return "modifyPw";
+    }
+
+    // 비밀번호 변경
+    @PostMapping("/modifyPw")
+    public String modifyPw(Model model, HttpServletRequest request, String pw ){
+        HttpSession session = request.getSession();
+        String userEmail = (String) session.getAttribute("userEmail");
+
+        userMapper.modifyPw(pw, userEmail);
+
+        log.info(userEmail);
+        log.info(pw);
+
+        model.addAttribute("msg", "비밀번호를 변경했습니다.");
+        return "modifyPw";
+    }
 
 
     @GetMapping("/ranking")
@@ -115,9 +138,10 @@ public class HomeController {
 
 
     @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
-    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor)  {
-        model.addAttribute("departments" , mentoringBoardMapper.getDepartment());
-        model.addAttribute("subject", mentoringBoardMapper.getSubject());
+    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, HttpSession session)  {
+        model.addAttribute("departments" , mentoringBoardMapper.getDepartment()); //학부 리스트
+        model.addAttribute("subject", mentoringBoardMapper.getSubject()); // 과목 리스트
+        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         model.addAttribute("menteeStudentNum",mentor.getMenteeStudentNum());
         /*mentoringBoardMapper.setUpMentoring(menteeStudentNum);*/
         return  "mentorRegister";
@@ -138,9 +162,10 @@ public class HomeController {
     }
 
     @GetMapping("/menteeRegister")
-    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department){
+    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session){
         model.addAttribute("departments", mentoringBoardMapper.getDepartment());
         model.addAttribute("subject" , mentoringBoardMapper.getSubject());
+        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         return "menteeRegister";
     }
     @Transactional
@@ -170,11 +195,21 @@ public class HomeController {
     }
     //마이페이지로 이동
     @GetMapping("/myPage")
-    public String myPageGo(@ModelAttribute Mentor mentor, Model model){
+    public String myPageGo(@ModelAttribute Mentor mentor, Model model, HttpSession session, Department department){
         model.addAttribute("list",myPageMapper.getMentorStatus());
         model.addAttribute("list2",myPageMapper.getMenteeStatus());
+        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId")));
+        model.addAttribute("departments", mentoringBoardMapper.getDepartment());
         return "myPage";
     }
+    //마이페이지 > 내 정보 수정
+    @PostMapping("/modifyUserInfo")
+    public String modifyUserInfo(@ModelAttribute User user){
+        myPageMapper.modifyUserInfo(user);
+        log.info(user);
+        return "redirect:/myPage";
+    }
+
     //마이페이지 > 멘토 현황 > 멘토링 종료
     @GetMapping("/endMentoring")
     public String endMentoring(@RequestParam("subjectName") String subjectName,Model model, HttpServletRequest req, HttpServletResponse resp){
@@ -185,8 +220,10 @@ public class HomeController {
     }
     // 마이페이지 > 멘토 현황 > 상세보기
     @GetMapping("/detailMentoring")
-    public String detailMentee(Model model){
-        model.addAttribute("list2",myPageMapper.getMenteeStatus());
+    public String detailMentee(Model model, Long bno){
+        
+        model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
+        model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
         return "detailMentoring";
     }
     // 마이페이지 > 멘티에게 받은 요청 > 거절하기
@@ -265,4 +302,16 @@ public class HomeController {
         return "redirect:/menteeStatus";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "detailMentor";
+    }
+
+    @GetMapping("/detailMentor") // 멘토 게시글 목록 상세보기
+    public String detailMentor(Model model, Long bno){
+
+        model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
+        model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
+        return "detailMentor";
+    }
 }

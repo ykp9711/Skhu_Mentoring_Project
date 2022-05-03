@@ -44,6 +44,10 @@ License: pixelarity.com/license
     .tabcontent.current {
         display: block;
     }
+
+    #id, #rank ,#rate {
+        background-color: #f6f6f6;
+    }
 </style>
 <head>
     <title>마이페이지</title>
@@ -68,37 +72,52 @@ License: pixelarity.com/license
                 <h3><span style="font-size: 0.8em;">내 정보</span></h3>
                 <div class="spotlight" style="text-align: center;">
                     <div class="inner2" style="text-align: center;">
-                        <form method="post" action="#">
+                        <form method="post" action="/modifyUserInfo">
                             <div class="row gtr-uniform" style="text-align: center; width: 74%;  float: right;">
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="아이디" />
+                                    <input type="text" placeholder="이름" name="userName" value="${user.userName}" id="name" />
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <select>
-                                        <option>학부/학과</option>
-                                        <option>IT융합자율학부</option>
-                                        <option>인문융합자율학부</option>
-                                        <option>사회융합자율학부</option>
-                                        <option>미디어콘텐츠융합자율학부</option>
+                                    <input type="text" placeholder="아이디" name="userId" value="${user.userId}" id="id" readonly/>
+                                </div>
+                                <div class="col-7" style="text-align: center;">
+                                    <select name="department">
+                                        <option label="학과를 선택하세요."></option>
+                                        <c:forEach var="d" items="${ departments }">
+                                            <option value="${ d.department }" ${ user.department == d.department ? "selected" : "" }>
+                                                    ${ d.department }
+                                            </option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="학번" />
+                                    <input type="text" placeholder="학번" name="userStudentNum" value="${user.userStudentNum}"/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="이메일" />
+                                    <input type="text" placeholder="전화번호"name="userPhoneNum" value="${user.userPhoneNum}"/>
+
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="password" placeholder="비밀번호" />
+                                    <input type="text" placeholder="이메일" name="userEmail" value="${user.userEmail}"/>
+                                </div>
+
+                                <div class="col-7" style="text-align: center;">
+                                    <input type="password" placeholder="비밀번호" name="userPw" value="${user.userPw}" />
+                                </div>
+
+                                <div class="col-7" style="text-align: center;">
+                                    <input type="password" placeholder="비밀번호 확인" value="${user.userPw}"/>
+                                </div>
+
+                                <div class="col-7" style="text-align: center;">
+                                    <input type="text" placeholder="내 멘티 평점" id="rate" readonly/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="password" placeholder="비밀번호 확인" />
+                                    <input type="text" placeholder="내 멘토 횟수(순위)" id="rank" readonly/>
                                 </div>
+                                <br><br>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="내 멘티 평점" />
-                                </div>
-                                <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="내 멘토 횟수(순위)" />
+                                    <button type="submit">수정하기</button>
                                 </div>
 
                                 <!-- Break -->
