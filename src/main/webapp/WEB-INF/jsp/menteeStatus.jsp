@@ -63,7 +63,7 @@ License: pixelarity.com/license
                                     <a href="/mentorRegister?bno=${list.bno}" class="button small disabled">개설</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="/menteeRegister?bno=${list.bno}" class="button small ">개설</a>
+                                    <a href="/mentorRegister?menteeStudentNum=${list.userStudentNum}" class="button small ">개설</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>

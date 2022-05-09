@@ -57,6 +57,13 @@
         from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
         where m.userId = #{mentorId}
     </select>
+
+    <!--마이페이지 멘티에게 받은 요청에서 멘티 상세보기-->
+    <select id="getDetailMentee" resultType="com.SkhuMentoring.dto.Mentee">
+        select a.*, m.userId
+        from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
+        where a.bno = #{bno}
+    </select>
     
     <!--페이징하면 사용-->
     <!--<sql id="criteria">
