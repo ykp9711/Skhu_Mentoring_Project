@@ -13,7 +13,7 @@ License: pixelarity.com/license
     <title>멘티 현황</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
 </head>
 <body class="is-preload">
 
@@ -71,10 +71,10 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
-                                        <a href="/deleteMenteeBoard?bno=${list.bno}" class="button small">삭제</a>
+                                        <a href="/status/deleteMenteeBoard?bno=${list.bno}" class="button small">삭제</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="/deleteMenteeBoard?bno=${list.bno}" class="button small disabled">삭제</a>
+                                        <a href="/status/deleteMenteeBoard?bno=${list.bno}" class="button small disabled">삭제</a>
                                     </c:otherwise>
                                 </c:choose>
                             </td>
@@ -120,15 +120,15 @@ License: pixelarity.com/license
 </div>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.dropotron.min.js"></script>
-<script src="assets/js/jquery.selectorr.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.dropotron.min.js"></script>
+<script src="/assets/js/jquery.selectorr.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
 
 </body>
 </html>

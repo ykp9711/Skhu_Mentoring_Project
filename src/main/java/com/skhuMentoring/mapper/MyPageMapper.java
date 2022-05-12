@@ -1,9 +1,8 @@
-package com.SkhuMentoring.mapper;
+package com.skhuMentoring.mapper;
 
-import com.SkhuMentoring.dto.Criteria;
-import com.SkhuMentoring.dto.Mentee;
-import com.SkhuMentoring.dto.Mentor;
-import com.SkhuMentoring.dto.Mentoring;
+import com.skhuMentoring.dto.Mentee;
+import com.skhuMentoring.dto.Mentor;
+import com.skhuMentoring.dto.Mentoring;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -32,7 +31,8 @@ public interface MyPageMapper {
 
     public int whoIsMentee(Long bno);
 
-
+    //멘토링 현황
+    public List<Mentoring> getMentoring();
     //페이징 하면 사용
     /*public List<Mentor> getList(Criteria cri);
     public int getTotal(Criteria cri);*/

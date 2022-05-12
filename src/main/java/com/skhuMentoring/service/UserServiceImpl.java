@@ -1,12 +1,12 @@
-package com.SkhuMentoring.service;
+package com.skhuMentoring.service;
 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.SkhuMentoring.mapper.MentoringBoardMapper;
-import com.SkhuMentoring.dto.User;
+import com.skhuMentoring.mapper.MentoringBoardMapper;
+import com.skhuMentoring.dto.User;
 
 
 @Service("userService")

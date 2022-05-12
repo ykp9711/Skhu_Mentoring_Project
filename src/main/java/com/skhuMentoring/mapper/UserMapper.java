@@ -1,8 +1,6 @@
-package com.SkhuMentoring.mapper;
+package com.skhuMentoring.mapper;
 
-import com.SkhuMentoring.dto.Mentee;
-import com.SkhuMentoring.dto.Mentor;
-import com.SkhuMentoring.dto.User;
+import com.skhuMentoring.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,6 @@
-package com.SkhuMentoring.dto;
+package com.skhuMentoring.dto;
 
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 public class Mentoring {
@@ -10,6 +8,6 @@ public class Mentoring {
     private String mentorId;
     private String menteeCount;
     private String student;
-    private boolean proceeding;
+    private String proceeding;
     private Long bno;
 }

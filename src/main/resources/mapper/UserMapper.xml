@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.SkhuMentoring.mapper.UserMapper">
+<mapper namespace="com.skhuMentoring.mapper.UserMapper">
 
     <select id="checkId" resultType="int">
         SELECT count(*) FROM tbl_user WHERE userId = #{userId}
@@ -11,7 +11,7 @@
         values (#{userName}, #{userId}, #{userPw}, #{department},#{userStudentNum},  #{userEmail}, #{userPhoneNum})
     </insert>
 
-    <select id="getDepartment" resultType="com.SkhuMentoring.dto.Department">
+    <select id="getDepartment" resultType="com.skhuMentoring.dto.Department">
         SELECT department FROM TBL_DEPARTMENT
     </select>
 
@@ -26,7 +26,7 @@
     </select>
 
     <!--userId로 해당 유저 정보 모두 가져오기-->
-    <select id="getUser" resultType="com.SkhuMentoring.dto.User">
+    <select id="getUser" resultType="com.skhuMentoring.dto.User">
         select * from tbl_user where userId = #{userId}
     </select>
 

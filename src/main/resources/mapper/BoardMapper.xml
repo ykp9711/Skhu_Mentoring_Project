@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.SkhuMentoring.mapper.MentoringBoardMapper">
-    <select id="getDepartment" resultType="com.SkhuMentoring.dto.Department">
+<mapper namespace="com.skhuMentoring.mapper.MentoringBoardMapper">
+    <select id="getDepartment" resultType="com.skhuMentoring.dto.Department">
         SELECT department FROM TBL_DEPARTMENT
     </select>
 
-    <select id="getSubject" resultType="com.SkhuMentoring.dto.Subject">
+    <select id="getSubject" resultType="com.skhuMentoring.dto.Subject">
         SELECT * FROM TBL_SUBJECT
     </select>
 
@@ -25,7 +25,7 @@
         INSERT into tbl_menteeBoard(userId,userName,UserStudentNum,department,subjectName,startDate,endDate,hopeDay,introduce) values(#{userId},#{userName}, #{userStudentNum}, #{department}, #{subjectName}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce})
     </insert>
 
-    <select id="login" parameterType="map" resultType="com.SkhuMentoring.dto.User">
+    <select id="login" parameterType="map" resultType="com.skhuMentoring.dto.User">
         select userId, userPw, userEmail
         from tbl_user
         where userId = #{userId} and userPw = #{userPw}
@@ -44,12 +44,12 @@
     </delete>
     
     <!--멘토 목록에서 멘토 상세보기-->
-    <select id="getDetailMentor" resultType="com.SkhuMentoring.dto.Mentor">
+    <select id="getDetailMentor" resultType="com.skhuMentoring.dto.Mentor">
         SELECT * FROM tbl_mentorBoard where bno =#{bno}
     </select>
 
     <!--멘티 목록에서 멘토 상세보기-->
-    <select id="getDetailMentee" resultType="com.SkhuMentoring.dto.Mentee">
+    <select id="getDetailMentee" resultType="com.skhuMentoring.dto.Mentee">
         SELECT * FROM tbl_menteeBoard where bno =#{bno}
     </select>
 
@@ -57,7 +57,7 @@
         INSERT INTO tbl_AppilcationMentor(bno,menteeId,userName,userStudentNum,department, introduce,subjectName, accept) values(#{bno}, #{menteeId},#{userName},#{userStudentNum},#{department},#{introduce},#{subjectName},0)
     </insert>
 
-    <select id="getMentoring" resultType="com.SkhuMentoring.dto.Mentor">
+    <select id="getMentoring" resultType="com.skhuMentoring.dto.Mentor">
         SELECT * FROM tbl_mentorBoard where bno=#{bno}
     </select>
 </mapper>

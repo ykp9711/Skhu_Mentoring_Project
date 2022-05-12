@@ -1,4 +1,4 @@
-package com.SkhuMentoring.serivce;
+package com.skhuMentoring.serivce;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
