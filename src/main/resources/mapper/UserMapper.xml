@@ -25,6 +25,11 @@
         Select userId from tbl_user where userId= #{userId}
     </select>
 
+    <!-- userEmail로 해당 아이디 정보 가져오기 -->
+    <select id="findId" parameterType="list" resultType="string">
+        Select userId from tbl_user where userEmail= #{userEmail}
+    </select>
+
     <!--userId로 해당 유저 정보 모두 가져오기-->
     <select id="getUser" resultType="com.skhuMentoring.dto.User">
         select * from tbl_user where userId = #{userId}

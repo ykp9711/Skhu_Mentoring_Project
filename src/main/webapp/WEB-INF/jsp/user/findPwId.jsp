@@ -1,13 +1,27 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Login</title>
+    <title>findPwId</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <script type="text/javascript">
+
+        function checkValue()
+        {
+            inputForm = eval("document.findIdInfo");
+            if(!inputForm.userEmail.value)
+            {
+                alert("이메일을 입력하세요");
+                inputForm.userEmail.focus();
+                return false;
+            }
+
+        }
+
+    </script>
 </head>
 <body class="is-preload">
 
@@ -32,17 +46,17 @@
                 </header>
 
                 <div class="fields" id="id_box" style="display:none;">
-                    <form method="post" action="#">
+                    <form name="findIdInfo" method="post" action="/findPwId" onsubmit="return checkValue()">
                         <hr />
                         <h3 style="text-align: center">아이디 찾기</h3>
                         <div style="margin:0 auto;">
                             <div class="field">
-
-                                <input type="email" placeholder="가입 시 사용한 이메일을 입력해주세요." style="margin: 0 auto; width:500px;">
+                                <label style="margin-left: 20%;">가입시 사용한 이메일을 입력해주세요.</label>
+                                <input type="email" id="userEmail" name="userEmail" placeholder="EMAIL" style="margin: 0 auto; width:500px;">
                                 <br>
                                 <div style="position: relative; bottom: 20px"></div>
                                 <ul class="actions special">
-                                    <button onclick="emailSend()" type="button">찾기</button>
+                                    <button type="submit" id="emailSend">찾기</button>
                                 </ul>
                             </div>
                         </div>
@@ -57,7 +71,7 @@
 
 
                             <div class="field" style="margin-bottom: 2%">
-                                <label style="margin-left: 20%;">
+                                <label style="margin-left: 20%;">아이디를 입력해주세요.
                                     <input type="text" placeholder="ID" style="width:500px;">
                                 </label>
                                 <div style="margin-left: -20%; margin-top: -2%; margin-bottom: -2%;"></div>
@@ -79,9 +93,10 @@
                             <ul class="actions special" style="margin-top: 1%;">
                                 <li><button type="button">찾기</button></li>
                             </ul>
-                        </div><br>
+                        </div>
                     </div>
-                    <br>
+                    <div> <p id="check_email" style="height: 1px; color: #13a2dd; text-align: center;">${user.userId}</p></div>
+                    <div> <p id="check_email2" style="height: 1px; color: #13a2dd; text-align: center;">${msg}</p></div>
 
 
                 </form>
@@ -96,10 +111,6 @@
     </footer>
 
 </div>
-
-
-
-<!-- Scripts -->
 
 <script>
     let display = document.getElementById("id_box");

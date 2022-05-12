@@ -2,6 +2,7 @@ package com.skhuMentoring.controller;
 
 
 import java.util.Map;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.skhuMentoring.service.UserService;
@@ -85,6 +86,25 @@ public class HomeController {
     @GetMapping("/findPwId")
     public String findPwId() {return  "user/findPwId";}
 
+    // 아이디 찾기
+    @PostMapping("/findPwId")
+    public String findPwId(@RequestParam("userEmail") String userEmail, Model model, HttpServletRequest request,
+                           User user)
+            throws Exception {
+
+        List<String> userId = userService.findId(user.getUserEmail());
+
+        if (userId.size() != 0) {
+            model.addAttribute("msg", "당신의 아이디:" + userId + "입니다.");
+
+        }
+        else {
+            model.addAttribute("msg", "존재하지 않는 이메일입니다.");
+            return "user/findPwId";
+        }
+        return "user/findPwId";
+
+    }
 
 
     @GetMapping("/ranking")
