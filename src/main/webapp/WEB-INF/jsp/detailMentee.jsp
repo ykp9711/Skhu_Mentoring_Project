@@ -31,13 +31,13 @@ License: pixelarity.com/license
                     <tr style="background: transparent">
 
                         <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 이름</td>
-                        <td style="text-align: center; vertical-align : middle;" >${user.userName}</td>
+                        <td style="text-align: center; vertical-align : middle;" >${detailMentee.userName}</td>
 
 
                     </tr>
                     <tr style="height: 70px;">
                         <td style="vertical-align: middle; background: #eeeeee;" >멘티 학번</td>
-                        <td style="vertical-align: middle;" >${user.userStudentNum}</td>
+                        <td style="vertical-align: middle;" >${detailMentee.userStudentNum}</td>
                     </tr>
                     <tr style="height: 70px;">
                         <td style="vertical-align: middle; background: #eeeeee;" >멘티 평점</td>

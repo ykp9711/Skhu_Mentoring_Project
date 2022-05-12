@@ -55,7 +55,7 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="title">${list.department}</td>
                             <td style="vertical-align : middle" class="title">${list.subjectName}</td>
                             <td style="vertical-align : middle" class="title">${list.hopeDay}</td>
-                            <td style="vertical-align : middle" class="title">3/<span style="color: #23b1ec">${list.maxPersonnel}</span></td>
+                            <td style="vertical-align : middle" class="title">${list.personnel}/<span style="color: #23b1ec">${list.maxPersonnel}</span></td>
                             <td style="vertical-align : middle" class="title">
                                 <fmt:formatDate var="regDate" value="${list.regDate}" pattern="yyyy-MM-dd"/>
                                     ${regDate}</td>
