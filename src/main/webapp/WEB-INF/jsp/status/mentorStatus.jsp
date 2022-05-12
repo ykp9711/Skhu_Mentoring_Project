@@ -64,10 +64,10 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
-                                        <a href="/menteeRegister?bno=${list.bno}" class="button small disabled ">신청</a>
+                                        <a href="/register/menteeRegister?bno=${list.bno}" class="button small disabled ">신청</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="/menteeRegister?bno=${list.bno}" class="button small ">신청</a>
+                                        <a href="/register/menteeRegister?bno=${list.bno}" class="button small ">신청</a>
                                     </c:otherwise>
                                 </c:choose>
 

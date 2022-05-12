@@ -6,7 +6,7 @@ import com.skhuMentoring.dto.Mentor;
 import com.skhuMentoring.mapper.MentoringBoardMapper;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
-import com.skhuMentoring.serivce.MailService;
+import com.skhuMentoring.service.MailService;
 import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

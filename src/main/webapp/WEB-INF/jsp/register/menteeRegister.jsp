@@ -120,7 +120,7 @@
 	</c:when>
 	<c:otherwise><%--멘토링 신청 시 보여주는 form--%>
         <%--@elvariable id="mentee" type="com.skhuMentoring.dto.Mentee"--%>
-		<form:form modelAttribute="mentee" method="post" action="/appilcation">
+		<form:form modelAttribute="mentee" method="post" action="/status/appilcation">
 
 			<div class="row gtr-uniform">
 				<input type="hidden"  value="${list.bno}" name="bno"/>

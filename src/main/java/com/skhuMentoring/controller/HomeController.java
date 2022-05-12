@@ -11,13 +11,12 @@ import com.skhuMentoring.mapper.MentoringBoardMapper;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 
-import com.skhuMentoring.serivce.MailService;
+import com.skhuMentoring.service.MailService;
 
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -146,12 +145,4 @@ public class HomeController {
         return auth;
     }
 
-
-
-    @PostMapping("/appilcation") // 멘토 게시글 목록에서 신청
-    public String applicationMentor(Mentee mentee ,HttpSession session,HttpServletRequest req, HttpServletResponse resp) throws Exception{
-        mentee.setMenteeId((String)session.getAttribute("sessionId"));
-        mentoringBoardMapper.applicationMentor(mentee);
-        return "/index";
-    }
 }

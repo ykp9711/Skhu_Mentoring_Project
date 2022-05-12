@@ -14,7 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 @Controller
 @Log4j2
@@ -26,46 +29,53 @@ public class registerController {
     private final UserMapper userMapper;
 
     @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
-    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, HttpSession session, Long bno)  {
-        model.addAttribute("list",mentoringBoardMapper.getDetailMentee(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
+    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, HttpSession session, Long bno) {
+        model.addAttribute("list", mentoringBoardMapper.getDetailMentee(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
         log.info(mentoringBoardMapper.getDetailMentee(bno));
-        model.addAttribute("departments" , mentoringBoardMapper.getDepartment()); //학부 리스트
+        model.addAttribute("departments", mentoringBoardMapper.getDepartment()); //학부 리스트
         model.addAttribute("subject", mentoringBoardMapper.getSubject()); // 과목 리스트
-        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
-        model.addAttribute("menteeStudentNum",mentor.getMenteeStudentNum());
+        model.addAttribute("user", userMapper.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
+        model.addAttribute("menteeStudentNum", mentor.getMenteeStudentNum());
         /*mentoringBoardMapper.setUpMentoring(menteeStudentNum);*/
-        return  "/register/mentorRegister";
+        return "/register/mentorRegister";
     }
 
     @GetMapping("/menteeRegister")
-    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session, Long bno){
-        model.addAttribute("list",mentoringBoardMapper.getDetailMentor(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
+    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session, Long bno) {
+        model.addAttribute("list", mentoringBoardMapper.getDetailMentor(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
         log.info(mentoringBoardMapper.getDetailMentor(bno));
         model.addAttribute("departments", mentoringBoardMapper.getDepartment());
-        model.addAttribute("subject" , mentoringBoardMapper.getSubject());
-        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
+        model.addAttribute("subject", mentoringBoardMapper.getSubject());
+        model.addAttribute("user", userMapper.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         return "/register/menteeRegister";
     }
 
     @Transactional // 멘토 게시글 등록
     @PostMapping("/mentorRegister")
-    public String MentoRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department,HttpSession session){
-        if(mentor.getSubjectName()=="기타" || mentor.getSubjectName().equals("기타")){
+    public String MentoRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department, HttpSession session, HttpServletResponse resp) throws  Exception {
+        if (mentor.getSubjectName() == "기타" || mentor.getSubjectName().equals("기타")) {
             mentor.setSubjectName(mentor.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentor.getSubjectName());
             mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
         }
-        mentor.setUserId((String)session.getAttribute("sessionId"));
+        mentor.setUserId((String) session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMentorBoard(mentor);
-        return "redirect:/status/mentorStatus";
+        resp.setContentType("text/html; charset=utf-8");
+        PrintWriter out = resp.getWriter();
+        out.println("<script>");
+        out.println("alert('멘토등록이 완료되었습니다.')");
+        out.println("location.href='/status/mentorStatus'");
+        out.println("</script>");
+        out.close();
+        return null;
     }
 
 
     @Transactional
     @PostMapping("/menteeRegister") // 멘티 게시글 등록
-    public String MenteeRegister(@ModelAttribute Mentee mentee, HttpSession session){
-        if(mentee.getSubjectName()=="기타" || mentee.getSubjectName().equals("기타")){
+    public String MenteeRegister(@ModelAttribute Mentee mentee, HttpSession session, HttpServletResponse resp) throws Exception {
+        if (mentee.getSubjectName() == "기타" || mentee.getSubjectName().equals("기타")) {
             mentee.setSubjectName(mentee.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentee.getSubjectName());
@@ -73,7 +83,14 @@ public class registerController {
         }
         mentee.setUserId((String) session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMenteeBoard(mentee);
-        return "redirect:/status/menteeStatus";
+        resp.setContentType("text/html; charset=utf-8");
+        PrintWriter out = resp.getWriter();
+        out.println("<script>");
+        out.println("alert('멘티등록이 완료되었습니다.')");
+        out.println("location.href='/status/menteeStatus'");
+        out.println("</script>");
+        out.close();
+        return null;
     }
 
     @GetMapping(value = "/checkSubject") // 멘토 , 멘티 게시글 등록 시 기타 항목 과목 기입 후 중복확인
@@ -83,8 +100,8 @@ public class registerController {
         int result = mentoringBoardMapper.checkSubject(subject);
         if (result == 1) { // result로 받은 값이 1이라면 이미 등록된 과목으로 fail 리턴
             return "fail";
+        } else { // result 값이 1이 아니라면 없는 아이디로 success 리턴
+            return "success";
         }
-        else { // result 값이 1이 아니라면 없는 아이디로 success 리턴
-            return "success";  }
     }
 }
