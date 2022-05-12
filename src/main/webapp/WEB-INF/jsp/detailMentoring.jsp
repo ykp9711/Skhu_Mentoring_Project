@@ -31,6 +31,7 @@ License: pixelarity.com/license
                         <tr class="tHead" >
 
                             <th style="text-align: center; vertical-align : middle;" >멘티 학번</th>
+                            <th style="text-align: center; vertical-align : middle;" >멘티 이름</th>
                             <th style="text-align: center; vertical-align : middle;" >멘토링 시작 일</th>
 
 
@@ -44,6 +45,14 @@ License: pixelarity.com/license
                             </tr>
                         </c:forEach>
                     </table>
+                    <div class="col-12" style="text-align: center;">
+                        <table style="border: 1px;  text-align: center;  ">
+                        <tr><th style="text-align: center; vertical-align : middle;" >진행 현황</th></tr>
+                        <tr><td>진행중 / 시작전 / 종료됨</td></tr>
+                        </table>
+
+
+                    </div>
                     <div class="col-12" style="text-align: center;">
 
                         <a href='javascript:self.close();' class="button primary">닫기</a>

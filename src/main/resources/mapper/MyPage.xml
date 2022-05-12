@@ -27,7 +27,7 @@
     </delete>
 
     <delete id="requestAccept">
-        delete from tbl_menteeBoard where userStudentNum =#{userStudentNum}
+        delete from tbl_menteeBoard where bno =#{bno}
     </delete>
 
     <delete id="requestRefusal">
