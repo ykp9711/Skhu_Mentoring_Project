@@ -23,8 +23,8 @@
             <li>
                 <a href="#" class="icon solid fa-angle-down">매칭신청</a>
                 <ul>
-                    <li><a href="/mentorRegister">멘토 등록</a></li>
-                    <li><a href="/menteeRegister">멘티 등록</a></li>
+                    <li><a href="/register/mentorRegister">멘토 등록</a></li>
+                    <li><a href="/register/menteeRegister">멘티 등록</a></li>
                 </ul>
             </li>
             <li>

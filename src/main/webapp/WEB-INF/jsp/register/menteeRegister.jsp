@@ -12,7 +12,7 @@
 		<title>MenteeRegister</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
 	</head>
 	<body class="is-preload">
 	<c:if test="${empty sessionId}">
@@ -26,7 +26,7 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-				<%@include file ="header.jsp" %>
+				<%@include file ="../header.jsp" %>
 
 
 
@@ -197,21 +197,21 @@
 	</c:choose>
 
 				<!-- Footer -->
-		<%@include file ="footer.jsp" %>
+		<%@include file ="../footer.jsp" %>
 
 			</div>
 	</body>
 </html>
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.dropotron.min.js"></script>
-		<script src="assets/js/jquery.selectorr.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/jquery.dropotron.min.js"></script>
+		<script src="/assets/js/jquery.selectorr.min.js"></script>
+		<script src="/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/assets/js/jquery.scrolly.min.js"></script>
+		<script src="/assets/js/browser.min.js"></script>
+		<script src="/assets/js/breakpoints.min.js"></script>
+		<script src="/assets/js/util.js"></script>
+		<script src="/assets/js/main.js"></script>
 <script>
 	$('#subjectInput').on('input', function(){
 		if ($("#subjectInput").val() == '기타') {
