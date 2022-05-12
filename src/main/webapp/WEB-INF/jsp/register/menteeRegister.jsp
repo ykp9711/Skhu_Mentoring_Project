@@ -26,7 +26,7 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-				<%@include file ="header.jsp" %>
+				<%@include file ="../header.jsp" %>
 
 
 
@@ -197,7 +197,7 @@
 	</c:choose>
 
 				<!-- Footer -->
-		<%@include file ="footer.jsp" %>
+		<%@include file ="../footer.jsp" %>
 
 			</div>
 	</body>

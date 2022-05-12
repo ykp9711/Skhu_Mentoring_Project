@@ -19,7 +19,7 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-				<%@include file ="header.jsp" %>
+				<%@include file ="../header.jsp" %>
 
 				<!-- Section -->
 					<section id="one" class="main alt">
@@ -96,7 +96,7 @@
 					</section>
 
 				<!-- Footer -->
-				<%@include file ="footer.jsp" %>
+				<%@include file ="../footer.jsp" %>
 
 			</div>
 

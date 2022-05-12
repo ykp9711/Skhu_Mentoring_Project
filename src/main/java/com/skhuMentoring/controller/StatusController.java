@@ -31,25 +31,42 @@ public class StatusController {
     @GetMapping("/menteeStatus")
     public String menteeStatus(Model model) {
         model.addAttribute("list", myPageMapper.getMenteeStatus());
-        return "menteeStatus";
+        return "status/menteeStatus";
     }
 
     @GetMapping("/mentorStatus")
     public String mentorStatus(Model model) {
         model.addAttribute("list", myPageMapper.getMentorStatus());
-        return "mentorStatus";
+        return "status/mentorStatus";
     }
 
 
     @GetMapping("/deleteMentorBoard") // 멘토 게시글 삭제
     public String deleteMentorBoard(Long bno){
         mentoringBoardMapper.deleteMentorBoard(bno);
-        return "redirect:mentorStatus";
+        return "redirect:status/mentorStatus";
     }
 
     @GetMapping("/deleteMenteeBoard") // 멘티 게시글 삭제
     public String deleteMenteeBoard(Long bno){
         mentoringBoardMapper.deleteMenteeBoard(bno);
-        return "redirect:menteeStatus";
+        return "redirect:status/menteeStatus";
+    }
+
+    @GetMapping("/detailMentor") // 멘토 게시글 목록 상세보기
+    public String detailMentor(Model model, Long bno){
+
+        model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
+        model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
+        return "status/detailMentor";
+    }
+
+    @GetMapping("/detailMentee") // 멘티 게시글 목록 상세보기
+    public String detailMentee(Model model, Long bno, Mentee mentee){
+        mentee = myPageMapper.getDetailMentee(bno);
+        model.addAttribute("detailMentee", mentee);
+
+        return "status/detailMentee";
+
     }
 }
