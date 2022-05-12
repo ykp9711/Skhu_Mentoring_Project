@@ -40,7 +40,7 @@ public class MyPageController {
         model.addAttribute("list2", myPageMapper.getMenteeMyStatus(userMapper.getId(userId))); //멘티정보 불러오기
         model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
         model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
-        return "myPage";
+        return "/myPage/myPage";
     }
     // 마이페이지 > 멘토 현황 > 상세보기
 
@@ -48,7 +48,7 @@ public class MyPageController {
     public String detailMentoring(Model model){
         model.addAttribute("list2",myPageMapper.getMenteeStatus());
         model.addAttribute("Mentoring",myPageMapper.getMentoring());
-        return "detailMentoring";
+        return "/myPage/detailMentoring";
     }
     // 마이페이지 > 멘티에게 받은 요청 > 거절하기
     @GetMapping("/requestRefusal")

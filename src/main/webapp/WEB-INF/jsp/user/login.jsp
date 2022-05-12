@@ -53,7 +53,7 @@ License: pixelarity.com/license
 <div id="wrapper">
 
     <!-- Header -->
-    <%@include file ="header.jsp" %>
+    <%@include file ="../header.jsp" %>
 
     <!-- Section -->
     <section id="one" class="main alt">
@@ -84,7 +84,7 @@ License: pixelarity.com/license
         </div>
     </section>
     <!-- Footer -->
-    <%@include file ="footer.jsp" %>
+    <%@include file ="../footer.jsp" %>
 </div>
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>

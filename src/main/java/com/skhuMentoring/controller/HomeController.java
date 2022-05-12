@@ -55,7 +55,7 @@ public class HomeController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "user/login";
     }
 
     @PostMapping("/login")
@@ -63,19 +63,19 @@ public class HomeController {
         try {
             if (map.get("userId") == null || map.get("userPw") == null) {
                 model.addAttribute("msg", "아이디 또는 비밀번호를 입력해주세요");
-                return "login";
+                return "user/login";
             }
             User user = userService.login(map);
             if (user != null) {
                 session.setAttribute("user", user);
             } else {
                 model.addAttribute("msg", "아이디 또는 비밀번호가 올바르지 않습니다.");
-                return "login";
+                return "user/login";
             }
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
-            return "login";
+            return "user/login";
         }
         session.setAttribute("sessionId", userMapper.getId(map.get("userId"))); // 세션값 등록
         model.addAttribute("sessionId", session.getAttribute("sessionId"));
@@ -83,13 +83,8 @@ public class HomeController {
     } // end of PostMapping("login")
 
 
-
-
-    @GetMapping("/myInfo")
-    public String myInfo() {return  "myInfo";}
-
     @GetMapping("/findPwId")
-    public String findPwId() {return  "findPwId";}
+    public String findPwId() {return  "user/findPwId";}
 
 
 
@@ -98,7 +93,17 @@ public class HomeController {
 
 
 
+    @GetMapping(value = "/checkSubject") // 멘토 , 멘티 게시글 등록 시 기타 항목 과목 기입 후 중복확인
+    @ResponseBody
+    public String userIdCheck(String subject) throws Exception {
 
+        int result = mentoringBoardMapper.checkSubject(subject);
+        if (result == 1) { // result로 받은 값이 1이라면 이미 등록된 과목으로 fail 리턴
+            return "fail";
+        }
+        else { // result 값이 1이 아니라면 없는 아이디로 success 리턴
+            return "success";  }
+    }
 
 
 
@@ -107,14 +112,14 @@ public class HomeController {
     public String signUp(Model model, @ModelAttribute User user, @ModelAttribute Department department) {
         model.addAttribute("user", new User());
         model.addAttribute("departments" , mentoringBoardMapper.getDepartment());
-        return  "signUp";
+        return  "user/signUp";
     }
 
     //회원가입 정보 등록
     @PostMapping("/signUp")
     public String singUp(Model model, @ModelAttribute User user){
         userMapper.addUser(user);
-        return "login";
+        return "user/login";
     }
 
     // 회원가입 id 중복확인
@@ -142,27 +147,6 @@ public class HomeController {
     }
 
 
-    @GetMapping("/test")
-    public String test(){
-        return "detailMentor";
-    }
-
-    @GetMapping("/detailMentor") // 멘토 게시글 목록 상세보기
-    public String detailMentor(Model model, Long bno){
-
-        model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
-        model.addAttribute("user",  userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
-        return "detailMentor";
-    }
-
-    @GetMapping("/detailMentee") // 멘티 게시글 목록 상세보기
-    public String detailMentee(Model model, Long bno, Mentee mentee){
-        mentee = myPageMapper.getDetailMentee(bno);
-        model.addAttribute("detailMentee", mentee);
-
-        return "detailMentee";
-
-    }
 
     @PostMapping("/appilcation") // 멘토 게시글 목록에서 신청
     public String applicationMentor(Mentee mentee ,HttpSession session,HttpServletRequest req, HttpServletResponse resp) throws Exception{

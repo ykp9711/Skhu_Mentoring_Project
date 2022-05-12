@@ -64,7 +64,7 @@ License: pixelarity.com/license
 <div id="wrapper">
 
     <!-- Header -->
-    <%@include file ="header.jsp" %>
+    <%@include file ="../header.jsp" %>
 
     <section id="one" class="main">
         <header class="accent1">
@@ -302,7 +302,7 @@ License: pixelarity.com/license
     </section>
 
     <!-- Footer -->
-    <%@include file ="footer.jsp" %>
+    <%@include file ="../footer.jsp" %>
 
 </div>
 

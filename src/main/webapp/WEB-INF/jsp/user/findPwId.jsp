@@ -17,7 +17,7 @@
 
     <!-- Header -->
     <!-- Header -->
-    <%@include file ="header.jsp" %>
+    <%@include file ="../header.jsp" %>
 
     <!-- Section -->
     <section id="one" class="main alt">
