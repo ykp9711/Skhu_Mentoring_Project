@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -47,8 +48,11 @@ License: pixelarity.com/license
                     </table>
                     <div class="col-12" style="text-align: center;">
                         <table style="border: 1px;  text-align: center;  ">
+
                         <tr><th style="text-align: center; vertical-align : middle;" >진행 현황</th></tr>
-                        <tr><td>진행중 / 시작전 / 종료됨</td></tr>
+                        <c:forEach var="Mentoring" items="${Mentoring}">
+                        <tr><td>${Mentoring.proceeding}</td></tr>
+                        </c:forEach>
                         </table>
 
 

@@ -1,6 +1,4 @@
-package com.SkhuMentoring.dto;
-
-import com.SkhuMentoring.dto.Criteria;
+package com.skhuMentoring.dto;
 
 public class PageDTO {
     private int startPage;

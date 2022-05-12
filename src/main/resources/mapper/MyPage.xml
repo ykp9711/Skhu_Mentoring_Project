@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.SkhuMentoring.mapper.MyPageMapper">
+<mapper namespace="com.skhuMentoring.mapper.MyPageMapper">
     <!--멘토 DB뿌리기-->
-    <select id="getMentorStatus" resultType="com.SkhuMentoring.dto.Mentor">
+    <select id="getMentorStatus" resultType="com.skhuMentoring.dto.Mentor">
         select * from tbl_mentorBoard;
     </select>
     <!--멘티 DB뿌리기-->
-    <select id="getMenteeStatus" resultType="com.SkhuMentoring.dto.Mentee">
+    <select id="getMenteeStatus" resultType="com.skhuMentoring.dto.Mentee">
         select * from tbl_menteeBoard;
     </select>
     <!-- 마이페이지 멘토현황 뿌리기 -->
-    <select id="getMenteeMyStatus" resultType="com.SkhuMentoring.dto.Mentee">
+    <select id="getMenteeMyStatus" resultType="com.skhuMentoring.dto.Mentee">
         select * from tbl_menteeBoard where userId = #{userId};
     </select>
     <!-- 마이페이지 멘티현황 뿌리기 -->
-    <select id="getMentorMyStatus" resultType="com.SkhuMentoring.dto.Mentor">
+    <select id="getMentorMyStatus" resultType="com.skhuMentoring.dto.Mentor">
         select * from tbl_mentorBoard where userId = #{userId};
+    </select>
+
+    <select id="getMentoring" resultType="com.skhuMentoring.dto.Mentoring">
+        select * from tbl_mentoring;
     </select>
 
 
@@ -35,7 +39,7 @@
     </delete>
 
     <insert id="requestAcceptData" >
-        insert into tbl_mentoring(student1) values (#{student1})
+        insert into tbl_mentoring(mentorId) values (#{mentorId})
     </insert>
 
     <select id="whoIsMentee" resultType="_int">
@@ -43,23 +47,23 @@
     </select>
 
     <!--마이페이지 멘토에게 보낸요청-->
-    <select id="getApplicationMentor" resultType="com.SkhuMentoring.dto.Mentee">
+    <select id="getApplicationMentor" resultType="com.skhuMentoring.dto.Mentee">
         select * from tbl_AppilcationMentor where menteeId = #{menteeId}
     </select>
 
-    <select id="getApplicationMentee" resultType="com.SkhuMentoring.dto.Mentee">
+    <select id="getApplicationMentee" resultType="com.skhuMentoring.dto.Mentee">
         select * from tbl_AppilcationMentee where mentorId = #{mentorId}
     </select>
 
     <!--마이페이지 멘티에게 받은요청-->
-    <select id="getRequestMentee" resultType="com.SkhuMentoring.dto.Mentee">
+    <select id="getRequestMentee" resultType="com.skhuMentoring.dto.Mentee">
         select a.*, m.userId
         from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
         where m.userId = #{mentorId}
     </select>
 
     <!--마이페이지 멘티에게 받은 요청에서 멘티 상세보기-->
-    <select id="getDetailMentee" resultType="com.SkhuMentoring.dto.Mentee">
+    <select id="getDetailMentee" resultType="com.skhuMentoring.dto.Mentee">
         select a.*, m.userId
         from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
         where a.bno = #{bno}
@@ -90,7 +94,7 @@
         </if>
     </sql>
 
-    <select id="getList" resultType="com.SkhuMentoring.dto.Mentor">
+    <select id="getList" resultType="com.skhuMentoring.dto.Mentor">
         SELECT  mentorNum, mentoringSubject, mentoringMentees, mentoringStartDate, mentoringDetail, mentoringEnd
         FROM
         (SELECT  ROWNUM mentorNum, mentoringSubject, mentoringMentees, mentoringStartDate, mentoringDetail, mentoringEnd

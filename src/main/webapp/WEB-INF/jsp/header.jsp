@@ -31,12 +31,12 @@
                 <a href="#" class="icon solid fa-angle-down">멘토/멘티현황</a>
                 <ul>
 
-                    <li><a href="/mentorStatus">멘토 목록</a></li>
-                    <li><a href="/menteeStatus">멘티 목록</a></li>
+                    <li><a href="/status/mentorStatus">멘토 목록</a></li>
+                    <li><a href="/status/menteeStatus">멘티 목록</a></li>
                 </ul>
             </li>
             <%--<li><a href="generic.html">공지사항</a></li>--%>
-            <li><a href="/myPage">마이페이지</a></li>
+            <li><a href="/myPage/myPage">마이페이지</a></li>
             <li><a href="/ranking">랭킹</a></li>
             <c:if test="${empty sessionId }">
             <li><a href="/login">로그인</a></li>

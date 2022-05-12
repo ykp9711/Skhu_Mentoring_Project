@@ -27,8 +27,8 @@
 							<h1>회원가입</h1>
 						</header>
 						<div class="inner2"><br><br>
-							
-						<%--@elvariable id="user" type="com.SkhuMentoring.dto.User"--%>
+
+                            <%--@elvariable id="user" type="com.skhuMentoring.dto.User"--%>
 						<form:form method="post" action="/signUp" modelAttribute="user" id="signUpForm">
 							<div class="row gtr-uniform">
 								<div class="col-12">

@@ -1,18 +1,17 @@
-package com.SkhuMentoring.controller;
+package com.skhuMentoring.controller;
 
 
-import java.io.PrintWriter;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.SkhuMentoring.service.UserService;
+import com.skhuMentoring.service.UserService;
 
-import com.SkhuMentoring.dto.*;
-import com.SkhuMentoring.mapper.MentoringBoardMapper;
-import com.SkhuMentoring.mapper.MyPageMapper;
-import com.SkhuMentoring.mapper.UserMapper;
+import com.skhuMentoring.dto.*;
+import com.skhuMentoring.mapper.MentoringBoardMapper;
+import com.skhuMentoring.mapper.MyPageMapper;
+import com.skhuMentoring.mapper.UserMapper;
 
-import com.SkhuMentoring.serivce.MailService;
+import com.skhuMentoring.serivce.MailService;
 
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -36,8 +34,6 @@ public class HomeController {
     private final MentoringBoardMapper mentoringBoardMapper;
     private final MyPageMapper myPageMapper;
     private final UserMapper userMapper;
-
-
     private final MailService mailService;
 
 
@@ -53,17 +49,6 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/menteeStatus")
-    public String menteeStatus(Model model) {
-        model.addAttribute("list", myPageMapper.getMenteeStatus());
-        return "menteeStatus";
-    }
-
-    @GetMapping("/mentorStatus")
-    public String mentorStatus(Model model) {
-        model.addAttribute("list", myPageMapper.getMentorStatus());
-        return "mentorStatus";
-    }
 
     @Autowired
     private UserService userService;
@@ -146,7 +131,7 @@ public class HomeController {
         }
         mentor.setUserId((String)session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMentorBoard(mentor);
-        return "redirect:/mentorStatus";
+        return "redirect:mentorStatus";
     }
 
 
@@ -175,48 +160,6 @@ public class HomeController {
         else { // result 값이 1이 아니라면 없는 아이디로 success 리턴
             return "success";  }
     }
-    //마이페이지로 이동
-    @GetMapping("/myPage")
-    public String myPageGo(@ModelAttribute Mentor mentor, Model model,HttpSession session, Mentee mentee){
-        model.addAttribute("user", userMapper.getUser((String)session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
-        log.info(session.getAttribute("sessionId"));
-        String userId = (String) session.getAttribute("sessionId");
-        model.addAttribute("list",myPageMapper.getMentorMyStatus(userMapper.getId(userId))); // 멘토정보 불러오기
-        model.addAttribute("list2",myPageMapper.getMenteeMyStatus(userMapper.getId(userId))); //멘티정보 불러오기
-        model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
-        model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
-        return "myPage";
-    }
-
-    // 마이페이지 > 멘토 현황 > 상세보기
-
-    @GetMapping("/detailMentoring")
-    public String detailMentoring(Model model){
-        model.addAttribute("list2",myPageMapper.getMenteeStatus());
-        return "detailMentoring";
-    }
-    // 마이페이지 > 멘티에게 받은 요청 > 거절하기
-    @GetMapping("/requestRefusal")
-    public String requestRefusal(Long bno,Model model, HttpServletRequest req, HttpServletResponse resp){
-        log.info(bno);
-        myPageMapper.requestRefusal(bno);
-        String referer = req.getHeader("Referer");
-        return "redirect:"+ referer;
-    }
-    // 마이페이지 > 멘티에게 받은 요청 > 수락
-    @GetMapping("/requestAccept")
-    public String requestAccept(Long bno, Model model, HttpServletRequest req, HttpServletResponse resp, Mentee mentee) {
-
-        log.info(bno);
-        if(myPageMapper.requestAccept(bno)){
-            myPageMapper.requestAcceptData(mentee);
-            String referer = req.getHeader("Referer");
-            return "redirect:"+ referer;
-        }else return null;
-    }
-    // 마이페이지 > 멘티 상세보기
-    /*@GetMapping("/whoIsMentee")
-    public String whoIsMentee()*/
 
 
 
@@ -260,18 +203,6 @@ public class HomeController {
     }
 
 
-    @GetMapping("/deleteMentorBoard") // 멘토 게시글 삭제
-    public String deleteMentorBoard(Long bno){
-        mentoringBoardMapper.deleteMentorBoard(bno);
-        return "redirect:/mentorStatus";
-    }
-
-    @GetMapping("/deleteMenteeBoard") // 멘티 게시글 삭제
-    public String deleteMenteeBoard(Long bno){
-        mentoringBoardMapper.deleteMenteeBoard(bno);
-        return "redirect:/menteeStatus";
-    }
-
     @GetMapping("/test")
     public String test(){
         return "detailMentor";
@@ -298,16 +229,6 @@ public class HomeController {
     public String applicationMentor(Mentee mentee ,HttpSession session,HttpServletRequest req, HttpServletResponse resp) throws Exception{
         mentee.setMenteeId((String)session.getAttribute("sessionId"));
         mentoringBoardMapper.applicationMentor(mentee);
-        PrintWriter out = resp.getWriter();
-        resp.setContentType("text/html;charset=utf-8");
-        out.println("<script>");
-        out.println("alert('신청이 완료되었습니다.')");
-        out.println("</script>");
-        out.close();
-        return "/";
+        return "/index";
     }
 }
-
-//한 명의 멘토에게 신청을 하면 중복 신청이 안 되도록 막아준다.
-//이메일 인증 할 떄 학생인증을 하기 위해서 office.skhu.ac.kr 고정으로 박아준다
-// 상세보기

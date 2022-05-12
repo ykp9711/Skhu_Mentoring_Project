@@ -1,4 +1,4 @@
-package com.SkhuMentoring.dto;
+package com.skhuMentoring.dto;
 
 import org.springframework.web.util.UriComponentsBuilder;
 

@@ -38,7 +38,7 @@
 						<div class="inner2"><br><br>
 
 
-							<%--@elvariable id="mentor" type="com.SkhuMentoring.dto.Mentor"--%>
+                            <%--@elvariable id="mentor" type="com.skhuMentoring.dto.Mentor"--%>
 							<form:form modelAttribute="mentor" method="post">
 							<div class="row gtr-uniform">
 									<div class="row gtr-uniform">

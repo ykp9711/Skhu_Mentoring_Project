@@ -1,8 +1,8 @@
-package com.SkhuMentoring.service;
+package com.skhuMentoring.service;
 
 import java.util.Map;
 
-import com.SkhuMentoring.dto.User;
+import com.skhuMentoring.dto.User;
 
 
 public interface UserService {

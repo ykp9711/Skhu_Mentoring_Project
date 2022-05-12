@@ -48,7 +48,7 @@
 
 <c:choose>
 	<c:when test="${empty list}">
-								<%--@elvariable id="mentee" type="com.SkhuMentoring.dto.Mentee"--%>
+        <%--@elvariable id="mentee" type="com.skhuMentoring.dto.Mentee"--%>
 								<form:form modelAttribute="mentee" method="post" action="#">
 
 									<div class="row gtr-uniform">
@@ -119,7 +119,7 @@
 					</section>
 	</c:when>
 	<c:otherwise><%--멘토링 신청 시 보여주는 form--%>
-		<%--@elvariable id="mentee" type="com.SkhuMentoring.dto.Mentee"--%>
+        <%--@elvariable id="mentee" type="com.skhuMentoring.dto.Mentee"--%>
 		<form:form modelAttribute="mentee" method="post" action="/appilcation">
 
 			<div class="row gtr-uniform">
