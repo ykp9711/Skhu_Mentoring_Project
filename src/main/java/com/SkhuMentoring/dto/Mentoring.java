@@ -6,15 +6,10 @@ import java.util.Date;
 
 @Data
 public class Mentoring {
-    private int mno;
-    private String userId;
-    private String student1;
-    private String student2;
-    private String student3;
-    private String student4;
-    private String student5;
-    private String student6;
-    private String student7;
-    private String student8;
-
+    private Long mno;
+    private String mentorId;
+    private String menteeCount;
+    private String student;
+    private boolean proceeding;
+    private Long bno;
 }

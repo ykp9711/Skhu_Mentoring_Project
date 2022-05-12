@@ -197,18 +197,19 @@ public class HomeController {
     }
     // 마이페이지 > 멘티에게 받은 요청 > 거절하기
     @GetMapping("/requestRefusal")
-    public String requestRefusal(@RequestParam("userStudentNum") String userStudentNum,Model model, HttpServletRequest req, HttpServletResponse resp){
-        log.info(userStudentNum);
-        myPageMapper.requestRefusal(userStudentNum);
+    public String requestRefusal(Long bno,Model model, HttpServletRequest req, HttpServletResponse resp){
+        log.info(bno);
+        myPageMapper.requestRefusal(bno);
         String referer = req.getHeader("Referer");
         return "redirect:"+ referer;
     }
     // 마이페이지 > 멘티에게 받은 요청 > 수락
     @GetMapping("/requestAccept")
-    public String requestAccept(@RequestParam("userStudentNum") String userStudentNum, Model model, HttpServletRequest req, HttpServletResponse resp) {
-        log.info(userStudentNum);
-        if(myPageMapper.requestAccept(userStudentNum)){
-            myPageMapper.requestAcceptData(userStudentNum);
+    public String requestAccept(Long bno, Model model, HttpServletRequest req, HttpServletResponse resp, Mentee mentee) {
+
+        log.info(bno);
+        if(myPageMapper.requestAccept(bno)){
+            myPageMapper.requestAcceptData(mentee);
             String referer = req.getHeader("Referer");
             return "redirect:"+ referer;
         }else return null;

@@ -23,12 +23,12 @@ public interface MyPageMapper {
     public void endMentoring(String subjectName);
 
     //멘토링수락
-    public boolean requestAccept(String userStudentNum);
+    public boolean requestAccept(Long bno);
     //멘토링거절
-    public void requestRefusal(String userStudentNum);
+    public void requestRefusal(Long bno);
 
     //멘토링수락-데이터넣기
-    public void requestAcceptData(String userStudentNum);
+    public void requestAcceptData(Mentee mentee);
 
     public int whoIsMentee(Long bno);
 
