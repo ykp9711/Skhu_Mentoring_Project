@@ -106,6 +106,46 @@ public class HomeController {
 
     }
 
+    //가입정보와 이메일이 일치하는지 체크
+    @GetMapping("/checkEmail")
+    @ResponseBody
+    public String checkEmail(@RequestParam String id){
+        String result = userMapper.checkEmail(id);
+        log.info(result);
+
+        return result;
+    }
+
+    //비밀번호 변경을 위한 이메일 세션
+    @PostMapping("/emailsession")
+    public String emailsession(HttpServletRequest request, @RequestParam String id){
+        HttpSession session = request.getSession();
+        session.setAttribute("userId", id);
+
+        log.info(id);
+
+        return "user/findPwId";
+    }
+
+    //비밀번호 변경 페이지
+    @GetMapping("/modifyPw")
+    public  String modifyPw( ){
+        return "user/modifyPw";
+    }
+
+    //비밀번호 변경
+    @PostMapping("/modifyPw")
+    public String modifyPw(Model model, HttpServletRequest request, String userPw ){
+        HttpSession session = request.getSession();
+        String id = (String) session.getAttribute("userId");
+
+        userMapper.modifyPw(userPw, id);
+        log.info(id);
+        log.info(userPw);
+
+        model.addAttribute("msg", "비밀번호를 변경했습니다.");
+        return "user/modifyPw";
+    }
 
     @GetMapping("/ranking")
     public String ranking() {return  "ranking";}

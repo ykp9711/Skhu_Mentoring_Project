@@ -51,6 +51,10 @@ License: pixelarity.com/license
     .tabcontent.current {
         display: block;
     }
+    #id, #rank, #rate{
+        background-color: #f6f6f6;
+    }
+
 </style>
 <head>
     <title>마이페이지</title>
@@ -75,39 +79,55 @@ License: pixelarity.com/license
                 <h3><span style="font-size: 0.8em;">내 정보</span></h3>
                 <div class="spotlight" style="text-align: center;">
                     <div class="inner2" style="text-align: center;">
-                        <form method="post" action="#">
+                        <form method="post" action="/myPage/modifyUserInfo">
                             <div class="row gtr-uniform" style="text-align: center; width: 74%;  float: right;">
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="아이디" />
+                                    <input type="text" placeholder="이름" name="userName" value="${user.userName}" id="name" />
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <select>
-                                        <option>학부/학과</option>
-                                        <option>IT융합자율학부</option>
-                                        <option>인문융합자율학부</option>
-                                        <option>사회융합자율학부</option>
-                                        <option>미디어콘텐츠융합자율학부</option>
+                                    <input type="text" placeholder="아이디" name="userId" value="${user.userId}" id="id" readonly/>
+                                </div>
+                                <div class="col-7" style="text-align: center;">
+                                    <select name="department">
+                                        <option label="학과를 선택하세요."></option>
+                                        <c:forEach var="d" items="${ departments }">
+                                            <option value="${ d.department }" ${ user.department == d.department ? "selected" : "" }>
+                                                    ${ d.department }
+                                            </option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="학번" />
+                                    <input type="text" placeholder="학번" name="userStudentNum" value="${user.userStudentNum}"/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="이메일" />
+                                    <input type="text" placeholder="전화번호" name="userPhoneNum" value="${user.userPhoneNum}"/>
+
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="password" placeholder="비밀번호" />
-                                </div>
-                                <div class="col-7" style="text-align: center;">
-                                    <input type="password" placeholder="비밀번호 확인" />
-                                </div>
-                                <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="내 멘티 평점" />
-                                </div>
-                                <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="내 멘토 횟수(순위)" />
+                                    <input type="text" placeholder="이메일" name="userEmail" value="${user.userEmail}" id="email" readonly/>
                                 </div>
 
+                                <div class="col-7" style="text-align: center;">
+                                    <input type="password" placeholder="비밀번호" name="userPw" id="userPw" value="${user.userPw}" />
+                                    <p id="Check_pw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
+                                </div>
+
+                                <div class="col-7" style="text-align: center;">
+                                    <input type="password" placeholder="비밀번호 확인" id="conPw" value="${user.userPw}"/>
+                                    <p id="Check_conPw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
+                                </div>
+
+                                <div class="col-7" style="text-align: center;">
+                                    <input type="text" placeholder="내 멘티 평점" id="rate" readonly/>
+                                </div>
+                                <div class="col-7" style="text-align: center;">
+                                    <input type="text" placeholder="내 멘토 횟수(순위)" id="rank" readonly/>
+                                </div>
+                                <br><br>
+                                <div class="col-7" style="text-align: center;">
+                                    <button type="submit" class="button" id="btn"> 수정하기 </button>
+                                </div>
                                 <!-- Break -->
 
                             </div>
@@ -317,5 +337,41 @@ License: pixelarity.com/license
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 
+<script>
+
+    //비밀번호 양식
+    $("#userPw").on("property-change change keyup paste input", function(){
+        var userPw = $("#userPw").val();
+        var conPw = $("#conPw").val();
+
+        function isPassword(asValue) {
+            var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+
+            return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+        }
+
+        if(!isPassword(userPw) ||userPw.length < 8 || userPw.length > 16 ){
+            $("#Check_pw").text("*특수문자/영문/숫자를 포함하여 8~16자");
+            $("#btn").attr('disabled', true);
+        } else{
+            $("#Check_pw").text("비밀번호가 적합합니다.");
+        }
+    })
+
+    //비밀번호와 비밀번호 확인 일치 여부
+    $('#conPw').on("property-change change keyup paste input", function(){
+        var userPw = $("#userPw").val();
+        var conPw = $("#conPw").val();
+
+        if(userPw != conPw) {
+            $("#Check_conPw").text("비밀번호가 다릅니다.");
+            $("#btn").attr('disabled', true);
+        } else {
+            $("#Check_conPw").text(" ");
+            $("#btn").attr('disabled', false);
+        }
+    })
+
+</script>
 </body>
 </html>
