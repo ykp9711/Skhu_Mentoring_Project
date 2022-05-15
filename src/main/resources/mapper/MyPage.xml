@@ -68,7 +68,22 @@
         from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
         where a.bno = #{bno}
     </select>
-    
+
+<!--    &lt;!&ndash;  마이페이지 내 정보 수정  &ndash;&gt;-->
+<!--    <update id="modifyUserInfo">-->
+<!--        UPDATE tbl_user-->
+<!--        SET userPw = #{userPw}, userName = #{userName}, department = #{department}, userStudentNum = #{userStudentNum},-->
+<!--                            userEmail = #{userEmail}, userPhoneNum = #{userPhoneNum}-->
+<!--        WHERE userId = #{userId}-->
+<!--     </update>-->
+
+    <!-- 마이페이지 내 정보 수정 -->
+    <update id="modifyUserInfo">
+        UPDATE tbl_user
+        SET userPw = #{userPw}, userName = #{userName}, department = #{department}, userStudentNum = #{userStudentNum}, userEmail = #{userEmail}, userPhoneNum = #{userPhoneNum}
+        WHERE userId = #{userId};
+    </update>
+
     <!--페이징하면 사용-->
     <!--<sql id="criteria">
         <if test="type != null and keyword != null">

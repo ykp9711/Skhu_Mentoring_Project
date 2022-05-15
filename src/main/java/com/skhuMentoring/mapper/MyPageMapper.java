@@ -1,5 +1,6 @@
 package com.skhuMentoring.mapper;
 
+import com.skhuMentoring.dto.User;
 import com.skhuMentoring.dto.Mentee;
 import com.skhuMentoring.dto.Mentor;
 import com.skhuMentoring.dto.Mentoring;
@@ -44,4 +45,6 @@ public interface MyPageMapper {
     //마이페이지 멘티에게 받은 요청에서 멘티의 상세보기
     Mentee getDetailMentee(Long bno);
 
+    //마이페이지 내정보 수정
+    void modifyUserInfo(User user);
 }

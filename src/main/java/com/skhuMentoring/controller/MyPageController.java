@@ -1,6 +1,6 @@
 package com.skhuMentoring.controller;
 
-
+import com.skhuMentoring.dto.User;
 import com.skhuMentoring.dto.Mentee;
 import com.skhuMentoring.dto.Mentor;
 import com.skhuMentoring.mapper.MentoringBoardMapper;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,7 @@ public class MyPageController {
         model.addAttribute("list2", myPageMapper.getMenteeMyStatus(userMapper.getId(userId))); //멘티정보 불러오기
         model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
         model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
+        model.addAttribute("departments", mentoringBoardMapper.getDepartment());
         return "/myPage/myPage";
     }
     // 마이페이지 > 멘토 현황 > 상세보기
@@ -68,5 +70,13 @@ public class MyPageController {
             String referer = req.getHeader("Referer");
             return "redirect:"+ referer;
         }else return null;
+    }
+
+    //마이페이지 > 내 정보 수정
+    @PostMapping("/modifyUserInfo")
+    public String modifyUserInfo(@ModelAttribute User user){
+        myPageMapper.modifyUserInfo(user);
+        log.info(user);
+        return "redirect:/myPage/myPage";
     }
 }

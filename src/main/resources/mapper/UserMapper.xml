@@ -35,5 +35,14 @@
         select * from tbl_user where userId = #{userId}
     </select>
 
+    <!--  비밀번호 변경  -->
+    <update id="modifyPw">
+        UPDATE tbl_user SET userPw = #{userPw} WHERE userId = #{userId};
+    </update>
+
+    <!-- 이메일 체크 -->
+    <select id="checkEmail" resultType="String">
+        SELECT userEmail FROM tbl_user WHERE userId = #{userId}
+    </select>
 
 </mapper>
