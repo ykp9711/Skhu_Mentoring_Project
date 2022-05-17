@@ -142,25 +142,20 @@ License: pixelarity.com/license
                     <div class="table-wrapper">
                         <table style="border: 1px;  text-align: center;  ">
                             <tr class="tHead" >
-                                <th style="text-align: center; vertical-align : middle;" >No</th>
                                 <th  style="text-align: center; vertical-align : middle;">멘토링 과목</th>
-                                <th style="text-align: center; vertical-align : middle;" >멘티 인원 수</th>
-                                <th style="text-align: center; vertical-align : middle;" >멘토링 시작 일</th>
+                                <th  style="text-align: center; vertical-align : middle;">멘토링 인원</th>
+
                                 <th style="text-align: center; vertical-align : middle;" >상세보기</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료</th>
 
                             </tr>
 
-                            <c:forEach var="list" items="${list}">
+                            <c:forEach var="Mentoring" items="${Mentoring}">
                             <tr style="height: 70px;">
-                                <td style="vertical-align : middle">${list.bno}</td>
-                                <td style="vertical-align : middle">${list.subjectName}</td>
-                                <td style="vertical-align: middle;" >${list.menteeCount}</td>
-                                <td style="vertical-align : middle" class="title">
-                                    <fmt:formatDate var="regDate" value="${list.startDate}" pattern="yyyy-MM-dd"/>
-                                        ${regDate}</td>
-                                <td style="vertical-align : middle" class="area" ><a href="/detailMentoring" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="/endMentoring?subjectName=${list.subjectName}" class="button small">종료</a></td>
+                                <td style="vertical-align : middle">${Mentoring.subjectName}</td>
+                                <td style="vertical-align : middle">${Mentoring.personnel}</td>
+                                <td style="vertical-align : middle" class="area" ><a href="/detailMentuoring" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                <td style="vertical-align : middle" class="area" ><a href="/endMentoring?subjectName=${Mentoring.subjectName}" class="button small">종료</a></td>
                             </tr>
                             </c:forEach>
                         </table>

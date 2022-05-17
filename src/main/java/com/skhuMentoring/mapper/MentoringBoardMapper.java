@@ -24,6 +24,8 @@ public interface MentoringBoardMapper {
     
     void deleteMentorBoard(Long bno); // 멘토 게시판 글 삭제
 
+    void endMentorBoard(Long bno); // 멘토 게시판 모집 종료
+
     void deleteMenteeBoard(Long bno); // 멘티 게시판 글 삭제
 
     public void setUpMentoring(String menteeStudentNum);
@@ -36,7 +38,8 @@ public interface MentoringBoardMapper {
     
     void applicationMentor(Mentee mentee); //멘토 게시글에서 신청
 
-    
+
+
     List<Mentor> getMentoring(Long bno); // bno번호로 멘토게시글 정보 가져오기
 
     int checkApplicationStatus(Long bno, String menteeId); // 멘토목록에서 신청한 게시글 여부 확인

@@ -47,4 +47,6 @@ public interface MyPageMapper {
 
     //마이페이지 내정보 수정
     void modifyUserInfo(User user);
+
+    List<Mentoring> getMyMentor(String userId);
 }

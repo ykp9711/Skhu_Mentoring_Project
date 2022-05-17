@@ -27,4 +27,5 @@ public class Mentor {
     private List<Long> menteeStudentNum;
     private Long maxPersonnel; //멘토링 최대 정원
     private Long personnel; // 멘토링 신청 인원
+    private String recruiting; // 멘토링 신청 인원
 }
