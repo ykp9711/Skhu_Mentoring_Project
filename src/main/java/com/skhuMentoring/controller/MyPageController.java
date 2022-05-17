@@ -42,6 +42,7 @@ public class MyPageController {
         model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
         model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
         model.addAttribute("departments", mentoringBoardMapper.getDepartment());
+        log.info(userId);
         model.addAttribute("Mentoring", myPageMapper.getMyMentor(userId));
         return "/myPage/myPage";
     }

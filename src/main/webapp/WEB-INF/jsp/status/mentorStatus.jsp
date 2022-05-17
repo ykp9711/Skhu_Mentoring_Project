@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,19 +30,19 @@ License: pixelarity.com/license
         <header class="accent1">
             <h1>Mentor Status</h1>
         </header>
-        <div class="inner3"><br><br>
+        <div class="inner4"><br><br>
 
 
 
             <div class="table-wrapper">
                 <table style="border: 1px;  text-align: center;  ">
                     <tr class="tHead" >
-                        <th  style="text-align: center; vertical-align : middle;">멘토 이름</th>
-                        <th style="text-align: center; vertical-align : middle;" >학번</th>
+                        <th  style="text-align: center; vertical-align : middle;">멘토<br>이름</th>
+                        <th style="text-align: center; vertical-align : middle;" >학&nbsp;번</th>
                         <th style="text-align: center; vertical-align : middle;" >학부/학과</th>
-                        <th style="text-align: center; vertical-align : middle;" >멘토링 과목</th>
-                        <th style="text-align: center; vertical-align : middle;" >멘토링 시간</th>
-                        <th style="text-align: center; vertical-align : middle;" >정원</th>
+                        <th style="text-align: center; vertical-align : middle;" >과&nbsp;목</th>
+                        <th style="text-align: center; vertical-align : middle;" >시&nbsp;간</th>
+                        <th style="text-align: center; vertical-align : middle;" >정&nbsp;&nbsp;원</th>
                         <th style="text-align: center; vertical-align : middle;" >등록날짜</th>
                         <th style="text-align: center; vertical-align : middle;" >상세보기</th>
                         <th style="text-align: center; vertical-align : middle;" >신&nbsp;청</th>
@@ -76,18 +78,42 @@ License: pixelarity.com/license
                             </td>
 
 
-                                <td style="vertical-align : middle" class="area" >
-                                    <c:choose>
-                                        <c:when test="${sessionId eq list.userId}">
-                                            <a href="/menteeRegister?bno=${list.bno}" class="button small ">삭제</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">삭제</a>
-                                        </c:otherwise>
-                                    </c:choose>
+                            <td style="vertical-align : middle" class="area" >
+                                <c:choose>
+                                    <c:when test="${sessionId eq list.userId}">
+                                        <a href="/menteeRegister?bno=${list.bno}" class="button small ">삭제</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">삭제</a>
+                                    </c:otherwise>
+                                </c:choose>
 
-                                </td>
+                            </td>
 
+                            <td style="vertical-align : middle" class="area" >
+                                <c:choose>
+                                    <c:when test="${sessionId eq list.userId}">
+                                        <a href="/status/endMentorBoard?bno=${list.bno}" class="button small ">종료</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/status/endMentorBoard?bno=${list.bno}" class="button small disabled">종료</a>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </td>
+
+                            <td style="vertical-align : middle" class="area" >
+                                <c:choose>
+                                    <c:when test="${sessionId eq list.userId}">
+                                        <a href="/menteeRegister?bno=${list.bno}" class="button small ">상세보기</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">상세보기</a>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </td>
+                            <td style="vertical-align : middle">${list.recruiting}</td>
 
                         </tr>
                     </c:forEach>
@@ -147,7 +173,7 @@ License: pixelarity.com/license
             data : data,
             async:false,
             success : function(data){
-            console.log(data)
+                console.log(data)
                 if(data == 'success'){
                     location.href="/register/menteeRegister?bno="+$(obj).attr('data-bno');
                 }else

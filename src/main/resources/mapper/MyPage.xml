@@ -24,10 +24,10 @@
 
     <!--모집 종료 시 마이파이제 멘토 현황에서 멘토 상태 확인-->
     <select id="getMyMentor" resultType="com.skhuMentoring.dto.Mentoring">
-        select * from tbl_appilcationmentor;
+
         select a.*, m.userId, m.recruiting, m.personnel
         from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
-        where m.userId=#{userId} and recruiting='모집완료';
+        where userId=#{userId} and recruiting='모집완료';
     </select>
 
 
