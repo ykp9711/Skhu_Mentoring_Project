@@ -7,6 +7,7 @@ import com.skhuMentoring.service.MailService;
 import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,8 +63,8 @@ public class StatusController {
     }
 
     @GetMapping("/detailMentee") // 멘티 게시글 목록 상세보기
-    public String detailMentee(Model model, Long bno, Mentee mentee) {
-        model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno));
+    public String detailMentee(Model model, Long bno, Mentee mentee, String menteeId) {
+        model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno, menteeId));
 
         return "status/detailMentee";
 
@@ -92,5 +93,19 @@ public class StatusController {
             return "fail";
         }else
             return "success";
+    }
+
+    @GetMapping("/menteeAccept") // 멘티가 보낸 요청 수락
+    @Transactional
+    public String menteeAceept(Long bno){
+        mentoringBoardMapper.menteeAccept(bno);
+        mentoringBoardMapper.menteeAcceptStatus(bno);
+        return "/status/mentorStatus";
+    }
+
+    @GetMapping("/detailMentees") // 멘토목록에서 신청한 멘티 목록 보여줌
+    public String detailMentees(Long bno,Model model) {
+            model.addAttribute("detailMentees" , mentoringBoardMapper.getDetailMentees(bno));
+        return "/status/detailMentees";
     }
 }

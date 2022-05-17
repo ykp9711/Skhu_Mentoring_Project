@@ -40,4 +40,10 @@ public interface MentoringBoardMapper {
     List<Mentor> getMentoring(Long bno); // bno번호로 멘토게시글 정보 가져오기
 
     int checkApplicationStatus(Long bno, String menteeId); // 멘토목록에서 신청한 게시글 여부 확인
+
+    void menteeAccept(Long bno); // 멘티 수락 시 정원 +1
+    
+    void menteeAcceptStatus(Long bno); // 멘티 수락 시 상태를 수락중으로 변경
+    
+    List<Mentee> getDetailMentees(Long bno); // 멘토 목록에서 현재 신청한 멘티 정보를 가져온다
 }

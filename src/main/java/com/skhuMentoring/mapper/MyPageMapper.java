@@ -43,7 +43,7 @@ public interface MyPageMapper {
     //마이페이지 멘티에게 받은 요청
     List<Mentee> getRequestMentee(String mentorId);
     //마이페이지 멘티에게 받은 요청에서 멘티의 상세보기
-    Mentee getDetailMentee(Long bno);
+    Mentee getDetailMentee(Long bno,String menteeId);
 
     //마이페이지 내정보 수정
     void modifyUserInfo(User user);

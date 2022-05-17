@@ -60,17 +60,7 @@ public class MyPageController {
         String referer = req.getHeader("Referer");
         return "redirect:"+ referer;
     }
-    // 마이페이지 > 멘티에게 받은 요청 > 수락
-    @GetMapping("/requestAccept")
-    public String requestAccept(Long bno, Model model, HttpServletRequest req, HttpServletResponse resp, Mentee mentee) {
 
-        log.info(bno);
-        if(myPageMapper.requestAccept(bno)){
-            model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno));
-            String referer = req.getHeader("Referer");
-            return "redirect:"+ referer;
-        }else return null;
-    }
 
     //마이페이지 > 내 정보 수정
     @PostMapping("/modifyUserInfo")
