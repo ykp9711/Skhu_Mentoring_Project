@@ -63,8 +63,7 @@ public class StatusController {
 
     @GetMapping("/detailMentee") // 멘티 게시글 목록 상세보기
     public String detailMentee(Model model, Long bno, Mentee mentee) {
-        mentee = mentoringBoardMapper.getDetailMentee(bno);
-        model.addAttribute("detailMentee", mentee);
+        model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno));
 
         return "status/detailMentee";
 

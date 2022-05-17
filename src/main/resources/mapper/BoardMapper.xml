@@ -54,7 +54,7 @@
     </select>
 
     <insert id="applicationMentor">
-        INSERT INTO tbl_AppilcationMentor(bno,menteeId,userName,userStudentNum,department, introduce,subjectName, accept) values(#{bno}, #{menteeId},#{userName},#{userStudentNum},#{department},#{introduce},#{subjectName},0)
+        INSERT INTO tbl_AppilcationMentor(bno,menteeId,userName,userStudentNum,department, introduce,subjectName, accept) values(#{bno}, #{menteeId},#{userName},#{userStudentNum},#{department},#{introduce},#{subjectName},'대기중')
     </insert>
 
     <select id="getMentoring" resultType="com.skhuMentoring.dto.Mentor">
