@@ -49,6 +49,12 @@ public class StatusController {
         return "redirect:status/mentorStatus";
     }
 
+    @GetMapping("/endMentorBoard") // 멘토 게시글 모집 종료
+    public String endMentorBoard(Long bno) {
+        mentoringBoardMapper.endMentorBoard(bno);
+        return "/myPage/myPage?bno="+bno;
+    }
+
     @GetMapping("/deleteMenteeBoard") // 멘티 게시글 삭제
     public String deleteMenteeBoard(Long bno) {
         mentoringBoardMapper.deleteMenteeBoard(bno);

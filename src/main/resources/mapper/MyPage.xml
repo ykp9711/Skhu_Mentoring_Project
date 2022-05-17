@@ -3,7 +3,7 @@
 <mapper namespace="com.skhuMentoring.mapper.MyPageMapper">
     <!--멘토 DB뿌리기-->
     <select id="getMentorStatus" resultType="com.skhuMentoring.dto.Mentor">
-        select * from tbl_mentorBoard;
+        select * from tbl_mentorBoard where recruiting='모집중';
     </select>
     <!--멘티 DB뿌리기-->
     <select id="getMenteeStatus" resultType="com.skhuMentoring.dto.Mentee">
@@ -20,6 +20,14 @@
 
     <select id="getMentoring" resultType="com.skhuMentoring.dto.Mentoring">
         select * from tbl_mentoring;
+    </select>
+
+    <!--모집 종료 시 마이파이제 멘토 현황에서 멘토 상태 확인-->
+    <select id="getMyMentor" resultType="com.skhuMentoring.dto.Mentoring">
+
+        select a.*, m.userId, m.recruiting, m.personnel
+        from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
+        where userId=#{userId} and recruiting='모집완료';
     </select>
 
 

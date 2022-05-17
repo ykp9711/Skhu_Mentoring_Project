@@ -33,7 +33,7 @@ public class MyPageController {
 
     //마이페이지로 이동
     @GetMapping("/myPage")
-    public String myPageGo(@ModelAttribute Mentor mentor, Model model, HttpSession session, Mentee mentee) {
+    public String myPageGo(@ModelAttribute Mentor mentor, Model model, HttpSession session, Mentee mentee, Long bno) {
         model.addAttribute("user", userMapper.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         log.info(session.getAttribute("sessionId"));
         String userId = (String) session.getAttribute("sessionId");
@@ -42,6 +42,8 @@ public class MyPageController {
         model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
         model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
         model.addAttribute("departments", mentoringBoardMapper.getDepartment());
+        log.info(userId);
+        model.addAttribute("Mentoring", myPageMapper.getMyMentor(userId));
         return "/myPage/myPage";
     }
     // 마이페이지 > 멘토 현황 > 상세보기

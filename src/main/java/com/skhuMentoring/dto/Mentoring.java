@@ -2,12 +2,14 @@ package com.skhuMentoring.dto;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class Mentoring {
     private Long mno;
-    private String mentorId;
-    private String menteeCount;
-    private String student;
-    private String proceeding;
+    private String menteeId;
+    private String subjectName;
+    private Date regDate;
+    private String personnel;
     private Long bno;
 }
