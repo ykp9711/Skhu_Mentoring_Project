@@ -278,8 +278,8 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${requestMentee.userStudentNum}</td>
                                     <td style="vertical-align : middle">${requestMentee.department}</td>
                                     <td style="vertical-align : middle">${requestMentee.subjectName}</td>
-                                    <td style="vertical-align : middle" class="area" ><a href="/status/detailMentee?bno=${requestMentee.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
-                                    <td style="vertical-align : middle" class="area" ><a href="/requestAccept?bno=${requestMentee.bno}" class="button small">수락</a>
+                                    <td style="vertical-align : middle" class="area" ><a href="/status/detailMentee?bno=${requestMentee.bno}&menteeId=${requestMentee.menteeId}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="javascript:void(0)" onclick="del(${requestMentee.bno})" class="button small">수락</a>
                                         <a href="/requestRefusal?userStudentNum=${requestMentee.userStudentNum}" class="button small">거절</a></td>
                                 </tr>
                             </c:forEach>
@@ -367,6 +367,16 @@ License: pixelarity.com/license
         }
     })
 
+</script>
+
+<script type="text/javascript">
+    function del(bno) {
+        if (confirm("수락하시겠습니까?") == true){    //확인
+            location.href="/status/menteeAccept?bno="+bno
+        }else{   //취소
+            alert("취소되었습니다.")
+        }
+    }
 </script>
 </body>
 </html>

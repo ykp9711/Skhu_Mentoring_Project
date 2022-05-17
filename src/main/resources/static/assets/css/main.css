@@ -3644,6 +3644,11 @@ body.is-preload #banner .content.primary {
 	width: 62rem;
 	max-width: calc(100% - 6rem);
 }
+.inner4 {
+	margin: 0 auto;
+	width: 68rem;
+	max-width: calc(100% - 6rem);
+}
 
 .inner4 {
 	margin: 0 auto;

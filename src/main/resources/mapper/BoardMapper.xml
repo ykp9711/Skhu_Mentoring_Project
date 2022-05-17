@@ -75,4 +75,20 @@
         where bno = #{bno} and menteeId = #{menteeId};
     </select>
 
+    <update id="menteeAccept">
+        UPDATE tbl_mentorBoard
+        SET personnel = personnel + 1
+        WHERE bno = #{bno}
+    </update>
+
+    <update id="menteeAcceptStatus">
+        update tbl_appilcationmentor
+        set accept = '수락됨'
+        where bno = #{bno}
+    </update>
+
+    <select id="getDetailMentees" resultType="com.skhuMentoring.dto.Mentee">
+        select * from tbl_appilcationmentor
+        where bno=#{bno} and accept='수락됨';
+    </select>
 </mapper>

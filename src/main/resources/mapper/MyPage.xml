@@ -67,14 +67,14 @@
     <select id="getRequestMentee" resultType="com.skhuMentoring.dto.Mentee">
         select a.*, m.userId
         from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
-        where m.userId = #{mentorId}
+        where m.userId = #{mentorId} and accept='대기중'
     </select>
 
     <!--마이페이지 멘티에게 받은 요청에서 멘티 상세보기-->
     <select id="getDetailMentee" resultType="com.skhuMentoring.dto.Mentee">
         select a.*, m.userId
         from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
-        where a.bno = #{bno}
+        where a.bno = #{bno} AND a.menteeId = #{menteeId}
     </select>
 
 <!--    &lt;!&ndash;  마이페이지 내 정보 수정  &ndash;&gt;-->
