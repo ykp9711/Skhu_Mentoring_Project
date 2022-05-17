@@ -26,7 +26,7 @@ License: pixelarity.com/license
     <!-- Section -->
     <section id="one" class="main alt">
         <header class="accent1">
-            <h1>Mento Status</h1>
+            <h1>Mentor Status</h1>
         </header>
         <div class="inner3"><br><br>
 
@@ -67,10 +67,9 @@ License: pixelarity.com/license
                                         <a href="/register/menteeRegister?bno=${list.bno}" class="button small disabled ">신청</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="/register/menteeRegister?bno=${list.bno}" class="button small ">신청</a>
+                                        <a href="javascript:void(0)" onclick="checkApplication(this)" data-bno="${list.bno}" class="button small">신청</a>
                                     </c:otherwise>
                                 </c:choose>
-
                             </td>
 
 
@@ -134,6 +133,26 @@ License: pixelarity.com/license
 <script src="/assets/js/breakpoints.min.js"></script>
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
+
+<script>
+    function checkApplication(obj){
+        console.log($(obj).attr("data-bno"));
+        const id = '<%=(String)session.getAttribute("sessionId")%>';
+        var data = {bno : $(obj).attr("data-bno"), menteeId: id}
+        $.ajax({ type : "POST",
+            url : "/status/checkApplicationStatus",
+            data : data,
+            async:false,
+            success : function(data){
+            console.log(data)
+                if(data == 'success'){
+                    location.href="/register/menteeRegister?bno="+$(obj).attr('data-bno');
+                }else
+                    alert("이미 신청되어있습니다.")
+            }// success 종료
+        }); // ajax 종료
+    }
+</script>
 
 </body>
 </html>

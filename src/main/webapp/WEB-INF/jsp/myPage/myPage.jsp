@@ -283,7 +283,7 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${requestMentee.userStudentNum}</td>
                                     <td style="vertical-align : middle">${requestMentee.department}</td>
                                     <td style="vertical-align : middle">${requestMentee.subjectName}</td>
-                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentee?bno=${requestMentee.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/status/detailMentee?bno=${requestMentee.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                     <td style="vertical-align : middle" class="area" ><a href="/requestAccept?bno=${requestMentee.bno}" class="button small">수락</a>
                                         <a href="/requestRefusal?userStudentNum=${requestMentee.userStudentNum}" class="button small">거절</a></td>
                                 </tr>
@@ -312,7 +312,7 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${applicationMentor.subjectName}</td>
                                     <td style="vertical-align : middle">${applicationMentor.accept}</td>
                                     <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">신청취소</a></td>
-                                    <td style="vertical-align : middle" class="area" ><a href="/detailMentor?bno=${applicationMentor.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/status/detailMentor?bno=${applicationMentor.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 </tr>
                             </c:forEach>
 

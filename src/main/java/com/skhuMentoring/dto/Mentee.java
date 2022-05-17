@@ -26,5 +26,5 @@ public class Mentee {
     private String addSubject; // 과목 선택 시 항목에 없어 기타로 입력한 값
     private String subject;
     private String menteeId;
-    private Long accept;
+    private String accept;
 }

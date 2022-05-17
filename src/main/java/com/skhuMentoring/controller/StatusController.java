@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,7 +56,6 @@ public class StatusController {
 
     @GetMapping("/detailMentor") // 멘토 게시글 목록 상세보기
     public String detailMentor(Model model, Long bno) {
-
         model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
         model.addAttribute("user", userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
         return "status/detailMentor";
@@ -63,7 +63,7 @@ public class StatusController {
 
     @GetMapping("/detailMentee") // 멘티 게시글 목록 상세보기
     public String detailMentee(Model model, Long bno, Mentee mentee) {
-        mentee = myPageMapper.getDetailMentee(bno);
+        mentee = mentoringBoardMapper.getDetailMentee(bno);
         model.addAttribute("detailMentee", mentee);
 
         return "status/detailMentee";
@@ -82,5 +82,16 @@ public class StatusController {
         out.println("</script>");
         out.close();
         return null;
+    }
+
+    @PostMapping("/checkApplicationStatus")
+    @ResponseBody
+    public String checkApplicationStatus(Long bno, String menteeId){
+        int result = mentoringBoardMapper.checkApplicationStatus(bno, menteeId);
+        log.info(result);
+        if(result == 1){ // 1이라는건 이미 신청이 되어있다는 것
+            return "fail";
+        }else
+            return "success";
     }
 }

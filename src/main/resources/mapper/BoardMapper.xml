@@ -60,4 +60,12 @@
     <select id="getMentoring" resultType="com.skhuMentoring.dto.Mentor">
         SELECT * FROM tbl_mentorBoard where bno=#{bno}
     </select>
+
+    <select id="checkApplicationStatus" resultType="_int">
+        select count(*) from(
+                                select a.*, m.userId
+                                from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno)tbl_mentroing
+        where bno = #{bno} and menteeId = #{menteeId};
+    </select>
+
 </mapper>

@@ -111,7 +111,6 @@ public class HomeController {
     @ResponseBody
     public String checkEmail(@RequestParam String id){
         String result = userMapper.checkEmail(id);
-        log.info(result);
 
         return result;
     }
@@ -122,7 +121,6 @@ public class HomeController {
         HttpSession session = request.getSession();
         session.setAttribute("userId", id);
 
-        log.info(id);
 
         return "user/findPwId";
     }
@@ -140,8 +138,7 @@ public class HomeController {
         String id = (String) session.getAttribute("userId");
 
         userMapper.modifyPw(userPw, id);
-        log.info(id);
-        log.info(userPw);
+
 
         model.addAttribute("msg", "비밀번호를 변경했습니다.");
         return "user/modifyPw";
@@ -185,7 +182,6 @@ public class HomeController {
     @GetMapping("/checkId")
     @ResponseBody
     public String checkId(@RequestParam String id){
-        log.info("들어옴");
         int result = userMapper.checkId(id);
         if (result == 0) {
             return "success";
