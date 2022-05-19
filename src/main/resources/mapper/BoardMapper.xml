@@ -91,4 +91,12 @@
         select * from tbl_appilcationmentor
         where bno=#{bno} and accept='수락됨';
     </select>
+
+    <select id="sliderMentor" resultType="com.skhuMentoring.dto.Mentor">
+        SELECT * FROM tbl_mentorboard ORDER BY bno desc limit 4
+    </select>
+
+    <select id="sliderMentee" resultType="com.skhuMentoring.dto.Mentee">
+        SELECT * FROM tbl_menteeboard ORDER BY bno desc limit 4
+    </select>
 </mapper>

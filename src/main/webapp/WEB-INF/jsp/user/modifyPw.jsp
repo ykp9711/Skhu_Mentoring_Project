@@ -40,7 +40,7 @@ License: pixelarity.com/license
                         </div>
                         <div class="col-12" style="text-align: center;">
                             <ul class="actions fit">
-                                <li><button type="submit"  class="button fit" id="modify_btn" >변경하기</button></li>
+                                <li><button type="submit"  class="button fit" id="modify_btn" disabled="true" >변경하기</button></li>
                                 <li><a href='javascript:self.close();' class="button primary fit">닫기</a></li>
                             </ul>
                             <p id="msg" style="height: 1px; color: #13a2dd; text-align: center;" >${msg}</p>
@@ -89,7 +89,6 @@ License: pixelarity.com/license
 
         if(!isPassword(userPw) ||userPw.length < 8 || userPw.length > 16 ){
             $("#msg").text("*특수문자/영문/숫자를 포함하여 8~16자");
-            $("#btn").attr('disabled', true);
         } else{
             $("#msg").text("비밀번호가 적합합니다.");
         }
@@ -102,13 +101,8 @@ License: pixelarity.com/license
 
         if(userPw != conPw){
             $("#msg").text("비밀번호가 다릅니다.");
-            $("#modify_btn").attr('disabled', true);
-        }
-        else if(userPw != " " || conPw != " "){
-            $("#modify_btn").attr('disabled', false);
-            $("#msg").text(" ");
-        }
-        else {
+
+        } else {
             $("#modify_btn").attr('disabled', false);
             $("#msg").text(" ");
 

@@ -49,4 +49,8 @@ public interface MentoringBoardMapper {
     void menteeAcceptStatus(Long bno); // 멘티 수락 시 상태를 수락중으로 변경
     
     List<Mentee> getDetailMentees(Long bno); // 멘토 목록에서 현재 신청한 멘티 정보를 가져온다
+
+    List<Mentor> sliderMentor();
+
+    List<Mentor> sliderMentee();
 }
