@@ -62,7 +62,13 @@ public class MyPageController {
         String referer = req.getHeader("Referer");
         return "redirect:"+ referer;
     }
+    // 마이페이지 > 멘토에게 보낸 요청 > 취소하기
+    @GetMapping("/cancelApplication")
+    public String cancelApplication(Long bno, HttpSession session){
+        myPageMapper.cancelApplication(bno, (String)session.getAttribute("sessionId"));
 
+        return "/myPage/myPage";
+    }
 
     //마이페이지 > 내 정보 수정
     @PostMapping("/modifyUserInfo")

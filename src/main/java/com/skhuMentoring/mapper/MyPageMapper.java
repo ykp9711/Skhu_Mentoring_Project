@@ -45,6 +45,8 @@ public interface MyPageMapper {
     //마이페이지 멘티에게 받은 요청에서 멘티의 상세보기
     Mentee getDetailMentee(Long bno,String menteeId);
 
+    //마이페이지 -> 멘토에게 보낸 신청취소
+    void cancelApplication(Long bno, String menteeId);
     //마이페이지 내정보 수정
     void modifyUserInfo(User user);
 

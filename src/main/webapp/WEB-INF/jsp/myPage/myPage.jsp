@@ -306,7 +306,7 @@ License: pixelarity.com/license
                                 <tr style="height: 70px;">
                                     <td style="vertical-align : middle">${applicationMentor.subjectName}</td>
                                     <td style="vertical-align : middle">${applicationMentor.accept}</td>
-                                    <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">신청취소</a></td>
+                                    <td style="vertical-align : middle"><a href="javascript:void(0)" onclick="cancelApplication(${applicationMentor.bno})" class="button small">신청취소</a></td>
                                     <td style="vertical-align : middle" class="area" ><a href="/status/detailMentor?bno=${applicationMentor.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 </tr>
                             </c:forEach>
@@ -370,10 +370,21 @@ License: pixelarity.com/license
 </script>
 
 <script type="text/javascript">
+    // 멘티가 보낸 요청 수락
     function del(bno) {
         if (confirm("수락하시겠습니까?") == true){    //확인
-            location.href="/status/menteeAccept?bno="+bno
+            window.location.href="/status/menteeAccept?bno="+bno
         }else{   //취소
+            alert("취소되었습니다.")
+        }
+    }
+</script>
+<script>
+    // 멘토에게 보낸 신청 취소하기
+    function cancelApplication(bno){
+        if(confirm("신청을 취소하시겠습니까?") == true){
+            location.href="/myPage/cancelApplication?bno="+bno
+        }else{
             alert("취소되었습니다.")
         }
     }

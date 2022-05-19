@@ -41,7 +41,7 @@
 
     <!--멘토 상태 모집 종료-->
     <update id="endMentorBoard">
-        update tbl_mentorboard set recruiting = '모집완료' where bno = #{bno};
+        update tbl_mentorboard set recruiting = '진행중' where bno = #{bno};
     </update>
 
 
@@ -61,7 +61,7 @@
     </select>
 
     <insert id="applicationMentor">
-        INSERT INTO tbl_AppilcationMentor(bno,menteeId,userName,userStudentNum,department, introduce,subjectName, accept) values(#{bno}, #{menteeId},#{userName},#{userStudentNum},#{department},#{introduce},#{subjectName},'대기중')
+        INSERT INTO tbl_applicationMentor(bno,menteeId,userName,userStudentNum,department, introduce,subjectName, accept) values(#{bno}, #{menteeId},#{userName},#{userStudentNum},#{department},#{introduce},#{subjectName},'대기중')
     </insert>
 
     <select id="getMentoring" resultType="com.skhuMentoring.dto.Mentor">
@@ -71,7 +71,7 @@
     <select id="checkApplicationStatus" resultType="_int">
         select count(*) from(
                                 select a.*, m.userId
-                                from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno)tbl_mentroing
+                                from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno)tbl_mentroing
         where bno = #{bno} and menteeId = #{menteeId};
     </select>
 
@@ -82,13 +82,19 @@
     </update>
 
     <update id="menteeAcceptStatus">
-        update tbl_appilcationmentor
+        update tbl_applicationMentor
         set accept = '수락됨'
         where bno = #{bno}
     </update>
 
+    <update id="endApplicationMentor">
+        update tbl_applicationMentor
+        set accept = '진행중'
+        where bno = #{bno}
+    </update>
+
     <select id="getDetailMentees" resultType="com.skhuMentoring.dto.Mentee">
-        select * from tbl_appilcationmentor
+        select * from tbl_applicationmentor
         where bno=#{bno} and accept='수락됨';
     </select>
 </mapper>

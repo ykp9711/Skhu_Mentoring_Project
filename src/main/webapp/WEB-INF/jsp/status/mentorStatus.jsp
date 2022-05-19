@@ -81,7 +81,7 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
-                                        <a href="/menteeRegister?bno=${list.bno}" class="button small ">삭제</a>
+                                        <a href="/status/deleteMentorBoard?bno=${list.bno}" class="button small ">삭제</a>
                                     </c:when>
                                     <c:otherwise>
                                         <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">삭제</a>
@@ -105,7 +105,8 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
-                                        <a href="/menteeRegister?bno=${list.bno}" class="button small ">상세보기</a>
+
+                                        <a href="/status/detailMentees?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">멘티목록보기</a>
                                     </c:when>
                                     <c:otherwise>
                                         <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">상세보기</a>
