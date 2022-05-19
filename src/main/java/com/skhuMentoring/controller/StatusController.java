@@ -46,12 +46,14 @@ public class StatusController {
     @GetMapping("/deleteMentorBoard") // 멘토 게시글 삭제
     public String deleteMentorBoard(Long bno) {
         mentoringBoardMapper.deleteMentorBoard(bno);
-        return "redirect:status/mentorStatus";
+        return "redirect:/status/mentorStatus";
     }
 
     @GetMapping("/endMentorBoard") // 멘토 게시글 모집 종료
+    @Transactional
     public String endMentorBoard(Long bno) {
-        mentoringBoardMapper.endMentorBoard(bno);
+        mentoringBoardMapper.endMentorBoard(bno); // recruiting 진행중으로 변경
+        mentoringBoardMapper.endApplicationMentor(bno); // 멘토링 모집 종료시 tbl_applicationMentor 테이블의 accept를 진행중으로 변경 하고 startDate 값 입력
         return "/myPage/myPage?bno="+bno;
     }
 
@@ -76,7 +78,7 @@ public class StatusController {
 
     }
 
-    @PostMapping("/appilcation") // 멘토 게시글 목록에서 신청
+    @PostMapping("/application") // 멘토 게시글 목록에서 신청
     public String applicationMentor(Mentee mentee, HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws Exception {
         mentee.setMenteeId((String) session.getAttribute("sessionId"));
         mentoringBoardMapper.applicationMentor(mentee);
@@ -103,9 +105,9 @@ public class StatusController {
 
     @GetMapping("/menteeAccept") // 멘티가 보낸 요청 수락
     @Transactional
-    public String menteeAceept(Long bno){
+    public String menteeAceept(Long bno, String menteeId){
         mentoringBoardMapper.menteeAccept(bno);
-        mentoringBoardMapper.menteeAcceptStatus(bno);
+        mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
         return "/status/mentorStatus";
     }
 

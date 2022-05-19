@@ -38,6 +38,8 @@ public interface MentoringBoardMapper {
     
     void applicationMentor(Mentee mentee); //멘토 게시글에서 신청
 
+    void endApplicationMentor(Long bno); // 멘토가 모집종료를 누르면 tbl_applicationMentor의 accept값이 수락됨 - > 진행중으로 변경
+
 
 
     List<Mentor> getMentoring(Long bno); // bno번호로 멘토게시글 정보 가져오기
@@ -46,7 +48,7 @@ public interface MentoringBoardMapper {
 
     void menteeAccept(Long bno); // 멘티 수락 시 정원 +1
     
-    void menteeAcceptStatus(Long bno); // 멘티 수락 시 상태를 수락중으로 변경
+    void menteeAcceptStatus(Long bno, String menteeId); // 멘티 수락 시 상태를 수락으로 변경
     
     List<Mentee> getDetailMentees(Long bno); // 멘토 목록에서 현재 신청한 멘티 정보를 가져온다
 

@@ -26,8 +26,8 @@
     <select id="getMyMentor" resultType="com.skhuMentoring.dto.Mentoring">
 
         select a.*, m.userId, m.recruiting, m.personnel
-        from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
-        where userId=#{userId} and recruiting='모집완료';
+        from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
+        where userId=#{userId} and recruiting='진행중';
     </select>
 
 
@@ -56,27 +56,31 @@
 
     <!--마이페이지 멘토에게 보낸요청-->
     <select id="getApplicationMentor" resultType="com.skhuMentoring.dto.Mentee">
-        select * from tbl_AppilcationMentor where menteeId = #{menteeId}
+        select * from tbl_applicationMentor where menteeId = #{menteeId} and accept ='대기중' or menteeId = #{menteeId} and accept ='수락됨'
     </select>
 
     <select id="getApplicationMentee" resultType="com.skhuMentoring.dto.Mentee">
-        select * from tbl_AppilcationMentee where mentorId = #{mentorId}
+        select * from tbl_applicationMentee where mentorId = #{mentorId}
     </select>
 
     <!--마이페이지 멘티에게 받은요청-->
     <select id="getRequestMentee" resultType="com.skhuMentoring.dto.Mentee">
         select a.*, m.userId
-        from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
+        from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
         where m.userId = #{mentorId} and accept='대기중'
     </select>
 
     <!--마이페이지 멘티에게 받은 요청에서 멘티 상세보기-->
     <select id="getDetailMentee" resultType="com.skhuMentoring.dto.Mentee">
         select a.*, m.userId
-        from tbl_mentorboard m JOIN tbl_AppilcationMentor a on m.bno = a.bno
+        from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
         where a.bno = #{bno} AND a.menteeId = #{menteeId}
     </select>
 
+    <!--마이페이지 - > 멘토에게 보낸신청취소-->
+    <delete id="cancelApplication">
+        delete from tbl_applicationMentor where bno = #{bno} and menteeId = #{menteeId}
+    </delete>
 <!--    &lt;!&ndash;  마이페이지 내 정보 수정  &ndash;&gt;-->
 <!--    <update id="modifyUserInfo">-->
 <!--        UPDATE tbl_user-->

@@ -146,7 +146,10 @@ License: pixelarity.com/license
                                 <th  style="text-align: center; vertical-align : middle;">멘토링 인원</th>
 
                                 <th style="text-align: center; vertical-align : middle;" >상세보기</th>
+                                <th style="text-align: center; vertical-align : middle;" >멘티 정보</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료</th>
+                                <th style="text-align: center; vertical-align : middle;" >멘토링 시작일</th>
+                                <th style="text-align: center; vertical-align : middle;" >멘토링 종료일</th>
 
                             </tr>
 
@@ -154,8 +157,13 @@ License: pixelarity.com/license
                             <tr style="height: 70px;">
                                 <td style="vertical-align : middle">${Mentoring.subjectName}</td>
                                 <td style="vertical-align : middle">${Mentoring.personnel}</td>
-                                <td style="vertical-align : middle" class="area" ><a href="/detailMentuoring" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                <td style="vertical-align : middle">${Mentoring.recruiting}</td>
+                                <td style="vertical-align : middle" class="area" ><a href="/status/detailMentees?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 <td style="vertical-align : middle" class="area" ><a href="/endMentoring?subjectName=${Mentoring.subjectName}" class="button small">종료</a></td>
+                                <td style="vertical-align : middle" class="title">
+                                    <fmt:formatDate var="startDate" value="${Mentoring.startDate}" pattern="yyyy-MM-dd"/>
+                                        ${startDate}</td>
+                                <td style="vertical-align : middle" class="title">
                             </tr>
                             </c:forEach>
                         </table>
@@ -279,7 +287,7 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${requestMentee.department}</td>
                                     <td style="vertical-align : middle">${requestMentee.subjectName}</td>
                                     <td style="vertical-align : middle" class="area" ><a href="/status/detailMentee?bno=${requestMentee.bno}&menteeId=${requestMentee.menteeId}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
-                                    <td style="vertical-align : middle" class="area" ><a href="javascript:void(0)" onclick="del(${requestMentee.bno})" class="button small">수락</a>
+                                    <td style="vertical-align : middle" class="area" ><a href="javascript:void(0)" onclick="del('${requestMentee.bno}', '${requestMentee.menteeId}')" class="button small">수락</a>
                                         <a href="/requestRefusal?userStudentNum=${requestMentee.userStudentNum}" class="button small">거절</a></td>
                                 </tr>
                             </c:forEach>
@@ -306,7 +314,7 @@ License: pixelarity.com/license
                                 <tr style="height: 70px;">
                                     <td style="vertical-align : middle">${applicationMentor.subjectName}</td>
                                     <td style="vertical-align : middle">${applicationMentor.accept}</td>
-                                    <td style="vertical-align : middle"><a href="멘티등록링크" class="button small">신청취소</a></td>
+                                    <td style="vertical-align : middle"><a href="javascript:void(0)" onclick="cancelApplication(${applicationMentor.bno})" class="button small">신청취소</a></td>
                                     <td style="vertical-align : middle" class="area" ><a href="/status/detailMentor?bno=${applicationMentor.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 </tr>
                             </c:forEach>
@@ -370,10 +378,21 @@ License: pixelarity.com/license
 </script>
 
 <script type="text/javascript">
-    function del(bno) {
+    // 멘티가 보낸 요청 수락
+    function del(bno, menteeId) {
         if (confirm("수락하시겠습니까?") == true){    //확인
-            location.href="/status/menteeAccept?bno="+bno
+            window.location.href="/status/menteeAccept?bno="+bno+"&menteeId="+menteeId
         }else{   //취소
+            alert("취소되었습니다.")
+        }
+    }
+</script>
+<script>
+    // 멘토에게 보낸 신청 취소하기
+    function cancelApplication(bno){
+        if(confirm("신청을 취소하시겠습니까?") == true){
+            location.href="/myPage/cancelApplication?bno="+bno
+        }else{
             alert("취소되었습니다.")
         }
     }
