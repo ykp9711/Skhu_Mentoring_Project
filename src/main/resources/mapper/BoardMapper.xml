@@ -41,7 +41,9 @@
 
     <!--멘토 상태 모집 종료-->
     <update id="endMentorBoard">
-        update tbl_mentorboard set recruiting = '진행중' where bno = #{bno};
+        update tbl_mentorboard
+        set recruiting = '진행중' ,startDate = now()
+        where bno = #{bno};
     </update>
 
 
@@ -83,7 +85,7 @@
 
     <update id="menteeAcceptStatus">
         update tbl_applicationMentor
-        set accept = '수락됨'
+        set accept = '수락됨' , startDate = now()
         where bno = #{bno} and menteeId = #{menteeId}
     </update>
 

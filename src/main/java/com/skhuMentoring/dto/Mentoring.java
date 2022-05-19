@@ -13,4 +13,6 @@ public class Mentoring {
     private String personnel;
     private Long bno;
     private String recruiting;
+    private Date startDate;
+    private Date endDate;
 }

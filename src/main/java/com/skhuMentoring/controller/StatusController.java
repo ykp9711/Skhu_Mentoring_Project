@@ -53,7 +53,7 @@ public class StatusController {
     @Transactional
     public String endMentorBoard(Long bno) {
         mentoringBoardMapper.endMentorBoard(bno); // recruiting 진행중으로 변경
-        mentoringBoardMapper.endApplicationMentor(bno); // 멘토링 모집 종료시 tbl_applicationMentor 테이블의 accept를 진행중으로 변경
+        mentoringBoardMapper.endApplicationMentor(bno); // 멘토링 모집 종료시 tbl_applicationMentor 테이블의 accept를 진행중으로 변경 하고 startDate 값 입력
         return "/myPage/myPage?bno="+bno;
     }
 
