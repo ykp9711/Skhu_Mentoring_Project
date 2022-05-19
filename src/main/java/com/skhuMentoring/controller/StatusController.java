@@ -105,9 +105,9 @@ public class StatusController {
 
     @GetMapping("/menteeAccept") // 멘티가 보낸 요청 수락
     @Transactional
-    public String menteeAceept(Long bno){
+    public String menteeAceept(Long bno, String menteeId){
         mentoringBoardMapper.menteeAccept(bno);
-        mentoringBoardMapper.menteeAcceptStatus(bno);
+        mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
         return "/status/mentorStatus";
     }
 

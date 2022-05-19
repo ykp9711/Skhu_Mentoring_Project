@@ -84,7 +84,7 @@
     <update id="menteeAcceptStatus">
         update tbl_applicationMentor
         set accept = '수락됨'
-        where bno = #{bno}
+        where bno = #{bno} and menteeId = #{menteeId}
     </update>
 
     <update id="endApplicationMentor">
