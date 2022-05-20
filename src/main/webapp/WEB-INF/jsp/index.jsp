@@ -143,6 +143,7 @@ License: pixelarity.com/license
             </div>
         </div><br><br><br><br><br><br><br><br>
 
+        <!--slide-->
         <div class="content secondary">
             <div class="slick-slider">
                 <c:forEach var="mentor" items="${mentor}">
@@ -285,7 +286,7 @@ License: pixelarity.com/license
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 4800,
         pauseOnHover:true,
         arrows: false
         // dots: true
