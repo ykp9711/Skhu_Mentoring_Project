@@ -38,7 +38,9 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String main() {
+    public String main(Model model) {
+        model.addAttribute("mentor", mentoringBoardMapper.sliderMentor());
+        model.addAttribute("mentee", mentoringBoardMapper.sliderMentee());
         return "index";
     }
 
@@ -79,7 +81,7 @@ public class HomeController {
         }
         session.setAttribute("sessionId", userMapper.getId(map.get("userId"))); // 세션값 등록
         model.addAttribute("sessionId", session.getAttribute("sessionId"));
-        return "index";
+        return "redirect:/";
     } // end of PostMapping("login")
 
 
