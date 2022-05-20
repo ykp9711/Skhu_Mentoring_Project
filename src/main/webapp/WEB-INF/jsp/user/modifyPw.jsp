@@ -92,6 +92,16 @@ License: pixelarity.com/license
         } else{
             $("#msg").text("비밀번호가 적합합니다.");
         }
+
+        // 비밀번호 일치 여부
+        if(userPw != conPw){
+            $("#msg").text("비밀번호가 다릅니다.");
+            $("#modify_btn").attr('disabled', true);
+
+        } else if(userPw == conPw){
+            $("#modify_btn").attr('disabled', false);
+            $("#msg").text(" ");
+        }
     })
 
     //비밀번호와 비밀번호 확인 일치 여부
@@ -101,6 +111,7 @@ License: pixelarity.com/license
 
         if(userPw != conPw){
             $("#msg").text("비밀번호가 다릅니다.");
+            $("#modify_btn").attr('disabled', true);
 
         } else {
             $("#modify_btn").attr('disabled', false);
