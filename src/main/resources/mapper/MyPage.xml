@@ -24,9 +24,6 @@
         select bno,subjectName, personnel, recruiting, realStartDate, realEndDate from tbl_mentorBoard where userId = #{userId} and recruiting = '진행중' or userId = #{userId} and recruiting = '종료됨'
     </select>
 
-
-
-
     <!--멘토링 종료-->
     <update id="endMentoring">
         update tbl_mentorBoard
@@ -52,7 +49,7 @@
 
     <!--마이페이지 멘토에게 보낸요청-->
     <select id="getApplicationMentor" resultType="com.skhuMentoring.dto.Mentee">
-        select * from tbl_applicationMentor where menteeId = #{menteeId} and accept ='대기중' or menteeId = #{menteeId} and accept ='수락됨'
+        select * from tbl_applicationMentor where menteeId = #{menteeId} and accept ='대기중' or menteeId = #{menteeId} and accept ='수락됨' or menteeId = #{menteeId} and accept ='거절됨'
     </select>
 
     <select id="getApplicationMentee" resultType="com.skhuMentoring.dto.Mentee">
@@ -89,6 +86,17 @@
     <select id="getMyMenteeStatus" resultType="com.skhuMentoring.dto.Mentoring">
         select m.bno, m.userId, m.recruiting, m.personnel, m.introduce , m.userName, m.realStartDate, m.realEndDate,m.subjectName, a.menteeId
         from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
-        where menteeId = #{menteeId}
+        where menteeId = #{menteeId} and recruiting = '진행중' or menteeId = #{menteeId} and recruiting = '종료됨'
+    </select>
+
+    <!-- 거절 이유 작성   -->
+    <update id="refusalReason">
+        update tbl_applicationMentor
+        set refusalReason = #{refusalReason} , accept = '거절됨'
+        where bno = #{bno} and menteeId = #{menteeId}
+    </update>
+    <!--거절 사유 확인-->
+    <select id="showRefusalReason" resultType="com.skhuMentoring.dto.Mentoring">
+        select * from tbl_applicationMentor where bno = #{bno} and menteeId = #{menteeId}
     </select>
 </mapper>

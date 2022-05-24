@@ -16,4 +16,5 @@ public class Mentoring {
     private String recruiting;
     private Date realStartDate; // 멘토링 시작일
     private Date realEndDate; // 멘토링 종료일
+    private String refusalReason; // 멘토링 신청 거절 사유
 }

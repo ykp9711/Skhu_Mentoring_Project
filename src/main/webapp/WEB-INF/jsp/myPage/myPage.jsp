@@ -237,7 +237,7 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle">${requestMentee.subjectName}</td>
                                     <td style="vertical-align : middle" class="area" ><a href="/status/detailMentee?bno=${requestMentee.bno}&menteeId=${requestMentee.menteeId}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                     <td style="vertical-align : middle" class="area" ><a href="javascript:void(0)" onclick="del('${requestMentee.bno}', '${requestMentee.menteeId}')" class="button small">수락</a>
-                                        <a href="/requestRefusal?userStudentNum=${requestMentee.userStudentNum}" class="button small">거절</a></td>
+                                        <a href="/myPage/applicationRefusal?bno=${requestMentee.bno}&menteeId=${requestMentee.menteeId}" onclick="window.open(this.href,'Detail','width=600px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">거절</a></td></td>
                                 </tr>
                             </c:forEach>
 
@@ -262,8 +262,28 @@ License: pixelarity.com/license
                             <c:forEach var="applicationMentor" items="${applicationMentor}">
                                 <tr style="height: 70px;">
                                     <td style="vertical-align : middle">${applicationMentor.subjectName}</td>
-                                    <td style="vertical-align : middle">${applicationMentor.accept}</td>
-                                    <td style="vertical-align : middle"><a href="javascript:void(0)" onclick="cancelApplication(${applicationMentor.bno})" class="button small">신청취소</a></td>
+                                    <td style="vertical-align : middle">
+                                        <c:choose>
+                                            <c:when test="${applicationMentor.accept eq '거절됨'}">
+                                                <a href="/myPage/showRefusalReason?bno=${applicationMentor.bno}&menteeId=${applicationMentor.menteeId}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">거절 사유</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${applicationMentor.accept}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td style="vertical-align : middle">
+                                    <c:choose>
+                                    <c:when test="${applicationMentor.accept eq '거절됨'}">
+                                    <a href="javascript:void(0)" onclick="cancelApplication(${applicationMentor.bno})" class="button small disabled">거절됨</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="javascript:void(0)" onclick="cancelApplication(${applicationMentor.bno})" class="button small">신청취소</a>
+                                    </c:otherwise>
+                                        </c:choose>
+                                    </td>
+
+
                                     <td style="vertical-align : middle" class="area" ><a href="/status/detailMentor?bno=${applicationMentor.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 </tr>
                             </c:forEach>
@@ -348,9 +368,9 @@ License: pixelarity.com/license
 </script>
 <script>
     // 진행중인 멘토링 종료
-    function endMentoring(bno){
+    function endMentoring(bno, menteeId){
         if(confirm("멘토링을 종료하시겠습니까?") == true){
-            location.href="/myPage/endMentoring?bno="+bno
+            location.href="/myPage/endMentoring?bno="+bno+"&menteeId=" + menteeId
         }else{
             alert("취소되었습니다.")
         }

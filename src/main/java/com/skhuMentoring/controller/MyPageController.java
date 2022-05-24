@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 
 @RequiredArgsConstructor
@@ -59,12 +60,29 @@ public class MyPageController {
         return "redirect:/myPage/myPage";
     }
     // 마이페이지 > 멘티에게 받은 요청 > 거절하기
-    @GetMapping("/requestRefusal")
-    public String requestRefusal(Long bno, Model model, HttpServletRequest req, HttpServletResponse resp){
-        log.info(bno);
-        myPageMapper.requestRefusal(bno);
-        String referer = req.getHeader("Referer");
-        return "redirect:"+ referer;
+    @GetMapping("/applicationRefusal") // 거절 사유 작성 창
+    public String requestRefusal(Long bno, String menteeId, Model model){
+        model.addAttribute("bno",bno);
+        model.addAttribute("menteeId", menteeId);
+        return "/myPage/applicationRefusal";
+    }
+    @GetMapping("/showRefusalReason") // 거절 사유 작성 창
+    public String showRefusalReason(Long bno, String menteeId, Model model){
+        model.addAttribute("refusalReason", myPageMapper.showRefusalReason(bno,menteeId));
+        return "/myPage/showRefusalReason";
+    }
+
+    @PostMapping("/applicationRefusal") // 거절 사유 작성
+    public String requestRefusal(Long bno,String menteeId ,String refusalReason, HttpServletResponse resp) throws Exception{
+        myPageMapper.refusalReason(bno, menteeId, refusalReason);
+        resp.setContentType("text/html; charset=utf-8");
+        PrintWriter out = resp.getWriter();
+        out.println("<script>");
+        out.println("alert('거절되었습니다.')");
+        out.println("window.close()");
+        out.println("</script>");
+        out.close();
+        return null;
     }
     // 마이페이지 > 멘토에게 보낸 요청 > 취소하기
     @GetMapping("/cancelApplication")

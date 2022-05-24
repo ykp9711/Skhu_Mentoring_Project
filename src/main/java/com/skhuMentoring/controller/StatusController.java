@@ -119,7 +119,7 @@ public class StatusController {
     public String menteeAceept(Long bno, String menteeId){
         mentoringBoardMapper.menteeAccept(bno);
         mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
-        return "/status/mentorStatus";
+        return "redirect:/myPage/myPage"; // 멘토 수락 후 종료를 눌러야 마이페이지->멘토현황에 나온다
     }
 
     @GetMapping("/detailMentees") // 멘토목록에서 신청한 멘티 목록 보여줌

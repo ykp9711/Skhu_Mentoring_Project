@@ -21,16 +21,6 @@ public interface MyPageMapper {
     //멘토링종료
     public void endMentoring(Long bno);
 
-    //멘토링수락
-    public boolean requestAccept(Long bno);
-    //멘토링거절
-    public void requestRefusal(Long bno);
-
-    //멘토링수락-데이터넣기
-    public void requestAcceptData(Mentee mentee);
-
-    public int whoIsMentee(Long bno);
-
     //멘토링 현황
     public List<Mentoring> getMentoring();
     //페이징 하면 사용
@@ -52,4 +42,8 @@ public interface MyPageMapper {
     List<Mentoring> getMyMentoring(String userId); // 마이페이지 - > 멘토현황
 
     List<Mentoring> getMyMenteeStatus(String userId); // 마이페이지 - > 멘티현황
+
+    void refusalReason(Long bno, String menteeId, String refusalReason); // 거절 이유 작성
+
+    Mentoring showRefusalReason(Long bno, String menteeId); // 거절 이유 확인
 }
