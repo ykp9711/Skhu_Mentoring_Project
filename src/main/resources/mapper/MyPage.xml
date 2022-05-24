@@ -9,10 +9,7 @@
     <select id="getMenteeStatus" resultType="com.skhuMentoring.dto.Mentee">
         select * from tbl_menteeBoard;
     </select>
-    <!-- 마이페이지 멘토현황 뿌리기 -->
-    <select id="getMenteeMyStatus" resultType="com.skhuMentoring.dto.Mentee">
-        select * from tbl_menteeBoard where userId = #{userId};
-    </select>
+
     <!-- 마이페이지 멘티현황 뿌리기 -->
     <select id="getMentorMyStatus" resultType="com.skhuMentoring.dto.Mentor">
         select * from tbl_mentorBoard where userId = #{userId};
@@ -87,4 +84,11 @@
         SET userPw = #{userPw}, userName = #{userName}, department = #{department}, userStudentNum = #{userStudentNum}, userEmail = #{userEmail}, userPhoneNum = #{userPhoneNum}
         WHERE userId = #{userId};
     </update>
+
+    <!--마이페이지 -> 멘티현황 -->
+    <select id="getMyMenteeStatus" resultType="com.skhuMentoring.dto.Mentoring">
+        select m.bno, m.userId, m.recruiting, m.personnel, m.introduce , m.userName, m.realStartDate, m.realEndDate,m.subjectName, a.menteeId
+        from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
+        where menteeId = #{menteeId}
+    </select>
 </mapper>

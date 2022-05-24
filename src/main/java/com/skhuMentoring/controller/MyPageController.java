@@ -37,11 +37,11 @@ public class MyPageController {
         model.addAttribute("user", userMapper.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         String userId = (String) session.getAttribute("sessionId");
         model.addAttribute("list", myPageMapper.getMentorMyStatus(userMapper.getId(userId))); // 멘토정보 불러오기
-        model.addAttribute("list2", myPageMapper.getMenteeMyStatus(userMapper.getId(userId))); //멘티정보 불러오기
         model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
         model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
         model.addAttribute("departments", mentoringBoardMapper.getDepartment());
-        model.addAttribute("Mentoring", myPageMapper.getMyMentoring(userId));
+        model.addAttribute("Mentoring", myPageMapper.getMyMentoring(userId)); // (마이페이지 -> 멘토현황)
+        model.addAttribute("myMenteeStatus", myPageMapper.getMyMenteeStatus(userId)); // 마이페이지 - > 멘티현황
         return "/myPage/myPage";
     }
     // 마이페이지 > 멘토 현황 > 상세보기

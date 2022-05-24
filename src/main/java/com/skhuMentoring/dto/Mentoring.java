@@ -8,6 +8,7 @@ import java.util.Date;
 public class Mentoring {
     private Long mno;
     private String menteeId;
+    private String userName;
     private String subjectName;
     private Date regDate;
     private Long personnel;

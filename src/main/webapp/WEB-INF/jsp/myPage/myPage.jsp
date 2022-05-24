@@ -145,7 +145,7 @@ License: pixelarity.com/license
                                 <th  style="text-align: center; vertical-align : middle;">멘토링 과목</th>
                                 <th  style="text-align: center; vertical-align : middle;">멘토링 인원</th>
 
-                                <th style="text-align: center; vertical-align : middle;" >상세보기</th>
+                                <th style="text-align: center; vertical-align : middle;" >진행현황</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘티 정보</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 시작일</th>
@@ -185,92 +185,34 @@ License: pixelarity.com/license
                     <div class="table-wrapper">
                         <table style="border: 1px;  text-align: center;  ">
                             <tr class="tHead" >
-                                <th style="text-align: center; vertical-align : middle;" >No</th>
                                 <th  style="text-align: center; vertical-align : middle;">멘토링 과목</th>
                                 <th style="text-align: center; vertical-align : middle;" class="mentorNumber">멘토</th>
-                                <th style="text-align: center; vertical-align : middle;" class="department">멘토링 시작 일</th>
+                                <th style="text-align: center; vertical-align : middle;" class="mentorNumber">멘토링 상세보기</th>
+                                <th style="text-align: center; vertical-align : middle;" class="department">진행현황</th>
+                                <th style="text-align: center; vertical-align : middle;" class="department">멘토링 시작일</th>
+                                <th style="text-align: center; vertical-align : middle;" class="department">멘토링 종료일</th>
 
 
                             </tr>
-                            <c:forEach var="list2" items="${list2}">
+                            <c:forEach var="mentee" items="${myMenteeStatus}">
                                 <tr style="height: 70px;">
-                                    <td style="vertical-align : middle">${list2.bno}</td>
-                                    <td style="vertical-align : middle">${list2.subjectName}</td>
-                                    <td style="vertical-align: middle;" >${list2.mentorWho}</td>
+                                    <td style="vertical-align : middle">${mentee.subjectName}</td>
+                                    <td style="vertical-align : middle">${mentee.userName}</td>
+                                    <td style="vertical-align : middle"><a href="/status/detailMentor?bno=${mentee.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                                    <td style="vertical-align: middle;" >${mentee.recruiting}</td>
                                     <td style="vertical-align : middle" class="title">
-                                        <fmt:formatDate var="regDate" value="${list2.startDate}" pattern="yyyy-MM-dd"/>
-                                            ${regDate}</td>
+                                        <fmt:formatDate var="realStartDate" value="${mentee.realStartDate}" pattern="yyyy-MM-dd"/>
+                                            ${realStartDate}</td>
+                                    <td style="vertical-align : middle" class="title">
+                                        <fmt:formatDate var="realEndDate" value="${mentee.realEndDate}" pattern="yyyy-MM-dd"/>
+                                            ${realEndDate}</td>
                                 </tr>
                             </c:forEach>
                         </table>
                     </div>
                 </div>
             </li>
-            <%--<li>
-                <h3><span style="font-size: 0.8em;">종료된 멘토</span></h3>
-                <div class="spotlight">
-                    <div class="table-wrapper">
-                        <table style="border: 1px;  text-align: center;  ">
-                            <tr class="tHead" >
-                                <th style="text-align: center; vertical-align : middle;" >No</th>
-                                <th  style="text-align: center; vertical-align : middle;">멘토링 과목</th>
-                                <th style="text-align: center; vertical-align : middle;" class="mentorNumber">멘토링 시작 일</th>
-                                <th style="text-align: center; vertical-align : middle;" class="department">멘토링 종료 일</th>
 
-
-                            </tr>
-
-                            <c:forEach var="list" items="${list}">
-
-                                <tr style="height: 70px;">
-                                    <td style="vertical-align : middle">${list.bno}</td>
-                                    <td style="vertical-align : middle">${list.subjectName}</td>
-                                    <td style="vertical-align : middle" class="title">
-                                        <fmt:formatDate var="regDate" value="${list.startDate}" pattern="yyyy-MM-dd"/>
-                                            ${regDate}</td>
-                                    <td style="vertical-align : middle" class="title">
-                                        <fmt:formatDate var="regDate" value="${list.endDate}" pattern="yyyy-MM-dd"/>
-                                            ${regDate}</td>
-                                </tr>
-
-                            </c:forEach>
-
-                        </table>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <h3><span style="font-size: 0.8em;">종료된 멘티</span></h3>
-                <div class="spotlight">
-                    <div class="table-wrapper">
-                        <table style="border: 1px;  text-align: center;  ">
-                            <tr class="tHead" >
-                                <th style="text-align: center; vertical-align : middle;" >No</th>
-                                <th  style="text-align: center; vertical-align : middle;">멘토링 과목</th>
-                                <th  style="text-align: center; vertical-align : middle;">멘토</th>
-                                <th style="text-align: center; vertical-align : middle;" class="mentorNumber">멘토링 시작 일</th>
-                                <th style="text-align: center; vertical-align : middle;" class="department">멘토링 종료 일</th>
-
-
-                            </tr>
-
-                            <c:forEach var="list2" items="${list2}">
-                                <tr style="height: 70px;">
-                                    <td style="vertical-align : middle">${list2.bno}</td>
-                                    <td style="vertical-align : middle">${list2.subjectName}</td>
-                                    <td style="vertical-align: middle;" >${list2.mentorWho}</td>
-                                    <td style="vertical-align : middle" class="title">
-                                        <fmt:formatDate var="regDate" value="${list2.startDate}" pattern="yyyy-MM-dd"/>
-                                            ${regDate}</td>
-                                    <td style="vertical-align : middle" class="title">
-                                        <fmt:formatDate var="regDate" value="${list2.endDate}" pattern="yyyy-MM-dd"/>
-                                            ${regDate}</td>
-                                </tr>
-                            </c:forEach>
-                        </table>
-                    </div>
-                </div>
-            </li>--%>
             <li>
                 <h3><span style="font-size: 0.8em;" >멘티에게 받은 요청</span></h3>
                 <div class="spotlight">

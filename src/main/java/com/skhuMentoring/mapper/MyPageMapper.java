@@ -15,8 +15,7 @@ public interface MyPageMapper {
     public List<Mentor> getMentorStatus();
     //멘티현황
     public List<Mentee> getMenteeStatus();
-    //내 멘티 현황
-    public List<Mentee> getMenteeMyStatus(String userId);
+
     //내 멘토 현황
     public List<Mentor> getMentorMyStatus(String userId);
     //멘토링종료
@@ -50,5 +49,7 @@ public interface MyPageMapper {
     //마이페이지 내정보 수정
     void modifyUserInfo(User user);
 
-    List<Mentoring> getMyMentoring(String userId);
+    List<Mentoring> getMyMentoring(String userId); // 마이페이지 - > 멘토현황
+
+    List<Mentoring> getMyMenteeStatus(String userId); // 마이페이지 - > 멘티현황
 }
