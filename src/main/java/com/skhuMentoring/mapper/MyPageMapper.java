@@ -20,7 +20,7 @@ public interface MyPageMapper {
     //내 멘토 현황
     public List<Mentor> getMentorMyStatus(String userId);
     //멘토링종료
-    public void endMentoring(String subjectName);
+    public void endMentoring(Long bno);
 
     //멘토링수락
     public boolean requestAccept(Long bno);
@@ -50,5 +50,5 @@ public interface MyPageMapper {
     //마이페이지 내정보 수정
     void modifyUserInfo(User user);
 
-    List<Mentoring> getMyMentor(String userId);
+    List<Mentoring> getMyMentoring(String userId);
 }

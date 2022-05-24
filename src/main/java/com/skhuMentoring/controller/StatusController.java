@@ -51,10 +51,21 @@ public class StatusController {
 
     @GetMapping("/endMentorBoard") // 멘토 게시글 모집 종료
     @Transactional
-    public String endMentorBoard(Long bno) {
-        mentoringBoardMapper.endMentorBoard(bno); // recruiting 진행중으로 변경
-        mentoringBoardMapper.endApplicationMentor(bno); // 멘토링 모집 종료시 tbl_applicationMentor 테이블의 accept를 진행중으로 변경 하고 startDate 값 입력
-        return "/myPage/myPage?bno="+bno;
+    public String endMentorBoard(Long bno ,HttpServletResponse resp) throws Exception {
+        if(mentoringBoardMapper.getPersonnel(bno) == 0){
+            resp.setContentType("text/html; charset=utf-8");
+            PrintWriter out = resp.getWriter();
+            out.println("<script>");
+            out.println("alert('해당 멘토링 정원이 0명일 경우에는 모집종료가 불가능합니다.')");
+            out.println("location.href='/status/mentorStatus'");
+            out.println("</script>");
+            out.close();
+            return null;
+        }else {
+            mentoringBoardMapper.endMentorBoard(bno); // recruiting 진행중으로 변경
+            mentoringBoardMapper.endApplicationMentor(bno); // 멘토링 모집 종료시 tbl_applicationMentor 테이블의 accept를 진행중으로 변경 하고 startDate 값 입력
+            return "redirect:/myPage/myPage?bno=" + bno;
+        }
     }
 
     @GetMapping("/deleteMenteeBoard") // 멘티 게시글 삭제

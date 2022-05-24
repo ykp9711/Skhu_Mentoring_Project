@@ -22,21 +22,20 @@
         select * from tbl_mentoring;
     </select>
 
-    <!--모집 종료 시 마이파이제 멘토 현황에서 멘토 상태 확인-->
-    <select id="getMyMentor" resultType="com.skhuMentoring.dto.Mentoring">
-
-        select a.*, m.userId, m.recruiting, m.personnel
-        from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
-        where userId=#{userId} and recruiting='진행중';
+    <!--모집 종료 시 마이페이지 멘토 현황에서 멘토 상태 확인-->
+    <select id="getMyMentoring" resultType="com.skhuMentoring.dto.Mentoring">
+        select bno,subjectName, personnel, recruiting, realStartDate, realEndDate from tbl_mentorBoard where userId = #{userId} and recruiting = '진행중' or userId = #{userId} and recruiting = '종료됨'
     </select>
 
 
 
 
     <!--멘토링 종료-->
-    <delete id="endMentoring">
-        delete from tbl_mentorBoard where subjectName =#{subjectName}
-    </delete>
+    <update id="endMentoring">
+        update tbl_mentorBoard
+        set recruiting = '종료됨' , realEndDate = now()
+        where bno = #{bno}
+    </update>
 
     <delete id="requestAccept">
         delete from tbl_menteeBoard where bno =#{bno}
@@ -81,13 +80,6 @@
     <delete id="cancelApplication">
         delete from tbl_applicationMentor where bno = #{bno} and menteeId = #{menteeId}
     </delete>
-<!--    &lt;!&ndash;  마이페이지 내 정보 수정  &ndash;&gt;-->
-<!--    <update id="modifyUserInfo">-->
-<!--        UPDATE tbl_user-->
-<!--        SET userPw = #{userPw}, userName = #{userName}, department = #{department}, userStudentNum = #{userStudentNum},-->
-<!--                            userEmail = #{userEmail}, userPhoneNum = #{userPhoneNum}-->
-<!--        WHERE userId = #{userId}-->
-<!--     </update>-->
 
     <!-- 마이페이지 내 정보 수정 -->
     <update id="modifyUserInfo">
@@ -95,50 +87,4 @@
         SET userPw = #{userPw}, userName = #{userName}, department = #{department}, userStudentNum = #{userStudentNum}, userEmail = #{userEmail}, userPhoneNum = #{userPhoneNum}
         WHERE userId = #{userId};
     </update>
-
-    <!--페이징하면 사용-->
-    <!--<sql id="criteria">
-        <if test="type != null and keyword != null">
-            <trim prefix="(" suffix=") AND" prefixOverrides="OR">
-                &lt;!&ndash; 전달받은 객체(Criteria)에서 collection에 적당한 typeArr의 getter()를 mapping한다. &ndash;&gt;
-                &lt;!&ndash; 즉, Criteria 필드에 getTypeArr()을 사용하여 반복횟수와 값을 결정한다. &ndash;&gt;
-                <foreach item="type" collection="typeArr">
-                    <trim prefix="OR">
-                        <choose>
-                            <when test="type == 'T'.toString()">
-                                (ACADEMYTITLE LIKE '%' || #{keyword} || '%')
-                            </when>
-                            <when test="type == 'C'.toString()">
-                                (ACADEMYKIND LIKE '%' || #{keyword} || '%')
-                            </when>
-                            <when test="type == 'W'.toString()">
-                                (ACADEMYAREA LIKE '%' || #{keyword} || '%')
-                            </when>
-                        </choose>
-                    </trim>
-                </foreach>
-            </trim>
-        </if>
-    </sql>
-
-    <select id="getList" resultType="com.skhuMentoring.dto.Mentor">
-        SELECT  mentorNum, mentoringSubject, mentoringMentees, mentoringStartDate, mentoringDetail, mentoringEnd
-        FROM
-        (SELECT  ROWNUM mentorNum, mentoringSubject, mentoringMentees, mentoringStartDate, mentoringDetail, mentoringEnd
-        FROM TBL_MENTOR WHERE
-        <include refid="criteria"></include>
-        <![CDATA[
-      ROWNUM <= #{amount} * #{pageNum})
-      WHERE RN >= (#{pageNum} * #{amount}) - 9
-      ]]>
-    </select>
-
-    <select id="getTotal" resultType="_int">
-        SELECT COUNT(*) FROM TBL_MENTOR WHERE
-        <include refid="criteria"></include>
-        <![CDATA[
-      ANO > 0
-      ]]>
-        &lt;!&ndash; 뒤에 AND가 오니깐 무조건 TRUE인 조건을 하나 붙혀서 오류를 해결한다. &ndash;&gt;
-    </select>-->
 </mapper>

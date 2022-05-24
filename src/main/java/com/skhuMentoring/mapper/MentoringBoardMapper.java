@@ -55,4 +55,6 @@ public interface MentoringBoardMapper {
     List<Mentor> sliderMentor(); // bno 내림차순으로 4개의 멘토 정보 가져오기
 
     List<Mentor> sliderMentee(); // bno 내림차순으로 4개의 멘티 정보 가져오기
+
+    Long getPersonnel(Long bno); // 해당 멘토링 현재 신청 인원 조회
 }

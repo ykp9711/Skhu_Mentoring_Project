@@ -10,9 +10,9 @@ public class Mentoring {
     private String menteeId;
     private String subjectName;
     private Date regDate;
-    private String personnel;
+    private Long personnel;
     private Long bno;
     private String recruiting;
-    private Date startDate;
-    private Date endDate;
+    private Date realStartDate; // 멘토링 시작일
+    private Date realEndDate; // 멘토링 종료일
 }

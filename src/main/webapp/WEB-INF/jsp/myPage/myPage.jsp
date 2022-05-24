@@ -159,11 +159,18 @@ License: pixelarity.com/license
                                 <td style="vertical-align : middle">${Mentoring.personnel}</td>
                                 <td style="vertical-align : middle">${Mentoring.recruiting}</td>
                                 <td style="vertical-align : middle" class="area" ><a href="/status/detailMentees?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
-                                <td style="vertical-align : middle" class="area" ><a href="/endMentoring?subjectName=${Mentoring.subjectName}" class="button small">종료</a></td>
+                                <c:if test="${Mentoring.recruiting == '진행중'}">
+                                <td style="vertical-align : middle" class="area" ><a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a></td>
+                                </c:if>
+                                <c:if test="${Mentoring.recruiting == '종료됨'}">
+                                    <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">종료되었습니다.</a></td>
+                                </c:if>
                                 <td style="vertical-align : middle" class="title">
-                                    <fmt:formatDate var="startDate" value="${Mentoring.startDate}" pattern="yyyy-MM-dd"/>
-                                        ${startDate}</td>
+                                    <fmt:formatDate var="realStartDate" value="${Mentoring.realStartDate}" pattern="yyyy-MM-dd"/>
+                                        ${realStartDate}</td>
                                 <td style="vertical-align : middle" class="title">
+                                    <fmt:formatDate var="realEndDate" value="${Mentoring.realEndDate}" pattern="yyyy-MM-dd"/>
+                                        ${realEndDate}</td>
                             </tr>
                             </c:forEach>
                         </table>
@@ -392,6 +399,16 @@ License: pixelarity.com/license
     function cancelApplication(bno){
         if(confirm("신청을 취소하시겠습니까?") == true){
             location.href="/myPage/cancelApplication?bno="+bno
+        }else{
+            alert("취소되었습니다.")
+        }
+    }
+</script>
+<script>
+    // 진행중인 멘토링 종료
+    function endMentoring(bno){
+        if(confirm("멘토링을 종료하시겠습니까?") == true){
+            location.href="/myPage/endMentoring?bno="+bno
         }else{
             alert("취소되었습니다.")
         }

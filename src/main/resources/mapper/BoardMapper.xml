@@ -42,7 +42,7 @@
     <!--멘토 상태 모집 종료-->
     <update id="endMentorBoard">
         update tbl_mentorboard
-        set recruiting = '진행중' ,startDate = now()
+        set recruiting = '진행중' ,realStartDate = now()
         where bno = #{bno};
     </update>
 
@@ -97,7 +97,7 @@
 
     <select id="getDetailMentees" resultType="com.skhuMentoring.dto.Mentee">
         select * from tbl_applicationmentor
-        where bno=#{bno} and accept='수락됨';
+        where bno=#{bno} and accept='진행중' or bno=#{bno} and accept='수락됨'
     </select>
 
     <select id="sliderMentor" resultType="com.skhuMentoring.dto.Mentor">
@@ -106,5 +106,9 @@
 
     <select id="sliderMentee" resultType="com.skhuMentoring.dto.Mentee">
         SELECT * FROM tbl_menteeboard ORDER BY bno desc limit 4
+    </select>
+
+    <select id="getPersonnel" resultType="long">
+        select personnel from tbl_mentorBoard where bno = #{bno}
     </select>
 </mapper>

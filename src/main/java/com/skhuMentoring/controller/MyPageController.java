@@ -35,15 +35,13 @@ public class MyPageController {
     @GetMapping("/myPage")
     public String myPageGo(@ModelAttribute Mentor mentor, Model model, HttpSession session, Mentee mentee, Long bno) {
         model.addAttribute("user", userMapper.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
-        log.info(session.getAttribute("sessionId"));
         String userId = (String) session.getAttribute("sessionId");
         model.addAttribute("list", myPageMapper.getMentorMyStatus(userMapper.getId(userId))); // 멘토정보 불러오기
         model.addAttribute("list2", myPageMapper.getMenteeMyStatus(userMapper.getId(userId))); //멘티정보 불러오기
         model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
         model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
         model.addAttribute("departments", mentoringBoardMapper.getDepartment());
-        log.info(userId);
-        model.addAttribute("Mentoring", myPageMapper.getMyMentor(userId));
+        model.addAttribute("Mentoring", myPageMapper.getMyMentoring(userId));
         return "/myPage/myPage";
     }
     // 마이페이지 > 멘토 현황 > 상세보기
@@ -53,6 +51,12 @@ public class MyPageController {
         model.addAttribute("list2",myPageMapper.getMenteeStatus());
         model.addAttribute("Mentoring",myPageMapper.getMentoring());
         return "/myPage/detailMentoring";
+    }
+    // 마이페이지 > 멘토 현황 > 멘토링 종료
+    @GetMapping("/endMentoring")
+    public String endMentoring(Long bno){
+        myPageMapper.endMentoring(bno);
+        return "redirect:/myPage/myPage";
     }
     // 마이페이지 > 멘티에게 받은 요청 > 거절하기
     @GetMapping("/requestRefusal")
@@ -67,7 +71,7 @@ public class MyPageController {
     public String cancelApplication(Long bno, HttpSession session){
         myPageMapper.cancelApplication(bno, (String)session.getAttribute("sessionId"));
 
-        return "/myPage/myPage";
+        return "redirect:/myPage/myPage";
     }
 
     //마이페이지 > 내 정보 수정
@@ -77,4 +81,6 @@ public class MyPageController {
         log.info(user);
         return "redirect:/myPage/myPage";
     }
+
+
 }
