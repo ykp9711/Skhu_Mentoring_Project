@@ -41,7 +41,7 @@
         </section>
         <section>
             <h3>문의 전화</h3>
-            <p><a href="#" class="major">(000) 000-0000</a></p>
+            <p><a href="#" class="major">010-8563-1665</a></p>
         </section>
     </div>
     <div class="copyright">
