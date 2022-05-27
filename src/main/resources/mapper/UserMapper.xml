@@ -15,6 +15,10 @@
         SELECT department FROM TBL_DEPARTMENT
     </select>
 
+    <!--회원탈퇴처리를 위한 회원삭제-->
+    <delete id="deleteUser">
+        delete from tbl_user where userId = #{userId}
+    </delete>
 
     <!--LOGIN-->
     <select id="login" resultType="_int">
