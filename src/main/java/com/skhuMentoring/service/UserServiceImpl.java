@@ -28,4 +28,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.findId(userEmail);
     }
 
+    // 회원탈퇴
+    @Override
+    public void deleteUser(String userId) throws Exception {
+        userMapper.deleteUser(userId);
+    }
+
 }

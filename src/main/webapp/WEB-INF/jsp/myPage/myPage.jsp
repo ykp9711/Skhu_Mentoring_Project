@@ -61,6 +61,11 @@ License: pixelarity.com/license
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <script language="javascript">
+        function showPopup() {
+            window.open("deleteUser", "회원탈퇴",	"width=400, height=400, left=100, top=50");
+        }
+    </script>
 </head>
 <body class="is-preload">
 
@@ -127,6 +132,7 @@ License: pixelarity.com/license
                                 <br><br>
                                 <div class="col-7" style="text-align: center;">
                                     <button type="submit" class="button" id="btn"> 수정하기 </button>
+                                    <input type="button" value="회원탈퇴" onclick="showPopup();"/>
                                 </div>
                                 <!-- Break -->
 

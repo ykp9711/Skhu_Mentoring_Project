@@ -10,5 +10,6 @@ public interface UserService {
 
    public User login(Map<String, String > map) throws Exception;
    public List<String> findId(String userEmail) throws Exception;
+   public void deleteUser(String userId) throws Exception; // 회원탈퇴
 
 }
