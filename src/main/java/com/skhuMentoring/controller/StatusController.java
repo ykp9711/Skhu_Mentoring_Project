@@ -34,9 +34,10 @@ public class StatusController {
     private final MailService mailService;
     private final MentoringBoardService service;
 
-    @GetMapping("/menteeStatus")
+    @GetMapping("/menteeStatus") //멘티 목록
     public String menteeStatus(Model model, Criteria cri) {
-        model.addAttribute("list", myPageMapper.getMenteeStatus());
+        model.addAttribute("list", service.getMenteeList(cri));
+        model.addAttribute("pageMaker" , new PageDTO(cri, service.getMenteeTotal(cri))); // 페이지 목록
         return "status/menteeStatus";
     }
 

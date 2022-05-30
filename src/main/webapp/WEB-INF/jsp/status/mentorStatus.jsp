@@ -188,8 +188,8 @@ License: pixelarity.com/license
                     <select name="type" style="width: 18%; float: left;">
                         <option value="" ${pageMaker.cri.type == null ? 'selected' : ''}>검색 기준</option>
                         <option value="S" ${pageMaker.cri.type == 'S' ? 'selected' : ''}>과목</option>
-                        <option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>작성자 이름</option>
-                        <option value="SW" ${pageMaker.cri.type == 'SW' ? 'selected' : ''}>과목 또는 작성자</option>
+                        <option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>멘토이름</option>
+                        <option value="SW" ${pageMaker.cri.type == 'SW' ? 'selected' : ''}>과목 또는 멘토이름</option>
                     </select>
                     <a href="javascript:void(0)" class="button primary icon solid fa-search" style="width: 15%; float: right;">검색</a>
                     <input type="text" id="keyword" name="keyword" placeholder="검색 종류를 선택 후 검색해주세요" style="width: 66%; float: center;" />
@@ -261,9 +261,6 @@ License: pixelarity.com/license
 
     $(".changePage").on("click", function(e){
         e.preventDefault();
-        //form태그(pageForm)에서 name이 pageNum인 input 태그를 찾는다.
-        //해당 input 태그에 value값을 사용자가 클릭한 a태그의 href값으로 변경한다.
-        //즉, 사용자가 클릭 a태그의 href값은 이동해야 할 pageNum이기 때문에 input태그에 담아서 컨트롤러로 전송해야 한다.
         pageForm.find("input[name='pageNum']").val($(this).attr("href"));
         pageForm.submit();
     })

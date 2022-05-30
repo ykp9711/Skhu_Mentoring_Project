@@ -1,6 +1,7 @@
 package com.skhuMentoring.service;
 
 import com.skhuMentoring.dto.Criteria;
+import com.skhuMentoring.dto.Mentee;
 import com.skhuMentoring.dto.Mentor;
 import com.skhuMentoring.mapper.MentoringBoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,17 @@ public class MentoringBoardServiceImpl implements MentoringBoardService {
     }
 
     @Override
+    public List<Mentee> getMenteeList(Criteria cri) {
+        return mapper.getListWithPagingMentee(cri);
+    }
+
+    @Override
     public Long getMentorTotal(Criteria cri) {
         return mapper.getMentorBoardTotal(cri);
+    }
+
+    @Override
+    public Long getMenteeTotal(Criteria cri) {
+        return mapper.getMenteeBoardTotal(cri);
     }
 }

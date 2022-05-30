@@ -15,6 +15,20 @@ License: pixelarity.com/license
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
 </head>
+<style>
+    .big-width {display:block;}
+    .small-width {display:none; text-align:center;}
+    @media (max-width: 900px){
+        .writer {display: none;}
+        .regDate	 {display: none;}
+        .updateDate {display: none;}
+        .big-width {display:none;}
+        .small-width {display:block;}
+        select{width:100%;}
+        #keyword{width:100%;}
+        .search{width:100%;}
+    }
+</style>
 <body class="is-preload">
 
 <!-- Wrapper -->
@@ -86,26 +100,65 @@ License: pixelarity.com/license
                     </tbody>
                 </table>
             </div>
-            <div class="big-width" style="text-align: center">
-                <a class="button small">&lt</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button small">&gt;</a>
+            <div class="big-width" style="text-align:center">
+                <%-- 이전버튼 --%>
+                <c:if test="${pageMaker.prev}">
+                    <a class="button small changePage" href="${pageMaker.startPage - 1}"><code>&lt;</code></a>
+                </c:if>
+
+                <%-- 페이지 구현 --%>
+                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                    <c:choose>
+                        <c:when test="${pageMaker.cri.pageNum eq num}">
+                            <%-- 현재 페이지일 때 --%>
+                            <code><span style="color: #23b1ec">${num}</span></code>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="changePage" href="${num}"><code>${num}</code></a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <%-- 다음버튼 --%>
+                <c:if test="${pageMaker.next}">
+                    <a class="button small changePage" href="${pageMaker.endPage + 1}"><code>&gt;</code></a>
+                </c:if>
+
+            </div>
+            <%--반응형--%>
+            <div class="small-width">
+                <%-- 이전버튼 --%>
+                <c:if test="${pageMaker.cri.pageNum > 1}">
+                    <a class="button small changePage" href="${pageMaker.cri.pageNum - 1}"><code>&lt;</code></a>
+                </c:if>
+
+                <%-- 페이지 구현 --%>
+                <code>${pageMaker.cri.pageNum}</code>
+
+                <%-- 다음버튼 --%>
+                <c:if test="${pageMaker.cri.pageNum < pageMaker.realEnd}">
+                    <a class="button small changePage" href="${pageMaker.cri.pageNum + 1}"><code>&gt;</code></a>
+                </c:if>
             </div>
 
-            <br>
-
-
+            <form id="pageForm">
+                <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                <input type="hidden" name="type" value="${pageMaker.cri.type}">
+                <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+            </form>
 
             <form id="searchForm">
                 <div style="width: 100%; float: left;">
 
                     <select name="type" style="width: 18%; float: left;">
-                        <option>검색 종류</option>
-                        <option>전체</option>
-                        <option>과목</option>
-                        <option>멘티 이름</option>
-                        <option>태그</option>
-                    </select><a class="button primary" style="width: 15%; float: right;">검색</a>
-                    <input type="text" id="keyword" name="keyword" placeholder="검색 종류를 선택 후 검색해주세요" style="width: 66%; float:center;" />
-
+                        <option value="" ${pageMaker.cri.type == null ? 'selected' : ''}>검색 기준</option>
+                        <option value="S" ${pageMaker.cri.type == 'S' ? 'selected' : ''}>과목</option>
+                        <option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>멘티이름</option>
+                        <option value="SW" ${pageMaker.cri.type == 'SW' ? 'selected' : ''}>과목 또는 멘티이름</option>
+                    </select>
+                    <a href="javascript:void(0)" class="button primary icon solid fa-search" style="width: 15%; float: right;">검색</a>
+                    <input type="text" id="keyword" name="keyword" placeholder="검색 종류를 선택 후 검색해주세요" style="width: 66%; float: center;" />
 
                 </div>
             </form>
@@ -130,5 +183,37 @@ License: pixelarity.com/license
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 
+<script>
+    var searchForm = $("#searchForm");
+
+    $("#searchForm a").on("click", function(e){
+        e.preventDefault();
+
+        //val()은 해당 값이 있으면 true, 없으면 false
+        if(!searchForm.find("option:selected").val()){
+            alert("검색 종류를 선택하세요");
+            return false;
+        }
+
+        if(!searchForm.find("input[name='keyword']").val()){
+            alert("키워드를 입력하세요")
+            return false;
+        }
+
+        searchForm.find("input[name='pageNum']").val("1");
+        searchForm.submit();
+    })
+</script>
+
+<script>
+    var pageForm = $("#pageForm");
+
+    $(".changePage").on("click", function(e){
+        e.preventDefault();
+        pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        pageForm.submit();
+    })
+
+</script>
 </body>
 </html>
