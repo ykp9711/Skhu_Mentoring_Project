@@ -5,6 +5,9 @@
     <select id="getMentorStatus" resultType="com.skhuMentoring.dto.Mentor">
         select * from tbl_mentorBoard where recruiting='모집중';
     </select>
+
+
+
     <!--멘티 DB뿌리기-->
     <select id="getMenteeStatus" resultType="com.skhuMentoring.dto.Mentee">
         select * from tbl_menteeBoard;

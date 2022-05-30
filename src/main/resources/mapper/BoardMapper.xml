@@ -5,16 +5,14 @@
     <sql id="criteria">
         <if test="type != null and keyword != null">
             <trim prefix="(" suffix=") AND" prefixOverrides="OR">
-                <!-- 전달받은 객체(Criteria)에서 collection에 적당한 typeArr의 getter()를 mapping한다. -->
-                <!-- 즉, Criteria 필드에 getTypeArr()을 사용하여 반복횟수와 값을 결정한다. -->
                 <foreach item="type" collection="typeArr">
                     <trim prefix="OR">
                         <choose>
-                            <when test="type == 'T'.toString()">
-                                (USERNAME LIKE '%' || #{keyword} || '%')
+                            <when test="type == 'W'.toString()">
+                                (userName LIKE CONCAT('%',#{keyword},'%'))
                             </when>
-                            <when test="type == 'C'.toString()">
-                                (SUBJECTNAME LIKE '%' || #{keyword} || '%')
+                            <when test="type == 'S'.toString()">
+                                (subjectName LIKE CONCAT('%',#{keyword},'%'))
                             </when>
                         </choose>
                     </trim>
@@ -132,5 +130,28 @@
 
     <select id="getPersonnel" resultType="long">
         select personnel from tbl_mentorBoard where bno = #{bno}
+    </select>
+
+    <select id="getListWithPaging" resultType="com.skhuMentoring.dto.Mentor">
+        <![CDATA[
+        SELECT *
+        FROM
+            (SELECT @ROWNUM := @ROWNUM + 1 AS RN ,  /*+ INDEX_DESC(tbl_mentorBoard)*/
+            m.* from tbl_mentorboard m, (SELECT @ROWNUM :=0) RN_TB
+             WHERE
+]]>
+        <include refid="criteria"></include>
+<![CDATA[
+        (@ROWNUM)<= (#{pageNum} * #{amount})-1 AND recruiting ='모집중')tbl_rownum
+        WHERE RN > (#{pageNum} -1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getMentorBoardTotal" resultType="long">
+        select count(*) from tbl_mentorBoard where
+        <include refid="criteria"></include>
+        <![CDATA[
+        recruiting ='모집중'
+        ]]>
     </select>
 </mapper>

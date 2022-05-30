@@ -1,14 +1,17 @@
 package com.skhuMentoring.dto;
 
+import lombok.Data;
+
+@Data
 public class PageDTO {
     private int startPage;
     private int endPage;
     private boolean prev , next;
     private int realEnd;
     private Criteria cri;
-    private int total;
+    private Long total;
 
-    public PageDTO(Criteria cri, int total) {
+    public PageDTO(Criteria cri, Long total) {
         this.cri = cri;
         this.total = total;
 

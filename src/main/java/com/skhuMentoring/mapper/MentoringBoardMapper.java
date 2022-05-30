@@ -18,6 +18,8 @@ public interface MentoringBoardMapper {
 
     void insertMentorBoard(Mentor mentor); // 멘토 게시글 등록
     
+    Long getMentorBoardTotal(Criteria cri); // 멘토게시글 게시글 총 개수 가져오기
+    
     int checkSubject(String subject); // 과목 등록 시 이미 DB에 등록된 과목인지 체크
 
     void insertMenteeBoard(Mentee mentee); // 멘티 게시글 등록
@@ -57,4 +59,6 @@ public interface MentoringBoardMapper {
     List<Mentor> sliderMentee(); // bno 내림차순으로 4개의 멘티 정보 가져오기
 
     Long getPersonnel(Long bno); // 해당 멘토링 현재 신청 인원 조회
+
+    List<Mentor> getListWithPaging(Criteria cri); // 멘토목록 페이징 처리 - 최신순
 }

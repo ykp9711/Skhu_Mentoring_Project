@@ -17,6 +17,20 @@ License: pixelarity.com/license
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
 </head>
+<style>
+    .big-width {display:block;}
+    .small-width {display:none; text-align:center;}
+    @media (max-width: 900px){
+        .writer {display: none;}
+        .regDate	 {display: none;}
+        .updateDate {display: none;}
+        .big-width {display:none;}
+        .small-width {display:block;}
+        select{width:100%;}
+        #keyword{width:100%;}
+        .search{width:100%;}
+    }
+</style>
 <body class="is-preload">
 
 <!-- Wrapper -->
@@ -37,7 +51,7 @@ License: pixelarity.com/license
             <div class="table-wrapper">
                 <table style="border: 1px;  text-align: center;  ">
                     <tr class="tHead" >
-                        <th  style="text-align: center; vertical-align : middle;">멘토<br>이름</th>
+                        <th  style="text-align: center; vertical-align : middle; width: 8%;">멘토 이름</th>
                         <th style="text-align: center; vertical-align : middle;" >학&nbsp;번</th>
                         <th style="text-align: center; vertical-align : middle;" >학부/학과</th>
                         <th style="text-align: center; vertical-align : middle;" >과&nbsp;목</th>
@@ -46,13 +60,11 @@ License: pixelarity.com/license
                         <th style="text-align: center; vertical-align : middle;" >등록날짜</th>
                         <th style="text-align: center; vertical-align : middle;" >상세보기</th>
                         <th style="text-align: center; vertical-align : middle;" >신&nbsp;청</th>
-                        <th style="text-align: center; vertical-align : middle;" >게시글<br>삭제</th>
-                        <th style="text-align: center; vertical-align : middle;" >모집 종료</th>
                         <th style="text-align: center; vertical-align : middle;" >멘티 정보</th>
-                        <th style="text-align: center; vertical-align : middle;" >모집 현황</th>
+                        <th style="text-align: center; vertical-align : middle;" >모집 종료</th>
+                        <th style="text-align: center; vertical-align : middle;" >게시글<br>삭제</th>
 
                     </tr>
-
                     <c:forEach var="list" items="${list}">
                         <tr style="height: 70px;">
                             <td style="vertical-align : middle">${list.userName}</td>
@@ -81,15 +93,15 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
-                                        <a href="/status/deleteMentorBoard?bno=${list.bno}" class="button small ">삭제</a>
+
+                                        <a href="/status/detailMentees?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">멘티목록보기</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">삭제</a>
+                                        <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">상세보기</a>
                                     </c:otherwise>
                                 </c:choose>
 
                             </td>
-
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
@@ -101,45 +113,86 @@ License: pixelarity.com/license
                                 </c:choose>
 
                             </td>
-
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
-
-                                        <a href="/status/detailMentees?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">멘티목록보기</a>
+                                        <a href="/status/deleteMentorBoard?bno=${list.bno}" class="button small ">삭제</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">상세보기</a>
+                                        <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">삭제</a>
                                     </c:otherwise>
                                 </c:choose>
 
                             </td>
-                            <td style="vertical-align : middle">${list.recruiting}</td>
 
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
-            <div class="big-width" style="text-align: center">
-                <a class="button small">&lt</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button small">&gt;</a>
+
+            <div  style="text-align:center">
+
             </div>
-            <br>
+            <div class="big-width" style="text-align:center">
+                <%-- 이전버튼 --%>
+                <c:if test="${pageMaker.prev}">
+                    <a class="button small changePage" href="${pageMaker.startPage - 1}"><code>&lt;</code></a>
+                </c:if>
 
+                <%-- 페이지 구현 --%>
+                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                    <c:choose>
+                        <c:when test="${pageMaker.cri.pageNum eq num}">
+                            <%-- 현재 페이지일 때 --%>
+                            <code><span style="color: #23b1ec">${num}</span></code>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="changePage" href="${num}"><code>${num}</code></a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
 
+                <%-- 다음버튼 --%>
+                <c:if test="${pageMaker.next}">
+                    <a class="button small changePage" href="${pageMaker.endPage + 1}"><code>&gt;</code></a>
+                </c:if>
+
+            </div>
+        <%--반응형--%>
+            <div class="small-width">
+                <%-- 이전버튼 --%>
+                <c:if test="${pageMaker.cri.pageNum > 1}">
+                    <a class="button small changePage" href="${pageMaker.cri.pageNum - 1}"><code>&lt;</code></a>
+                </c:if>
+
+                <%-- 페이지 구현 --%>
+                <code>${pageMaker.cri.pageNum}</code>
+
+                <%-- 다음버튼 --%>
+                <c:if test="${pageMaker.cri.pageNum < pageMaker.realEnd}">
+                    <a class="button small changePage" href="${pageMaker.cri.pageNum + 1}"><code>&gt;</code></a>
+                </c:if>
+            </div>
+
+            <form id="pageForm">
+                <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+                <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+                <input type="hidden" name="type" value="${pageMaker.cri.type}">
+                <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+            </form>
 
             <form id="searchForm">
                 <div style="width: 100%; float: left;">
 
                     <select name="type" style="width: 18%; float: left;">
-                        <option>검색 종류</option>
-                        <option>전체</option>
-                        <option>과목</option>
-                        <option>멘토 이름</option>
-                        <option>태그</option>
-                    </select><a class="button primary" style="width: 15%; float: right;">검색</a>
+                        <option value="" ${pageMaker.cri.type == null ? 'selected' : ''}>검색 기준</option>
+                        <option value="S" ${pageMaker.cri.type == 'S' ? 'selected' : ''}>과목</option>
+                        <option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>작성자 이름</option>
+                        <option value="SW" ${pageMaker.cri.type == 'SW' ? 'selected' : ''}>과목 또는 작성자</option>
+                    </select>
+                    <a href="javascript:void(0)" class="button primary icon solid fa-search" style="width: 15%; float: right;">검색</a>
                     <input type="text" id="keyword" name="keyword" placeholder="검색 종류를 선택 후 검색해주세요" style="width: 66%; float: center;" />
-
 
                 </div>
             </form>
@@ -163,7 +216,27 @@ License: pixelarity.com/license
 <script src="/assets/js/breakpoints.min.js"></script>
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
+<script>
+    var searchForm = $("#searchForm");
 
+    $("#searchForm a").on("click", function(e){
+        e.preventDefault();
+
+        //val()은 해당 값이 있으면 true, 없으면 false
+        if(!searchForm.find("option:selected").val()){
+            alert("검색 종류를 선택하세요");
+            return false;
+        }
+
+        if(!searchForm.find("input[name='keyword']").val()){
+            alert("키워드를 입력하세요")
+            return false;
+        }
+
+        searchForm.find("input[name='pageNum']").val("1");
+        searchForm.submit();
+    })
+</script>
 <script>
     function checkApplication(obj){
         console.log($(obj).attr("data-bno"));
@@ -183,6 +256,18 @@ License: pixelarity.com/license
         }); // ajax 종료
     }
 </script>
+<script>
+    var pageForm = $("#pageForm");
 
+    $(".changePage").on("click", function(e){
+        e.preventDefault();
+        //form태그(pageForm)에서 name이 pageNum인 input 태그를 찾는다.
+        //해당 input 태그에 value값을 사용자가 클릭한 a태그의 href값으로 변경한다.
+        //즉, 사용자가 클릭 a태그의 href값은 이동해야 할 pageNum이기 때문에 input태그에 담아서 컨트롤러로 전송해야 한다.
+        pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+        pageForm.submit();
+    })
+
+</script>
 </body>
 </html>

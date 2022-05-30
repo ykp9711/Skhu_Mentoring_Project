@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface MyPageMapper {
-    //멘토현황
+    //멘토현황 페이징 완료시 지워도 됌
     public List<Mentor> getMentorStatus();
     //멘티현황
     public List<Mentee> getMenteeStatus();
