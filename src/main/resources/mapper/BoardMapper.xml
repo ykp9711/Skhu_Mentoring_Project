@@ -136,13 +136,13 @@
         <![CDATA[
         SELECT *
         FROM
-            (SELECT @ROWNUM := @ROWNUM + 1 AS RN ,  /*+ INDEX_DESC(tbl_mentorBoard)*/
+            (SELECT @ROWNUM := @ROWNUM + 1 AS RN ,
             m.* from tbl_mentorboard m, (SELECT @ROWNUM :=0) RN_TB
              WHERE
 ]]>
         <include refid="criteria"></include>
 <![CDATA[
-        (@ROWNUM)<= (#{pageNum} * #{amount})-1 AND recruiting ='모집중')tbl_rownum
+        (@ROWNUM)<= (#{pageNum} * #{amount})-1 AND recruiting ='모집중' ORDER BY bno DESC)tbl_rownum
         WHERE RN > (#{pageNum} -1) * #{amount}
         ]]>
     </select>
@@ -160,13 +160,13 @@
         <![CDATA[
         SELECT *
         FROM
-            (SELECT @ROWNUM := @ROWNUM + 1 AS RN ,  /*+ INDEX_DESC(tbl_mentorBoard)*/
+            (SELECT @ROWNUM := @ROWNUM + 1 AS RN ,
             m.* from tbl_menteeboard m, (SELECT @ROWNUM :=0) RN_TB
              WHERE
 ]]>
         <include refid="criteria"></include>
         <![CDATA[
-        (@ROWNUM)<= (#{pageNum} * #{amount})-1)tbl_rownum
+        (@ROWNUM)<= (#{pageNum} * #{amount})-1 ORDER BY bno DESC)tbl_rownum
         WHERE RN > (#{pageNum} -1) * #{amount}
         ]]>
     </select>
