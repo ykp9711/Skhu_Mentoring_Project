@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE HTML>
@@ -46,23 +47,40 @@ License: pixelarity.com/license
                             <a href="/status/mentorStatus">
                                 <h3 style="color: #13a2dd">Mentor</h3> <h4>${mentor.userName}</h4>
                                 <div><b>${mentor.subjectName}</b></div>
-                                <div><b>${mentor.startDate}</b> / <b>${mentor.hopeDay}</b></div>
+                                <div>
+                                    <b><fmt:formatDate value="${mentor.startDate}" pattern="yyyy-MM-dd"/></b> / <b>${mentor.hopeDay}</b></div>
                                 <div>정원: <b>${mentor.maxPersonnel}</b></div>
                             </a>
                         </blockquote>
                     </div>
                 </c:forEach>
-                <c:forEach var="mentee" items="${mentee}">
-                    <div>
-                        <blockquote style="padding: 0.5rem 2rem 0.5rem 2rem;">
-                            <a href="/status/menteeStatus">
-                                <h3 style="color: #13a2dd">Mentee</h3> <h4>${mentee.userName}</h4>
-                                <div><b>${mentee.subjectName}</b></div>
-                                <div><b>${mentee.startDate}</b> / <b>${mentee.hopeDay}</b></div>
-                            </a>
-                        </blockquote>
-                    </div>
-                </c:forEach>
+                <c:if test="${empty mentor}">
+                    <blockquote>
+                        <div>
+                            멘토가 없습니다
+                        </div>
+                    </blockquote>
+                    <blockquote>
+                        <div>
+                            멘토가 없습니다
+                        </div>
+                    </blockquote>
+                    <blockquote>
+                        <div>
+                            멘토가 없습니다
+                        </div>
+                    </blockquote>
+                    <blockquote>
+                        <div>
+                            멘토가 없습니다
+                        </div>
+                    </blockquote>
+                    <blockquote>
+                        <div>
+                            멘토가 없습니다
+                        </div>
+                    </blockquote>
+                </c:if>
             </div>
             <br>
         </div>

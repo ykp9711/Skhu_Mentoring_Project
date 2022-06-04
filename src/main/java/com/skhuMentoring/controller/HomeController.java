@@ -39,8 +39,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String main(Model model) {
-        model.addAttribute("mentor", mentoringBoardMapper.sliderMentor());
-        model.addAttribute("mentee", mentoringBoardMapper.sliderMentee());
+        model.addAttribute("mentor", mentoringBoardMapper.sliderMentor()); //메인화면 슬라이드
         return "index";
     }
 

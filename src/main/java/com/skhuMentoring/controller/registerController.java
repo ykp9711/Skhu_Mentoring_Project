@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 @Log4j2
@@ -29,7 +30,7 @@ public class registerController {
     private final UserMapper userMapper;
 
     @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
-    public String MentoRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, HttpSession session, Long bno) {
+    public String MentorRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, Mentee mentee, HttpSession session, Long bno) {
         model.addAttribute("list", mentoringBoardMapper.getDetailMentee(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
         log.info(mentoringBoardMapper.getDetailMentee(bno));
         model.addAttribute("departments", mentoringBoardMapper.getDepartment()); //학부 리스트
@@ -52,15 +53,33 @@ public class registerController {
 
     @Transactional // 멘토 게시글 등록
     @PostMapping("/mentorRegister")
-    public String MentoRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department, HttpSession session, HttpServletResponse resp) throws  Exception {
+    public String MentorRegister(@ModelAttribute Mentor mentor, @ModelAttribute Department department, Long bno, HttpSession session, HttpServletResponse resp) throws  Exception {
         if (mentor.getSubjectName() == "기타" || mentor.getSubjectName().equals("기타")) {
             mentor.setSubjectName(mentor.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentor.getSubjectName());
             mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
         }
+
+        List<String> menteeStudentNum = mentor.getMenteeStudentNum();
+
         mentor.setUserId((String) session.getAttribute("sessionId"));
-        mentoringBoardMapper.insertMentorBoard(mentor);
+
+        if(menteeStudentNum != null){  // 멘티 목록에서 개설할 경우
+            mentor.setPersonnel(1L);
+            mentoringBoardMapper.insertMentorBoard(mentor);
+
+            Mentee mentee = mentoringBoardMapper.getDetailMentee(bno);  // bno로 멘티 정보 가져오기
+            mentee.setMenteeId(mentee.getUserId());
+            mentoringBoardMapper.deleteMenteeboard(mentee.getBno());    // 등록된 멘티 게시글 멘티보드에서 삭제
+            mentee.setBno(mentor.getBno());                             // 멘티 bno를 새로 등록된 멘토 bno로 변경한 뒤 applicationMentor DB에 멘티 등록
+            mentoringBoardMapper.applicationMentor(mentee);
+
+
+        } else{
+            mentoringBoardMapper.insertMentorBoard(mentor);
+        }
+
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
@@ -68,9 +87,9 @@ public class registerController {
         out.println("location.href='/status/mentorStatus'");
         out.println("</script>");
         out.close();
+
         return null;
     }
-
 
     @Transactional
     @PostMapping("/menteeRegister") // 멘티 게시글 등록

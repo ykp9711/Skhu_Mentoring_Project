@@ -73,9 +73,9 @@
 												<option value="0" label="정원을 선택해주세요" />
 												<option value="1" label="1명" />
 												<option value="2" label="2명" />
+												<option value="3" label="3명" />
 												<option value="4" label="4명" />
 												<option value="5" label="5명" />
-												<option value="3" label="3명" />
 												<option value="6" label="6명" />
 												<option value="7" label="7명" />
 												<option value="8" label="8명" />
@@ -103,7 +103,7 @@
 										<c:if test="${not empty menteeStudentNum}">
 										<div class="col-12">
 											<p>신청한 멘티</p>
-											<form:input path="menteeStudentNum" value="${menteeStudentNum}"/>
+											<form:input path="menteeStudentNum" id="menteeStudentNum" value="${menteeStudentNum}"/>
 										</div>
 										</c:if>
 
@@ -111,8 +111,8 @@
 										<div class="col-12" style="text-align: center;">
 											<ul class="actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												<li><input type="submit" value="등록" class="primary"></li>
-												<li><input type="reset" value="초기화"></li>
+												<li><input type="submit" value="등록" class="primary" id="btn"></li>
+												<li><input type="reset" value="초기화" id="btnn"></li>
 											</ul>
 										</div>
 									</div>
@@ -171,6 +171,5 @@
 					});// success 종료
 				}); // ajax 종료
 		</script>
-
 	</body>
 </html>
