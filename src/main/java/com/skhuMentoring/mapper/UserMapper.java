@@ -27,5 +27,6 @@ public interface UserMapper {
 
     void modifyPw(@Param("userPw") String userPw, @Param("userId") String id); //userId로 해당 유저 비밀번호 변경
 
+    public void deleteUser(String userId); // 회원탈퇴
 }
 

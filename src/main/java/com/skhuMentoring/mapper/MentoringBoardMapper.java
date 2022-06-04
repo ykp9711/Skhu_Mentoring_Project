@@ -16,12 +16,20 @@ public interface MentoringBoardMapper {
 
     void insertSubject(Subject subject);
 
+    List<Mentor> getListWithPaging(Criteria cri); // 멘토목록 페이징 처리 - 최신순
+
     void insertMentorBoard(Mentor mentor); // 멘토 게시글 등록
+    
+    Long getMentorBoardTotal(Criteria cri); // 멘토게시글 게시글 총 개수 가져오기
     
     int checkSubject(String subject); // 과목 등록 시 이미 DB에 등록된 과목인지 체크
 
+    List<Mentee> getListWithPagingMentee(Criteria cri); // 멘티목록 페이징 처리 - 최신순
+
     void insertMenteeBoard(Mentee mentee); // 멘티 게시글 등록
-    
+
+    Long getMenteeBoardTotal(Criteria cri); // 멘티게시글 게시글 총 개수 가져오기
+
     void deleteMentorBoard(Long bno); // 멘토 게시판 글 삭제
 
     void endMentorBoard(Long bno); // 멘토 게시판 모집 종료
@@ -57,4 +65,5 @@ public interface MentoringBoardMapper {
     Long getPersonnel(Long bno); // 해당 멘토링 현재 신청 인원 조회
 
     void deleteMenteeboard(Long bno); //멘티보드에서 해당 bno로 글 삭제
+
 }

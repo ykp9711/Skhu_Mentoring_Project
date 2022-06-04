@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private MentoringBoardMapper mentoringBoardMapper;
-    @Autowired
+
     private UserMapper userMapper;
 
     public User login(Map<String, String> map) throws Exception {
@@ -26,6 +26,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<String> findId(String userEmail) throws Exception {
         return userMapper.findId(userEmail);
+    }
+
+    // 회원탈퇴
+    @Override
+    public void deleteUser(String userId) throws Exception {
+        userMapper.deleteUser(userId);
     }
 
 }

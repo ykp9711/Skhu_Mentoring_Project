@@ -61,9 +61,19 @@ License: pixelarity.com/license
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <script language="javascript">
+        function showPopup() {
+            window.open("deleteUser", "회원탈퇴",	"width=400, height=400, left=100, top=50");
+        }
+    </script>
 </head>
 <body class="is-preload">
-
+<c:if test="${empty sessionId}">
+    <script>
+        alert("잘못된 접근경로 입니다.로그인해주세요");
+        location.href="/login";
+    </script>
+</c:if>
 <!-- Wrapper -->
 <div id="wrapper">
 
@@ -98,7 +108,7 @@ License: pixelarity.com/license
                                     </select>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="학번" name="userStudentNum" value="${user.userStudentNum}"/>
+                                    <input type="text" placeholder="학번" name="userStudentNum" value="${user.userStudentNum}" readonly/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
                                     <input type="text" placeholder="전화번호" name="userPhoneNum" value="${user.userPhoneNum}"/>
@@ -127,6 +137,7 @@ License: pixelarity.com/license
                                 <br><br>
                                 <div class="col-7" style="text-align: center;">
                                     <button type="submit" class="button" id="btn"> 수정하기 </button>
+                                    <input type="button" value="회원탈퇴" onclick="showPopup();"/>
                                 </div>
                                 <!-- Break -->
 

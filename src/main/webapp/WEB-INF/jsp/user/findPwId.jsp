@@ -102,9 +102,11 @@
                         </div>
 
                     </div>
+
                 </form>
             </section>
-
+            <div> <p id="check_email" style="height: 1px; color: #13a2dd; text-align: center;">${user.userId}</p></div>
+            <div> <p id="check_email2" style="height: 1px; color: #13a2dd; text-align: center;">${msg}</p></div>
         </div>
     </section>
 

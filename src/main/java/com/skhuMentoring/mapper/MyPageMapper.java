@@ -11,8 +11,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface MyPageMapper {
-    //멘토현황
-    public List<Mentor> getMentorStatus();
+
     //멘티현황
     public List<Mentee> getMenteeStatus();
 

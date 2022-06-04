@@ -1,9 +1,12 @@
 package com.skhuMentoring.controller;
+import com.skhuMentoring.dto.Criteria;
 import com.skhuMentoring.dto.Mentee;
+import com.skhuMentoring.dto.PageDTO;
 import com.skhuMentoring.mapper.MentoringBoardMapper;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MailService;
+import com.skhuMentoring.service.MentoringBoardService;
 import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -29,19 +32,21 @@ public class StatusController {
     private final MyPageMapper myPageMapper;
     private final UserMapper userMapper;
     private final MailService mailService;
+    private final MentoringBoardService service;
 
-    @GetMapping("/menteeStatus")
-    public String menteeStatus(Model model) {
-        model.addAttribute("list", myPageMapper.getMenteeStatus());
+    @GetMapping("/menteeStatus") //멘티 목록
+    public String menteeStatus(Model model, Criteria cri) {
+        model.addAttribute("list", service.getMenteeList(cri));
+        model.addAttribute("pageMaker" , new PageDTO(cri, service.getMenteeTotal(cri))); // 페이지 목록
         return "status/menteeStatus";
     }
 
-    @GetMapping("/mentorStatus")
-    public String mentorStatus(Model model, HttpServletRequest request) {
-        model.addAttribute("list", myPageMapper.getMentorStatus());
+    @GetMapping("/mentorStatus") // 멘토 목록
+    public String mentorStatus(Model model, Criteria cri) {
+        model.addAttribute("list", service.getList(cri)); // 게시글 10개씩 끊기
+        model.addAttribute("pageMaker" , new PageDTO(cri, service.getMentorTotal(cri))); // 페이지 목록
         return "status/mentorStatus";
     }
-
 
     @GetMapping("/deleteMentorBoard") // 멘토 게시글 삭제
     public String deleteMentorBoard(Long bno) {

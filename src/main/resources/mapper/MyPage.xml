@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.skhuMentoring.mapper.MyPageMapper">
-    <!--멘토 DB뿌리기-->
-    <select id="getMentorStatus" resultType="com.skhuMentoring.dto.Mentor">
-        select * from tbl_mentorBoard where recruiting='모집중';
-    </select>
+
     <!--멘티 DB뿌리기-->
     <select id="getMenteeStatus" resultType="com.skhuMentoring.dto.Mentee">
         select * from tbl_menteeBoard;
