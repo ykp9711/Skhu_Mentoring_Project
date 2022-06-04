@@ -37,7 +37,7 @@ public class StatusController {
     }
 
     @GetMapping("/mentorStatus")
-    public String mentorStatus(Model model) {
+    public String mentorStatus(Model model, HttpServletRequest request) {
         model.addAttribute("list", myPageMapper.getMentorStatus());
         return "status/mentorStatus";
     }
@@ -83,8 +83,8 @@ public class StatusController {
 
     @GetMapping("/detailMentee") // 멘티 게시글 목록 상세보기
     public String detailMentee(Model model, Long bno, Mentee mentee, String menteeId) {
-        model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno, menteeId));
-
+        model.addAttribute("detailMentee", mentoringBoardMapper.getDetailMentee(bno));
+        model.addAttribute("user", userMapper.getUser(mentoringBoardMapper.getDetailMentee(bno).getUserId()));
         return "status/detailMentee";
 
     }
@@ -93,6 +93,7 @@ public class StatusController {
     public String applicationMentor(Mentee mentee, HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws Exception {
         mentee.setMenteeId((String) session.getAttribute("sessionId"));
         mentoringBoardMapper.applicationMentor(mentee);
+        log.info(mentee);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");

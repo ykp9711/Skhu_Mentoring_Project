@@ -10,7 +10,7 @@
     </select>
 
     <insert id="insertMentorBoard" useGeneratedKeys="true" keyProperty="bno">
-        INSERT into tbl_mentorBoard(userId,userName,UserStudentNum,department,subjectName,maxPersonnel, startDate,endDate,hopeDay,introduce,recruiting) values(#{userId},#{userName}, #{userStudentNum}, #{department}, #{subjectName},#{maxPersonnel}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce}, '모집중')
+        INSERT into tbl_mentorBoard(userId,userName,UserStudentNum,department,subjectName,maxPersonnel, personnel, startDate,endDate,hopeDay,introduce,recruiting) values(#{userId},#{userName}, #{userStudentNum}, #{department}, #{subjectName},#{maxPersonnel}, #{personnel}, #{startDate}, #{endDate}, #{hopeDay}, #{introduce}, '모집중')
     </insert>
 
     <insert id="insertSubject" keyProperty="sno" useGeneratedKeys="true">
@@ -101,14 +101,15 @@
     </select>
 
     <select id="sliderMentor" resultType="com.skhuMentoring.dto.Mentor">
-        SELECT * FROM tbl_mentorboard ORDER BY bno desc limit 4
-    </select>
-
-    <select id="sliderMentee" resultType="com.skhuMentoring.dto.Mentee">
-        SELECT * FROM tbl_menteeboard ORDER BY bno desc limit 4
+        SELECT * FROM tbl_mentorboard ORDER BY bno desc limit 8
     </select>
 
     <select id="getPersonnel" resultType="long">
         select personnel from tbl_mentorBoard where bno = #{bno}
     </select>
+
+    <delete id="deleteMenteeboard">
+        DELETE FROM tbl_menteeBoard WHERE bno =#{bno}
+    </delete>
+
 </mapper>
