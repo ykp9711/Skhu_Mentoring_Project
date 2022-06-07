@@ -128,6 +128,11 @@
         select personnel from tbl_mentorBoard where bno = #{bno}
     </select>
 
+    <!--멘토 정원 수-->
+    <select id="getMaxpersonnel" resultType="long">
+        select maxpersonnel from tbl_mentorBoard where bno = #{bno}
+    </select>
+
     <delete id="deleteMenteeboard">
         DELETE FROM tbl_menteeBoard WHERE bno =#{bno}
     </delete>
