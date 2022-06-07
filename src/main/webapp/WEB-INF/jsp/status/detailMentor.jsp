@@ -46,6 +46,7 @@ License: pixelarity.com/license
                 <br>
                 <div class="col-12" style="text-align: center;">
 
+                    <a href="/register/menteeRegister?bno=${detailMentor.bno}" class="button primary">신청</a>
                     <a href='javascript:self.close();' class="button primary">닫기</a>
 
                 </div>

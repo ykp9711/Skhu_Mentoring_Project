@@ -123,9 +123,24 @@ public class StatusController {
     @GetMapping("/menteeAccept") // 멘티가 보낸 요청 수락
     @Transactional
     public String menteeAceept(Long bno, String menteeId){
-        mentoringBoardMapper.menteeAccept(bno);
-        mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
-        return "redirect:/myPage/myPage"; // 멘토 수락 후 종료를 눌러야 마이페이지->멘토현황에 나온다
+        Long personnel = mentoringBoardMapper.getPersonnel(bno);
+        Long maxpersonnel = mentoringBoardMapper.getMaxpersonnel(bno);
+        Long addPersonnel = personnel + 1;
+
+        if (personnel < maxpersonnel && addPersonnel < maxpersonnel) {
+            mentoringBoardMapper.menteeAccept(bno);
+            mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
+            return "redirect:/myPage/myPage"; // 멘토 수락 후 종료를 눌러야 마이페이지->멘토현황에 나온다
+
+        }  else if(personnel < maxpersonnel && addPersonnel == maxpersonnel) {
+            mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
+            mentoringBoardMapper.mentorBoardUpdate(bno);   // 모집현황에 대한 flag 업데이트 ( 모집중->진행중)
+            return "redirect:/myPage/myPage";
+        }
+        else {
+            return "redirect:/myPage/myPage";
+
+        }
     }
 
     @GetMapping("/detailMentees") // 멘토목록에서 신청한 멘티 목록 보여줌
