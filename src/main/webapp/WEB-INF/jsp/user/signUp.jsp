@@ -32,7 +32,7 @@
 						<form:form method="post" action="/signUp" modelAttribute="user" id="signUpForm">
 							<div class="row gtr-uniform">
 								<div class="col-12">
-									<form:input type="text" path="userId" id="id_input" value="" placeholder="ID" />
+									<form:input type="text" path="userId" id="id_input" value="" placeholder="ID" onkeyup="characterCheck(this)" onkeydown="characterCheck(this)" />
 								</div>
 							</div>
 							<p id="Check_id" style="height: 1px; color: #13a2dd; text-align: center;"></p>
@@ -247,7 +247,28 @@
 
 			})
 
+			//한글 입력 x
+			$("#id_input").keyup(function(event){
+				if (!(event.keyCode >=37 && event.keyCode<=40)) {
+					var inputVal = $(this).val();
+					var check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+					if(check.test(inputVal)){
+						$(this).val("");
+						alert("아이디는 영어와 숫자만 가능합니다.");
+					}
+				}
+			});
 
+			// 특수문자 입력 방지
+			function characterCheck(obj){
+				var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+				// 허용할 특수문자는 여기서 삭제하면 됨
+				// 지금은 띄어쓰기도 특수문자 처리됨
+				if( regExp.test(obj.value) ){
+					alert("아이디는 영어와 숫자만 가능합니다.");
+					obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
+				}
+			}
 
 		</script>
 

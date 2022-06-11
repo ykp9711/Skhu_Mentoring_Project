@@ -94,11 +94,12 @@
 											<input type="date" name="endDate" id="endDate">
 										</label>
 										<div class="col-12">
-											<form:input path="hopeDay" placeholder="진행가능한 요일을 적어주세요 ex)월, 화"/>
+											<form:input path="hopeDay" id="hopeDay" placeholder="진행가능한 요일을 적어주세요 ex)월, 화"/>
 										</div>
 										</div>
 										<div class="col-12">
-											<form:textarea path="introduce" placeholder="간단한 자기소개 및 수업 진행 세부계획을 작성해주세요." rows="6"/>
+											<form:textarea path="introduce" id="introduce" placeholder="간단한 자기소개 및 수업 진행 세부계획을 작성해주세요." rows="6"/>
+											<div id="introduce_cnt">(0 / 1000)</div>
 										</div>
 										<c:if test="${not empty menteeStudentNum}">
 										<div class="col-12">
@@ -170,6 +171,37 @@
 						}
 					});// success 종료
 				}); // ajax 종료
+
+			// 글자 수 제한
+			$(document).ready(function() {
+				$('#addSubject').on('keyup', function() {
+
+					if($(this).val().length > 10) {
+						$(this).val($(this).val().substring(0, 10));
+					}
+				});
+			});
+
+			$(document).ready(function() {
+				$('#hopeDay').on('keyup', function() {
+
+					if($(this).val().length > 10) {
+						$(this).val($(this).val().substring(0, 10));
+					}
+				});
+			});
+
+			$(document).ready(function() {
+				$('#introduce').on('keyup', function() {
+					$('#introduce_cnt').html("("+$(this).val().length+" / 1000)");
+
+					if($(this).val().length > 1000) {
+						$(this).val($(this).val().substring(0, 1000));
+						$('#introduce_cnt').html("(1000 / 1000)");
+					}
+				});
+			});
+
 		</script>
 	</body>
 </html>

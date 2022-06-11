@@ -30,7 +30,8 @@ License: pixelarity.com/license
                 <div class="table-wrapper">
                     <div class="col-12" style="text-align: center;">
 
-                        <textarea style="resize: none;" name="refusalReason" placeholder="거절사유를 작성해주세요"></textarea>
+                        <textarea style="resize: none;" id="refusalReason" name="refusalReason" placeholder="거절사유를 작성해주세요"></textarea>
+                        <div id="refusalReason_cnt">(0 / 1000)</div>
 
                     </div><br>
                     <div class="col-12" style="text-align: center;">
@@ -71,5 +72,17 @@ License: pixelarity.com/license
             window.close()
         }
     }
+
+    $(document).ready(function() {
+        $('#refusalReason').on('keyup', function() {
+            $('#refusalReason_cnt').html("("+$(this).val().length+" / 1000)");
+
+            if($(this).val().length > 1000) {
+                $(this).val($(this).val().substring(0, 1000));
+                $('#refusalReason_cnt').html("(1000 / 1000)");
+            }
+        });
+    });
+
 </script>
 </html>
