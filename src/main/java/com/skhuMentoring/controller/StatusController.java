@@ -79,21 +79,29 @@ public class StatusController {
         return "redirect:status/menteeStatus";
     }
 
-    @GetMapping("/detailMentor") // 멘토 게시글 목록 상세보기
+    @GetMapping("/detailMentor") // 멘토 게시글 상세보기
     public String detailMentor(Model model, Long bno) {
         model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
         model.addAttribute("user", userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
         return "status/detailMentor";
     }
 
-    @GetMapping("/detailMentee") // 멘티 게시글 목록 상세보기
+    @GetMapping("/detailMentee") // 멘티 게시글 상세보기 (마이페이지 , 멘토목록에서 멘티 상세보기)
     public String detailMentee(Model model, Long bno, Mentee mentee, String menteeId) {
+        model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno, menteeId));
+        return "status/detailMentee";
+
+    }
+
+    @GetMapping("/detailMentee2") // 멘티 게시글  상세보기 ( 멘티 목록 / 멘티 상세보기)
+    public String detailMentee2(Model model, Long bno, Mentee mentee, String menteeId) {
+        model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno, menteeId));
+
         model.addAttribute("detailMentee", mentoringBoardMapper.getDetailMentee(bno));
         model.addAttribute("user", userMapper.getUser(mentoringBoardMapper.getDetailMentee(bno).getUserId()));
         return "status/detailMentee";
 
     }
-
     @PostMapping("/application") // 멘토 게시글 목록에서 신청
     public String applicationMentor(Mentee mentee, HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws Exception {
         mentee.setMenteeId((String) session.getAttribute("sessionId"));
