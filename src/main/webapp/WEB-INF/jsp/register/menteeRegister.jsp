@@ -168,7 +168,7 @@
 				</c:if>
 				<div class="col-12">
 					<form:textarea path="introduce" id="introduce" placeholder="간단한 자기소개를 작성해주세요." rows="6"></form:textarea>
-					<span id="introduce_cnt">(0 / 1000)</span>
+					<div id="introduce_cnt">(0 / 1000)</div>
 				</div>
 				<!-- Break -->
 				<div class="col-12" style="text-align: center;">
