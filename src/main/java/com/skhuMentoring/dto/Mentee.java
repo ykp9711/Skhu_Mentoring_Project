@@ -27,4 +27,5 @@ public class Mentee {
     private String subject;
     private String menteeId;
     private String accept;
+    private String rating; // 멘티가 멘토에게 준 평점
 }

@@ -11,7 +11,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface MyPageMapper {
-
+    //멘토현황
+    public List<Mentor> getMentorStatus();
     //멘티현황
     public List<Mentee> getMenteeStatus();
 
@@ -45,4 +46,8 @@ public interface MyPageMapper {
     void refusalReason(Long bno, String menteeId, String refusalReason); // 거절 이유 작성
 
     Mentoring showRefusalReason(Long bno, String menteeId); // 거절 이유 확인
+
+    void updateRating(Mentoring mentoring);
+
+    List<Mentoring> getMentee(Long bno); // 멘토 목록에서 현재 신청한 멘티 정보를 가져온다
 }

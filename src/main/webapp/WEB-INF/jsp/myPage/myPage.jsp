@@ -61,19 +61,9 @@ License: pixelarity.com/license
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <script language="javascript">
-        function showPopup() {
-            window.open("deleteUser", "회원탈퇴",	"width=400, height=400, left=100, top=50");
-        }
-    </script>
 </head>
 <body class="is-preload">
-<c:if test="${empty sessionId}">
-    <script>
-        alert("잘못된 접근경로 입니다.로그인해주세요");
-        location.href="/login";
-    </script>
-</c:if>
+
 <!-- Wrapper -->
 <div id="wrapper">
 
@@ -108,7 +98,7 @@ License: pixelarity.com/license
                                     </select>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="학번" name="userStudentNum" value="${user.userStudentNum}" readonly/>
+                                    <input type="text" placeholder="학번" name="userStudentNum" value="${user.userStudentNum}"/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
                                     <input type="text" placeholder="전화번호" name="userPhoneNum" value="${user.userPhoneNum}"/>
@@ -137,7 +127,6 @@ License: pixelarity.com/license
                                 <br><br>
                                 <div class="col-7" style="text-align: center;">
                                     <button type="submit" class="button" id="btn"> 수정하기 </button>
-                                    <input type="button" value="회원탈퇴" onclick="showPopup();"/>
                                 </div>
                                 <!-- Break -->
 
@@ -171,7 +160,8 @@ License: pixelarity.com/license
                                 <td style="vertical-align : middle">${Mentoring.recruiting}</td>
                                 <td style="vertical-align : middle" class="area" ><a href="/status/detailMentees?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 <c:if test="${Mentoring.recruiting == '진행중'}">
-                                <td style="vertical-align : middle" class="area" ><a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a></td>
+                                <%--<td style="vertical-align : middle" class="area" ><a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a></td>--%>
+                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRate?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">종료</a></td>
                                 </c:if>
                                 <c:if test="${Mentoring.recruiting == '종료됨'}">
                                     <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">종료되었습니다.</a></td>

@@ -96,4 +96,15 @@
     <select id="showRefusalReason" resultType="com.skhuMentoring.dto.Mentoring">
         select * from tbl_applicationMentor where bno = #{bno} and menteeId = #{menteeId}
     </select>
+
+    <update id="updateRating">
+        update tbl_applicationMentor
+        set rating=#{rating}
+        where menteeId=#{menteeId} and bno=#{bno}
+    </update>
+
+    <select id="getMentee" resultType="com.skhuMentoring.dto.Mentoring">
+        select * from tbl_applicationmentor
+        where bno=#{bno} and accept='진행중' or bno=#{bno} and accept='수락됨'
+    </select>
 </mapper>

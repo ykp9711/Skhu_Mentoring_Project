@@ -1,5 +1,6 @@
 package com.skhuMentoring.controller;
 
+import com.skhuMentoring.dto.Mentoring;
 import com.skhuMentoring.dto.User;
 import com.skhuMentoring.dto.Mentee;
 import com.skhuMentoring.dto.Mentor;
@@ -7,10 +8,8 @@ import com.skhuMentoring.mapper.MentoringBoardMapper;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MailService;
-import com.skhuMentoring.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.PrintWriter;
 
 
@@ -35,9 +32,6 @@ public class MyPageController {
     private final MyPageMapper myPageMapper;
     private final UserMapper userMapper;
     private final MailService mailService;
-
-    @Autowired
-    private UserService userService;
 
     //마이페이지로 이동
     @GetMapping("/myPage")
@@ -60,12 +54,7 @@ public class MyPageController {
         model.addAttribute("Mentoring",myPageMapper.getMentoring());
         return "/myPage/detailMentoring";
     }
-    // 마이페이지 > 멘토 현황 > 멘토링 종료
-    @GetMapping("/endMentoring")
-    public String endMentoring(Long bno){
-        myPageMapper.endMentoring(bno);
-        return "redirect:/myPage/myPage";
-    }
+
     // 마이페이지 > 멘티에게 받은 요청 > 거절하기
     @GetMapping("/applicationRefusal") // 거절 사유 작성 창
     public String requestRefusal(Long bno, String menteeId, Model model){
@@ -106,36 +95,30 @@ public class MyPageController {
         log.info(user);
         return "redirect:/myPage/myPage";
     }
-
-    // 마이페이지 > 회원탈퇴
-    @GetMapping("/deleteUser")
-    public String deleteUser() {
-        return "/myPage/deleteUser";
+    @GetMapping("/menteeRate") // 신청한 멘티 목록
+    public String detailMentees(Long bno,Model model) {
+        model.addAttribute("getMentee" , myPageMapper.getMentee(bno));
+        model.addAttribute("bno",bno);
+        return "/myPage/menteeRate";
     }
 
-    @PostMapping("/deleteUser")
-    public String deleteUser(@RequestParam("userPw") String userPw, User dto, HttpSession session, Model model,
-                             RedirectAttributes ra) throws Exception {
-        log.info(userPw);
-
-        User user = (User) session.getAttribute("user");
-
-        String oldPass = user.getUserPw();
-        String newPass = dto.getUserPw();
-
-        if (oldPass.equals(newPass)) {
-            userService.deleteUser(user.getUserId());
-            // ra.addFlashAttribute("result", "success");
-            session.invalidate();
-            model.addAttribute("msg", "회원정보가 삭제되었습니다.");
-            return "/myPage/deleteUser";
-        } else {
-            // ra.addFlashAttribute("result", "fail");
-            model.addAttribute("msg", "잘못된 패스워드입니다.");
-            return "/myPage/deleteUser";
-        }
-
+    @PostMapping("/updateRating") // 멘티 평점 추가
+    public String updateRating(Mentoring mentoring, HttpServletResponse resp) throws Exception{
+        log.info(mentoring);
+        myPageMapper.updateRating(mentoring);
+        resp.setContentType("text/html; charset=utf-8");
+        PrintWriter out = resp.getWriter();
+        out.println("<script>");
+        out.println("alert('멘토링 종료.')");
+        out.println("window.close()");
+        out.println("</script>");
+        out.close();
+        return null;
     }
-
-
+    // 마이페이지 > 멘토 현황 > 멘토링 종료
+    @GetMapping("/endMentoring")
+    public String endMentoring(Long bno){
+        myPageMapper.endMentoring(bno);
+        return "redirect:/myPage/myPage";
+    }
 }
