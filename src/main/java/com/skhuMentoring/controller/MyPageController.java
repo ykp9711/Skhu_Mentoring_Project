@@ -8,14 +8,14 @@ import com.skhuMentoring.mapper.MentoringBoardMapper;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MailService;
+import com.skhuMentoring.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +33,8 @@ public class MyPageController {
     private final UserMapper userMapper;
     private final MailService mailService;
 
+    @Autowired
+    private UserService userService;
     //마이페이지로 이동
     @GetMapping("/myPage")
     public String myPageGo(@ModelAttribute Mentor mentor, Model model, HttpSession session, Mentee mentee, Long bno) {
@@ -120,5 +122,35 @@ public class MyPageController {
     public String endMentoring(Long bno){
         myPageMapper.endMentoring(bno);
         return "redirect:/myPage/myPage";
+    }
+
+    // 마이페이지 > 회원탈퇴
+    @GetMapping("/deleteUser")
+    public String deleteUser() {
+        return "/myPage/deleteUser";
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam("userPw") String userPw, User dto, HttpSession session, Model model,
+                             RedirectAttributes ra) throws Exception {
+        log.info(userPw);
+
+        User user = (User) session.getAttribute("user");
+
+        String oldPass = user.getUserPw();
+        String newPass = dto.getUserPw();
+
+        if (oldPass.equals(newPass)) {
+            userService.deleteUser(user.getUserId());
+            // ra.addFlashAttribute("result", "success");
+            session.invalidate();
+            model.addAttribute("msg", "회원정보가 삭제되었습니다.");
+            return "/myPage/deleteUser";
+        } else {
+            // ra.addFlashAttribute("result", "fail");
+            model.addAttribute("msg", "잘못된 패스워드입니다.");
+            return "/myPage/deleteUser";
+        }
+
     }
 }
