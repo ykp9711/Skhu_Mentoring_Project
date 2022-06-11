@@ -47,8 +47,8 @@
         <div class="inner3"><br><br>
             <section id="one" class="main alt">
                 <header style="text-align: center">
-                    <button class="button" onclick="show_id()">아이디 찾기 </button>
-                    <button class="button" onclick="show_password()">비밀번호 찾기</button>
+                    <input type="button" onclick="show_id()" value="아이디 찾기"></button>
+                    <input type="button" onclick="show_password()" value="비밀번호 찾기"></button>
                 </header>
 
                 <div class="fields" id="id_box" style="display:none;">
@@ -56,13 +56,15 @@
                         <hr />
                         <h3 style="text-align: center">아이디 찾기</h3>
                         <div style="margin:0 auto;">
+                            <div align="center">가입시 사용한 이메일을 입력해주세요.</div><br>
                             <div class="field">
-                                <label style="margin-left: 20%;">가입시 사용한 이메일을 입력해주세요.</label>
+
+
                                 <input type="email" id="userEmail" name="userEmail" placeholder="EMAIL" style="margin: 0 auto; width:500px;">
                                 <br>
                                 <div style="position: relative; bottom: 20px"></div>
                                 <ul class="actions special">
-                                    <button type="submit" id="emailSend">찾기</button>
+                                    <input type="submit" id="emailSend" value="찾기"></input>
                                 </ul>
                             </div>
                         </div>
