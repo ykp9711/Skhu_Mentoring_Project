@@ -171,7 +171,7 @@ License: pixelarity.com/license
                                 <td style="vertical-align : middle">${Mentoring.recruiting}</td>
                                 <td style="vertical-align : middle" class="area" ><a href="/status/detailMentees?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 <c:if test="${Mentoring.recruiting == '진행중'}">
-                                <td style="vertical-align : middle" class="area" ><a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRate?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">종료</a></td>
                                 </c:if>
                                 <c:if test="${Mentoring.recruiting == '종료됨'}">
                                     <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">종료되었습니다.</a></td>
@@ -181,6 +181,7 @@ License: pixelarity.com/license
                                         ${realStartDate}</td>
                                 <td style="vertical-align : middle" class="title">
                                     <fmt:formatDate var="realEndDate" value="${Mentoring.realEndDate}" pattern="yyyy-MM-dd"/>
+
                                         ${realEndDate}</td>
                             </tr>
                             </c:forEach>

@@ -28,4 +28,5 @@ public class Mentor {
     private Long maxPersonnel; //멘토링 최대 정원
     private Long personnel; // 멘토링 신청 인원
     private String recruiting; // 멘토링 신청 인원
+    private String rating; // 멘티가 멘토에게 준 평점
 }

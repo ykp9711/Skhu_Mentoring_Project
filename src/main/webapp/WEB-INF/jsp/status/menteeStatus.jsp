@@ -70,7 +70,7 @@ License: pixelarity.com/license
                         <td style="vertical-align : middle" class="title">
                             <fmt:formatDate var="regDate" value="${list.regDate}" pattern="yyyy-MM-dd"/>
                                 ${regDate}</td>
-                        <td style="vertical-align : middle" class="area" ><a href="/status/detailMentee?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
+                        <td style="vertical-align : middle" class="area" ><a href="/status/detailMentee2?bno=${list.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                         <td style="vertical-align : middle" class="area" >
                             <c:choose>
                                 <c:when test="${sessionId eq list.userId}">
