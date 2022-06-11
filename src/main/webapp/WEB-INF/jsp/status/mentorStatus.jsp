@@ -105,10 +105,11 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
-                                        <a href="/status/endMentorBoard?bno=${list.bno}" class="button small ">종료</a>
+                                        <a href="javascript:void(0)" onclick="end(${list.bno})" class="button small">종료</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="/status/endMentorBoard?bno=${list.bno}" class="button small disabled">종료</a>
+                                        <a href="javascript:void(0)" onclick="end(${list.bno})" class="button small disabled">종료</a>
+
                                     </c:otherwise>
                                 </c:choose>
 
@@ -116,10 +117,10 @@ License: pixelarity.com/license
                             <td style="vertical-align : middle" class="area" >
                                 <c:choose>
                                     <c:when test="${sessionId eq list.userId}">
-                                        <a href="/status/deleteMentorBoard?bno=${list.bno}" class="button small ">삭제</a>
+                                        <a href="javascript:void(0)" onclick="deleteMentoring(${list.bno})" class="button small">삭제</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="/deleteMentorBoard?bno=${list.bno}" class="button small disabled">삭제</a>
+                                        <a href="javascript:void(0)" onclick="deleteMentoring(${list.bno})" class="button small disabled">삭제</a>
                                     </c:otherwise>
                                 </c:choose>
 
@@ -216,6 +217,27 @@ License: pixelarity.com/license
 <script src="/assets/js/breakpoints.min.js"></script>
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
+<script>
+    // 모집 종료
+
+    function end(bno){
+        if(confirm("모집을 종료하시겠습니까?") == true){
+            location.href="/status/endMentorBoard?bno="+bno
+        }else{
+            alert("취소되었습니다.")
+        }
+    }
+</script>
+<script>
+    // 멘토링 삭제
+    function deleteMentoring(bno){
+        if(confirm("멘토링을 삭제하시겠습니까?") == true){
+            location.href="/status/deleteMentorBoard?bno="+bno
+        }else{
+            alert("취소되었습니다.")
+        }
+    }
+</script>
 <script>
     var searchForm = $("#searchForm");
 
