@@ -73,8 +73,9 @@ License: pixelarity.com/license
                         <input type="password" name="userPw" id="userPw" value="" placeholder="PASSWORD" />
                     </div>
                     <div class="col-12" style="text-align: center;">
-                        <button type="submit">로그인</button>&nbsp;
+                        <input type="submit" value="로그인"/>
                         <a href="signUp" class="button">회원가입</a>
+                        <a href="findPwId" class="button">ID/PW 찾기</a>
                     </div>
                     <div class="col-12">${msg}</div>
 

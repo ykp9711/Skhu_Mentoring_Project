@@ -100,6 +100,8 @@ License: pixelarity.com/license
             alert("취소되었습니다.")
         }
     }
+
 </script>
+
 </body>
 </html>

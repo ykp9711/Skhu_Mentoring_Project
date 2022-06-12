@@ -35,7 +35,7 @@ License: pixelarity.com/license
 
                     </div><br>
                     <div class="col-12" style="text-align: center;">
-                        <button onclick="refusal(${bno}, ${menteeId})">거절</button>&nbsp;
+                        <input type="submit" value="거절" onclick="refusal(${bno}, ${menteeId})"></input>&nbsp;
                         <a href='javascript:self.close();' class="button primary">닫기</a>
 
                     </div>
