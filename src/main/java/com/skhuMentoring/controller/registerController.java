@@ -60,7 +60,7 @@ public class registerController {
             mentor.setSubjectName(mentor.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentor.getSubjectName());
-            mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
+            mentoringService.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
         }
 
         List<String> menteeStudentNum = mentor.getMenteeStudentNum();
@@ -101,7 +101,7 @@ public class registerController {
             mentee.setSubjectName(mentee.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentee.getSubjectName());
-            mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록된다
+            mentoringService.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록된다
         }
         mentee.setUserId((String) session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMenteeBoard(mentee);
