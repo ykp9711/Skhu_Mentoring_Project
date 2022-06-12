@@ -27,6 +27,13 @@
         #email {
             background-color: #e8e8e8;
         }
+        #auth_btn, #sendMail {
+            box-shadow: 1px 1px 1px #9a9a9a;
+            transition-duration: 0.3s;
+        }
+        #auth_btn:active, #sendMail:active {
+            box-shadow: none;
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -78,11 +85,13 @@
                                 <div class="col-12">
                                     <input type="text" name="userId" id="userId" value="" placeholder="ID" />
                                 </div>
-                                <div class="col-6">
-                                    <input type="email" placeholder="EMAIL" id="uEmail" />
-                                </div>
-                                <div class="col-6">
-                                    <input type="email" id="email" value="@naver.com" readonly />
+                                <div style="width: 100%">
+                                    <div class="col-6" style="float:left; width: 48%">
+                                        <input type="email" placeholder="EMAIL" id="uEmail" />
+                                    </div>
+                                    <div class="col-6" style="float:right; width: 48%">
+                                        <input type="email" id="email" value="@office.skhu.ac.kr" readonly />
+                                    </div>
                                 </div>
                                 <div class="col-12">
                                     <input type="button" id="sendMail" value="이메일 전송" class="button primary fit">
@@ -105,7 +114,6 @@
 
                 </form>
             </section>
-            <div> <p id="check_email" style="height: 1px; color: #13a2dd; text-align: center;">${user.userId}</p></div>
             <div> <p id="check_email2" style="height: 1px; color: #13a2dd; text-align: center;">${msg}</p></div>
         </div>
     </section>
@@ -230,7 +238,7 @@
     $('#uEmail').on("property-change change keyup paste input", function(){
         console.log("들어옴")
         var id = $('#userId').val();
-        var email = $('#uEmail').val() + "@naver.com";
+        var email = $('#uEmail').val() + "@office.skhu.ac.kr";
         var data = {id : id}
 
         $.ajax({ type : "get",

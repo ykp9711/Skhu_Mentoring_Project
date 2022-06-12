@@ -13,6 +13,15 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
+		<style>
+			#btn {
+				box-shadow: 1px 1px 1px #9a9a9a;
+				transition-duration: 0.3s;
+			}
+			#btn:active {
+				box-shadow: none;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 	<c:if test="${empty sessionId}">
@@ -100,7 +109,7 @@
 											<ul class="actions">
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												<li><input type="submit" value="등록" class="primary"></li>
+												<li><input type="submit" value="등록" class="primary" id="btn"></li>
 												<li><input type="reset" value="초기화"></li>
 
 

@@ -3,6 +3,7 @@ package com.skhuMentoring.service;
 import com.skhuMentoring.dto.Criteria;
 import com.skhuMentoring.dto.Mentee;
 import com.skhuMentoring.dto.Mentor;
+import com.skhuMentoring.dto.Subject;
 import com.skhuMentoring.mapper.MentoringBoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,4 +35,25 @@ public class MentoringBoardServiceImpl implements MentoringBoardService {
     public Long getMenteeTotal(Criteria cri) {
         return mapper.getMenteeBoardTotal(cri);
     }
+
+    @Override
+    public void insertMentorBoard(Mentor mentor) { mapper.insertMentorBoard(mentor); }
+
+    @Override
+    public void addPersonnel(Long bno) { mapper.addPersonnel(bno); }
+
+    @Override
+    public Mentee getDetailMentee(Long bno) { return mapper.getDetailMentee(bno); }
+
+    @Override
+    public void deleteMenteeboard(Long bno) { mapper.deleteMenteeboard(bno); }
+
+    @Override
+    public void applicationMentor(Mentee mentee) { mapper.applicationMentor(mentee); }
+
+    @Override
+    public void menteeAcceptStatus(Long bno, String menteeId) { mapper.menteeAcceptStatus(bno, menteeId); }
+
+    @Override
+    public void insertSubject(Subject subject) { mapper.insertSubject(subject); }
 }

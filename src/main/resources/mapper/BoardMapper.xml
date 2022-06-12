@@ -191,4 +191,9 @@
         ]]>
     </select>
 
+    <update id="addPersonnel">
+        UPDATE tbl_mentorBoard
+        SET personnel = personnel + 1
+        WHERE bno = #{bno}
+    </update>
 </mapper>

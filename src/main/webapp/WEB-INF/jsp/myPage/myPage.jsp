@@ -51,7 +51,7 @@ License: pixelarity.com/license
     .tabcontent.current {
         display: block;
     }
-    #id, #rank, #rate{
+    #id, #rank, #rate, #studentNum, #email{
         background-color: #f6f6f6;
     }
 
@@ -108,14 +108,14 @@ License: pixelarity.com/license
                                     </select>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="학번" name="userStudentNum" value="${user.userStudentNum}" readonly/>
+                                    <input type="text" placeholder="학번" id="studentNum" name="userStudentNum" value="${user.userStudentNum}" readonly/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
                                     <input type="text" placeholder="전화번호" name="userPhoneNum" value="${user.userPhoneNum}"/>
 
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="이메일" name="userEmail" value="${user.userEmail}" id="email" readonly/>
+                                    <input type="text" placeholder="이메일" id="email" name="userEmail" value="${user.userEmail}" id="email" readonly/>
                                 </div>
 
                                 <div class="col-7" style="text-align: center;">
