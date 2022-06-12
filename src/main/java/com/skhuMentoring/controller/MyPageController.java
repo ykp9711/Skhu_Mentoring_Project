@@ -97,12 +97,24 @@ public class MyPageController {
         log.info(user);
         return "redirect:/myPage/myPage";
     }
-    @GetMapping("/menteeRate") // 신청한 멘티 목록
+    @GetMapping("/menteeRate") // 멘티평가하기
     public String detailMentees(Long bno,Model model) {
         model.addAttribute("getMentee" , myPageMapper.getMentee(bno));
         model.addAttribute("bno",bno);
-        return "/myPage/menteeRate";
+        return "/myPage/menteeRate2";
     }
+
+    @GetMapping("/menteeRateGo") // 각 멘티 평점주기
+    public String menteeRateGo() {
+        return "/myPage/menteeRateGo";
+    }
+
+
+    @GetMapping("/mentorRateGo") // 각 멘티 평점주기
+    public String mentorRateGo() {
+        return "/myPage/mentorRateGo";
+    }
+
 
     @PostMapping("/updateRating") // 멘티 평점 추가
     public String updateRating(Mentoring mentoring, HttpServletResponse resp) throws Exception{

@@ -38,27 +38,26 @@ License: pixelarity.com/license
                         <table style="border: 1px; margin:0; text-align: center;  ">
 
                             <tr style="background: transparent">
-
                                 <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 ID</td>
                                 <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 평가</td>
-
-
-
                             </tr>
-                            <c:forEach var="getMentee" items="${getMentee}">
+
                                 <tr style="height: 70px;">
-                                    <td style="vertical-align: middle;" name="menteeId">${getMentee.menteeId}</td>
-                                    <td style="vertical-align: middle;" >
-                                        <select id="rating" name="rating">
-                                        <option value="0">멘티 평점(0점)</option>
-                                        <option value="1">1점</option>
-                                        <option value="2">2점</option>
-                                        <option value="3">3점</option>
-                                        <option value="4">4점</option>
-                                        <option value="5">5점</option>
-                                    </select></td>
+                                    <td style="vertical-align: middle;" name="menteeId">mentee</td>
+
+                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRateGo" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
                                 </tr>
-                            </c:forEach>
+                            <tr style="height: 70px;">
+                                <td style="vertical-align: middle;" name="menteeId">mentee2</td>
+
+                                <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRateGo" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
+                            </tr>
+                            <tr style="height: 70px;">
+                                <td style="vertical-align: middle;" name="menteeId">mentee3</td>
+
+                                <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRateGo onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
+                            </tr>
+
                         </table>
                     </c:when>
                     <c:otherwise>
