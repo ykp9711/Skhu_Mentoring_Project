@@ -1,9 +1,17 @@
 package com.skhuMentoring.controller;
 
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.List;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpSession;
+
+import com.skhuMentoring.service.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.skhuMentoring.service.UserService;
 
@@ -22,7 +30,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
@@ -35,6 +42,7 @@ public class HomeController {
     private final MyPageMapper myPageMapper;
     private final UserMapper userMapper;
     private final MailService mailService;
+    private final EncryptionService Encryption;
 
 
     @GetMapping("/")
@@ -66,7 +74,10 @@ public class HomeController {
                 model.addAttribute("msg", "아이디 또는 비밀번호를 입력해주세요");
                 return "user/login";
             }
+
+            map.put("userPw", Encryption.encrypt(map.get("userPw")));
             User user = userService.login(map);
+
             if (user != null) {
                 session.setAttribute("user", user);
             } else {
@@ -134,12 +145,12 @@ public class HomeController {
 
     //비밀번호 변경
     @PostMapping("/modifyPw")
-    public String modifyPw(Model model, HttpServletRequest request, String userPw ){
+    public String modifyPw(Model model, HttpServletRequest request, String userPw ) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         HttpSession session = request.getSession();
         String id = (String) session.getAttribute("userId");
 
+        userPw = Encryption.encrypt(userPw);
         userMapper.modifyPw(userPw, id);
-
 
         model.addAttribute("msg", "비밀번호를 변경했습니다.");
         return "user/modifyPw";
@@ -174,9 +185,11 @@ public class HomeController {
 
     //회원가입 정보 등록
     @PostMapping("/signUp")
-    public String singUp(Model model, @ModelAttribute User user){
+    public String singUp(Model model, @ModelAttribute User user) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        user.setUserPw(Encryption.encrypt(user.getUserPw()));
+        user.setUserEmail(user.getUserEmail()+"@office.skhu.ac.kr");
         userMapper.addUser(user);
-        return "user/login";
+        return "redirect:/login";
     }
 
     // 회원가입 id 중복확인
@@ -197,7 +210,7 @@ public class HomeController {
     @ResponseBody
     public String checkAuth(@RequestParam String email){
 
-        String auth = mailService.sendMail(email+"@naver.com"); // office.skhu.ac.kr로 바꿔서 학생인증메일로만 회원가입 가능하게 만든다.
+        String auth = mailService.sendMail(email+"@office.skhu.ac.kr"); // office.skhu.ac.kr로 바꿔서 학생인증메일로만 회원가입 가능하게 만든다.
 
         return auth;
     }

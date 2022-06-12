@@ -12,6 +12,19 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<style>
+			#email {
+				background-color: #e8e8e8;
+			}
+			#auth_btn, #signUp_btn {
+				box-shadow: 1px 1px 1px #9a9a9a;
+				transition-duration: 0.3s;
+			}
+			#auth_btn:active, #signUp_btn:active {
+				box-shadow: none;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -63,11 +76,13 @@
 								<div class="col-12">
 									<form:input type="text" path="userPhoneNum" id="phone" value="" placeholder="휴대폰 번호" />
 								</div>
-								<div class="col-6">
-									<form:input type="email" path="userEmail" id="userEmail" value="" placeholder="이메일" />
-								</div>
-								<div class="col-6">
-									<input type="email" id="userEmail" value="@naver.com" readonly />
+								<div style="width: 100%">
+									<div class="col-6" style="float: left; width: 48%;">
+										<form:input type="email" path="userEmail" id="userEmail" value="" placeholder="이메일" />
+									</div>
+									<div class="col-6" style="float: right; width: 48%;">
+										<input type="email" id="email" value="@office.skhu.ac.kr" readonly />
+									</div>
 								</div>
 								<div class="col-12">
 									<input type="button" value="이메일 인증" class="button primary fit" id="auth_btn">
@@ -81,7 +96,7 @@
 								<div class="col-12" style="text-align: center;">
 									<ul class="actions fit">
 										<li><input type="button" value="가입하기" class="button primary fit" id="signUp_btn" ></li>
-									    <li><input type="reset" value="취소하기" class="button fit"></li>
+									    <li><input type="reset" value="취소하기" class="button fit" id="cancel_btn"></li>
 									</ul>
 									<p id="checking" style="height: 1px; color: #13a2dd; text-align: center;" ></p>
 								</div>
