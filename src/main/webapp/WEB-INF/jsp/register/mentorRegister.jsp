@@ -9,7 +9,6 @@ pixelarity.com | hello@pixelarity.com
 License: pixelarity.com/license
 -->
 <html>
-<<<<<<< HEAD
 <head>
 	<title>MentorRegister</title>
 	<meta charset="utf-8" />
@@ -61,7 +60,7 @@ License: pixelarity.com/license
 							<form:options  itemValue="subjectName" itemLabel="sno"  items="${ subject }"  />
 						</datalist>
 						</form:select>
-=======
+
 	<head>
 		<title>MentorRegister</title>
 		<meta charset="utf-8" />
@@ -187,7 +186,6 @@ License: pixelarity.com/license
 							</div>
 						</section>
 						<br><br>
->>>>>>> 4971ca8f2b72bffaa4f3009f98422990d3317934
 					</div>
 
 					<c:if test="${empty list}">
@@ -240,7 +238,7 @@ License: pixelarity.com/license
 					<div class="col-12" style="text-align: center;">
 						<ul class="actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<li><a href="javascript:void(0)" class="primary button" id="btn" onclick="checkValue()">등록</a></li>
+							<li><a href="javascript:void(0)" class="primary button" id="btn" onclick="checkValue()">전송</a></li>
 							<li><input type="reset" value="초기화" id="btnn"></li>
 						</ul>
 					</div>
@@ -296,7 +294,6 @@ License: pixelarity.com/license
 					$("#Check_Subject").text(subject + " 과목은 이미 등록되어있는 과목입니다.");
 					$('#addSubject').val("");
 				}
-<<<<<<< HEAD
 			}
 		});// success 종료
 	}); // ajax 종료
@@ -348,59 +345,4 @@ License: pixelarity.com/license
 
 </script>
 </body>
-=======
-			});
-		</script>
-
-		<script>
-			$('#addSubject').on("propertychange change keyup paste input", function(){
-				var subject = $('#addSubject').val(); // .id_input에 입력되는 값
-				var data = {subject : subject} // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
-				$.ajax({ type : "get",
-					url : "/checkSubject",
-					data : data,
-					success : function(result){
-						$('#Check_Subject').css('display', 'block');
-						if(result == 'fail'){
-							$("#Check_Subject").css("color","red");
-							$("#Check_Subject").text(subject + " 과목은 이미 등록되어있는 과목입니다.");
-							$('#addSubject').val("");
-						}
-						}
-					});// success 종료
-				}); // ajax 종료
-
-			// 글자 수 제한
-			$(document).ready(function() {
-				$('#addSubject').on('keyup', function() {
-
-					if($(this).val().length > 10) {
-						$(this).val($(this).val().substring(0, 10));
-					}
-				});
-			});
-
-			$(document).ready(function() {
-				$('#hopeDay').on('keyup', function() {
-
-					if($(this).val().length > 10) {
-						$(this).val($(this).val().substring(0, 10));
-					}
-				});
-			});
-
-			$(document).ready(function() {
-				$('#introduce').on('keyup', function() {
-					$('#introduce_cnt').html("("+$(this).val().length+" / 1000)");
-
-					if($(this).val().length > 1000) {
-						$(this).val($(this).val().substring(0, 1000));
-						$('#introduce_cnt').html("(1000 / 1000)");
-					}
-				});
-			});
-
-		</script>
-	</body>
->>>>>>> 4971ca8f2b72bffaa4f3009f98422990d3317934
 </html>
