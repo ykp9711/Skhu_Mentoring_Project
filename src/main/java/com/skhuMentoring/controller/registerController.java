@@ -7,6 +7,7 @@ import com.skhuMentoring.dto.Subject;
 import com.skhuMentoring.mapper.MentoringBoardMapper;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
+import com.skhuMentoring.service.MentoringBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class registerController {
     private final MentoringBoardMapper mentoringBoardMapper;
     private final MyPageMapper myPageMapper;
     private final UserMapper userMapper;
+    private final MentoringBoardService mentoringService;
 
     @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
     public String MentorRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, Mentee mentee, HttpSession session, Long bno) {
@@ -58,7 +60,7 @@ public class registerController {
             mentor.setSubjectName(mentor.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentor.getSubjectName());
-            mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
+            mentoringService.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록
         }
 
         List<String> menteeStudentNum = mentor.getMenteeStudentNum();
@@ -66,18 +68,19 @@ public class registerController {
         mentor.setUserId((String) session.getAttribute("sessionId"));
 
         if(menteeStudentNum != null){  // 멘티 목록에서 개설할 경우
-            mentor.setPersonnel(1L);
-            mentoringBoardMapper.insertMentorBoard(mentor);
+            mentoringService.insertMentorBoard(mentor);
+            mentoringService.addPersonnel(mentor.getBno());
 
-            Mentee mentee = mentoringBoardMapper.getDetailMentee(bno);  // bno로 멘티 정보 가져오기
+            Mentee mentee = mentoringService.getDetailMentee(bno);  // bno로 멘티 정보 가져오기
             mentee.setMenteeId(mentee.getUserId());
-            mentoringBoardMapper.deleteMenteeboard(mentee.getBno());    // 등록된 멘티 게시글 멘티보드에서 삭제
+            mentoringService.deleteMenteeboard(mentee.getBno());    // 등록된 멘티 게시글 멘티보드에서 삭제
             mentee.setBno(mentor.getBno());                             // 멘티 bno를 새로 등록된 멘토 bno로 변경한 뒤 applicationMentor DB에 멘티 등록
-            mentoringBoardMapper.applicationMentor(mentee);
+            mentoringService.applicationMentor(mentee);
+            mentoringService.menteeAcceptStatus(mentee.getBno(), mentee.getMenteeId());
 
 
         } else{
-            mentoringBoardMapper.insertMentorBoard(mentor);
+            mentoringService.insertMentorBoard(mentor);
         }
 
         resp.setContentType("text/html; charset=utf-8");
@@ -98,7 +101,7 @@ public class registerController {
             mentee.setSubjectName(mentee.getAddSubject());
             Subject subject = new Subject();
             subject.setSubjectName(mentee.getSubjectName());
-            mentoringBoardMapper.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록된다
+            mentoringService.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록된다
         }
         mentee.setUserId((String) session.getAttribute("sessionId"));
         mentoringBoardMapper.insertMenteeBoard(mentee);

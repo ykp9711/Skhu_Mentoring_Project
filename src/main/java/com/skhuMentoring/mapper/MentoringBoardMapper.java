@@ -70,4 +70,5 @@ public interface MentoringBoardMapper {
 
     void deleteMenteeboard(Long bno); //멘티보드에서 해당 bno로 글 삭제
 
+    void addPersonnel(Long bno); //멘토보드 정원 +1
 }
