@@ -51,6 +51,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/element")
+    public String element() {
+        return "element";
+    }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

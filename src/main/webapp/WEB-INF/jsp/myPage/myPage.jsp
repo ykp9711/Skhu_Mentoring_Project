@@ -161,6 +161,7 @@ License: pixelarity.com/license
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 시작일</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료일</th>
+                                <th style="text-align: center; vertical-align : middle;" >멘티 평가</th>
 
                             </tr>
 
@@ -171,10 +172,10 @@ License: pixelarity.com/license
                                 <td style="vertical-align : middle">${Mentoring.recruiting}</td>
                                 <td style="vertical-align : middle" class="area" ><a href="/status/detailMentees?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">상세보기</a></td>
                                 <c:if test="${Mentoring.recruiting == '진행중'}">
-                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRate?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">종료</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRate?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=700px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=0');return false;" target="_blank" class="button small">종료</a></td>
                                 </c:if>
                                 <c:if test="${Mentoring.recruiting == '종료됨'}">
-                                    <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">종료되었습니다.</a></td>
+                                    <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">종료되었습니다</a></td>
                                 </c:if>
                                 <td style="vertical-align : middle" class="title">
                                     <fmt:formatDate var="realStartDate" value="${Mentoring.realStartDate}" pattern="yyyy-MM-dd"/>
@@ -183,6 +184,12 @@ License: pixelarity.com/license
                                     <fmt:formatDate var="realEndDate" value="${Mentoring.realEndDate}" pattern="yyyy-MM-dd"/>
 
                                         ${realEndDate}</td>
+                                <c:if test="${Mentoring.recruiting == '진행중'}">
+                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRate?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">멘티 평가</a></td>
+                                </c:if>
+                                <c:if test="${Mentoring.recruiting == '종료됨'}">
+                                    <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">평가 완료</a></td>
+                                </c:if>
                             </tr>
                             </c:forEach>
                         </table>
@@ -203,6 +210,7 @@ License: pixelarity.com/license
                                 <th style="text-align: center; vertical-align : middle;" class="department">진행현황</th>
                                 <th style="text-align: center; vertical-align : middle;" class="department">멘토링 시작일</th>
                                 <th style="text-align: center; vertical-align : middle;" class="department">멘토링 종료일</th>
+                                <th style="text-align: center; vertical-align : middle;" class="department">멘토 평가</th>
 
 
                             </tr>
@@ -218,6 +226,12 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle" class="title">
                                         <fmt:formatDate var="realEndDate" value="${mentee.realEndDate}" pattern="yyyy-MM-dd"/>
                                             ${realEndDate}</td>
+                                    <c:if test="${mentee.recruiting == '진행중'}">
+                                        <td style="vertical-align : middle" class="area" ><a href="/myPage/mentorRateGo" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">멘토 평가</a></td>
+                                    </c:if>
+                                    <c:if test="${mentee.recruiting == '종료됨'}">
+                                        <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">평가 완료</a></td>
+                                    </c:if>
                                 </tr>
                             </c:forEach>
                         </table>
