@@ -141,6 +141,7 @@ public class StatusController {
             return "redirect:/myPage/myPage"; // 멘토 수락 후 종료를 눌러야 마이페이지->멘토현황에 나온다
 
         }  else if(personnel < maxpersonnel && addPersonnel == maxpersonnel) {
+            mentoringBoardMapper.menteeAccept(bno);
             mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
             mentoringBoardMapper.mentorBoardUpdate(bno);   // 모집현황에 대한 flag 업데이트 ( 모집중->진행중)
             return "redirect:/myPage/myPage";
