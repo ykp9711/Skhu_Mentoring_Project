@@ -8,6 +8,7 @@ import java.util.Date;
 public class Mentoring {
     private Long mno;
     private String menteeId;
+    private String userId;
     private String userName;
     private Long userStudentNum;
     private String subjectName;
@@ -20,4 +21,5 @@ public class Mentoring {
     private String refusalReason; // 멘토링 신청 거절 사유
     private String rating; // 멘티가 멘토에게 준 평점
     private int checkRating; // 멘티평점 완료 여부
+    private int checkRatingMentor;
 }
