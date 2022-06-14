@@ -54,7 +54,6 @@ License: pixelarity.com/license
     #id, #rank, #rate, #studentNum, #email{
         background-color: #f6f6f6;
     }
-
 </style>
 <head>
     <title>마이페이지</title>
@@ -92,12 +91,15 @@ License: pixelarity.com/license
                         <form method="post" action="/myPage/modifyUserInfo">
                             <div class="row gtr-uniform" style="text-align: center; width: 74%;  float: right;">
                                 <div class="col-7" style="text-align: center;">
+                                    <label style="text-align: left; color:cornflowerblue">이름</label>
                                     <input type="text" placeholder="이름" name="userName" value="${user.userName}" id="name" />
                                 </div>
                                 <div class="col-7" style="text-align: center;">
+                                    <label style="text-align: left; color:cornflowerblue">아이디</label>
                                     <input type="text" placeholder="아이디" name="userId" value="${user.userId}" id="id" readonly/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
+                                    <label style="text-align: left; color:cornflowerblue">학부(학과)</label>
                                     <select name="department">
                                         <option label="학과를 선택하세요."></option>
                                         <c:forEach var="d" items="${ departments }">
@@ -108,17 +110,21 @@ License: pixelarity.com/license
                                     </select>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
+                                    <label style="text-align: left; color:cornflowerblue">학번</label>
                                     <input type="text" placeholder="학번" id="studentNum" name="userStudentNum" value="${user.userStudentNum}" readonly/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
+                                    <label style="text-align: left; color:cornflowerblue">전화번호</label>
                                     <input type="text" placeholder="전화번호" name="userPhoneNum" value="${user.userPhoneNum}"/>
 
                                 </div>
                                 <div class="col-7" style="text-align: center;">
+                                    <label style="text-align: left; color:cornflowerblue">이메일</label>
                                     <input type="text" placeholder="이메일" id="email" name="userEmail" value="${user.userEmail}" id="email" readonly/>
                                 </div>
 
                                 <div class="col-7" style="text-align: center;">
+                                    <label style="text-align: left; color:cornflowerblue">비밀번호</label>
                                     <input type="password" placeholder="비밀번호" name="userPw" id="userPw" value="${user.userPw}" />
                                     <p id="Check_pw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
                                 </div>
@@ -128,8 +134,9 @@ License: pixelarity.com/license
                                     <p id="Check_conPw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
                                 </div>
 
-                                <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="내 멘티 평점" id="rate" readonly/>
+                                <div class="col-7" style="text-align: center; ">
+                                    <label style="text-align: left;color: cornflowerblue">내 멘티 평점</label>
+                                    <input type="text"  id="rate" value="${user.menteeRating / 5.0}/ 5.0" readonly/>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
                                     <input type="text" placeholder="내 멘토 횟수(순위)" id="rank" readonly/>
@@ -184,12 +191,6 @@ License: pixelarity.com/license
                                     <fmt:formatDate var="realEndDate" value="${Mentoring.realEndDate}" pattern="yyyy-MM-dd"/>
 
                                         ${realEndDate}</td>
-                                <c:if test="${Mentoring.recruiting == '진행중'}">
-                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRate?bno=${Mentoring.bno}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">멘티 평가</a></td>
-                                </c:if>
-                                <c:if test="${Mentoring.recruiting == '종료됨'}">
-                                    <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">평가 완료</a></td>
-                                </c:if>
                             </tr>
                             </c:forEach>
                         </table>
@@ -392,15 +393,6 @@ License: pixelarity.com/license
         }
     }
 </script>
-<script>
-    // 진행중인 멘토링 종료
-    function endMentoring(bno, menteeId){
-        if(confirm("멘토링을 종료하시겠습니까?") == true){
-            location.href="/myPage/endMentoring?bno="+bno+"&menteeId=" + menteeId
-        }else{
-            alert("취소되었습니다.")
-        }
-    }
-</script>
+
 </body>
 </html>

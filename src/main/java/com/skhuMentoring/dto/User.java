@@ -12,6 +12,7 @@ public class User {
     private String userEmail;
     private String userPhoneNum;
     private String userName;
-    private  String department;
-
+    private String department;
+    private Long menteeRating;
+    private Long mentorRating;
 }

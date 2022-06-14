@@ -60,132 +60,6 @@ License: pixelarity.com/license
 							<form:options  itemValue="subjectName" itemLabel="sno"  items="${ subject }"  />
 						</datalist>
 						</form:select>
-
-	<head>
-		<title>MentorRegister</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="/assets/css/main.css" />
-		<style>
-			#btn {
-				box-shadow: 1px 1px 1px #9a9a9a;
-				transition-duration: 0.3s;
-			}
-			#btn:active {
-				box-shadow: none;
-			}
-		</style>
-	</head>
-	<body class="is-preload">
-	<c:if test="${empty sessionId}">
-		<script>
-			alert("잘못된 접근경로 입니다.로그인해주세요");
-			location.href="/login";
-		</script>
-	</c:if>
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-				<%@include file ="../header.jsp" %>
-
-
-				<!-- Section -->
-					<section id="one" class="main alt">
-						<header class="accent1">
-							<h1>멘토 등록</h1>
-						</header>
-						<div class="inner2"><br><br>
-
-
-                            <%--@elvariable id="mentor" type="com.skhuMentoring.dto.Mentor"--%>
-							<form:form modelAttribute="mentor" method="post">
-							<div class="row gtr-uniform">
-									<div class="row gtr-uniform">
-										<div class="col-12">
-											<form:input path="userName" value="${user.userName}" placeholder="이름" readonly="true" />
-										</div>
-										<div class="col-12">
-											<form:input path="userStudentNum" value="${user.userStudentNum}"  readonly="true"/>
-										</div>
-										<div class="col-12">
-											<input type="text" name ="department" readonly value="${user.department}">
-										</div>
-										<div class="col-12">
-
-											<form:input path="subjectName" id="subjectInput" list="subject" placeholder="희망 강의 과목" value="${list.subjectName}"/>
-											<datalist name="subject" id="subject">
-												<form:select path="subject" >
-													<form:option value="기타" label="0" />
-												<form:options  itemValue="subjectName" itemLabel="sno"  items="${ subject }"  />
-											</datalist>
-												</form:select>
-										</div>
-
-										<c:if test="${empty list}">
-										<div class="col-12">
-											<form:input path="addSubject" id="addSubject" placeholder="강의를 입력해주세요."/>
-											<p id="Check_Subject" style="height: 1px; display: none;"></p>
-										</div>
-										</c:if>
-										<div class="col-12">
-											<select name="MaxPersonnel">
-												<option value="0" label="정원을 선택해주세요" />
-												<option value="1" label="1명" />
-												<option value="2" label="2명" />
-												<option value="3" label="3명" />
-												<option value="4" label="4명" />
-												<option value="5" label="5명" />
-												<option value="6" label="6명" />
-												<option value="7" label="7명" />
-												<option value="8" label="8명" />
-												<option value="9" label="9명" />
-												<option value="10" label="10명" />
-											</select>
-
-										</div>
-										<div class="col-12" style="text-align: center;">
-											<label>예정 시작 날짜 &nbsp;
-											<input type="date" name="startDate" id="startDate"  placeholder="예정시작일">
-										</label>
-										</div>
-										<div class="col-12" style="text-align: center;">
-											<label>예정 종료 날짜 &nbsp;
-											<input type="date" name="endDate" id="endDate">
-										</label>
-										<div class="col-12">
-											<form:input path="hopeDay" id="hopeDay" placeholder="진행가능한 요일을 적어주세요 ex)월, 화"/>
-										</div>
-										</div>
-										<div class="col-12">
-											<form:textarea path="introduce" id="introduce" placeholder="간단한 자기소개 및 수업 진행 세부계획을 작성해주세요." rows="6"/>
-											<div id="introduce_cnt">(0 / 1000)</div>
-										</div>
-										<c:if test="${not empty menteeStudentNum}">
-										<div class="col-12">
-											<p>신청한 멘티</p>
-											<form:input path="menteeStudentNum" id="menteeStudentNum" value="${menteeStudentNum}"/>
-										</div>
-										</c:if>
-
-										<!-- Break -->
-										<div class="col-12" style="text-align: center;">
-											<ul class="actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												<li><input type="submit" value="등록" class="primary" id="btn"></li>
-												<li><input type="reset" value="초기화" id="btnn"></li>
-											</ul>
-										</div>
-									</div>
-								</form:form><br>
-
-							</div>
-								<!-- Break -->
-								
-							</div>
-						</section>
-						<br><br>
 					</div>
 
 					<c:if test="${empty list}">
@@ -238,7 +112,7 @@ License: pixelarity.com/license
 					<div class="col-12" style="text-align: center;">
 						<ul class="actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<li><a href="javascript:void(0)" class="primary button" id="btn" onclick="checkValue()">전송</a></li>
+							<li><a href="javascript:void(0)" class="primary button" id="btn" onclick="checkValue()">등록</a></li>
 							<li><input type="reset" value="초기화" id="btnn"></li>
 						</ul>
 					</div>
@@ -335,7 +209,7 @@ License: pixelarity.com/license
 		person = $("#MaxPersonnel option:selected").val();
 		if(person==0)
 		{
-			alert("정원1명이상 등록가능합니다");
+			alert("정원을 선택해주세요.");
 			$("#MaxPersonnel").focus();
 			return false;
 		}

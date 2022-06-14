@@ -1,9 +1,6 @@
 package com.skhuMentoring.controller;
 
-import com.skhuMentoring.dto.Mentoring;
-import com.skhuMentoring.dto.User;
-import com.skhuMentoring.dto.Mentee;
-import com.skhuMentoring.dto.Mentor;
+import com.skhuMentoring.dto.*;
 import com.skhuMentoring.mapper.MentoringBoardMapper;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
@@ -13,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -99,13 +99,23 @@ public class MyPageController {
     }
     @GetMapping("/menteeRate") // 멘티평가하기
     public String detailMentees(Long bno,Model model) {
-        model.addAttribute("getMentee" , myPageMapper.getMentee(bno));
+        List<Mentoring> list = myPageMapper.getMenteeList(bno);
+        // 해당 게시글 모든 멘티의 checkRating를 확인 후 0(평점을 메기지 않은 멘티)가 존재한다면 noRating을 menteeRate.jsp로 전달한다
+        for(int i =0; i<list.size(); i++){
+            if(list.get(i).getCheckRating()==0){
+                model.addAttribute("noRating", "noRating");
+            }
+        }
+        model.addAttribute("mentee" , myPageMapper.getMenteeList(bno));
         model.addAttribute("bno",bno);
-        return "/myPage/menteeRate2";
+        return "/myPage/menteeRate";
     }
 
     @GetMapping("/menteeRateGo") // 각 멘티 평점주기
-    public String menteeRateGo() {
+    public String menteeRateGo(Long bno, String menteeId,String userName, Model model) {
+        model.addAttribute("bno" , bno);
+        model.addAttribute("menteeId", menteeId);
+        model.addAttribute("userName", userName);
         return "/myPage/menteeRateGo";
     }
 
@@ -116,24 +126,35 @@ public class MyPageController {
     }
 
 
-    @PostMapping("/updateRating") // 멘티 평점 추가
-    public String updateRating(Mentoring mentoring, HttpServletResponse resp) throws Exception{
-        log.info(mentoring);
-        myPageMapper.updateRating(mentoring);
+    @PostMapping("/updateRating") // 멘티 평가 완료 tbl_user테이블에 점수가 합산되고, tbl_applicationMentor테이블의 checkRating 값을 1로 변경(평가여부 확인 1 ok / 0 no)
+    @Transactional
+    public String updateRating(Rating rating, HttpServletResponse resp) throws Exception{
+        rating.setSumRating(rating.getRating()+ rating.getRating2()+ rating.getRating3());
+        myPageMapper.updateRating(rating);
+        myPageMapper.ratingOk(rating);
+        log.info("여기" + rating.getBno());
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
-        out.println("alert('멘토링 종료.')");
-        out.println("window.close()");
+        out.println("alert('평가가 완료되었습니다.')");
+        out.println("location.replace('/myPage/menteeRate?bno="+rating.getBno()+"')");
         out.println("</script>");
         out.close();
         return null;
     }
     // 마이페이지 > 멘토 현황 > 멘토링 종료
     @GetMapping("/endMentoring")
-    public String endMentoring(Long bno){
+    public String endMentoring(Long bno, HttpServletResponse resp) throws Exception{
         myPageMapper.endMentoring(bno);
-        return "redirect:/myPage/myPage";
+        resp.setContentType("text/html; charset=utf-8");
+        PrintWriter out = resp.getWriter();
+        out.println("<script>");
+        out.println("alert('멘토링이 종료되었습니다.')");
+        out.println("window.close()");
+        out.println("opener.location.reload();");
+        out.println("</script>");
+        out.close();
+        return null;
     }
 
     // 마이페이지 > 회원탈퇴

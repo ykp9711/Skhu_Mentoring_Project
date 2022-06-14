@@ -31,43 +31,33 @@ License: pixelarity.com/license
             <form name="rating" method="post" action="/myPage/updateRating" >
             <div class="table-wrapper">
 
-                <input type="text" style="display:none" name="bno" value="${bno}"></input>
+                <input type="hidden" name="bno" value="${bno}">
 
-               <c:choose>
-                    <c:when test="${not empty getMentee}">
+
                         <table style="border: 1px; margin:0; text-align: center;  ">
-
                             <tr style="background: transparent">
-                                <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 ID</td>
+                                <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 이름</td>
+                                <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 학번</td>
                                 <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 평가</td>
                             </tr>
-
+                            <c:forEach var="mentee" items="${mentee}">
                                 <tr style="height: 70px;">
-                                    <td style="vertical-align: middle;" name="menteeId">mentee</td>
-
-                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRateGo" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
+                                    <td style="vertical-align: middle;" name="menteeId">${mentee.userName}</td>
+                                    <td style="vertical-align: middle;" name="menteeId">${mentee.userStudentNum}</td>
+                                    <c:if test="${mentee.checkRating eq 0}">
+                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRateGo?bno=${bno}&menteeId=${mentee.menteeId}&userName=${mentee.userName}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
+                                    </c:if>
+                                    <c:if test="${mentee.checkRating eq 1}">
+                                        <td style="vertical-align : middle" class="area" ><a href=""  class="button small disabled" >평가완료</a></td>
+                                    </c:if>
                                 </tr>
-                            <tr style="height: 70px;">
-                                <td style="vertical-align: middle;" name="menteeId">mentee2</td>
-
-                                <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRateGo" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
                             </tr>
-                            <tr style="height: 70px;">
-                                <td style="vertical-align: middle;" name="menteeId">mentee3</td>
-
-                                <td style="vertical-align : middle" class="area" ><a href="/myPage/menteeRateGo onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
-                            </tr>
-
+                            </c:forEach>
                         </table>
-                    </c:when>
-                    <c:otherwise>
-                        <p style="text-align: center">신청한 멘티가 없습니다.</p>
-                    </c:otherwise>
-                </c:choose>
-
                     <br>
                     <div class="col-12" style="text-align: center;">
-                        <input type="submit" value="종료" class="primary">
+                            <a href="javascript:void(0)" onclick="endMentoring(${bno})" class="button ">멘토링 종료</a>
+                        <a href='javascript:self.close();' class="button primary">닫기</a>
                         <%--<a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a>--%>
 
                     </div>
@@ -81,6 +71,8 @@ License: pixelarity.com/license
 </div>
 
 <!-- Scripts -->
+<script>
+</script>
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.dropotron.min.js"></script>
 <script src="/assets/js/jquery.selectorr.min.js"></script>
@@ -93,8 +85,12 @@ License: pixelarity.com/license
 <script>
     // 진행중인 멘토링 종료
     function endMentoring(bno, menteeId){
+        if(${noRating eq 'noRating'}){
+            alert("멘티평가를 먼저 진행해주세요")
+            return false;
+        }
         if(confirm("멘토링을 종료하시겠습니까?") == true){
-            location.href="/myPage/endMentoring?bno="+bno+"&menteeId=" + menteeId
+            location.href="/myPage/endMentoring?bno="+bno
         }else{
             alert("취소되었습니다.")
         }

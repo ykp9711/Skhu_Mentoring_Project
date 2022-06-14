@@ -51,12 +51,13 @@ License: pixelarity.com/license
         <div class="inner3"><br><br>
             <form name="rating" method="post" action="/myPage/updateRating" >
             <div class="table-wrapper">
-
+            <input type="hidden" name="bno" value="${bno}">
+            <input type="hidden" name="menteeId" value="${menteeId}">
                         <table style="border: 1px; margin:0; text-align: center;  ">
                             <tr style="background: transparent">
                                 <th></th>
 
-                                <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >mentee</td>
+                                <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >${userName}</td>
 
 
 
@@ -70,15 +71,15 @@ License: pixelarity.com/license
                                     <div class="row gtr-uniform">
                                         <!-- Break -->
                                         <div class="col-4 col-12-small">
-                                            <input type="radio" id="rating1" name="rating" />
+                                            <input type="radio" id="rating1" name="rating" value="1" checked/>
                                             <label for="rating1"><span></span>1점</label>
-                                            <input type="radio" id="rating2" name="rating" />
+                                            <input type="radio" id="rating2" name="rating" value="2"/>
                                             <label for="rating2"><span></span>2점</label>
-                                            <input type="radio" id="rating3" name="rating" />
+                                            <input type="radio" id="rating3" name="rating" value="3"/>
                                             <label for="rating3"><span></span>3점</label>
-                                            <input type="radio" id="rating4" name="rating" />
+                                            <input type="radio" id="rating4" name="rating" value="4"/>
                                             <label for="rating4"><span></span>4점</label>
-                                            <input type="radio" id="rating5" name="rating" />
+                                            <input type="radio" id="rating5" name="rating" value="5"/>
                                             <label for="rating5"><span></span>5점</label>
                                         </div>
                                     </div>
@@ -93,15 +94,15 @@ License: pixelarity.com/license
                                     <div class="row gtr-uniform">
                                         <!-- Break -->
                                         <div class="col-4 col-12-small">
-                                            <input type="radio" id="rating6" name="rating2" />
+                                            <input type="radio" id="rating6" name="rating2" value="1" checked />
                                             <label for="rating6"><span></span>1점</label>
-                                            <input type="radio" id="rating7" name="rating2" />
+                                            <input type="radio" id="rating7" name="rating2" value="2"/>
                                             <label for="rating7"><span></span>2점</label>
-                                            <input type="radio" id="rating8" name="rating2" />
+                                            <input type="radio" id="rating8" name="rating2" value="3"/>
                                             <label for="rating8"><span></span>3점</label>
-                                            <input type="radio" id="rating9" name="rating2" />
+                                            <input type="radio" id="rating9" name="rating2" value="4"/>
                                             <label for="rating9"><span></span>4점</label>
-                                            <input type="radio" id="rating10" name="rating2" />
+                                            <input type="radio" id="rating10" name="rating2" value="5"/>
                                             <label for="rating10"><span></span>5점</label>
                                         </div>
                                     </div>
@@ -116,15 +117,15 @@ License: pixelarity.com/license
                                     <div class="row gtr-uniform">
                                         <!-- Break -->
                                         <div class="col-4 col-12-small">
-                                            <input type="radio" id="rating11" name="rating3" />
+                                            <input type="radio" id="rating11" name="rating3" value="1" checked />
                                             <label for="rating11"><span></span>1점</label>
-                                            <input type="radio" id="rating12" name="rating3" />
+                                            <input type="radio" id="rating12" name="rating3" value="2"/>
                                             <label for="rating12"><span></span>2점</label>
-                                            <input type="radio" id="rating13" name="rating3" />
+                                            <input type="radio" id="rating13" name="rating3" value="3"/>
                                             <label for="rating13"><span></span>3점</label>
-                                            <input type="radio" id="rating14" name="rating3" />
+                                            <input type="radio" id="rating14" name="rating3" value="4"/>
                                             <label for="rating14"><span></span>4점</label>
-                                            <input type="radio" id="rating15" name="rating3" />
+                                            <input type="radio" id="rating15" name="rating3" value="5"/>
                                             <label for="rating15"><span></span>5점</label>
                                         </div>
                                     </div>
@@ -136,7 +137,8 @@ License: pixelarity.com/license
 
                     <br>
                     <div class="col-12" style="text-align: center;">
-                        <input type="submit" value="종료" class="primary">
+                        <a href="/myPage/menteeRate?bno=${bno}" class="button">뒤로가기</a>
+                        <input type="submit" class="primary" value="평가완료"/>
                         <%--<a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a>--%>
 
                     </div>
@@ -160,14 +162,6 @@ License: pixelarity.com/license
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 <script>
-    // 진행중인 멘토링 종료
-    function endMentoring(bno, menteeId){
-        if(confirm("멘토링을 종료하시겠습니까?") == true){
-            location.href="/myPage/endMentoring?bno="+bno+"&menteeId=" + menteeId
-        }else{
-            alert("취소되었습니다.")
-        }
-    }
 
 </script>
 

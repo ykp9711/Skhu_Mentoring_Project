@@ -96,15 +96,25 @@
     <select id="showRefusalReason" resultType="com.skhuMentoring.dto.Mentoring">
         select * from tbl_applicationMentor where bno = #{bno} and menteeId = #{menteeId}
     </select>
-
+    <!--3가지 항목으로 멘티를 평가 한 후 합산점수가 tbl_user의 menteeRating에 값이 들어간다-->
     <update id="updateRating">
+        update tbl_user
+        set menteeRating= menteeRating + #{sumRating}
+        where userId=#{menteeId}
+    </update>
+    <!--평가를 완료했으면 해당 게시글에 속한 멘티의 rating 값을 1로 변경하여 평가여부를 바꿔준다-->
+    <update id="ratingOk">
         update tbl_applicationMentor
-        set rating=#{rating}
-        where menteeId=#{menteeId} and bno=#{bno}
+        set checkRating= 1
+        where menteeId=#{menteeId} AND bno = #{bno}
     </update>
 
     <select id="getMentee" resultType="com.skhuMentoring.dto.Mentoring">
         select * from tbl_applicationmentor
         where bno=#{bno} and accept='진행중' or bno=#{bno} and accept='수락됨'
+    </select>
+
+    <select id="getMenteeList" resultType="com.skhuMentoring.dto.Mentoring">
+        select * from tbl_applicationMentor where bno = #{bno}
     </select>
 </mapper>

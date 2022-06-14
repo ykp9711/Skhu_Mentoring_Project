@@ -1,9 +1,6 @@
 package com.skhuMentoring.mapper;
 
-import com.skhuMentoring.dto.User;
-import com.skhuMentoring.dto.Mentee;
-import com.skhuMentoring.dto.Mentor;
-import com.skhuMentoring.dto.Mentoring;
+import com.skhuMentoring.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -47,7 +44,11 @@ public interface MyPageMapper {
 
     Mentoring showRefusalReason(Long bno, String menteeId); // 거절 이유 확인
 
-    void updateRating(Mentoring mentoring);
+    void updateRating(Rating rating); // tbl_user 테이블에 멘티 평가점수를 합산시켜준다
+
+    void ratingOk(Rating rating); // 멘티평가 후 해당 멘티평가 여부를 변경시켜준다.
 
     List<Mentoring> getMentee(Long bno); // 멘토 목록에서 현재 신청한 멘티 정보를 가져온다
+    
+    List<Mentoring> getMenteeList(Long bno); // 해당 멘토링에 참여중인 모든 멘티 목록을 가져온다
 }
