@@ -10,4 +10,6 @@ public class Rating {
     private int sumRating; // 평가점수 합
     private Long bno;    // 해당 멘토링 게시글 번호
     private String menteeId; // 해당 멘토링 게시글에서 평점을 메긴 menteeId
+    private String userName;
+    private String userStudentNum;
 }

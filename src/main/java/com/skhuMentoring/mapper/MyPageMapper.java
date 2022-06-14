@@ -17,7 +17,8 @@ public interface MyPageMapper {
     public List<Mentor> getMentorMyStatus(String userId);
     //멘토링종료
     public void endMentoring(Long bno);
-
+    /*멘토 평가 종료*/
+    public void endRatingMentor(Long bno);
     //멘토링 현황
     public List<Mentoring> getMentoring();
     //페이징 하면 사용
@@ -46,9 +47,15 @@ public interface MyPageMapper {
 
     void updateRating(Rating rating); // tbl_user 테이블에 멘티 평가점수를 합산시켜준다
 
+    void updateRatingMentor(Rating rating);
+
     void ratingOk(Rating rating); // 멘티평가 후 해당 멘티평가 여부를 변경시켜준다.
 
     List<Mentoring> getMentee(Long bno); // 멘토 목록에서 현재 신청한 멘티 정보를 가져온다
     
     List<Mentoring> getMenteeList(Long bno); // 해당 멘토링에 참여중인 모든 멘티 목록을 가져온다
+
+    List<Mentoring> getMentorList(Long bno); // 해당 멘토링에 참여중인 모든 멘토 목록을 가져온다
+
+    List<Mentoring> getMentor(Long bno); // 해당 멘토링에 참여중인 모든 멘토 목록을 가져온 다
 }

@@ -28,6 +28,14 @@
         where bno = #{bno}
     </update>
 
+    <!--멘토 평가 종료-->
+    <update id="endRatingMentor">
+        update tbl_applicationmentor
+        set checkRatingMentor = '1'
+        where bno = #{bno}
+    </update>
+
+
     <delete id="requestAccept">
         delete from tbl_menteeBoard where bno =#{bno}
     </delete>
@@ -81,7 +89,7 @@
 
     <!--마이페이지 -> 멘티현황 -->
     <select id="getMyMenteeStatus" resultType="com.skhuMentoring.dto.Mentoring">
-        select m.bno, m.userId, m.recruiting, m.personnel, m.introduce , m.userName, m.realStartDate, m.realEndDate,m.subjectName, a.menteeId
+        select m.bno, m.userId, m.recruiting, m.personnel, m.introduce , m.userName, m.realStartDate, m.realEndDate,m.subjectName, a.menteeId, a.bno, a.checkRatingMentor
         from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
         where menteeId = #{menteeId} and recruiting = '진행중' or menteeId = #{menteeId} and recruiting = '종료됨'
     </select>
@@ -102,6 +110,13 @@
         set menteeRating= menteeRating + #{sumRating}
         where userId=#{menteeId}
     </update>
+
+    <!--3가지 항목으로 멘티를 평가 한 후 합산점수가 tbl_user의 menteeRating에 값이 들어간다-->
+    <update id="updateRatingMentor">
+        update tbl_user
+        set mentorRating= mentorRating + #{sumRating}
+        where userStudentNum=#{userStudentNum}
+    </update>
     <!--평가를 완료했으면 해당 게시글에 속한 멘티의 rating 값을 1로 변경하여 평가여부를 바꿔준다-->
     <update id="ratingOk">
         update tbl_applicationMentor
@@ -117,4 +132,16 @@
     <select id="getMenteeList" resultType="com.skhuMentoring.dto.Mentoring">
         select * from tbl_applicationMentor where bno = #{bno}
     </select>
+
+    <select id="getMentorList" resultType="com.skhuMentoring.dto.Mentoring">
+        select * from tbl_mentorBoard where bno = #{bno}
+    </select>
+
+<!--    <select id="getMentor" resultType="com.skhuMentoring.dto.Mentoring">
+        select m.bno, m.userId, m.rating, m.userName, a.checkRatingMentor
+        from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
+        where bno = #{bno}
+    </select>-->
+
+
 </mapper>

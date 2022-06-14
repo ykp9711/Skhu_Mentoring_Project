@@ -168,7 +168,7 @@ License: pixelarity.com/license
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 시작일</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료일</th>
-                                <th style="text-align: center; vertical-align : middle;" >멘티 평가</th>
+
 
                             </tr>
 
@@ -214,6 +214,7 @@ License: pixelarity.com/license
                                 <th style="text-align: center; vertical-align : middle;" class="department">멘토 평가</th>
 
 
+
                             </tr>
                             <c:forEach var="mentee" items="${myMenteeStatus}">
                                 <tr style="height: 70px;">
@@ -227,12 +228,16 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle" class="title">
                                         <fmt:formatDate var="realEndDate" value="${mentee.realEndDate}" pattern="yyyy-MM-dd"/>
                                             ${realEndDate}</td>
-                                    <c:if test="${mentee.recruiting == '진행중'}">
-                                        <td style="vertical-align : middle" class="area" ><a href="/myPage/mentorRateGo" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">멘토 평가</a></td>
+                                    <c:if test="${mentee.recruiting eq '종료됨' && mentee.checkRatingMentor eq 0}">
+                                        <td style="vertical-align : middle" class="area" ><a href="/myPage/mentorRate?bno=${mentee.bno}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">멘토 평가</a></td>
                                     </c:if>
-                                    <c:if test="${mentee.recruiting == '종료됨'}">
+                                    <c:if test="${mentee.checkRatingMentor eq 1}">
                                         <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">평가 완료</a></td>
                                     </c:if>
+                                    <c:if test="${mentee.recruiting == '진행중'}">
+                                        <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">종료후 가능</a></td>
+                                    </c:if>
+
                                 </tr>
                             </c:forEach>
                         </table>
