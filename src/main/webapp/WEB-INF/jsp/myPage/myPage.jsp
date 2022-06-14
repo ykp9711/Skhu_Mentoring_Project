@@ -185,10 +185,10 @@ License: pixelarity.com/license
                                     <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">종료되었습니다</a></td>
                                 </c:if>
                                 <td style="vertical-align : middle" class="title">
-                                    <fmt:formatDate var="realStartDate" value="${Mentoring.realStartDate}" pattern="yyyy-MM-dd"/>
+                                    <fmt:formatDate var="realStartDate" value="${Mentoring.startDate}" pattern="yyyy-MM-dd"/>
                                         ${realStartDate}</td>
                                 <td style="vertical-align : middle" class="title">
-                                    <fmt:formatDate var="realEndDate" value="${Mentoring.realEndDate}" pattern="yyyy-MM-dd"/>
+                                    <fmt:formatDate var="realEndDate" value="${Mentoring.endDate}" pattern="yyyy-MM-dd"/>
 
                                         ${realEndDate}</td>
                             </tr>

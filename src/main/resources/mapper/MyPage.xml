@@ -18,7 +18,7 @@
 
     <!--모집 종료 시 마이페이지 멘토 현황에서 멘토 상태 확인-->
     <select id="getMyMentoring" resultType="com.skhuMentoring.dto.Mentoring">
-        select bno,subjectName, personnel, recruiting, realStartDate, realEndDate from tbl_mentorBoard where userId = #{userId} and recruiting = '진행중' or userId = #{userId} and recruiting = '종료됨'
+        select bno,subjectName, personnel, recruiting, startDate, endDate from tbl_mentorBoard where userId = #{userId} and recruiting = '진행중' or userId = #{userId} and recruiting = '종료됨'
     </select>
 
     <!--멘토링 종료-->
