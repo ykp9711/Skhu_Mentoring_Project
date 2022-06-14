@@ -168,7 +168,7 @@ License: pixelarity.com/license
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 시작일</th>
                                 <th style="text-align: center; vertical-align : middle;" >멘토링 종료일</th>
-                                <th style="text-align: center; vertical-align : middle;" >멘티 평가</th>
+
 
                             </tr>
 
@@ -212,7 +212,7 @@ License: pixelarity.com/license
                                 <th style="text-align: center; vertical-align : middle;" class="department">멘토링 시작일</th>
                                 <th style="text-align: center; vertical-align : middle;" class="department">멘토링 종료일</th>
                                 <th style="text-align: center; vertical-align : middle;" class="department">멘토 평가</th>
-                                <th style="text-align: center; vertical-align : middle; " class="department">check</th>
+
 
 
                             </tr>
@@ -237,7 +237,7 @@ License: pixelarity.com/license
                                     <c:if test="${mentee.recruiting == '진행중'}">
                                         <td style="vertical-align : middle" class="area" ><a href="" class="button small disabled">종료후 가능</a></td>
                                     </c:if>
-                                    <td style="vertical-align: middle;"  >${mentee.checkRatingMentor}</td>
+
                                 </tr>
                             </c:forEach>
                         </table>

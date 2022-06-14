@@ -29,8 +29,8 @@ License: pixelarity.com/license
         <div class="inner3"><br><br>
             <form name="rating" method="post" action="/myPage/updateRatingMentor" >
             <div class="table-wrapper">
-                <input type="text" name="bno" value="${bno}">
-                <input type="text" name="userStudentNum" value="${userStudentNum}">
+                <input type="hidden" name="bno" value="${bno}">
+                <input type="hidden" name="userStudentNum" value="${userStudentNum}">
 
                         <table style="border: 1px; margin:0; text-align: center;  ">
                             <tr style="background: transparent">
