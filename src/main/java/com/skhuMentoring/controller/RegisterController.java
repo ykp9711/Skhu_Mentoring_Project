@@ -70,7 +70,7 @@ public class RegisterController {
 
             Mentee mentee = mentoringService.getDetailMentee(bno);  // bno로 멘티 정보 가져오기
             mentee.setMenteeId(mentee.getUserId());
-            mentoringService.deleteMenteeboard(mentee.getBno());    // 등록된 멘티 게시글 멘티보드에서 삭제
+            mentoringService.deleteMenteeBoard(mentee.getBno());    // 등록된 멘티 게시글 멘티보드에서 삭제
             mentee.setBno(mentor.getBno());                             // 멘티 bno를 새로 등록된 멘토 bno로 변경한 뒤 applicationMentor DB에 멘티 등록
             mentoringService.applicationMentor(mentee);
             mentoringService.menteeAcceptStatus(mentee.getBno(), mentee.getMenteeId());

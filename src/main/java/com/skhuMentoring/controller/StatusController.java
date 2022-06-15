@@ -7,6 +7,7 @@ import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MailService;
 import com.skhuMentoring.service.MentoringBoardService;
+import com.skhuMentoring.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,36 +29,35 @@ import java.io.PrintWriter;
 @Log4j2
 @RequestMapping("/status/*")
 public class StatusController {
-    private final MentoringBoardMapper mentoringBoardMapper;
     private final MyPageMapper myPageMapper;
-    private final UserMapper userMapper;
     private final MailService mailService;
-    private final MentoringBoardService service;
+    private final MentoringBoardService  mentoringBoardService;
+    private final UserMapper userService;
 
     @GetMapping("/menteeStatus") //멘티 목록
     public String menteeStatus(Model model, Criteria cri) {
-        model.addAttribute("list", service.getMenteeList(cri));
-        model.addAttribute("pageMaker" , new PageDTO(cri, service.getMenteeTotal(cri))); // 페이지 목록
+        model.addAttribute("list", mentoringBoardService.getMenteeList(cri));
+        model.addAttribute("pageMaker" , new PageDTO(cri, mentoringBoardService.getMenteeTotal(cri))); // 페이지 목록
         return "status/menteeStatus";
     }
 
     @GetMapping("/mentorStatus") // 멘토 목록
     public String mentorStatus(Model model, Criteria cri) {
-        model.addAttribute("list", service.getList(cri)); // 게시글 10개씩 끊기
-        model.addAttribute("pageMaker" , new PageDTO(cri, service.getMentorTotal(cri))); // 페이지 목록
+        model.addAttribute("list", mentoringBoardService.getList(cri)); // 게시글 10개씩 끊기
+        model.addAttribute("pageMaker" , new PageDTO(cri, mentoringBoardService.getMentorTotal(cri))); // 페이지 목록
         return "status/mentorStatus";
     }
 
     @GetMapping("/deleteMentorBoard") // 멘토 게시글 삭제
     public String deleteMentorBoard(Long bno) {
-        mentoringBoardMapper.deleteMentorBoard(bno);
+        mentoringBoardService.deleteMentorBoard(bno);
         return "redirect:/status/mentorStatus";
     }
 
     @GetMapping("/endMentorBoard") // 멘토 게시글 모집 종료
     @Transactional
     public String endMentorBoard(Long bno ,HttpServletResponse resp) throws Exception {
-        if(mentoringBoardMapper.getPersonnel(bno) == 0){
+        if(mentoringBoardService.getPersonnel(bno) == 0){
             resp.setContentType("text/html; charset=utf-8");
             PrintWriter out = resp.getWriter();
             out.println("<script>");
@@ -67,23 +67,23 @@ public class StatusController {
             out.close();
             return null;
         }else {
-            mentoringBoardMapper.endMentorBoard(bno); // recruiting 진행중으로 변경
-            mentoringBoardMapper.endApplicationMentor(bno); // 멘토링 모집 종료시 tbl_applicationMentor 테이블의 accept를 진행중으로 변경 하고 startDate 값 입력
+            mentoringBoardService.endMentorBoard(bno); // recruiting 진행중으로 변경
+            mentoringBoardService.endApplicationMentor(bno); // 멘토링 모집 종료시 tbl_applicationMentor 테이블의 accept를 진행중으로 변경 하고 startDate 값 입력
             return "redirect:/myPage/myPage?bno=" + bno;
         }
     }
 
     @GetMapping("/deleteMenteeBoard") // 멘티 게시글 삭제
     public String deleteMenteeBoard(Long bno) {
-        mentoringBoardMapper.deleteMenteeBoard(bno);
+        mentoringBoardService.deleteMenteeBoard(bno);
         return "redirect:/status/menteeStatus";
     }
 
     @GetMapping("/detailMentor") // 멘토 게시글 상세보기
     public String detailMentor(Model model, Long bno, String mentorId) {
         model.addAttribute("mentorId", mentorId);
-        model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
-        model.addAttribute("user", userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
+        model.addAttribute("detailMentor", mentoringBoardService.getDetailMentor(bno));
+        model.addAttribute("user", userService.getUser(mentoringBoardService.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
         model.addAttribute("mentorMentoringCount", myPageMapper.getMentorCount(mentorId)); // 멘토가 현재까지 진행한 멘토링 횟수
         model.addAttribute("getMentoringCount", myPageMapper.getMentoringCount(mentorId)); // 해당 멘토의 현재까지 가르킨 멘티 수
         return "status/detailMentor";
@@ -93,7 +93,7 @@ public class StatusController {
     public String detailMentee(Model model, Long bno, Mentee mentee, String menteeId) {
         model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno, menteeId));
         model.addAttribute("menteeMentoringCount", myPageMapper.getMenteeCount(menteeId)); // 멘티가 현재까지 들은 멘토링 횟수
-        model.addAttribute("user", userMapper.getUser(menteeId));
+        model.addAttribute("user", userService.getUser(menteeId));
         return "status/detailMentee";
 
     }
@@ -101,18 +101,16 @@ public class StatusController {
     @GetMapping("/detailMentee2") // 멘티 게시글  상세보기 ( 멘티 목록 / 멘티 상세보기)
     public String detailMentee2(Model model, Long bno, Mentee mentee, String menteeId) {
         model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno, menteeId));
-        log.info(menteeId);
         model.addAttribute("menteeMentoringCount", myPageMapper.getMenteeCount(menteeId)); // 멘티가 현재까지 들은 멘토링 횟수
-        model.addAttribute("detailMentee", mentoringBoardMapper.getDetailMentee(bno));
-        model.addAttribute("user", userMapper.getUser(mentoringBoardMapper.getDetailMentee(bno).getUserId()));
+        model.addAttribute("detailMentee", mentoringBoardService.getDetailMentee(bno));
+        model.addAttribute("user", userService.getUser(mentoringBoardService.getDetailMentee(bno).getUserId()));
         return "status/detailMentee";
 
     }
     @PostMapping("/application") // 멘토 게시글 목록에서 신청
     public String applicationMentor(Mentee mentee, HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws Exception {
         mentee.setMenteeId((String) session.getAttribute("sessionId"));
-        mentoringBoardMapper.applicationMentor(mentee);
-        log.info(mentee);
+        mentoringBoardService.applicationMentor(mentee);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
@@ -126,8 +124,7 @@ public class StatusController {
     @PostMapping("/checkApplicationStatus")
     @ResponseBody
     public String checkApplicationStatus(Long bno, String menteeId){
-        int result = mentoringBoardMapper.checkApplicationStatus(bno, menteeId);
-        log.info(result);
+        int result = mentoringBoardService.checkApplicationStatus(bno, menteeId);
         if(result == 1){ // 1이라는건 이미 신청이 되어있다는 것
             return "fail";
         }else
@@ -137,19 +134,19 @@ public class StatusController {
     @GetMapping("/menteeAccept") // 멘티가 보낸 요청 수락
     @Transactional
     public String menteeAceept(Long bno, String menteeId){
-        Long personnel = mentoringBoardMapper.getPersonnel(bno);
-        Long maxpersonnel = mentoringBoardMapper.getMaxpersonnel(bno);
+        Long personnel = mentoringBoardService.getPersonnel(bno);
+        Long maxPersonnel = mentoringBoardService.getMaxPersonnel(bno);
         Long addPersonnel = personnel + 1;
 
-        if (personnel < maxpersonnel && addPersonnel < maxpersonnel) {
-            mentoringBoardMapper.menteeAccept(bno);
-            mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
+        if (personnel < maxPersonnel && addPersonnel < maxPersonnel) {
+            mentoringBoardService.menteeAccept(bno);
+            mentoringBoardService.menteeAcceptStatus(bno, menteeId);
             return "redirect:/myPage/myPage"; // 멘토 수락 후 종료를 눌러야 마이페이지->멘토현황에 나온다
 
-        }  else if(personnel < maxpersonnel && addPersonnel == maxpersonnel) {
-            mentoringBoardMapper.menteeAccept(bno);
-            mentoringBoardMapper.menteeAcceptStatus(bno, menteeId);
-            mentoringBoardMapper.mentorBoardUpdate(bno);   // 모집현황에 대한 flag 업데이트 ( 모집중->진행중)
+        }  else if(personnel < maxPersonnel && addPersonnel == maxPersonnel) {
+            mentoringBoardService.menteeAccept(bno);
+            mentoringBoardService.menteeAcceptStatus(bno, menteeId);
+            mentoringBoardService.mentorBoardUpdate(bno);   // 모집현황에 대한 flag 업데이트 ( 모집중->진행중)
             return "redirect:/myPage/myPage";
         }
         else {
@@ -160,7 +157,7 @@ public class StatusController {
 
     @GetMapping("/detailMentees") // 멘토목록에서 신청한 멘티 목록 보여줌
     public String detailMentees(Long bno,Model model) {
-            model.addAttribute("detailMentees" , mentoringBoardMapper.getDetailMentees(bno));
+            model.addAttribute("detailMentees" , mentoringBoardService.getDetailMentees(bno));
 
         return "/status/detailMentees";
     }
