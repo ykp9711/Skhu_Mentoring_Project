@@ -157,7 +157,7 @@ License: pixelarity.com/license
                                 </div>
                                 <br><br>
                                 <div class="col-7" style="text-align: center;">
-                                    <button type="submit" class="button" id="btn"> 수정하기 </button>
+                                    <input type="submit" class="button" id="btn" value="수정하기"> </input>
                                     <input type="button" value="회원탈퇴" onclick="showPopup();"/>
                                 </div>
                                 <!-- Break -->
