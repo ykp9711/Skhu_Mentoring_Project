@@ -12,4 +12,5 @@ public interface UserService {
    public List<String> findId(String userEmail) throws Exception;
    public void deleteUser(String userId) throws Exception; // 회원탈퇴
 
+   public User getUser(String userId); // userId로 해당 유저 정보 모두 가져오기
 }

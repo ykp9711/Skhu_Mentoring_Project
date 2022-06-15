@@ -1,9 +1,6 @@
 package com.skhuMentoring.service;
 
-import com.skhuMentoring.dto.Criteria;
-import com.skhuMentoring.dto.Mentee;
-import com.skhuMentoring.dto.Mentor;
-import com.skhuMentoring.dto.Subject;
+import com.skhuMentoring.dto.*;
 
 import java.util.List;
 
@@ -41,4 +38,16 @@ public interface MentoringBoardService {
 
     // 과목 추가
     public void insertSubject(Subject subject);
+
+    // 학과 목록 가져오기
+    public List<Department> getDepartment();
+
+    // 등록된 강의목록 가져오기
+    public List<Subject> getSubject();
+
+    // 멘토목록 상세보기 값 가져오기
+    public Mentor getDetailMentor(Long bno);
+
+    // 과목 등록 시 이미 DB에 등록된 과목인지 체크
+    public int checkSubject(String subject);
 }
