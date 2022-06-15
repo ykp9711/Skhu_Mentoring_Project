@@ -28,6 +28,12 @@
         where bno = #{bno}
     </update>
 
+    <update id="endMentoringAccept">
+        update tbl_applicationMentor
+        set accept = '종료됨'
+        where bno = #{bno}
+    </update>
+
     <!--멘토 평가 종료-->
     <update id="endRatingMentor">
         update tbl_applicationmentor
@@ -141,4 +147,19 @@
         select checkRatingMentor from tbl_applicationMentor where bno= #{bno} and menteeId = #{menteeId}
     </select>
 
+    <!--해당 멘티가 지금까지 들은 멘토링 횟수-->
+    <select id="getMenteeCount" resultType="_int">
+        select count(*) from tbl_applicationMentor where menteeId= #{menteeId} and accept='종료됨'
+    </select>
+
+    <select id="getMentorCount" resultType="_int">
+        select count(*) from tbl_mentorBoard where userId =#{mentorId} and recruiting ='종료됨'
+    </select>
+
+    <select id="getMentoringCount" resultType="_int">
+        select count(*) from
+            (select a.*, m.userId
+             from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno)tbl
+        where userId= #{mentorId}
+    </select>
 </mapper>

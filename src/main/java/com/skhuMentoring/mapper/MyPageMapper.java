@@ -17,6 +17,7 @@ public interface MyPageMapper {
     public List<Mentor> getMentorMyStatus(String userId);
     //멘토링종료
     public void endMentoring(Long bno);
+    public void endMentoringAccept(Long bno); // tbl_applicationMentor 테이블에서 Accept를 수락됨 - > 종료됨으로 변경
     /*멘토 평가 종료*/
     public void endRatingMentor(Long bno, String userId);
     //멘토링 현황
@@ -60,4 +61,11 @@ public interface MyPageMapper {
     List<Mentoring> getMentor(Long bno); // 해당 멘토링에 참여중인 모든 멘토 목록을 가져온 다
 
     int getCheckRatingMentor(Long bno,String menteeId); // 해당 멘토링 게시글에 멘티가 멘토 평가여부를 가져온다.
+
+
+    int getMenteeCount(String menteeId); // 해당 멘티가 지금까지 진행한 멘토링 횟수
+    
+    int getMentorCount(String MentorId); // 해당 멘토가 지금까지 진행한 멘토링 횟수
+    
+    int getMentoringCount(String mentorId); // 해당 멘토의 멘토링을 받은 멘티 수
 }

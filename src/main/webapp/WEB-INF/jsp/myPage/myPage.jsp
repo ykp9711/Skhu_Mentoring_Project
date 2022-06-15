@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+
 <%
     Date nowTime = new Date();
     SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -136,10 +137,23 @@ License: pixelarity.com/license
 
                                 <div class="col-7" style="text-align: center; ">
                                     <label style="text-align: left;color: cornflowerblue">내 멘티 평점</label>
-                                    <input type="text"  id="rate" value="${user.menteeRating / 5.0}/ 5.0" readonly/>
+                                    <c:if test="${menteeMentoringCount eq 0}">
+                                        <input type="text"  id="rate" value="${(user.menteeRating /3.0)}" readonly/>
+                                    </c:if>
+                                    <c:if test="${menteeMentoringCount ne 0}">
+                                        <c:set var="num1" value="${((user.menteeRating/3.0)/menteeMentoringCount)}" />
+                                        <input type="text" placeholder="내 멘토 횟수(순위)" value="<fmt:formatNumber type="number"  pattern="0.0" value="${ ((num1*10) - ((num1*10)%1)) * (1/10)} " /> / 5.0"  id="rank" readonly/>
+                                    </c:if>
                                 </div>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="text" placeholder="내 멘토 횟수(순위)" id="rank" readonly/>
+                                    <label style="text-align: left;color: cornflowerblue">내 멘토 평점(5점 만점)</label>
+                                    <c:if test="${mentorMentoringCount eq 0}">
+                                        <input type="text"  id="rate" value="0.0 / 5.0" readonly/>
+                                    </c:if>
+                                    <c:if test="${mentorMentoringCount ne 0}">
+                                    <c:set var="num1" value="${((user.mentorRating/3.0)/mentorMentoringCount/getMentoringCount)}" />
+                                    <input type="text" placeholder="내 멘토 횟수(순위)" value="<fmt:formatNumber type="number"  pattern="0.0" value="${ ((num1*10) - ((num1*10)%1)) * (1/10)} " /> / 5.0"  id="rank" readonly/>
+                                    </c:if>
                                 </div>
                                 <br><br>
                                 <div class="col-7" style="text-align: center;">

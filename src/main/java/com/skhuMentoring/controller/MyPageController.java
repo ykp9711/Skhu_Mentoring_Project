@@ -46,6 +46,9 @@ public class MyPageController {
         model.addAttribute("departments", mentoringBoardMapper.getDepartment());
         model.addAttribute("Mentoring", myPageMapper.getMyMentoring(userId)); // (마이페이지 -> 멘토현황)
         model.addAttribute("myMenteeStatus", myPageMapper.getMyMenteeStatus(userId)); // 마이페이지 - > 멘티현황
+        model.addAttribute("menteeMentoringCount", myPageMapper.getMenteeCount(userId)); // 멘티가 현재까지 들은 멘토링 횟수
+        model.addAttribute("mentorMentoringCount", myPageMapper.getMentorCount(userId)); // 멘토가 현재까지 진행한 멘토링 횟수
+        model.addAttribute("getMentoringCount", myPageMapper.getMentoringCount(userId)); // 해당 멘토의 현재까지 가르킨 멘티 수
         return "/myPage/myPage";
     }
     // 마이페이지 > 멘토 현황 > 상세보기
@@ -174,6 +177,7 @@ public class MyPageController {
     @GetMapping("/endMentoring")
     public String endMentoring(Long bno, HttpServletResponse resp) throws Exception{
         myPageMapper.endMentoring(bno);
+        myPageMapper.endMentoringAccept(bno);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");

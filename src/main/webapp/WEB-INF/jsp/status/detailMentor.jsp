@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <!--
 Hypothesis by Pixelarity
@@ -39,14 +40,30 @@ License: pixelarity.com/license
                         <td style="vertical-align: middle; background: #eeeeee;" >멘토 학번</td>
                         <td style="vertical-align: middle;" >${user.userStudentNum}</td>
                     </tr>
+
+<c:if test="${mentorId ne null}">
+                    <tr style="height: 70px;">
+                        <td style="vertical-align: middle; background: #eeeeee;" >멘토 평점</td>
+                        <td style="vertical-align: middle;" >
+                            <c:if test="${mentorMentoringCount eq 0}">
+                                멘토 내역 없음
+                            </c:if>
+                            <c:if test="${mentorMentoringCount ne 0}">
+                                <c:set var="num1" value="${((user.mentorRating/3.0)/mentorMentoringCount/getMentoringCount)}" />
+                                <fmt:formatNumber type="number"  pattern="0.0" value="${ ((num1*10) - ((num1*10)%1)) * (1/10)} " /> / 5.0
+                            </c:if>
+                        </td>
+                    </tr>
+</c:if>
                 </table>
                 <div class="col-12">
                     <textarea name="demo-message" id="demo-message" disabled style="background: white" rows="6">${detailMentor.introduce}</textarea>
                 </div>
                 <br>
                 <div class="col-12" style="text-align: center;">
-
+<c:if test="${mentorId ne null}">
                     <a href="/register/menteeRegister?bno=${detailMentor.bno}" class="button primary">신청</a>
+</c:if>
                     <a href='javascript:self.close();' class="button primary">닫기</a>
 
                 </div>

@@ -76,19 +76,24 @@ public class StatusController {
     @GetMapping("/deleteMenteeBoard") // 멘티 게시글 삭제
     public String deleteMenteeBoard(Long bno) {
         mentoringBoardMapper.deleteMenteeBoard(bno);
-        return "redirect:status/menteeStatus";
+        return "redirect:/status/menteeStatus";
     }
 
     @GetMapping("/detailMentor") // 멘토 게시글 상세보기
-    public String detailMentor(Model model, Long bno) {
+    public String detailMentor(Model model, Long bno, String mentorId) {
+        model.addAttribute("mentorId", mentorId);
         model.addAttribute("detailMentor", mentoringBoardMapper.getDetailMentor(bno));
         model.addAttribute("user", userMapper.getUser(mentoringBoardMapper.getDetailMentor(bno).getUserId()));// 해당 게시글 userId로 유저 정보 가져옴
+        model.addAttribute("mentorMentoringCount", myPageMapper.getMentorCount(mentorId)); // 멘토가 현재까지 진행한 멘토링 횟수
+        model.addAttribute("getMentoringCount", myPageMapper.getMentoringCount(mentorId)); // 해당 멘토의 현재까지 가르킨 멘티 수
         return "status/detailMentor";
     }
 
     @GetMapping("/detailMentee") // 멘티 게시글 상세보기 (마이페이지 , 멘토목록에서 멘티 상세보기)
     public String detailMentee(Model model, Long bno, Mentee mentee, String menteeId) {
         model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno, menteeId));
+        model.addAttribute("menteeMentoringCount", myPageMapper.getMenteeCount(menteeId)); // 멘티가 현재까지 들은 멘토링 횟수
+        model.addAttribute("user", userMapper.getUser(menteeId));
         return "status/detailMentee";
 
     }
@@ -96,7 +101,8 @@ public class StatusController {
     @GetMapping("/detailMentee2") // 멘티 게시글  상세보기 ( 멘티 목록 / 멘티 상세보기)
     public String detailMentee2(Model model, Long bno, Mentee mentee, String menteeId) {
         model.addAttribute("detailMentee", myPageMapper.getDetailMentee(bno, menteeId));
-
+        log.info(menteeId);
+        model.addAttribute("menteeMentoringCount", myPageMapper.getMenteeCount(menteeId)); // 멘티가 현재까지 들은 멘토링 횟수
         model.addAttribute("detailMentee", mentoringBoardMapper.getDetailMentee(bno));
         model.addAttribute("user", userMapper.getUser(mentoringBoardMapper.getDetailMentee(bno).getUserId()));
         return "status/detailMentee";
@@ -155,6 +161,7 @@ public class StatusController {
     @GetMapping("/detailMentees") // 멘토목록에서 신청한 멘티 목록 보여줌
     public String detailMentees(Long bno,Model model) {
             model.addAttribute("detailMentees" , mentoringBoardMapper.getDetailMentees(bno));
+
         return "/status/detailMentees";
     }
 }

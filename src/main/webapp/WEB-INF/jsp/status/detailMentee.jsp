@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <!--
 Hypothesis by Pixelarity
@@ -41,7 +42,14 @@ License: pixelarity.com/license
                     </tr>
                     <tr style="height: 70px;">
                         <td style="vertical-align: middle; background: #eeeeee;" >멘티 평점</td>
-                        <td style="vertical-align: middle;" >4.7/5</td>
+                        <td style="vertical-align: middle;" >
+                            <c:if test="${menteeMentoringCount eq 0}">
+                                멘티 내역 없음
+                            </c:if>
+                            <c:if test="${menteeMentoringCount ne 0}">
+                                <c:set var="num1" value="${((user.menteeRating/3.0)/menteeMentoringCount)}" />
+                                <fmt:formatNumber type="number"  pattern="0.0" value="${ ((num1*10) - ((num1*10)%1)) * (1/10)} " /> / 5.0
+                            </c:if></td>
                     </tr>
                 </table>
                 <div class="col-12">

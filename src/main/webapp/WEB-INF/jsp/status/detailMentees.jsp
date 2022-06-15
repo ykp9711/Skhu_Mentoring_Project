@@ -35,7 +35,6 @@ License: pixelarity.com/license
 
                         <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 이름</td>
                         <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 학번</td>
-                        <td style="text-align: center; vertical-align : middle; background: #eeeeee;" >멘티 평점</td>
 
 
                     </tr>
@@ -43,7 +42,6 @@ License: pixelarity.com/license
                     <tr style="height: 70px;">
                         <td style="vertical-align: middle;" >${detailMentee.userName}</td>
                         <td style="vertical-align: middle;" >${detailMentee.userStudentNum}</td>
-                        <td style="vertical-align: middle;" >4.7/5</td>
                     </tr>
                     </c:forEach>
                         </table>
