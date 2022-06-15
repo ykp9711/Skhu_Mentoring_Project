@@ -8,6 +8,7 @@ import com.skhuMentoring.service.MentoringBoardService;
 import com.skhuMentoring.service.MyPageService;
 import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -106,14 +107,18 @@ public class StatusController {
 
     }
     @PostMapping("/application") // 멘토 게시글 목록에서 신청
-    public String applicationMentor(Mentee mentee, HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public String applicationMentor(Mentee mentee, HttpSession session, HttpServletRequest req, HttpServletResponse resp, String pathIndex) throws Exception {
         mentee.setMenteeId((String) session.getAttribute("sessionId"));
         mentoringBoardService.applicationMentor(mentee);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
         out.println("alert('멘토링 신청이 완료되었습니다.')");
-        out.println("location.href='/status/mentorStatus'");
+        if(!pathIndex.equals("true")) {
+            out.println("location.href='/status/mentorStatus'");
+        }else {
+            out.println("window.close()");
+        }
         out.println("</script>");
         out.close();
         return null;

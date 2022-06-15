@@ -24,6 +24,7 @@
 		</style>
 	</head>
 	<body class="is-preload">
+	<input type="text" id="pathIndex" name="pathIndex"/>
 	<c:if test="${empty sessionId}">
 		<script>
 			alert("잘못된 접근경로 입니다.로그인해주세요");
@@ -59,7 +60,6 @@
 	<c:when test="${empty list}">
         <%--@elvariable id="mentee" type="com.skhuMentoring.dto.Mentee"--%>
 								<form:form modelAttribute="mentee" id="form1" method="post" action="#">
-
 									<div class="row gtr-uniform">
 										<div class="col-12">
 											<form:input path="userName" value="${user.userName}" placeholder="이름" readonly="true"/>
@@ -132,7 +132,7 @@
 	<c:otherwise><%--멘토링 신청 시 보여주는 form--%>
         <%--@elvariable id="mentee" type="com.skhuMentoring.dto.Mentee"--%>
 		<form:form modelAttribute="mentee" method="post" id="form1" action="/status/application">
-
+			<input type="hidden" id="pathIndex" name="pathIndex" value="${pathIndex}"/>
 			<div class="row gtr-uniform">
 				<input type="hidden"  value="${list.bno}" name="bno"/>
 				<div class="col-12">
@@ -226,10 +226,11 @@
 		<script src="/assets/js/main.js"></script>
 <script>
 	function checkValue() {
-		introduce = $("#introduce").val();
-		hopeDay = $("#hopeDay").val();
-		subjectInput = $("#subjectInput").val();
-		if(subjectInput.length == 0)
+		let introduce = $("#introduce").val();
+		let hopeDay = $("#hopeDay").val();
+		let subjectInput = $("#subjectInput").val();
+		var a = $("#pathIndex").val()
+
 		{
 			alert("희망과목을 선택해주세요.");
 			$("#subjectInput").focus();

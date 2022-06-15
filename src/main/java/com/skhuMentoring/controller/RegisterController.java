@@ -8,6 +8,7 @@ import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MentoringBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -38,7 +39,8 @@ public class RegisterController {
     }
 
     @GetMapping("/menteeRegister")
-    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session, Long bno) {
+    public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session, Long bno, @Param("pathIndex") String pathIndex) {
+        model.addAttribute("pathIndex", pathIndex);
         model.addAttribute("list", mentoringService.getDetailMentor(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
         model.addAttribute("departments", mentoringService.getDepartment());
         model.addAttribute("subject", mentoringService.getSubject());

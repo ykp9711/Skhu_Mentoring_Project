@@ -44,7 +44,7 @@ License: pixelarity.com/license
                 <c:forEach var="mentor" items="${mentor}">
                     <div>
                         <blockquote style="padding: 0.5rem 2rem 0.5rem 2rem;">
-                            <a href="/status/detailMentor?bno=${mentor.bno}&mentorId=${mentor.userId}" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank">
+                            <a href="/status/detailMentor?bno=${mentor.bno}&mentorId=${mentor.userId}&pathIndex=true" onclick="window.open(this.href,'Detail','width=400px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank">
                                 <h3 style="color: #13a2dd">Mentor</h3> <h4>${mentor.userName}</h4>
                                 <div><b>${mentor.subjectName}</b></div>
                                 <div>
