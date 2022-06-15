@@ -121,10 +121,11 @@ public class MyPageController {
 
 
     @GetMapping("/mentorRate") //
-    public String detailMentors(Long bno,Model model) {
+    public String detailMentors(Long bno,Model model, HttpSession session) {
         List<Mentoring> list = myPageMapper.getMentorList(bno);
         model.addAttribute("mentor" , myPageMapper.getMentorList(bno));
         model.addAttribute("bno",bno);
+        model.addAttribute("check" , myPageMapper.getCheckRatingMentor(bno,(String)session.getAttribute("sessionId"))); // applicationMentor 테이블에서 checkRatingMentor를 확인하기 위해 전달
         return "/myPage/mentorRate";
     }
 
@@ -154,12 +155,12 @@ public class MyPageController {
         return null;
     }
 
-    @PostMapping("/updateRatingMentor") // 멘티 평가 완료 tbl_user테이블에 점수가 합산되고, tbl_applicationMentor테이블의 checkRating 값을 1로 변경(평가여부 확인 1 ok / 0 no)
+    @PostMapping("/updateRatingMentor") // 멘토 평가 완료 tbl_user테이블에 점수가 합산되고, tbl_applicationMentor테이블의 checkRating 값을 1로 변경(평가여부 확인 1 ok / 0 no)
     @Transactional
-    public String updateRatingMentor(Rating rating, HttpServletResponse resp) throws Exception{
+    public String updateRatingMentor(Rating rating,String userId, Long bno, HttpServletResponse resp) throws Exception{
         rating.setSumRating(rating.getRating()+ rating.getRating2()+ rating.getRating3());
         myPageMapper.updateRatingMentor(rating);
-        log.info(rating);
+        myPageMapper.endRatingMentor(bno,userId);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
@@ -177,8 +178,8 @@ public class MyPageController {
         PrintWriter out = resp.getWriter();
         out.println("<script>");
         out.println("alert('멘토링이 종료되었습니다.')");
+        out.println("opener.location.reload()");
         out.println("window.close()");
-        out.println("opener.location.reload();");
         out.println("</script>");
         out.close();
         return null;
@@ -187,7 +188,6 @@ public class MyPageController {
     /*멘토현황 > 멘토 평가 완료 후 평가 종료를 누를 시 나옴 / 평가 종료를 누르면 다시 멘토링에 대한 멘토 평가 불가*/
     @GetMapping("/endRatingMentor")
     public String endRatingMentor(Long bno, HttpServletResponse resp) throws Exception{
-        myPageMapper.endRatingMentor(bno);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");

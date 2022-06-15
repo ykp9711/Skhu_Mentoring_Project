@@ -32,7 +32,7 @@
     <update id="endRatingMentor">
         update tbl_applicationmentor
         set checkRatingMentor = '1'
-        where bno = #{bno}
+        where bno = #{bno} AND menteeID= #{userId}
     </update>
 
 
@@ -137,11 +137,8 @@
         select * from tbl_mentorBoard where bno = #{bno}
     </select>
 
-<!--    <select id="getMentor" resultType="com.skhuMentoring.dto.Mentoring">
-        select m.bno, m.userId, m.rating, m.userName, a.checkRatingMentor
-        from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
-        where bno = #{bno}
-    </select>-->
-
+    <select id="getCheckRatingMentor" resultType="_int">
+        select checkRatingMentor from tbl_applicationMentor where bno= #{bno} and menteeId = #{menteeId}
+    </select>
 
 </mapper>

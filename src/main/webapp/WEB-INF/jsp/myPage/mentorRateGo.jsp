@@ -31,6 +31,7 @@ License: pixelarity.com/license
             <div class="table-wrapper">
                 <input type="hidden" name="bno" value="${bno}">
                 <input type="hidden" name="userStudentNum" value="${userStudentNum}">
+                <input type="hidden" name="userId" value="${sessionId}">
 
                         <table style="border: 1px; margin:0; text-align: center;  ">
                             <tr style="background: transparent">

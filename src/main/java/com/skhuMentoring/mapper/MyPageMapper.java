@@ -18,7 +18,7 @@ public interface MyPageMapper {
     //멘토링종료
     public void endMentoring(Long bno);
     /*멘토 평가 종료*/
-    public void endRatingMentor(Long bno);
+    public void endRatingMentor(Long bno, String userId);
     //멘토링 현황
     public List<Mentoring> getMentoring();
     //페이징 하면 사용
@@ -58,4 +58,6 @@ public interface MyPageMapper {
     List<Mentoring> getMentorList(Long bno); // 해당 멘토링에 참여중인 모든 멘토 목록을 가져온다
 
     List<Mentoring> getMentor(Long bno); // 해당 멘토링에 참여중인 모든 멘토 목록을 가져온 다
+
+    int getCheckRatingMentor(Long bno,String menteeId); // 해당 멘토링 게시글에 멘티가 멘토 평가여부를 가져온다.
 }

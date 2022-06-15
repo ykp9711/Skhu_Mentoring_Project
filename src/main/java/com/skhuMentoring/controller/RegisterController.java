@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
@@ -25,7 +24,7 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping("/register")
-public class registerController {
+public class RegisterController {
     private final MentoringBoardMapper mentoringBoardMapper;
     private final MyPageMapper myPageMapper;
     private final UserMapper userMapper;

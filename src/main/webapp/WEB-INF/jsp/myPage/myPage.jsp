@@ -309,6 +309,9 @@ License: pixelarity.com/license
                                     <c:when test="${applicationMentor.accept eq '거절됨'}">
                                     <a href="javascript:void(0)" onclick="cancelApplication(${applicationMentor.bno})" class="button small disabled">거절됨</a>
                                     </c:when>
+                                        <c:when test="${applicationMentor.accept eq '수락됨'}">
+                                            <a href="javascript:void(0)" onclick="cancelApplication(${applicationMentor.bno})" class="button small disabled">신청취소</a>
+                                    </c:when>
                                     <c:otherwise>
                                         <a href="javascript:void(0)" onclick="cancelApplication(${applicationMentor.bno})" class="button small">신청취소</a>
                                     </c:otherwise>

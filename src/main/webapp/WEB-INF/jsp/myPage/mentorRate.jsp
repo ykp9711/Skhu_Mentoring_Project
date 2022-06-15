@@ -44,10 +44,10 @@ License: pixelarity.com/license
                                 <tr style="height: 70px;">
                                     <td style="vertical-align: middle;" name="menteeId">${mentor.userName}</td>
                                     <td style="vertical-align: middle;" name="menteeId">${mentor.userStudentNum}</td>
-                                    <c:if test="${mentor.checkRating eq 0}">
-                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/mentorRateGo?bno=${bno}&userName=${mentor.userName}&userStudentNum=${mentor.userStudentNum}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
+                                    <c:if test="${check eq 0}">
+                                    <td style="vertical-align : middle" class="area" ><a href="/myPage/mentorRateGo?bno=${bno}&userName=${mentor.userName}&userStudentNum=${mentor.userStudentNum}&userId=${sessionId}" onclick="window.open(this.href,'Detail','width=600px, height=600px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">평가하러가기</a></td>
                                     </c:if>
-                                    <c:if test="${mentor.checkRating eq 1}">
+                                    <c:if test="${check eq 1}">
                                         <td style="vertical-align : middle" class="area" ><a href=""  class="button small disabled" >평가완료</a></td>
                                     </c:if>
                                 </tr>
