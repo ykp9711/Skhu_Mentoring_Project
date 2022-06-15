@@ -112,7 +112,7 @@
     <!--모집현황에 대한 flag 업데이트 ( 모집중->진행중)-->
     <update id="mentorBoardUpdate">
         UPDATE tbl_mentorBoard
-        SET recruiting = '진행중'
+        SET recruiting = '진행중', realStartDate = now()
         WHERE bno = #{bno}
     </update>
 
