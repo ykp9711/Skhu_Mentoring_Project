@@ -58,7 +58,7 @@
 <c:choose>
 	<c:when test="${empty list}">
         <%--@elvariable id="mentee" type="com.skhuMentoring.dto.Mentee"--%>
-								<form:form modelAttribute="mentee" method="post" action="#">
+								<form:form modelAttribute="mentee" id="form1" method="post" action="#">
 
 									<div class="row gtr-uniform">
 										<div class="col-12">
@@ -108,8 +108,9 @@
 										<div class="col-12" style="text-align: center;">
 											<ul class="actions">
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												<li><input type="submit" value="등록" class="primary" id="btn"></li>
+												&nbsp;&nbsp;&nbsp;&nbsp;
+												<li><a href="javascript:void(0)" class="primary button" id="btn" onclick="checkValue()">신청</a></li>
+
 												<li><input type="reset" value="초기화"></li>
 
 
@@ -130,7 +131,7 @@
 	</c:when>
 	<c:otherwise><%--멘토링 신청 시 보여주는 form--%>
         <%--@elvariable id="mentee" type="com.skhuMentoring.dto.Mentee"--%>
-		<form:form modelAttribute="mentee" method="post" action="/status/application">
+		<form:form modelAttribute="mentee" method="post" id="form1" action="/status/application">
 
 			<div class="row gtr-uniform">
 				<input type="hidden"  value="${list.bno}" name="bno"/>
@@ -183,8 +184,8 @@
 				<div class="col-12" style="text-align: center;">
 					<ul class="actions">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<li><input type="submit" value="신청" class="primary"></li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<li><input type="submit" value="신청"></li>
 								<li><input type="reset" value="초기화"></li>
 
 
@@ -223,6 +224,34 @@
 		<script src="/assets/js/breakpoints.min.js"></script>
 		<script src="/assets/js/util.js"></script>
 		<script src="/assets/js/main.js"></script>
+<script>
+	function checkValue() {
+		introduce = $("#introduce").val();
+		hopeDay = $("#hopeDay").val();
+		subjectInput = $("#subjectInput").val();
+		if(subjectInput.length == 0)
+		{
+			alert("희망과목을 선택해주세요.");
+			$("#subjectInput").focus();
+			return false;
+		}
+		if(hopeDay.length == 0)
+		{
+			alert("희망 날짜를 정해주세요");
+			$("#hopeDay").focus();
+			return false;
+		}
+		if(introduce.length == 0)
+		{
+			alert("자기소개를 작성해주세요");
+			$("#introduce").focus();
+			return false;
+		}
+		else
+			$("#form1").submit();
+	}
+
+</script>
 <script>
 	$('#subjectInput').on('input', function(){
 		if ($("#subjectInput").val() == '기타') {

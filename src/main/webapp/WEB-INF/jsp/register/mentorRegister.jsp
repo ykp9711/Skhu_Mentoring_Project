@@ -204,19 +204,39 @@ License: pixelarity.com/license
 
 </script>
 <script>
-	function checkValue()
-	{
+	function checkValue() {
 		person = $("#MaxPersonnel option:selected").val();
-		if(person==0)
+		introduce = $("#introduce").val();
+		hopeDay = $("#hopeDay").val();
+		subjectInput = $("#subjectInput").val();
+		if(subjectInput.length == 0)
 		{
+			alert("희망과목을 선택해주세요.");
+			$("#subjectInput").focus();
+			return false;
+		}
+		if (person == 0) {
 			alert("정원을 선택해주세요.");
 			$("#MaxPersonnel").focus();
+			return false;
+		}
+		if(hopeDay.length == 0)
+		{
+			alert("희망 날짜를 정해주세요");
+			$("#hopeDay").focus();
+			return false;
+		}
+		if(introduce.length == 0)
+		{
+			alert("자기소개를 작성해주세요");
+			$("#introduce").focus();
 			return false;
 		}
 		else
 			document.form.submit();
 	}
-
 </script>
+
+
 </body>
 </html>
