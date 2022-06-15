@@ -11,7 +11,7 @@ import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.dto.User;
 
 
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -32,6 +32,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String userId) throws Exception {
         userMapper.deleteUser(userId);
+    }
+
+    // userId로 해당 유저 정보 모두 가져오기
+    @Override
+    public User getUser(String userId){
+        return userMapper.getUser(userId);
     }
 
 }

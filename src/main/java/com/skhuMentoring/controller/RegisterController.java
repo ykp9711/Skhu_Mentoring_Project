@@ -8,6 +8,7 @@ import com.skhuMentoring.mapper.MentoringBoardMapper;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MentoringBoardService;
+import com.skhuMentoring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -26,29 +27,26 @@ import java.util.List;
 @RequestMapping("/register")
 public class RegisterController {
     private final MentoringBoardMapper mentoringBoardMapper;
-    private final MyPageMapper myPageMapper;
-    private final UserMapper userMapper;
+    private final UserMapper userService;
     private final MentoringBoardService mentoringService;
+
 
     @GetMapping("/mentorRegister") // 멘토 게시글 등록페이지로 이동
     public String MentorRegister(Department department, Subject subject, Model model, @ModelAttribute Mentor mentor, Mentee mentee, HttpSession session, Long bno) {
-        model.addAttribute("list", mentoringBoardMapper.getDetailMentee(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
-        log.info(mentoringBoardMapper.getDetailMentee(bno));
-        model.addAttribute("departments", mentoringBoardMapper.getDepartment()); //학부 리스트
-        model.addAttribute("subject", mentoringBoardMapper.getSubject()); // 과목 리스트
-        model.addAttribute("user", userMapper.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
-        model.addAttribute("menteeStudentNum", mentor.getMenteeStudentNum());
-        /*mentoringBoardMapper.setUpMentoring(menteeStudentNum);*/
+        model.addAttribute("list", mentoringService.getDetailMentee(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
+        model.addAttribute("departments", mentoringService.getDepartment()); //학부 리스트
+        model.addAttribute("subject", mentoringService.getSubject()); // 과목 리스트
+        model.addAttribute("user", userService.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
+        model.addAttribute("menteeStudentNum", mentor.getMenteeStudentNum()); //멘티 학번 가져오기
         return "/register/mentorRegister";
     }
 
     @GetMapping("/menteeRegister")
     public String MenteeRegister(@ModelAttribute Mentee mentee, Model model, Department department, HttpSession session, Long bno) {
-        model.addAttribute("list", mentoringBoardMapper.getDetailMentor(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
-        log.info(mentoringBoardMapper.getDetailMentor(bno));
-        model.addAttribute("departments", mentoringBoardMapper.getDepartment());
-        model.addAttribute("subject", mentoringBoardMapper.getSubject());
-        model.addAttribute("user", userMapper.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
+        model.addAttribute("list", mentoringService.getDetailMentor(bno)); // 멘토목록에서 신청시 해당 게시글 정보 넘겨줌
+        model.addAttribute("departments", mentoringService.getDepartment());
+        model.addAttribute("subject", mentoringService.getSubject());
+        model.addAttribute("user", userService.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         return "/register/menteeRegister";
     }
 

@@ -1,9 +1,6 @@
 package com.skhuMentoring.service;
 
-import com.skhuMentoring.dto.Criteria;
-import com.skhuMentoring.dto.Mentee;
-import com.skhuMentoring.dto.Mentor;
-import com.skhuMentoring.dto.Subject;
+import com.skhuMentoring.dto.*;
 import com.skhuMentoring.mapper.MentoringBoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -56,4 +53,17 @@ public class MentoringBoardServiceImpl implements MentoringBoardService {
 
     @Override
     public void insertSubject(Subject subject) { mapper.insertSubject(subject); }
+
+    @Override
+    public List<Department> getDepartment(){return mapper.getDepartment();} // 학과 목록 가져오기
+
+    @Override
+    public List<Subject> getSubject(){return mapper.getSubject();} // 등록된 강의목록 가져오기
+
+    @Override
+    public Mentor getDetailMentor(Long bno){return mapper.getDetailMentor(bno);} // 멘토목록 상세보기 값 가져오기
+
+    @Override
+    public int checkSubject(String subject){return mapper.checkSubject(subject);} // 과목 등록 시 이미 DB에 등록된 과목인지 체크
+
 }
