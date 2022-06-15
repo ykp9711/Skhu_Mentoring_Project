@@ -17,6 +17,7 @@ public interface MyPageMapper {
     public List<Mentor> getMentorMyStatus(String userId);
     //멘토링종료
     public void endMentoring(Long bno);
+
     public void endMentoringAccept(Long bno); // tbl_applicationMentor 테이블에서 Accept를 수락됨 - > 종료됨으로 변경
     /*멘토 평가 종료*/
     public void endRatingMentor(Long bno, String userId);

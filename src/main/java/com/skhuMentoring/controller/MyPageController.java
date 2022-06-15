@@ -1,25 +1,24 @@
 package com.skhuMentoring.controller;
 
 import com.skhuMentoring.dto.*;
-import com.skhuMentoring.mapper.MentoringBoardMapper;
-import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MailService;
-import com.skhuMentoring.service.UserService;
+import com.skhuMentoring.service.MentoringBoardService;
+import com.skhuMentoring.service.MyPageService;
 import lombok.extern.log4j.Log4j2;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -28,35 +27,32 @@ import java.util.List;
 @Log4j2
 @RequestMapping("/myPage/*")
 public class MyPageController {
-    private final MentoringBoardMapper mentoringBoardMapper;
-    private final MyPageMapper myPageMapper;
-    private final UserMapper userMapper;
+    private final MentoringBoardService mentoringBoardService;
     private final MailService mailService;
-
-    @Autowired
-    private UserService userService;
+    private final MyPageService myPageService;
+    private final UserMapper userService;
     //마이페이지로 이동
     @GetMapping("/myPage")
     public String myPageGo(@ModelAttribute Mentor mentor, Model model, HttpSession session, Mentee mentee, Long bno) {
-        model.addAttribute("user", userMapper.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
+        model.addAttribute("user", userService.getUser((String) session.getAttribute("sessionId"))); // 로그인 세션 값으로 유저 정보 보내줌
         String userId = (String) session.getAttribute("sessionId");
-        model.addAttribute("list", myPageMapper.getMentorMyStatus(userMapper.getId(userId))); // 멘토정보 불러오기
-        model.addAttribute("applicationMentor", myPageMapper.getApplicationMentor(userId)); // 멘토에게 보낸 신청
-        model.addAttribute("requestMentee", myPageMapper.getRequestMentee(userId)); // 멘토에게 보낸 신청
-        model.addAttribute("departments", mentoringBoardMapper.getDepartment());
-        model.addAttribute("Mentoring", myPageMapper.getMyMentoring(userId)); // (마이페이지 -> 멘토현황)
-        model.addAttribute("myMenteeStatus", myPageMapper.getMyMenteeStatus(userId)); // 마이페이지 - > 멘티현황
-        model.addAttribute("menteeMentoringCount", myPageMapper.getMenteeCount(userId)); // 멘티가 현재까지 들은 멘토링 횟수
-        model.addAttribute("mentorMentoringCount", myPageMapper.getMentorCount(userId)); // 멘토가 현재까지 진행한 멘토링 횟수
-        model.addAttribute("getMentoringCount", myPageMapper.getMentoringCount(userId)); // 해당 멘토의 현재까지 가르킨 멘티 수
+        model.addAttribute("list", myPageService.getMentorMyStatus(userService.getId(userId))); // 멘토정보 불러오기
+        model.addAttribute("applicationMentor", myPageService.getApplicationMentor(userId)); // 멘토에게 보낸 신청
+        model.addAttribute("requestMentee", myPageService.getRequestMentee(userId)); // 멘토에게 보낸 신청
+        model.addAttribute("departments", mentoringBoardService.getDepartment());
+        model.addAttribute("Mentoring", myPageService.getMyMentoring(userId)); // (마이페이지 -> 멘토현황)
+        model.addAttribute("myMenteeStatus", myPageService.getMyMenteeStatus(userId)); // 마이페이지 - > 멘티현황
+        model.addAttribute("menteeMentoringCount", myPageService.getMenteeCount(userId)); // 멘티가 현재까지 들은 멘토링 횟수
+        model.addAttribute("mentorMentoringCount", myPageService.getMentorCount(userId)); // 멘토가 현재까지 진행한 멘토링 횟수
+        model.addAttribute("getMentoringCount", myPageService.getMentoringCount(userId)); // 해당 멘토의 현재까지 가르킨 멘티 수
         return "/myPage/myPage";
     }
     // 마이페이지 > 멘토 현황 > 상세보기
 
     @GetMapping("/detailMentoring")
     public String detailMentoring(Model model){
-        model.addAttribute("list2",myPageMapper.getMenteeStatus());
-        model.addAttribute("Mentoring",myPageMapper.getMentoring());
+        model.addAttribute("list2",myPageService.getMenteeStatus());
+        model.addAttribute("Mentoring",myPageService.getMentoring());
         return "/myPage/detailMentoring";
     }
 
@@ -69,13 +65,13 @@ public class MyPageController {
     }
     @GetMapping("/showRefusalReason") // 거절 사유 작성 창
     public String showRefusalReason(Long bno, String menteeId, Model model){
-        model.addAttribute("refusalReason", myPageMapper.showRefusalReason(bno,menteeId));
+        model.addAttribute("refusalReason", myPageService.showRefusalReason(bno,menteeId));
         return "/myPage/showRefusalReason";
     }
 
     @PostMapping("/applicationRefusal") // 거절 사유 작성
     public String requestRefusal(Long bno,String menteeId ,String refusalReason, HttpServletResponse resp) throws Exception{
-        myPageMapper.refusalReason(bno, menteeId, refusalReason);
+        myPageService.refusalReason(bno, menteeId, refusalReason);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
@@ -88,7 +84,7 @@ public class MyPageController {
     // 마이페이지 > 멘토에게 보낸 요청 > 취소하기
     @GetMapping("/cancelApplication")
     public String cancelApplication(Long bno, HttpSession session){
-        myPageMapper.cancelApplication(bno, (String)session.getAttribute("sessionId"));
+        myPageService.cancelApplication(bno, (String)session.getAttribute("sessionId"));
 
         return "redirect:/myPage/myPage";
     }
@@ -96,20 +92,19 @@ public class MyPageController {
     //마이페이지 > 내 정보 수정
     @PostMapping("/modifyUserInfo")
     public String modifyUserInfo(@ModelAttribute User user){
-        myPageMapper.modifyUserInfo(user);
-        log.info(user);
+        myPageService.modifyUserInfo(user);
         return "redirect:/myPage/myPage";
     }
     @GetMapping("/menteeRate") // 멘티평가하기
     public String detailMentees(Long bno,Model model) {
-        List<Mentoring> list = myPageMapper.getMenteeList(bno);
+        List<Mentoring> list = myPageService.getMenteeList(bno);
         // 해당 게시글 모든 멘티의 checkRating를 확인 후 0(평점을 메기지 않은 멘티)가 존재한다면 noRating을 menteeRate.jsp로 전달한다
         for(int i =0; i<list.size(); i++){
             if(list.get(i).getCheckRating()==0){
                 model.addAttribute("noRating", "noRating");
             }
         }
-        model.addAttribute("mentee" , myPageMapper.getMenteeList(bno));
+        model.addAttribute("mentee" , myPageService.getMenteeList(bno));
         model.addAttribute("bno",bno);
         return "/myPage/menteeRate";
     }
@@ -125,10 +120,11 @@ public class MyPageController {
 
     @GetMapping("/mentorRate") //
     public String detailMentors(Long bno,Model model, HttpSession session) {
-        List<Mentoring> list = myPageMapper.getMentorList(bno);
-        model.addAttribute("mentor" , myPageMapper.getMentorList(bno));
+        String userId =(String)session.getAttribute("sessionId");
+        List<Mentoring> list = myPageService.getMentorList(bno);
+        model.addAttribute("mentor" , myPageService.getMentorList(bno));
         model.addAttribute("bno",bno);
-        model.addAttribute("check" , myPageMapper.getCheckRatingMentor(bno,(String)session.getAttribute("sessionId"))); // applicationMentor 테이블에서 checkRatingMentor를 확인하기 위해 전달
+        model.addAttribute("check" , myPageService.getCheckRatingMentor(bno,userId)); // applicationMentor 테이블에서 checkRatingMentor를 확인하기 위해 전달
         return "/myPage/mentorRate";
     }
 
@@ -145,9 +141,8 @@ public class MyPageController {
     @Transactional
     public String updateRating(Rating rating, HttpServletResponse resp) throws Exception{
         rating.setSumRating(rating.getRating()+ rating.getRating2()+ rating.getRating3());
-        myPageMapper.updateRating(rating);
-        myPageMapper.ratingOk(rating);
-        log.info("여기" + rating.getBno());
+        myPageService.updateRating(rating);
+        myPageService.ratingOk(rating);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
@@ -162,8 +157,8 @@ public class MyPageController {
     @Transactional
     public String updateRatingMentor(Rating rating,String userId, Long bno, HttpServletResponse resp) throws Exception{
         rating.setSumRating(rating.getRating()+ rating.getRating2()+ rating.getRating3());
-        myPageMapper.updateRatingMentor(rating);
-        myPageMapper.endRatingMentor(bno,userId);
+        myPageService.updateRatingMentor(rating);
+        myPageService.endRatingMentor(bno,userId);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
@@ -176,8 +171,8 @@ public class MyPageController {
     // 마이페이지 > 멘토 현황 > 멘토링 종료
     @GetMapping("/endMentoring")
     public String endMentoring(Long bno, HttpServletResponse resp) throws Exception{
-        myPageMapper.endMentoring(bno);
-        myPageMapper.endMentoringAccept(bno);
+        myPageService.endMentoring(bno);
+        myPageService.endMentoringAccept(bno);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
@@ -212,7 +207,6 @@ public class MyPageController {
     @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("userPw") String userPw, User dto, HttpSession session, Model model,
                              RedirectAttributes ra) throws Exception {
-        log.info(userPw);
 
         User user = (User) session.getAttribute("user");
 

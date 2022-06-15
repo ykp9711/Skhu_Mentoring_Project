@@ -64,7 +64,7 @@ public interface MentoringBoardMapper {
 
     Long getPersonnel(Long bno); // 해당 멘토링 현재 신청 인원 조회
 
-    Long getMaxpersonnel(Long bno); // 멘토가 개설한 정원수
+    Long getMaxPersonnel(Long bno); // 멘토가 개설한 정원수
 
     void mentorBoardUpdate(Long bno);
 

@@ -4,11 +4,8 @@ import com.skhuMentoring.dto.Department;
 import com.skhuMentoring.dto.Mentee;
 import com.skhuMentoring.dto.Mentor;
 import com.skhuMentoring.dto.Subject;
-import com.skhuMentoring.mapper.MentoringBoardMapper;
-import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MentoringBoardService;
-import com.skhuMentoring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -26,7 +23,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/register")
 public class RegisterController {
-    private final MentoringBoardMapper mentoringBoardMapper;
     private final UserMapper userService;
     private final MentoringBoardService mentoringService;
 
@@ -101,7 +97,7 @@ public class RegisterController {
             mentoringService.insertSubject(subject); // 기타항목 선택 후 입력한 강의 DB에 등록된다
         }
         mentee.setUserId((String) session.getAttribute("sessionId"));
-        mentoringBoardMapper.insertMenteeBoard(mentee);
+        mentoringService.insertMenteeBoard(mentee);
         resp.setContentType("text/html; charset=utf-8");
         PrintWriter out = resp.getWriter();
         out.println("<script>");
@@ -116,7 +112,7 @@ public class RegisterController {
     @ResponseBody
     public String userIdCheck(String subject) throws Exception {
 
-        int result = mentoringBoardMapper.checkSubject(subject);
+        int result = mentoringService.checkSubject(subject);
         if (result == 1) { // result로 받은 값이 1이라면 이미 등록된 과목으로 fail 리턴
             return "fail";
         } else { // result 값이 1이 아니라면 없는 아이디로 success 리턴

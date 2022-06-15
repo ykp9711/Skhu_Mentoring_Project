@@ -97,7 +97,7 @@ public class MentoringBoardServiceImpl implements MentoringBoardService {
 
     @Override
     public Long getMaxPersonnel(Long bno) {
-        return mapper.getMaxpersonnel(bno);
+        return mapper.getMaxPersonnel(bno);
     }
 
     @Override
@@ -115,4 +115,8 @@ public class MentoringBoardServiceImpl implements MentoringBoardService {
         return mapper.getDetailMentees(bno);
     }
 
+    @Override
+    public void insertMenteeBoard(Mentee mentee) {
+        mapper.insertMenteeBoard(mentee);
+    }
 }
