@@ -1,6 +1,7 @@
 package com.skhuMentoring.controller;
 
 import com.skhuMentoring.dto.*;
+import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
 import com.skhuMentoring.service.MailService;
 import com.skhuMentoring.service.MentoringBoardService;
@@ -12,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
@@ -31,6 +34,7 @@ public class MyPageController {
     private final MailService mailService;
     private final MyPageService myPageService;
     private final UserMapper userService;
+    private final Upload upload;
     //마이페이지로 이동
     @GetMapping("/myPage")
     public String myPageGo(@ModelAttribute Mentor mentor, Model model, HttpSession session, Mentee mentee, Long bno) {
@@ -227,7 +231,46 @@ public class MyPageController {
 
     }
     @GetMapping("/modifyProfile")
-    public String modifyProfile(){
+    public String modifyProfile(HttpServletRequest req, Model model, HttpSession session){
+        model.addAttribute("user", userService.getUser((String) session.getAttribute("sessionId")));
         return "/myPage/modifyProfile";
     }
+
+    private final MyPageMapper myPageMapper;
+    //프로필 사진 설정
+    @PostMapping("/profileImg")
+    public String profileImgUpload(MultipartFile img, HttpServletResponse resp, HttpSession session ,User user, HttpServletRequest req) throws Exception {
+    user.setImgName(userService.getUser((String)session.getAttribute("sessionId")).getImgName());
+        if((img.getSize() >0)) {
+            String imgName = upload.FileUpload(img, req);
+            user.setImgName(imgName);
+        }
+        String userId = (String)session.getAttribute("sessionId");
+        //*파일 이름을 user에 컬럼에 update로 추가
+        user.setUserId(userId);
+        myPageMapper.modifyProfile(user);
+        resp.setContentType("text/html; charset=utf-8");
+        PrintWriter out = resp.getWriter();
+        out.println("<script>");
+        out.println("alert('프로필이 수정되었습니다.')");
+        out.println("window.close()");
+        out.println("opener.location.reload()");
+        out.println("</script>");
+        out.close();
+        return null;
+    }
+    @GetMapping("/imgReset")
+    public void imgReset(HttpSession session , HttpServletResponse resp) throws Exception{
+        String userId = (String)session.getAttribute("sessionId");
+        myPageMapper.resetImg(userId);
+        resp.setContentType("text/html; charset=utf-8");
+        PrintWriter out = resp.getWriter();
+        out.println("<script>");
+        out.println("alert('프로필이 사진이 초기화 되었습니다.')");
+        out.println("window.close()");
+        out.println("opener.location.reload()");
+        out.println("</script>");
+        out.close();
+    }
+
 }

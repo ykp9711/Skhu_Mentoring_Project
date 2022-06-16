@@ -101,10 +101,10 @@ License: pixelarity.com/license
                             <div class="row gtr-uniform" style="text-align: center; width: 74%;  float: right;">
                                 <div class="col-7" style="text-align: center;">
                                     <div class="boxx" style="margin:0 auto;">
-                                        <img src="/images/pic01.jpg" alt="" class="profile"/>
-
+                                        <img src="/images/${user.imgName}" alt="" class="profile"/>
                                     </div><br>
-                                    <a href="/myPage/modifyProfile?bno=${user.userId}" onclick="window.open(this.href,'Detail','width=1100px, height=700px, top=100, left=210, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">프로필 수정</a>
+
+                                    <a href="/myPage/modifyProfile?bno=${user.userId}" onclick="window.open(this.href,'Detail','width=1100px, height=700px, top=100, left=210, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">랭킹 프로필 수정</a>
 
                                 <div class="col-7" style="text-align: center;"><br>
                                     <label style="text-align: left; color:cornflowerblue">이름</label>

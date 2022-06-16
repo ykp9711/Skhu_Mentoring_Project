@@ -23,8 +23,8 @@ License: pixelarity.com/license
         overflow: hidden;
     }
     .profile {
-        width: 100%;
-        height: 100%;
+        width: 120%;
+        height: 120%;
         object-fit: cover;
     }
 </style>
@@ -37,42 +37,46 @@ License: pixelarity.com/license
         <header class="accent3">
             <h1>프로필 수정</h1>
         </header>
-        <form name="modifyProfile" method="post" action="/myPage/modifyProfile" >
+        <form name="form" method="post" action="/myPage/profileImg" enctype="multipart/form-data">
             <div class="spotlight">
 
                 <ul>
                     <li>
                         <h4>이름/닉네임</h4>
                         <div class="col-12">
-                        <input type="textarea" name="nickName" placeholder="닉네임">
+                        <input type="textarea" name="nickName" placeholder="닉네임" value="${user.nickName}">
                         </div>
                     </li>
                     <li>
                         <h4>자신있는 멘토링</h4>
                         <div class="col-12">
-                            <input type="textarea" name="career" placeholder="자바,파이썬">
+                            <input type="textarea" name="mainSubject" placeholder="자바,파이썬" value="${user.mainSubject}">
                         </div>
                     </li>
                 </ul>
-                <span class="image"><img src="/images/pic01.jpg" alt="" /></span>
+                <div class="boxx" style="margin:0 auto; width: 50%; height: 200px;">
+                    <img src="/images/${user.imgName}" alt="" class="profile"/>
+                </div><br>
                 <ul>
                     <li>
                         <h4>멘토의 한마디</h4>
                         <div class="col-12">
-                            <input type="textarea" name="word" placeholder="화이팅">
+                            <input type="textarea" name="oneWord" placeholder="화이팅" value="${user.oneWord}">
                         </div>
                     </li>
                     <li>
                         <h4>멘토와 연락할 수 있는 방법</h4>
                         <div class="col-12">
-                            <input type="textarea" name="sns" placeholder="SNS,카카오톡ID">
+                            <input type="textarea" name="sns" placeholder="SNS,카카오톡ID" value="${user.sns}">
                         </div>
                     </li>
                 </ul>
             </div>
 
                 <div class="col-12" style="text-align: center;">
-                    <a href="javascript:void(0)" onclick="modify(${bno})" class="button ">변경 </a>
+                    <a href="/myPage/imgReset">프로필 사진 초기화</a>
+                    <p style="margin-left: 10%"><input type="file" id="img" name="img" accept="image/*" onchange="loadFile(this)"></p>
+                    <input type="submit" value="변경하기">
                     <a href='javascript:self.close();' class="button primary">닫기</a>
                     <%--<a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a>--%>
 
@@ -108,6 +112,31 @@ License: pixelarity.com/license
         }
     }
 
+</script>
+<script>
+    function loadFile(input) {
+        var file = input.files[0];	//선택된 파일 가져오기
+
+        //미리 만들어 놓은 div에 text(파일 이름) 추가
+        var name = document.getElementById('fileName');
+        name.textContent = file.name;
+
+        //새로운 이미지 div 추가
+        var newImage = document.createElement("img");
+        newImage.setAttribute("class", 'img');
+
+        //이미지 source 가져오기
+        newImage.src = URL.createObjectURL(file);
+
+        newImage.style.width = "70%";
+        newImage.style.height = "70%";
+        newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지를 숨긴다
+        newImage.style.objectFit = "contain";
+
+        //이미지를 image-show div에 추가
+        var container = document.getElementById('image-show');
+        container.appendChild(newImage);
+    };
 </script>
 
 </body>

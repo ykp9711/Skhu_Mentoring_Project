@@ -12,6 +12,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpSession;
 
 import com.skhuMentoring.service.EncryptionService;
+import com.skhuMentoring.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.skhuMentoring.service.UserService;
 
@@ -43,11 +44,15 @@ public class HomeController {
     private final UserMapper userMapper;
     private final MailService mailService;
     private final EncryptionService Encryption;
+    private final RankingService rankingService;
 
 
     @GetMapping("/")
     public String main(Model model) {
         model.addAttribute("mentor", mentoringBoardMapper.sliderMentor()); //메인화면 슬라이드
+        model.addAttribute("one", rankingService.getMentorRankOne());
+        model.addAttribute("two", rankingService.getMentorRankTwo());
+        model.addAttribute("three", rankingService.getMentorRankThree());
         return "index";
     }
 
@@ -160,9 +165,6 @@ public class HomeController {
         model.addAttribute("msg", "비밀번호를 변경했습니다.");
         return "user/modifyPw";
     }
-
-    @GetMapping("/ranking")
-    public String ranking() {return  "ranking";}
 
 
 

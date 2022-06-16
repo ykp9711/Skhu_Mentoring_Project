@@ -162,4 +162,16 @@
              from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno)tbl
         where userId= #{mentorId}
     </select>
+
+    <update id="modifyProfile" >
+        update tbl_user
+        set imgName = #{imgName}, nickName = #{nickName}, oneWord = #{oneWord}, sns = #{sns}, mainSubject = #{mainSubject}
+        where userId=#{userId}
+    </update>
+
+    <update id="resetImg" >
+        update tbl_user
+        set imgName = 'noImg.png'
+        where userId=#{userId}
+    </update>
 </mapper>

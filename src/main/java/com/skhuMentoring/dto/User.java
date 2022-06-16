@@ -15,8 +15,9 @@ public class User {
     private String department;
     private Long menteeRating;
     private Long mentorRating;
+    private String imgName;
     private String nickName;
-    private String career;
+    private String oneWord;
+    private String mainSubject;
     private String sns;
-    private String word;
 }

@@ -37,7 +37,7 @@
             </li>
             <%--<li><a href="generic.html">공지사항</a></li>--%>
             <li><a href="/myPage/myPage">마이페이지</a></li>
-            <li><a href="/ranking">랭킹</a></li>
+            <li><a href="/ranking/ranking">랭킹</a></li>
             <c:if test="${empty sessionId }">
             <li><a href="/login">로그인</a></li>
             </c:if>

@@ -98,23 +98,29 @@ License: pixelarity.com/license
                 <div class="spotlight">
                     <ul>
                         <li>
-                            <h4>경력</h4>
-                            <p>자바멘토링 N회 토익멘토링 N회</p>
+                            <h4>이름/닉네임</h4>
+                            <p>${one.nickName}</p>
                         </li>
                         <li>
-                            <h4>소개</h4>
-                            <p>A+밖에 모르는 사나이 양경필</p>
+                            <h4>자신있는 멘토링</h4>
+                            <p>${one.mainSubject}</p>
                         </li>
                     </ul>
-                    <span class="image"><img src="images/pic01.jpg" alt="" /></span>
+                    <span class="image"><img src="/images/${one.imgName}" alt="" />
+                        <br>
+                    <span><p style="text-align: center">이름 : ${one.userName}</p>
+                    <p style="text-align: center">학번 : ${one.userStudentNum}</p>
+                    </span>
+
+                    </span>
                     <ul>
                         <li>
                             <h4>멘토의 한마디</h4>
-                            <p>공부를 잘 하고 싶으면 나에게 오라</p>
+                            <p>${one.oneWord}</p>
                         </li>
                         <li>
-                            <h4>멘토와 연락 할 수 있는 방법</h4>
-                            <p>카카오톡 ID : qwe123 <br> 인스타그램 ID : qwe_11</p>
+                            <h4>멘토와 연락할 수 있는 방법</h4>
+                            <p>${one.sns}</p>
                         </li>
                     </ul>
                 </div>
@@ -124,53 +130,62 @@ License: pixelarity.com/license
                 <div class="spotlight">
                     <ul>
                         <li>
-                            <h4>Erat aliquam</h4>
-                            <p>Praesent dapibus, neque id cursus fauci quam erat volutpat nam dui mitin.</p>
+                            <h4>이름/닉네임</h4>
+                            <p>${two.nickName}</p>
                         </li>
                         <li>
-                            <h4>Neque veroeros</h4>
-                            <p>Sed adipiscing ornare risus. Morbi lorem lentesque egestas sem consequat.</p>
+                            <h4>자신있는 멘토링</h4>
+                            <p>${two.mainSubject}</p>
                         </li>
                     </ul>
-                    <span class="image"><img src="images/pic02.jpg" alt="" /></span>
+                    <span class="image"><img src="/images/${two.imgName}" alt="" />
+                    <br>
+                    <span><p style="text-align: center">이름 : ${two.userName}</p>
+                    <p style="text-align: center">학번 : ${two.userStudentNum}</p>
+                    </span>
+                        </span>
                     <ul>
                         <li>
-                            <h4>Quis portitor</h4>
-                            <p>Donec nec justo eget felis facilisis ferme Aenean dignissim pellen.</p>
+                            <h4>멘토의 한마디</h4>
+                            <p>${two.oneWord}</p>
                         </li>
                         <li>
-                            <h4>Magna accumsan</h4>
-                            <p>Lorem in sem quis dui placerat ornare tra sed etiam veroeros consequat.</p>
+                            <h4>멘토와 연락할 수 있는 방법</h4>
+                            <p>${two.sns}</p>
                         </li>
                     </ul>
                 </div>
-            </li>
-            <li>
-                <h3><span class="extra">3위</span></h3>
-                <div class="spotlight">
-                    <ul>
-                        <li>
-                            <h4>Neque veroeros</h4>
-                            <p>Sed adipiscing ornare risus. Morbi lorem lentesque egestas sem consequat.</p>
-                        </li>
-                        <li>
-                            <h4>Quis portitor</h4>
-                            <p>Donec nec justo eget felis facilisis ferme Aenean dignissim pellen.</p>
-                        </li>
-                    </ul>
-                    <span class="image"><img src="images/pic03.jpg" alt="" /></span>
-                    <ul>
-                        <li>
-                            <h4>Magna accumsan</h4>
-                            <p>Lorem in sem quis dui placerat ornare tra sed etiam veroeros consequat.</p>
-                        </li>
-                        <li>
-                            <h4>Erat aliquam</h4>
-                            <p>Praesent dapibus, neque id cursus fauci quam erat volutpat nam dui mitin.</p>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            </li>            <li>
+            <h3><span class="extra">3위</span></h3>
+            <div class="spotlight">
+                <ul>
+                    <li>
+                        <h4>이름/닉네임</h4>
+                        <p>${three.nickName}</p>
+                    </li>
+                    <li>
+                        <h4>자신있는 멘토링</h4>
+                        <p>${three.mainSubject}</p>
+                    </li>
+                </ul>
+                <span class="image"><img src="/images/${three.imgName}" alt="" />
+                <br>
+                <span><p style="text-align: center">이름 : ${three.userName}</p>
+                    <p style="text-align: center">학번 : ${three.userStudentNum}</p>
+                    </span>
+                    </span>
+                <ul>
+                    <li>
+                        <h4>멘토의 한마디</h4>
+                        <p>${three.oneWord}</p>
+                    </li>
+                    <li>
+                        <h4>멘토와 연락할 수 있는 방법</h4>
+                        <p>${three.sns}</p>
+                    </li>
+                </ul>
+            </div>
+        </li>
         </ul>
     </section>
 

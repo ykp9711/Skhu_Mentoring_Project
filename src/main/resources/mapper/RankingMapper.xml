@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skhuMentoring.mapper.RangkingMapper">
+
+<select id="getMentorRankAll" resultType="com.skhuMentoring.dto.User">
+    select * from tbl_user order by mentorRating desc limit 3,7
+</select>
+
+    <select id="getMentorRankOne" resultType="com.skhuMentoring.dto.User">
+        select * from tbl_user order by mentorRating desc limit 0,1
+    </select>
+
+    <select id="getMentorRankTwo" resultType="com.skhuMentoring.dto.User">
+        select * from tbl_user order by mentorRating desc limit 1,1
+    </select>
+
+    <select id="getMentorRankThree" resultType="com.skhuMentoring.dto.User">
+        select * from tbl_user order by mentorRating desc limit 2,1
+    </select>
+
+</mapper>

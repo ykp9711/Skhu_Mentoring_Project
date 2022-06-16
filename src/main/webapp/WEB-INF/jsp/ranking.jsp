@@ -10,7 +10,7 @@ License: pixelarity.com/license
     <title>SKHU MENTORING RANKING</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body class="is-preload">
 
@@ -32,22 +32,28 @@ License: pixelarity.com/license
                     <ul>
                         <li>
                             <h4>이름/닉네임</h4>
-                            <p></p>
+                            <p>${one.nickName}</p>
                         </li>
                         <li>
                             <h4>자신있는 멘토링</h4>
-                            <p></p>
+                            <p>${one.mainSubject}</p>
                         </li>
                     </ul>
-                    <span class="image"><img src="images/pic01.jpg" alt="" /></span>
+                    <span class="image"><img src="/images/${one.imgName}" alt="" />
+                        <br>
+                    <span><p style="text-align: center">이름 : ${one.userName}</p>
+                    <p style="text-align: center">학번 : ${one.userStudentNum}</p>
+                    </span>
+
+                    </span>
                     <ul>
                         <li>
                             <h4>멘토의 한마디</h4>
-                            <p></p>
+                            <p>${one.oneWord}</p>
                         </li>
                         <li>
                             <h4>멘토와 연락할 수 있는 방법</h4>
-                            <p></p>
+                            <p>${one.sns}</p>
                         </li>
                     </ul>
                 </div>
@@ -58,22 +64,27 @@ License: pixelarity.com/license
                     <ul>
                         <li>
                             <h4>이름/닉네임</h4>
-                            <p></p>
+                            <p>${two.nickName}</p>
                         </li>
                         <li>
                             <h4>자신있는 멘토링</h4>
-                            <p></p>
+                            <p>${two.mainSubject}</p>
                         </li>
                     </ul>
-                    <span class="image"><img src="images/pic01.jpg" alt="" /></span>
+                    <span class="image"><img src="/images/${two.imgName}" alt="" />
+                    <br>
+                    <span><p style="text-align: center">이름 : ${two.userName}</p>
+                    <p style="text-align: center">학번 : ${two.userStudentNum}</p>
+                    </span>
+                        </span>
                     <ul>
                         <li>
                             <h4>멘토의 한마디</h4>
-                            <p></p>
+                            <p>${two.oneWord}</p>
                         </li>
                         <li>
                             <h4>멘토와 연락할 수 있는 방법</h4>
-                            <p></p>
+                            <p>${two.sns}</p>
                         </li>
                     </ul>
                 </div>
@@ -83,22 +94,27 @@ License: pixelarity.com/license
                 <ul>
                     <li>
                         <h4>이름/닉네임</h4>
-                        <p></p>
+                        <p>${three.nickName}</p>
                     </li>
                     <li>
                         <h4>자신있는 멘토링</h4>
-                        <p></p>
+                        <p>${three.mainSubject}</p>
                     </li>
                 </ul>
-                <span class="image"><img src="images/pic01.jpg" alt="" /></span>
+                <span class="image"><img src="/images/${three.imgName}" alt="" />
+                <br>
+                <span><p style="text-align: center">이름 : ${three.userName}</p>
+                    <p style="text-align: center">학번 : ${three.userStudentNum}</p>
+                    </span>
+                    </span>
                 <ul>
                     <li>
                         <h4>멘토의 한마디</h4>
-                        <p></p>
+                        <p>${three.oneWord}</p>
                     </li>
                     <li>
                         <h4>멘토와 연락할 수 있는 방법</h4>
-                        <p></p>
+                        <p>${three.sns}</p>
                     </li>
                 </ul>
             </div>
@@ -116,29 +132,15 @@ License: pixelarity.com/license
                             <th style="text-align: center;">이름</th>
                             <th style="text-align: center;">학번</th>
                             <th style="text-align: center;">학부/학과</th>
-                            <th style="text-align: center;">멘토링 횟수</th>
                         </tr>
+                        <c:forEach var="all" items="${all}" varStatus="status">
                         <tr style="height: 70px;">
-                            <td>4</td>
-                            <td>양경필</td>
-                            <td>201632013</td>
-                            <td>IT융합자율학부</td>
-                            <td>3</td>
+                            <td><c:out value="${status.count +3}"/></td>
+                            <td>${all.userName}</td>
+                            <td>${all.userStudentNum}</td>
+                            <td>${all.department}</td>
                         </tr>
-                        <tr style="height: 70px;">
-                            <td>5</td>
-                            <td>안대성</td>
-                            <td>201911031</td>
-                            <td>IT융합자율학부</td>
-                            <td>2</td>
-                        </tr>
-                        <tr style="height: 70px;">
-                            <td>6</td>
-                            <td>육정근</td>
-                            <td>201632015</td>
-                            <td>IT융합자율학부</td>
-                            <td>1</td>
-                        </tr>
+                        </c:forEach>
                     </table>
                 </div>
 
@@ -151,15 +153,15 @@ License: pixelarity.com/license
 </div>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.dropotron.min.js"></script>
-<script src="assets/js/jquery.selectorr.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.dropotron.min.js"></script>
+<script src="/assets/js/jquery.selectorr.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
 
 </body>
 </html>

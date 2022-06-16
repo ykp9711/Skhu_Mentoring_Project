@@ -69,4 +69,7 @@ public interface MyPageMapper {
     int getMentorCount(String MentorId); // 해당 멘토가 지금까지 진행한 멘토링 횟수
     
     int getMentoringCount(String mentorId); // 해당 멘토의 멘토링을 받은 멘티 수
+    
+    void modifyProfile(User user); // 마이페이지 랭킹 프로필 수정
+    void resetImg(String userId); // 마이페이지 랭킹 프로필 초기화
 }
