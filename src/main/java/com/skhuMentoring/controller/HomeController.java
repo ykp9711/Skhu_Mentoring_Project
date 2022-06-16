@@ -109,7 +109,7 @@ public class HomeController {
                            User user)
             throws Exception {
 
-        List<String> userId = userService.findId(user.getUserEmail());
+        List<String> userId = userMapper.findId(userEmail);
 
         if (userId.size() != 0) {
             model.addAttribute("msg", "당신의 아이디:" + userId + "입니다.");

@@ -137,6 +137,7 @@ License: pixelarity.com/license
 
                                 <div class="col-7" style="text-align: center; ">
                                     <label style="text-align: left;color: cornflowerblue">내 멘티 평점</label>
+                                    내가 들은 멘토링 : ${menteeMentoringCount} 회
                                     <c:if test="${menteeMentoringCount eq 0}">
                                         <input type="text"  id="rate" value="${(user.menteeRating /3.0)}" readonly/>
                                     </c:if>
@@ -147,6 +148,7 @@ License: pixelarity.com/license
                                 </div>
                                 <div class="col-7" style="text-align: center;">
                                     <label style="text-align: left;color: cornflowerblue">내 멘토 평점(5점 만점)</label>
+                                    내가 진행한 멘토링 수업 ${mentorMentoringCount} 회
                                     <c:if test="${mentorMentoringCount eq 0}">
                                         <input type="text"  id="rate" value="0.0 / 5.0" readonly/>
                                     </c:if>
