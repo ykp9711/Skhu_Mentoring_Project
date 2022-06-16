@@ -74,10 +74,10 @@ License: pixelarity.com/license
                         <td style="vertical-align : middle" class="area" >
                             <c:choose>
                                 <c:when test="${sessionId eq list.userId}">
-                                    <a href="/register/mentorRegister?bno=${list.bno}" class="button small disabled">개설</a>
+                                    <a href="/register/mentorRegister?bno=${list.bno}" class="button primary small disabled">개설</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="/register/mentorRegister?menteeStudentNum=${list.userStudentNum}&bno=${list.bno}" class="button small ">개설</a>
+                                    <a href="/register/mentorRegister?menteeStudentNum=${list.userStudentNum}&bno=${list.bno}" class="button primary small ">개설</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>

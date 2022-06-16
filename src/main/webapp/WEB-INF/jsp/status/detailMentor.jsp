@@ -64,14 +64,14 @@ License: pixelarity.com/license
 <c:if test="${mentorId ne null}">
     <c:choose>
     <c:when test="${user.userId eq sessionId}">
-                    <a href="/register/menteeRegister?bno=${detailMentor.bno}" class="button primary disabled">신청</a>
+                    <a href="/register/menteeRegister?bno=${detailMentor.bno}" class="button primary disabled" style="margin-right: 3%;">&nbsp;신청&nbsp;</a>
 </c:when>
         <c:otherwise>
-            <a href="/register/menteeRegister?bno=${detailMentor.bno}&pathIndex=true" class="button primary">신청</a>
+            <a href="/register/menteeRegister?bno=${detailMentor.bno}&pathIndex=true" class="button primary" style="margin-right: 3%;">&nbsp;신청&nbsp;</a>
         </c:otherwise>
     </c:choose>
 </c:if>
-                    <a href='javascript:self.close();' class="button primary">닫기</a>
+                    <a href='javascript:self.close();' class="button">&nbsp;닫기&nbsp;</a>
 
                 </div>
             </div>

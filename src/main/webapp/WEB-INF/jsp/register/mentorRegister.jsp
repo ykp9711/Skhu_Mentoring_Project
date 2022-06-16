@@ -110,9 +110,9 @@ License: pixelarity.com/license
 
 					<!-- Break -->
 					<div class="col-12" style="text-align: center;">
-						<ul class="actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<li><a href="javascript:void(0)" class="primary button" id="btn" onclick="checkValue()">등록</a></li>
+						<ul class="actions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<li><a href="javascript:void(0)" class="primary button" id="btn" onclick="checkValue()">&nbsp;등록&nbsp;</a></li>
 							<li><input type="reset" value="초기화" id="btnn"></li>
 						</ul>
 					</div>
