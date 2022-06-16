@@ -3,6 +3,7 @@ package com.skhuMentoring.controller;
 import com.skhuMentoring.dto.*;
 import com.skhuMentoring.mapper.MyPageMapper;
 import com.skhuMentoring.mapper.UserMapper;
+import com.skhuMentoring.service.EncryptionService;
 import com.skhuMentoring.service.MailService;
 import com.skhuMentoring.service.MentoringBoardService;
 import com.skhuMentoring.service.MyPageService;
@@ -17,11 +18,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
@@ -35,6 +42,7 @@ public class MyPageController {
     private final MyPageService myPageService;
     private final UserMapper userService;
     private final Upload upload;
+    private final EncryptionService Encryption;
     //마이페이지로 이동
     @GetMapping("/myPage")
     public String myPageGo(@ModelAttribute Mentor mentor, Model model, HttpSession session, Mentee mentee, Long bno) {
@@ -95,7 +103,8 @@ public class MyPageController {
 
     //마이페이지 > 내 정보 수정
     @PostMapping("/modifyUserInfo")
-    public String modifyUserInfo(@ModelAttribute User user){
+    public String modifyUserInfo(@ModelAttribute User user) throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        user.setUserPw(Encryption.encrypt(user.getUserPw()));
         myPageService.modifyUserInfo(user);
         return "redirect:/myPage/myPage";
     }
