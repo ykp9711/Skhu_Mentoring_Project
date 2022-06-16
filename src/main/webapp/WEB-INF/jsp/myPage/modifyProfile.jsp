@@ -65,7 +65,7 @@ License: pixelarity.com/license
                     <li>
                         <h4>멘토와 연락할 수 있는 방법</h4>
                         <div class="col-12">
-                            <input type="textarea" name="mentorSns" placeholder="SNS,카카오톡ID">
+                            <input type="textarea" name="sns" placeholder="SNS,카카오톡ID">
                         </div>
                     </li>
                 </ul>

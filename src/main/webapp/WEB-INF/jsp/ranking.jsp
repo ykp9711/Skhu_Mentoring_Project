@@ -23,19 +23,7 @@ License: pixelarity.com/license
     <section id="one" class="main">
         <header class="accent1">
             <h2>SKHU Mentoring Ranking</h2>
-            <form method="post" action="#">
-                <div class="row gtr-uniform">
-                    <div class="col-6 off-3">
-                        <select name="MentoCategory" id="MentoCategory">
-                            <option value="0">전체</option>
-                            <option value="1">JAVA</option>
-                            <option value="2">알고리즘</option>
-                            <option value="3">C언어</option>
-                            <option value="4">Python</option>
-                        </select>
-                    </div>
-                </div>
-            </form>
+
         </header>
         <ul class="tabs">
             <li>
@@ -43,23 +31,23 @@ License: pixelarity.com/license
                 <div class="spotlight">
                     <ul>
                         <li>
-                            <h4>경력</h4>
-                            <p>자바멘토링 N회 토익멘토링 N회</p>
+                            <h4>이름/닉네임</h4>
+                            <p></p>
                         </li>
                         <li>
-                            <h4>소개</h4>
-                            <p>A+밖에 모르는 사나이 양경필</p>
+                            <h4>자신있는 멘토링</h4>
+                            <p></p>
                         </li>
                     </ul>
                     <span class="image"><img src="images/pic01.jpg" alt="" /></span>
                     <ul>
                         <li>
                             <h4>멘토의 한마디</h4>
-                            <p>공부를 잘 하고 싶으면 나에게 오라</p>
+                            <p></p>
                         </li>
                         <li>
                             <h4>멘토와 연락할 수 있는 방법</h4>
-                            <p>카카오톡 ID : qwe123 <br> 인스타그램 ID : qwe_11</p>
+                            <p></p>
                         </li>
                     </ul>
                 </div>
@@ -69,53 +57,52 @@ License: pixelarity.com/license
                 <div class="spotlight">
                     <ul>
                         <li>
-                            <h4>경력</h4>
-                            <p>Praesent dapibus, neque id cursus fauci quam erat volutpat nam dui mitin.</p>
+                            <h4>이름/닉네임</h4>
+                            <p></p>
                         </li>
                         <li>
-                            <h4>소개</h4>
-                            <p>Sed adipiscing ornare risus. Morbi lorem lentesque egestas sem consequat.</p>
+                            <h4>자신있는 멘토링</h4>
+                            <p></p>
                         </li>
                     </ul>
-                    <span class="image"><img src="images/pic02.jpg" alt="" /></span>
+                    <span class="image"><img src="images/pic01.jpg" alt="" /></span>
                     <ul>
                         <li>
                             <h4>멘토의 한마디</h4>
-                            <p>Donec nec justo eget felis facilisis ferme Aenean dignissim pellen.</p>
+                            <p></p>
                         </li>
                         <li>
                             <h4>멘토와 연락할 수 있는 방법</h4>
-                            <p>Lorem in sem quis dui placerat ornare tra sed etiam veroeros consequat.</p>
+                            <p></p>
                         </li>
                     </ul>
                 </div>
-            </li>
-            <li>
-                <h3><span class="extra">3위</span></h3>
-                <div class="spotlight">
-                    <ul>
-                        <li>
-                            <h4>경력</h4>
-                            <p>Sed adipiscing ornare risus. Morbi lorem lentesque egestas sem consequat.</p>
-                        </li>
-                        <li>
-                            <h4>소개</h4>
-                            <p>Donec nec justo eget felis facilisis ferme Aenean dignissim pellen.</p>
-                        </li>
-                    </ul>
-                    <span class="image"><img src="images/pic03.jpg" alt="" /></span>
-                    <ul>
-                        <li>
-                            <h4>맨토의 한마디</h4>
-                            <p>Lorem in sem quis dui placerat ornare tra sed etiam veroeros consequat.</p>
-                        </li>
-                        <li>
-                            <h4>멘토와 연락할 수 있는 방법</h4>
-                            <p>Praesent dapibus, neque id cursus fauci quam erat volutpat nam dui mitin.</p>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            </li>            <li>
+            <h3><span class="extra">3위</span></h3>
+            <div class="spotlight">
+                <ul>
+                    <li>
+                        <h4>이름/닉네임</h4>
+                        <p></p>
+                    </li>
+                    <li>
+                        <h4>자신있는 멘토링</h4>
+                        <p></p>
+                    </li>
+                </ul>
+                <span class="image"><img src="images/pic01.jpg" alt="" /></span>
+                <ul>
+                    <li>
+                        <h4>멘토의 한마디</h4>
+                        <p></p>
+                    </li>
+                    <li>
+                        <h4>멘토와 연락할 수 있는 방법</h4>
+                        <p></p>
+                    </li>
+                </ul>
+            </div>
+        </li>
         </ul>
 
 
@@ -154,25 +141,7 @@ License: pixelarity.com/license
                         </tr>
                     </table>
                 </div>
-            </div>
-                <div class="big-width" style="text-align: center">
-                    <a class="button small">&lt</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button small">&gt;</a>
-                </div>
-                <br>
 
-                <form id="searchForm">
-                    <div style="width: 100%; float: left;">
-                        <select name="type" style="width: 18%; float: left;">
-                            <option>검색 종류</option>
-                            <option>전체</option>
-                            <option>과목</option>
-                            <option>멘토 이름</option>
-                            <option>태그</option>
-                        </select><a class="button primary" style="width: 15%; float: right;">검색</a>
-                        <input type="text" id="keyword" name="keyword" placeholder="검색 종류를 선택 후 검색해주세요" style="width: 66%; float: center;" />
-                    </div>
-                </form>
-            </div>
     </section>
 
 
