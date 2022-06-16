@@ -34,28 +34,52 @@ License: pixelarity.com/license
 
     <!-- Section -->
     <section id="one" class="main alt">
-        <header class="accent1">
+        <header class="accent3">
             <h1>프로필 수정</h1>
         </header>
-        <div class="inner3"><br><br>
-            <form name="modifyProfile" method="post" action="/myPage/modifyProfile" >
-                <div class="table-wrapper">
+        <form name="modifyProfile" method="post" action="/myPage/modifyProfile" >
+            <div class="spotlight">
 
-                    <input type="hidden" name="userId" value="${userId}">
-                    <div class="boxx" style="margin:0 auto;">
-                    <img src="/images/pic01.jpg" alt="" class="profile"/>
-                    </div>
-                    <br>
-                    <div class="col-12" style="text-align: center;">
-                        <a href="javascript:void(0)" onclick="modify(${bno})" class="button ">변경 </a>
-                        <a href='javascript:self.close();' class="button primary">닫기</a>
-                        <%--<a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a>--%>
+                <ul>
+                    <li>
+                        <h4>이름/닉네임</h4>
+                        <div class="col-12">
+                        <input type="textarea" name="nickName" placeholder="닉네임">
+                        </div>
+                    </li>
+                    <li>
+                        <h4>자신있는 멘토링</h4>
+                        <div class="col-12">
+                            <input type="textarea" name="career" placeholder="자바,파이썬">
+                        </div>
+                    </li>
+                </ul>
+                <span class="image"><img src="/images/pic01.jpg" alt="" /></span>
+                <ul>
+                    <li>
+                        <h4>멘토의 한마디</h4>
+                        <div class="col-12">
+                            <input type="textarea" name="word" placeholder="화이팅">
+                        </div>
+                    </li>
+                    <li>
+                        <h4>멘토와 연락할 수 있는 방법</h4>
+                        <div class="col-12">
+                            <input type="textarea" name="mentorSns" placeholder="SNS,카카오톡ID">
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-                    </div>
+                <div class="col-12" style="text-align: center;">
+                    <a href="javascript:void(0)" onclick="modify(${bno})" class="button ">변경 </a>
+                    <a href='javascript:self.close();' class="button primary">닫기</a>
+                    <%--<a href="javascript:void(0)" onclick="endMentoring(${Mentoring.bno})" class="button small">종료</a>--%>
+
                 </div>
 
                 <br><br></form>
-        </div>
+
     </section>
 
 

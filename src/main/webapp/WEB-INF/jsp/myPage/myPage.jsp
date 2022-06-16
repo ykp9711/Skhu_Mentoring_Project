@@ -104,7 +104,7 @@ License: pixelarity.com/license
                                         <img src="/images/pic01.jpg" alt="" class="profile"/>
 
                                     </div><br>
-                                    <a href="/myPage/modifyProfile?bno=${user.userId}" onclick="window.open(this.href,'Detail','width=450px, height=450px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">프로필 수정</a>
+                                    <a href="/myPage/modifyProfile?bno=${user.userId}" onclick="window.open(this.href,'Detail','width=1100px, height=700px, top=100, left=210, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">프로필 수정</a>
 
                                 <div class="col-7" style="text-align: center;"><br>
                                     <label style="text-align: left; color:cornflowerblue">이름</label>
