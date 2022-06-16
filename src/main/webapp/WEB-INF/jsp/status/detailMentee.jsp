@@ -10,7 +10,7 @@ License: pixelarity.com/license
 -->
 <html>
 <head>
-    <title>Untitled</title>
+    <title>SKHU MENTORING DETAIL MENTEE</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -58,7 +58,7 @@ License: pixelarity.com/license
                 <br>
                 <div class="col-12" style="text-align: center;">
 
-                    <a href='javascript:self.close();' class="button primary">닫기</a>
+                    <a href='javascript:window.close();' class="button primary">닫기</a>
 
                 </div>
             </div>

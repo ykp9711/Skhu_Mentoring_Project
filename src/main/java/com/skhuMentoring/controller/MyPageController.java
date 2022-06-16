@@ -226,4 +226,8 @@ public class MyPageController {
         }
 
     }
+    @GetMapping("/modifyProfile")
+    public String modifyProfile(){
+        return "/myPage/modifyProfile";
+    }
 }
