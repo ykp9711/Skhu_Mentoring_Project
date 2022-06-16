@@ -52,12 +52,20 @@ License: pixelarity.com/license
     .tabcontent.current {
         display: block;
     }
-    #id, #rank, #rate, #studentNum, #email{
-        background-color: #f6f6f6;
+    .boxx {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .profile {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 </style>
 <head>
-    <title>마이페이지</title>
+    <title>SKHU MENTORING MYPAGE</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -92,13 +100,20 @@ License: pixelarity.com/license
                         <form method="post" action="/myPage/modifyUserInfo">
                             <div class="row gtr-uniform" style="text-align: center; width: 74%;  float: right;">
                                 <div class="col-7" style="text-align: center;">
+                                    <div class="boxx" style="margin:0 auto;">
+                                        <img src="/images/pic01.jpg" alt="" class="profile"/>
+
+                                    </div><br>
+                                    <a href="/myPage/modifyProfile?bno=${user.userId}" onclick="window.open(this.href,'Detail','width=450px, height=450px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank" class="button small">프로필 수정</a>
+
+                                <div class="col-7" style="text-align: center;"><br>
                                     <label style="text-align: left; color:cornflowerblue">이름</label>
                                     <input type="text" placeholder="이름" name="userName" value="${user.userName}" id="name" />
-                                </div>
+                                </div><br>
                                 <div class="col-7" style="text-align: center;">
                                     <label style="text-align: left; color:cornflowerblue">아이디</label>
                                     <input type="text" placeholder="아이디" name="userId" value="${user.userId}" id="id" readonly/>
-                                </div>
+                                </div><br>
                                 <div class="col-7" style="text-align: center;">
                                     <label style="text-align: left; color:cornflowerblue">학부(학과)</label>
                                     <select name="department">
@@ -109,31 +124,31 @@ License: pixelarity.com/license
                                             </option>
                                         </c:forEach>
                                     </select>
-                                </div>
+                                </div><br>
                                 <div class="col-7" style="text-align: center;">
                                     <label style="text-align: left; color:cornflowerblue">학번</label>
                                     <input type="text" placeholder="학번" id="studentNum" name="userStudentNum" value="${user.userStudentNum}" readonly/>
-                                </div>
+                                </div><br>
                                 <div class="col-7" style="text-align: center;">
                                     <label style="text-align: left; color:cornflowerblue">전화번호</label>
                                     <input type="text" placeholder="전화번호" name="userPhoneNum" value="${user.userPhoneNum}"/>
 
-                                </div>
+                                </div><br>
                                 <div class="col-7" style="text-align: center;">
                                     <label style="text-align: left; color:cornflowerblue">이메일</label>
                                     <input type="text" placeholder="이메일" id="email" name="userEmail" value="${user.userEmail}" id="email" readonly/>
-                                </div>
+                                </div><br>
 
                                 <div class="col-7" style="text-align: center;">
                                     <label style="text-align: left; color:cornflowerblue">비밀번호</label>
                                     <input type="password" placeholder="비밀번호" name="userPw" id="userPw" value="${user.userPw}" />
                                     <p id="Check_pw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
-                                </div>
+                                </div><br>
 
                                 <div class="col-7" style="text-align: center;">
                                     <input type="password" placeholder="비밀번호 확인" id="conPw" value="${user.userPw}"/>
                                     <p id="Check_conPw" style="height: 1px; color: #13a2dd; text-align: center;"></p>
-                                </div>
+                                </div><br>
 
                                 <div class="col-7" style="text-align: center; ">
                                     <label style="text-align: left;color: cornflowerblue">내 멘티 평점</label>
@@ -145,7 +160,7 @@ License: pixelarity.com/license
                                         <c:set var="num1" value="${((user.menteeRating/3.0)/menteeMentoringCount)}" />
                                         <input type="text" placeholder="내 멘토 횟수(순위)" value="<fmt:formatNumber type="number"  pattern="0.0" value="${ ((num1*10) - ((num1*10)%1)) * (1/10)} " /> / 5.0"  id="rank" readonly/>
                                     </c:if>
-                                </div>
+                                </div><br>
                                 <div class="col-7" style="text-align: center;">
                                     <label style="text-align: left;color: cornflowerblue">내 멘토 평점(5점 만점)</label>
                                     내가 진행한 멘토링 수업 ${mentorMentoringCount} 회
@@ -156,7 +171,7 @@ License: pixelarity.com/license
                                     <c:set var="num1" value="${((user.mentorRating/3.0)/mentorMentoringCount/getMentoringCount)}" />
                                     <input type="text" placeholder="내 멘토 횟수(순위)" value="<fmt:formatNumber type="number"  pattern="0.0" value="${ ((num1*10) - ((num1*10)%1)) * (1/10)} " /> / 5.0"  id="rank" readonly/>
                                     </c:if>
-                                </div>
+                                </div><br>
                                 <br><br>
                                 <div class="col-7" style="text-align: center;">
                                     <input type="submit" class="button" id="btn" value="수정하기"> </input>

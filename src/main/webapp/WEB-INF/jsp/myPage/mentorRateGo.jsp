@@ -10,7 +10,7 @@ License: pixelarity.com/license
 -->
 <html>
 <head>
-    <title>Untitled</title>
+    <title>SKHU MENTORING MENTORRATEGO</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/assets/css/main.css" />
