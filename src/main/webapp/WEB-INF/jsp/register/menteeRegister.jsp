@@ -231,7 +231,7 @@
 		let subjectInput = $("#subjectInput").val();
 		var a = $("#pathIndex").val()
 
-		{
+			if(subjectInput.length == 0){
 			alert("희망과목을 선택해주세요.");
 			$("#subjectInput").focus();
 			return false;
