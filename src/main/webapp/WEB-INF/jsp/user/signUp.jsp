@@ -8,7 +8,7 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>SKHU MENTORING SIGNUP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -155,17 +155,11 @@
 				var userPw = $("#userPw").val();
 				var conPw = $("#conPw").val();
 
-					if(userPw != conPw){
-						$("#Check_conPw").text("비밀번호가 다릅니다.");
-						$("#signUp_btn").attr('disabled', true);
-					}
-					else if(userPw != " " || conPw != " "){
-						$("#signUp_btn").attr('disabled', false);
-						$("#Check_conPw").text(" ");
-						}
-						else {
-						$("#signUp_btn").attr('disabled', false);
-						$("#Check_conPw").text(" ");
+				if(userPw != conPw){
+					$("#Check_conPw").text("비밀번호가 다릅니다.");
+					$("#signUp_btn").attr('disabled', true);
+				} else {
+					$("#Check_conPw").text(" ");
 
 				}
 			})
@@ -185,7 +179,6 @@
 					$("#signUp_btn").attr('disabled', true);
 				} else{
 					$("#Check_pw").text("비밀번호가 적합합니다.");
-					$("#signUp_btn").attr('disabled', false);
 				}
 
 			})

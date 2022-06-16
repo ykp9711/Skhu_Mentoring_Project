@@ -63,6 +63,9 @@ License: pixelarity.com/license
         height: 100%;
         object-fit: cover;
     }
+    #rate, #email, #studentNum, #id {
+        background-color: #f8f8f8;
+    }
 </style>
 <head>
     <title>SKHU MENTORING MYPAGE</title>
@@ -174,7 +177,7 @@ License: pixelarity.com/license
                                 </div><br>
                                 <br><br>
                                 <div class="col-7" style="text-align: center;">
-                                    <input type="submit" class="button" id="btn" value="수정하기"> </input>
+                                    <input type="submit" class="button primary" id="btn" value="수정하기" style="margin-right: 5%"> </input>
                                     <input type="button" value="회원탈퇴" onclick="showPopup();"/>
                                 </div>
                                 <!-- Break -->

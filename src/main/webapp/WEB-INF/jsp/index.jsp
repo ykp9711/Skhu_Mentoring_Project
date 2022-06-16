@@ -26,13 +26,13 @@ License: pixelarity.com/license
 
     <!-- Banner -->
     <section id="banner">
-        <div class="content primary" style="background-color: #23b1ec;">
+        <div class="content primary" style="background-color: #bbe7ff36;">
 
             <div >
                 <header>
-                    <h1 style="color:white">성공회대학교 멘토링 시스템<br />
+                    <h1 style="color:#3b3b3b">성공회대학교 멘토링 시스템<br />
                     </h1>
-                    <p>멘토와 멘티를 찾아보세요</p>
+                    <p style="color:#13a2dd">멘토와 멘티를 찾아보세요</p>
                 </header>
             </div>
 
@@ -45,7 +45,7 @@ License: pixelarity.com/license
                     <div>
                         <blockquote style="padding: 0.5rem 2rem 0.5rem 2rem;">
                             <a href="/status/detailMentor?bno=${mentor.bno}&mentorId=${mentor.userId}&pathIndex=true" onclick="window.open(this.href,'Detail','width=500px, height=400px, top=200, left=570, toolbar=no, scrollbars=no, resizable=yes');return false;" target="_blank">
-                                <h3 style="color: #13a2dd">Mentor</h3> <h4>${mentor.userName}</h4>
+                                <h3 style="color: #858585">Mentor</h3> <h4 style="color: #13a2dd">${mentor.userName}</h4>
                                 <div><b>${mentor.subjectName}</b></div>
                                 <div>
                                     <b><fmt:formatDate value="${mentor.startDate}" pattern="yyyy-MM-dd"/></b> / <b>${mentor.hopeDay}</b></div>

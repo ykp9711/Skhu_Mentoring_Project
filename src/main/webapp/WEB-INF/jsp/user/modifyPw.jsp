@@ -10,7 +10,7 @@ License: pixelarity.com/license
 -->
 <html>
 <head>
-    <title>modifyPw</title>
+    <title>SKHU MENTORING MODIFY PW</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -40,8 +40,8 @@ License: pixelarity.com/license
                         </div>
                         <div class="col-12" style="text-align: center;">
                             <ul class="actions fit">
-                                <li><button type="submit"  class="button fit" id="modify_btn" disabled="true" >변경하기</button></li>
-                                <li><a href='javascript:self.close();' class="button primary fit">닫기</a></li>
+                                <li><button type="submit"  class="button primary fit" id="modify_btn" disabled="true" >변경하기</button></li>
+                                <li><a href='javascript:self.close();' class="button fit">닫기</a></li>
                             </ul>
                             <p id="msg" style="height: 1px; color: #13a2dd; text-align: center;" >${msg}</p>
                         </div>

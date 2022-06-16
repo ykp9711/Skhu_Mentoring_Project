@@ -108,8 +108,8 @@
 										<div class="col-12" style="text-align: center;">
 											<ul class="actions">
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												&nbsp;&nbsp;&nbsp;&nbsp;
-												<li><a href="javascript:void(0)" class="primary button" id="btn" onclick="checkValue()">신청</a></li>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<li><a href="javascript:void(0)" class="primary primary button" id="btn" onclick="checkValue()">&nbsp;신청&nbsp;</a></li>
 
 												<li><input type="reset" value="초기화"></li>
 
@@ -184,8 +184,8 @@
 				<div class="col-12" style="text-align: center;">
 					<ul class="actions">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<li><input type="submit" value="신청"></li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<li><input type="submit" class="button primary" value="&nbsp;신청&nbsp;"></li>
 								<li><input type="reset" value="초기화"></li>
 
 

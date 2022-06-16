@@ -10,7 +10,7 @@ License: pixelarity.com/license
 -->
 <html>
 <head>
-    <title>Login</title>
+    <title>SKHU MENTORING LOGIN</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -73,11 +73,15 @@ License: pixelarity.com/license
                         <input type="password" name="userPw" id="userPw" value="" placeholder="PASSWORD" />
                     </div>
                     <div class="col-12" style="text-align: center;">
-                        <input type="submit" value="로그인"/>
-                        <a href="signUp" class="button">회원가입</a>
-                        <a href="findPwId" class="button">ID/PW 찾기</a>
+                        <input type="submit" value="로그인" class="button primary fit" id="login_btn"/>
                     </div>
-                    <div class="col-12">${msg}</div>
+                    <div class="col-12" style="text-align: center;">
+                        <ul class="actions fit small">
+                            <li> <a href="signUp" class="button fit small">회원가입</a></li>
+                            <li><a href="findPwId" class="button fit small">ID/PW 찾기</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12"style="text-align: center; color: #575757">${msg}</div>
 
                 </div>
             </form>
