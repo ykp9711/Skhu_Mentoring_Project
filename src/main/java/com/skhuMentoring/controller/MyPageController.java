@@ -38,7 +38,7 @@ public class MyPageController {
         String userId = (String) session.getAttribute("sessionId");
         model.addAttribute("list", myPageService.getMentorMyStatus(userService.getId(userId))); // 멘토정보 불러오기
         model.addAttribute("applicationMentor", myPageService.getApplicationMentor(userId)); // 멘토에게 보낸 신청
-        model.addAttribute("requestMentee", myPageService.getRequestMentee(userId)); // 멘토에게 보낸 신청
+        model.addAttribute("requestMentee", myPageService.getRequestMentee(userId)); //  멘티에게 받은 요청
         model.addAttribute("departments", mentoringBoardService.getDepartment());
         model.addAttribute("Mentoring", myPageService.getMyMentoring(userId)); // (마이페이지 -> 멘토현황)
         model.addAttribute("myMenteeStatus", myPageService.getMyMenteeStatus(userId)); // 마이페이지 - > 멘티현황

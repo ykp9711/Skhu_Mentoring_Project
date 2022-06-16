@@ -18,7 +18,7 @@
 
     <!--모집 종료 시 마이페이지 멘토 현황에서 멘토 상태 확인-->
     <select id="getMyMentoring" resultType="com.skhuMentoring.dto.Mentoring">
-        select bno,subjectName, personnel, recruiting, realStartDate, realEndDate from tbl_mentorBoard where userId = #{userId} and recruiting = '진행중' or userId = #{userId} and recruiting = '종료됨'
+        select bno,subjectName, personnel, recruiting, realStartDate, realEndDate from tbl_mentorBoard where userId = #{userId} and recruiting = '진행중' or userId = #{userId} and recruiting = '종료됨' order by recruiting desc,realStartDate desc;
     </select>
 
     <!--멘토링 종료-->
@@ -60,7 +60,7 @@
 
     <!--마이페이지 멘토에게 보낸요청-->
     <select id="getApplicationMentor" resultType="com.skhuMentoring.dto.Mentee">
-        select * from tbl_applicationMentor where menteeId = #{menteeId} and accept ='대기중' or menteeId = #{menteeId} and accept ='수락됨' or menteeId = #{menteeId} and accept ='거절됨'
+        select * from tbl_applicationMentor where menteeId = #{menteeId} and accept ='대기중' or menteeId = #{menteeId} and accept ='수락됨' or menteeId = #{menteeId} and accept ='거절됨' order by field(accept, '대기중','수락됨','거절됨'), regDate desc;
     </select>
 
     <select id="getApplicationMentee" resultType="com.skhuMentoring.dto.Mentee">
@@ -71,7 +71,7 @@
     <select id="getRequestMentee" resultType="com.skhuMentoring.dto.Mentee">
         select a.*, m.userId
         from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
-        where m.userId = #{mentorId} and accept='대기중'
+        where m.userId = #{mentorId} and accept='대기중' order by regDate desc;
     </select>
 
     <!--마이페이지 멘티에게 받은 요청에서 멘티 상세보기-->
@@ -97,7 +97,7 @@
     <select id="getMyMenteeStatus" resultType="com.skhuMentoring.dto.Mentoring">
         select m.bno, m.userId, m.recruiting, m.personnel, m.introduce , m.userName, m.realStartDate, m.realEndDate,m.subjectName, a.menteeId, a.bno, a.checkRatingMentor
         from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
-        where menteeId = #{menteeId} and recruiting = '진행중' or menteeId = #{menteeId} and recruiting = '종료됨'
+        where menteeId = #{menteeId} and recruiting = '진행중' or menteeId = #{menteeId} and recruiting = '종료됨' order by m.realStartDate desc, m.bno desc;
     </select>
 
     <!-- 거절 이유 작성   -->
