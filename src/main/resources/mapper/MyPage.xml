@@ -96,8 +96,8 @@
     <!--마이페이지 -> 멘티현황 -->
     <select id="getMyMenteeStatus" resultType="com.skhuMentoring.dto.Mentoring">
         select m.bno, m.userId, m.recruiting, m.personnel, m.introduce , m.userName, m.realStartDate, m.realEndDate,m.subjectName, a.menteeId, a.bno, a.checkRatingMentor
-        from tbl_mentorboard m JOIN tbl_applicationMentor a on m.bno = a.bno
-        where menteeId = #{menteeId} and recruiting = '진행중' or menteeId = #{menteeId} and recruiting = '종료됨' order by m.realStartDate desc, m.bno desc;
+        from tbl_mentorBoard m JOIN tbl_applicationMentor a on m.bno = a.bno
+        where menteeId = #{menteeId} and recruiting = '진행중' or menteeId = #{menteeId} and recruiting = '종료됨' order by field(recruiting,'진행중','종료됨'), m.realStartDate desc ;
     </select>
 
     <!-- 거절 이유 작성   -->

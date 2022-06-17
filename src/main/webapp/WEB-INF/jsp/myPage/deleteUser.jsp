@@ -30,7 +30,7 @@ License: pixelarity.com/license
         <div class="row gtr-uniform" style="text-align: center; width: 90%;   float: right;">
             <div class="col-10" style="text-align: center;">
                 <label for="userId">아이디</label>
-                <input type="text" id="userId" name="userId" value="${user.userId}" readonly/>
+                <input type="text" id="userId" name="userId" value="${sessionId}" readonly/>
             </div>
 
             <div class="col-10" style="text-align: center;">

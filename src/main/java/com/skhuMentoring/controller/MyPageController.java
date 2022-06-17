@@ -221,12 +221,18 @@ public class MyPageController {
     public String deleteUser(@RequestParam("userPw") String userPw, User dto, HttpSession session, Model model,
                              RedirectAttributes ra) throws Exception {
 
+
         User user = (User) session.getAttribute("user");
+        //user.setUserPw(Encryption.encrypt(user.getUserPw()));
+
+
 
         String oldPass = user.getUserPw();
-        String newPass = dto.getUserPw();
+        String userPw2 = dto.getUserPw();
+        String newPass = Encryption.encrypt(userPw2);
 
         if (oldPass.equals(newPass)) {
+
             userService.deleteUser(user.getUserId());
             // ra.addFlashAttribute("result", "success");
             session.invalidate();
@@ -239,6 +245,8 @@ public class MyPageController {
         }
 
     }
+
+
     @GetMapping("/modifyProfile")
     public String modifyProfile(HttpServletRequest req, Model model, HttpSession session){
         model.addAttribute("user", userService.getUser((String) session.getAttribute("sessionId")));
